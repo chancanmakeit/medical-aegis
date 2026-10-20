@@ -125,6 +125,21 @@ FRAMEWORK_AGENT_POOL: Dict[str, List[Dict]] = {
         {"role": "EnrollmentAgent", "role_index": 0, "agent_key": "EnrollmentAgent"},
         {"role": "Reasoner",        "role_index": 0, "agent_key": "Reasoner"},
     ],
+    # MedAgents (MC): only call sites that ALWAYS fire are listed. Advisor_i and
+    # Reviser run only when some voter says NO, so they are left out of random
+    # sampling (they can still be targeted by hand in a YAML). Domain expert i
+    # analyses (QuestionAnalyst/OptionAnalyst) and later votes (Voter) as the
+    # same logical agent, so they share an agent_key.
+    "medagents_mc": (
+        [{"role": "QuestionClassifier", "role_index": 0, "agent_key": "QuestionClassifier"},
+         {"role": "OptionClassifier",   "role_index": 0, "agent_key": "OptionClassifier"}]
+        + [{"role": "QuestionAnalyst", "role_index": i, "agent_key": f"QExpert_{i}"} for i in range(5)]
+        + [{"role": "OptionAnalyst",   "role_index": j, "agent_key": f"OExpert_{j}"} for j in range(2)]
+        + [{"role": "Synthesizer",     "role_index": 0, "agent_key": "Synthesizer"}]
+        + [{"role": "Voter", "role_index": i, "agent_key": f"QExpert_{i}"} for i in range(5)]
+        + [{"role": "Voter", "role_index": 5 + j, "agent_key": f"OExpert_{j}"} for j in range(2)]
+        + [{"role": "Decider",         "role_index": 0, "agent_key": "Decider"}]
+    ),
     # CMAS: 3-agent per-sample zero-shot NER pipeline (self-annotator is offline).
     # All singletons (idx=0), no runtime role renaming.
     "cmas": [
@@ -153,6 +168,7 @@ BASE_YAML_TEMPLATE = {
     "mdagents": "experiments/fm_injection/medical/mdagents_medical_inject.yaml",
     "clinical_agent": "experiments/fm_injection/medical/clinical_agent_medical_inject.yaml",
     "cmas": "experiments/fm_injection/ner/cmas_ner_inject.yaml",
+    "medagents_mc": "experiments/fm_injection/medical/medagents_mc_medical_inject.yaml",
 }
 
 

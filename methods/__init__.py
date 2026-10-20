@@ -13,6 +13,7 @@ from .mapcoder import MapCoder_HumanEval, MapCoder_MBPP
 from .self_consistency import SelfConsistency
 from .mav import MAV_GPQA, MAV_HumanEval, MAV_Main, MAV_MATH, MAV_MMLU
 from .mdagents import MDAgents_Main
+from .medagents_mc import MedAgentsMC_Main
 from .clinical_agent import ClinicalAgent_Main
 from .cmas import CMAS_Main
 
@@ -44,6 +45,7 @@ method2class = {
     "mav_math": MAV_MATH,
     "mav_mmlu": MAV_MMLU,
     "mdagents": MDAgents_Main,
+    "medagents_mc": MedAgentsMC_Main,
     "clinical_agent": ClinicalAgent_Main,
     "clinicalagent": ClinicalAgent_Main,
     "cmas": CMAS_Main

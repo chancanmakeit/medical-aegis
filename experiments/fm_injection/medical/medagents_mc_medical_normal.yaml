@@ -1,0 +1,33 @@
+# MedAgents (MC, Tang et al. ACL'24 Findings) CLEAN config -> NORMAL trajectories.
+# Run: python main.py --method_name medagents_mc \
+#        --experiment_config experiments/fm_injection/medical/medagents_mc_medical_normal.yaml \
+#        --dataset_file ./datasets/data/<medconceptsqa|mmlu_pro_health>.json \
+#        --test_dataset_name <name> --model_name <model> --no_inject
+# Intended datasets (user decision 2026-10-20): MedConceptsQA, mmlu_pro_health.
+run_mode: "clean"
+
+medagents_config_name: "config_medical"
+# medagents_max_attempt_vote: 3            # consultation rounds (upstream default 3)
+# medagents_use_original_max_tokens: false # upstream 30/50/300/500/2500 budgets truncate reasoning models
+
+system_under_test:
+  name: "medagents_mc"
+  wrapper_class_path: "aegis_core.agent_systems.fm_medagents_mc_wrapper.FMMedAgentsMCWrapper"
+  method_config_path: "configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+benchmark_name: "medconceptsqa"
+
+# MCQ letters are extracted deterministically; the LLM judge is only consulted
+# when no letter can be extracted (keeps judge cost near zero).
+use_llm_judge: true
+judge_mode: "regex_first"
+
+experiment_settings:
+  max_workers: 5

@@ -164,7 +164,9 @@ class MAS():
         request_dict = {
             "model": model_name,
             "messages": messages,
-            "max_tokens": self.model_max_tokens,
+            # Per-call override (e.g. a framework's original per-stage budget);
+            # falls back to the global model_max_tokens.
+            "max_tokens": kwargs.get("max_tokens") or self.model_max_tokens,
             "timeout": self.model_timeout
         }
         if "o1" not in model_name:              # OpenAI's o1 models do not support temperature
