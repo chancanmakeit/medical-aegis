@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-19（第 3 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
+> 最后更新：2026-10-19（第 4 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
 
 ## 0. 项目一句话
 把 AEGIS（多智能体故障注入 + 失败归因，arxiv 2509.14295，ICLR 2026）扩展到**医学**和 **NER**：新增 3 个框架（MDAgents / ClinicalAgent / CMAS），4 个新数据集（MedXpertQA-Text/MM、MedConceptsQA、trial_success、wikigold），支持多模态。在注入故障的情况下生成错误轨迹，同时生成干净的正常轨迹，两者配对用于失败归因研究。
@@ -28,6 +28,7 @@
 - 用户的本地环境是 Windows，GBK locale，项目路径 `F:\AEGIS-main\`。旧会话用的模型是 `gemini-2.5-flash-lite` 和 `grok-4-1-fast-reasoning`（走 qingyuntop 代理）。
 
 ## 4. 待决项（接力点）
+- 🆕 **第 4 轮：用户提议集成 MedAgents×MedConceptsQA、MedAgent-Pro×REFUGE2、ConSensus×ConSensus、MAM×Heartbeat/Sound-Dr。** 核实结果和建议见 `discussion_log_v4.md`。外部仓库 clone 在 `/home/claude/ext_repos/`（沙箱重置后需要重新 clone）。MedAgent-Pro 的正确仓库是 `jinlab-imvr/MedAgent-Pro`，它的分割工具没有发布；MAM 原版依赖本地 GPU 上的音频模型；ConSensus 自带 6 个基线 MAS，都跑同一批数据。等用户确认集成顺序和各项方案。
 - 📨 **来自 MedHyperTrace 项目的轨迹需求（2026-10-19，用户安排两项目统筹）：** `docs/requests/2026-10-19_from_medhypertrace_HGFM_trajectory_spec_v1.md`。要点：方法侧要训跨框架零样本的超图基础模型，需要 ≥8 个框架、normal 每题多次采样（成功 + 自然失败）、干净的注入前 `input_messages`（mdagents / clinical_agent / clinical_agent5 目前缺，且记录的输入含注入指令原文 = 标签泄漏）、`labels` 与 `steps` 分离、拼 prompt 时记录 `sources`。**两项目沟通走 GitHub issue（用户 2026-10-19 要求）：请在 [issue #1](https://github.com/chancanmakeit/medical-aegis/issues/1) 下评论回复 6 个问题**（会话内用 REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments -f body=...`，GraphQL 不可用）。方法侧对注入频率倾向方案 A（最终由用户定）。
   - **第 3 轮已在 issue #1 回复**（[评论](https://github.com/chancanmakeit/medical-aegis/issues/1#issuecomment-6282499559)）。要点：normal 与 inject 同路径同格式；三框架缺干净输入的根因是捕获层在注入层之下，`original_prompt` 被 normalizer 丢弃；旧数据或可按 `\n\n---\n[UPDATED INSTRUCTION FOR` 截断修复（请方法侧核实命中率）；`sources` 新三框架易插桩（mdagents 走 `_ask`），dylan 因 Ranker 剪枝需运行时记录。
   - **约定的下一步（离线，不调 API）**：①三框架补存 `original_input_messages`；②schema v1（`mas-traj/1`）导出器，steps/labels 物理分离；③`main.py` 支持 K 次重复 + `run_index`/`question_id`；④新三框架记 `sources`；⑤mock LLM 生成样例 JSON 放 `docs/requests/samples/`。之后才是 API 成本试跑 → 用户确认 → 2 框架×20 题×K=4 试点。
