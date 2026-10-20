@@ -1,0 +1,31 @@
+# ConSensus-repo `debate` baseline (Yoon et al., ACL'26 Findings) CLEAN config -> NORMAL trajectories.
+# Datasets (user decision 2026-10-20): WESAD (stress), SleepEDF (sleep stage).
+# Build the dataset JSON first:
+#   python data_processing/sensing/convert_consensus_datasets.py --split_dir <...>/splits/default_ex_1_seed_0 \
+#          --dataset sleepedf --out ./datasets/data/sleepedf.json
+# Run (benchmark_name is intentionally unset: --test_dataset_name selects the verifier):
+#   python main.py --method_name consensus_debate \
+#     --experiment_config experiments/fm_injection/sensing/consensus_debate_sensing_normal.yaml \
+#     --dataset_file ./datasets/data/sleepedf.json --test_dataset_name sleepedf --model_name <model> --no_inject
+run_mode: "clean"
+consensus_config_name: "config_sensing"
+
+system_under_test:
+  name: "consensus_debate"
+  wrapper_class_path: "aegis_core.agent_systems.fm_consensus_wrapper.FMConSensusWrapper"
+  method_config_path: "methods/consensus_baselines/configs/config_sensing.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+# Class labels are matched deterministically (authoritative); the judge is only
+# consulted when no label can be extracted.
+use_llm_judge: true
+judge_mode: "regex_first"
+
+experiment_settings:
+  max_workers: 5

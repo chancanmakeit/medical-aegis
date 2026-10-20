@@ -18,8 +18,9 @@ What this wrapper guarantees (MedHyperTrace issue #1, problems A and C):
   * Prompt injection works for both call styles: `prompt=` is rewritten, or
     for `messages=` the LAST user message is rewritten (earlier turns of a
     multi-turn agent are untouched).
-  * Injection fires only on the FIRST matching (role, role_index) call unless
-    `inject_every_invocation: true`; each target reports `fired`.
+  * A target matches (role, role_index) and optionally `phase` / `round`
+    (from current_phase / current_round). It fires only on its FIRST matching
+    call unless `inject_every_invocation: true`; each target reports `fired`.
   * `step_id` / `sources` / `round` / `event_ids` pass through untouched.
 
 Subclasses set FRAMEWORK, CONFIG_NAME_KEY and may override `configure()`,
@@ -141,9 +142,23 @@ class StructuredFMWrapper(SystemWrapper):
 
     def run_with_multi_injection(self, task: Any, malicious_agents: list,
                                  injection_targets: list) -> Tuple[Any, Dict[str, Any]]:
-        injection_map = {(t["role"], t.get("role_index", 0)): {"agent": a, "target": t}
-                         for a, t in zip(malicious_agents, injection_targets)}
-        fired_keys = set()
+        # A target matches a call on (role, role_index) and, when given, on
+        # `phase` and/or `round` as well (lets a target hit e.g. debate round 2
+        # of an agent instead of its first call).
+        targets = list(zip(malicious_agents, injection_targets))
+        fired_targets = set()  # indices into `targets`
+
+        def _match(role, role_index, phase, round_):
+            for ti, (_a, t) in enumerate(targets):
+                if t["role"] != role or t.get("role_index", 0) != role_index:
+                    continue
+                if t.get("phase") is not None and t["phase"] != phase:
+                    continue
+                if t.get("round") is not None and t["round"] != round_:
+                    continue
+                if self._inject_every or ti not in fired_targets:
+                    return ti
+            return None
         injection_meta_by_call: Dict[int, Dict[str, Any]] = {}
         clean_messages_by_call: Dict[int, List[Dict[str, Any]]] = {}
         call_counter = {"n": 0}
@@ -161,18 +176,18 @@ class StructuredFMWrapper(SystemWrapper):
             role = getattr(inst, "current_role", None)
             role_index = getattr(inst, "current_role_index", 0)
             phase = getattr(inst, "current_phase", None)
+            round_ = getattr(inst, "current_round", None)
             turn_idx = call_counter["n"]
             call_counter["n"] += 1
             clean_messages_by_call[turn_idx] = messages_from_call(args, kwargs)
 
-            key = (role, role_index)
-            should_inject = key in injection_map and (self._inject_every or key not in fired_keys)
+            ti = _match(role, role_index, phase, round_)
             where = f"{fw}:{role}_idx{role_index}_turn{turn_idx}"
-            if not should_inject:
+            if ti is None:
                 return _llm_response_or_raise(original_llm_call(*args, **kwargs), where=where)
 
-            fired_keys.add(key)
-            malicious_agent = injection_map[key]["agent"]
+            fired_targets.add(ti)
+            malicious_agent = targets[ti][0]
             print(f"*** FM injection on {fw} '{role}' (idx {role_index}, phase '{phase}', "
                   f"turn {turn_idx}): {malicious_agent.fm_error_type.value} / "
                   f"{malicious_agent.injection_strategy.value} ***")
@@ -198,6 +213,8 @@ class StructuredFMWrapper(SystemWrapper):
                 "current_role": role,
                 "current_role_index": role_index,
                 "current_phase": phase,
+                "current_round": round_,
+                "target_index": ti,
             }
             if malicious_agent.injection_strategy == InjectionStrategy.PROMPT_INJECTION:
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
@@ -260,10 +277,11 @@ class StructuredFMWrapper(SystemWrapper):
             "history_alignment_ok": alignment_ok,
             "multi_injection_info": [
                 {"injected_role": t["role"], "injected_role_index": t.get("role_index", 0),
+                 "injected_phase": t.get("phase"), "injected_round": t.get("round"),
                  "fm_error_type": a.fm_error_type.value,
                  "injection_strategy": a.injection_strategy.value,
-                 "fired": (t["role"], t.get("role_index", 0)) in fired_keys}
-                for a, t in zip(malicious_agents, injection_targets)
+                 "fired": ti in fired_targets}
+                for ti, (a, t) in enumerate(targets)
             ],
             "num_injected_agents": len(malicious_agents),
             "agent_names": list(dict.fromkeys(h.get("role") for h in raw_history if h.get("role"))),

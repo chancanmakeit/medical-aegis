@@ -118,12 +118,10 @@ class _ConversationAgent(SensingAgent):
     own earlier AI turns + the sources of every earlier call of this agent + the
     explicitly passed `sources`. (Upstream memory semantics are unchanged.)"""
 
-    def invoke(self, content, sources, round_=None, event_ids=None):
-        prior = {h["step_id"]: h for h in self.mas.conversation_history}
-        own = self.long_term_steps + self.short_term_steps
-        inherited = [s for st in own for s in prior[st]["sources"]]
-        return super().invoke(content, list(dict.fromkeys(inherited + list(sources))),
-                              round_=round_, event_ids=event_ids)
+
+    # The cumulative read set (own earlier turns + everything they read) is now
+    # implemented once in SensingAgent.invoke (methods/consensus/consensus_main.py),
+    # so no override is needed here; the class is kept as a named alias.
 
 
 class SensingCMD_Main(SensingMASBase):
@@ -288,6 +286,7 @@ class SensingCMD_Main(SensingMASBase):
             other_group_answer_cnts: Dict[str, int] = {}
             same_group_responses: Dict[str, Any] = {}
             sources: List[str] = []
+            source_how: Dict[str, str] = {}
             for kk, v in all_responses.items():
                 if kk in other_group_agents:
                     if v["ANSWER"] not in other_group_answer_cnts:
@@ -295,6 +294,8 @@ class SensingCMD_Main(SensingMASBase):
                     other_group_answer_cnts[v["ANSWER"]] += 1
                     if self.OTHER_GROUP_COUNTS_ARE_READS:
                         sources.append(step_of[kk])
+                        # Only the ANSWER enters the prompt (as a count line).
+                        source_how[step_of[kk]] = "structured_field"
                 elif kk in same_group_agents:
                     same_group_responses[kk] = v
                     sources.append(step_of[kk])
@@ -326,7 +327,7 @@ class SensingCMD_Main(SensingMASBase):
                 "Do not include any additional text outside the JSON.")
             a.phase = "debate"
             results[name] = a.run_json_turn(content, sources=sources, round_=k,
-                                            event_ids=[f"debate{k}"])
+                                            event_ids=[f"debate{k}"], source_how=source_how)
         if any(r is None for r in results.values()):
             return None
         for a in agents.values():

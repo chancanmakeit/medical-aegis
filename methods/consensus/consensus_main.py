@@ -173,13 +173,24 @@ class _Agent:
     def set_system_message(self, content):
         self.long_term.append({"role": "system", "content": content})
 
-    def invoke(self, content: str, sources: List[str], round_=None, event_ids=None) -> str:
+    def invoke(self, content: str, sources: List[str], round_=None, event_ids=None,
+               source_how: Optional[Dict[str, str]] = None) -> str:
         messages = self.long_term + self.short_term + [{"role": "user", "content": content}]
-        # Earlier AI turns of this agent's own conversation are also read.
+        # Read set = this agent's own earlier AI turns (still in `messages`)
+        # + everything those earlier turns read (their prompts are still in
+        # `messages` too) + the outputs inserted into the new prompt.
         own = self.long_term_steps + self.short_term_steps
+        prior = {h["step_id"]: h for h in self.mas.conversation_history}
+        inherited, how = [], {}
+        for st in own:
+            inherited += prior[st].get("sources", [])
+            how.update(prior[st].get("source_how", {}))
+        how.update(source_how or {})
+        all_sources = list(dict.fromkeys(own + inherited + list(sources)))
         resp, sid = self.mas._ask(self.role, self.role_index, self.phase, self.name,
-                                  messages, sources=list(dict.fromkeys(own + sources)),
-                                  round_=round_, event_ids=event_ids)
+                                  messages, sources=all_sources,
+                                  round_=round_, event_ids=event_ids,
+                                  source_how={k: v for k, v in how.items() if k in all_sources})
         self._last_round, self._last_events = round_, event_ids
         self.short_term += [{"role": "user", "content": content},
                             {"role": "assistant", "content": resp}]
@@ -209,8 +220,9 @@ class _Agent:
         return None
 
     def run_json_turn(self, content: str, sources: List[str], round_=None, event_ids=None,
-                      fields=("REASON", "ANSWER")):
-        parsed = safe_parse_json(self.invoke(content, sources, round_=round_, event_ids=event_ids))
+                      fields=("REASON", "ANSWER"), source_how: Optional[Dict[str, str]] = None):
+        parsed = safe_parse_json(self.invoke(content, sources, round_=round_, event_ids=event_ids,
+                                             source_how=source_how))
         return self.validate_response(parsed, list(fields))
 
 
@@ -231,23 +243,33 @@ class SensingMASBase(MAS):
         self.current_role: Optional[str] = None
         self.current_role_index: int = 0
         self.current_phase: Optional[str] = None
+        self.current_round: Optional[int] = None
         self._step_counter = 0
 
     def _reset(self):
         self.conversation_history, self._step_counter = [], 0
 
     def _ask(self, role, role_index, phase, agent_label, messages, sources,
-             round_=None, event_ids=None) -> Tuple[str, str]:
+             round_=None, event_ids=None, source_how=None) -> Tuple[str, str]:
+        """One LLM call = one history entry.
+
+        `source_how` maps a source step_id to how its output entered the prompt
+        when that is NOT a verbatim/serialised copy, e.g. "structured_field"
+        (only a derived field such as an ANSWER count). Unlisted = verbatim."""
         self.current_role, self.current_role_index, self.current_phase = role, role_index, phase
+        self.current_round = round_
         resp = self.call_llm(messages=messages)
         resp = resp if resp is not None else ""
         sid = f"s{self._step_counter}"
         self._step_counter += 1
-        self.conversation_history.append({
+        entry = {
             "step_id": sid, "role": role, "role_index": role_index, "phase": phase,
             "agent_label": agent_label, "round": round_, "event_ids": list(event_ids or []),
             "sources": list(sources), "content": resp,
-        })
+        }
+        if source_how:
+            entry["source_how"] = dict(source_how)
+        self.conversation_history.append(entry)
         return resp, sid
 
     def _abort(self, stage: str) -> Dict[str, Any]:

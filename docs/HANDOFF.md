@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（第 5 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
+> 最后更新：2026-10-20（第 6 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
 
 ## 0. 项目一句话
 把 AEGIS（多智能体故障注入 + 失败归因，arxiv 2509.14295，ICLR 2026）扩展到**医学**和 **NER**：新增 3 个框架（MDAgents / ClinicalAgent / CMAS），4 个新数据集（MedXpertQA-Text/MM、MedConceptsQA、trial_success、wikigold），支持多模态。在注入故障的情况下生成错误轨迹，同时生成干净的正常轨迹，两者配对用于失败归因研究。
@@ -28,6 +28,13 @@
 - 用户的本地环境是 Windows，GBK locale，项目路径 `F:\AEGIS-main\`。旧会话用的模型是 `gemini-2.5-flash-lite` 和 `grok-4-1-fast-reasoning`（走 qingyuntop 代理）。
 
 ## 4. 待决项（接力点）
+- ✅ **第 6 轮：ConSensus 和它的 4 个多智能体基线已集成**，方法名为 `consensus`、`consensus_debate`、`consensus_mad`、`consensus_reconcile`、`consensus_cmd`。数据集是 `datasets/data/{sleepedf,wesad}.json`。离线回归全部通过，详见 `discussion_log_v6.md`。
+  - **运行**：`python main.py --method_name <m> --experiment_config experiments/fm_injection/sensing/<m>_sensing_{normal,inject}.yaml --dataset_file datasets/data/sleepedf.json --test_dataset_name sleepedf ...`。注意这里用 `--test_dataset_name` 决定 verifier，YAML 里不写 benchmark_name；consensus 本体的 YAML 文件名是 `consensus_sensing_*.yaml`。
+  - **重建数据**：从 HF `UUUooUUU/ConSensus` 下载（脚本见本轮讨论记录），运行上游仓库 `nokia/multi-agent-collaboration-for-multimodal-sensing` 里的 `preprocess/preprocess_{WESAD,SleepEDF}.py` 和 `split.py --test_per_class 30 --examples_per_class 1`，再运行 `data_processing/sensing/convert_consensus_datasets.py`。
+  - **共享基础设施**：`fm_structured_wrapper.py`（干净输入；按 phase/round 指定注入目标；fired 标记），`methods/consensus/consensus_main.py` 里的 `SensingMASBase` 和 `SensingAgent`（累积读取集合；`source_how`），注入工厂的 `classification` 任务类型。
+  - 🔴 **旧 bug（待用户决定）**：顶层 `malicious_factory` 不认识 probability/ner，会静默回退成 mcq，导致旧的 clinical_agent 和 cmas 注入多半无效，详见 v6。顶层和 `aegis_core` 下两份工厂已同步，旧任务类型的行为没有改变。
+  - **下一步：MAM**（Heartbeat / Sound-Dr，音频后端用 mimo-v2.6-flash，需要先确认它能否直接输入音频）。
+  - **MedHyperTrace spec v1.1 尚未落实的项**：跨阶段稳定的 `agent_id`、P0 级的 `structured` 字段、`framework_family`、`task.observations`、锚点任务，以及 schema v1 导出器（把 steps 和 labels 分开）。
 - ✅ **第 5 轮：MedAgents 已集成**，方法名 `medagents_mc`，跑 MedConceptsQA 和 mmlu_pro_health，mock 离线测试通过，详见 `discussion_log_v5.md`。用户决定：MedAgent-Pro 暂不做；集成顺序 MedAgents → ConSensus（只用 WESAD + SleepEDF）→ MAM（音频用 mimo-v2.6-flash）。**下一步：ConSensus。**
 - 🧪 离线测试方法：先运行 `scripts/mock_openai_server.py --port 18080 --log <calls.jsonl>`，再把 `model_api_config` 和 YAML 的 `llm_config` 指向 `http://127.0.0.1:18080/v1`，并设置 `NO_PROXY=127.0.0.1`。读集核对用 `scripts/check_trajectory_sources.py <results.jsonl>`。注意：结束 mock 进程时不要用 `pkill -f mock_openai_server`，它会匹配到执行它的那个 shell 自身。
 - 🆕 **第 4 轮：用户提议集成 MedAgents×MedConceptsQA、MedAgent-Pro×REFUGE2、ConSensus×ConSensus、MAM×Heartbeat/Sound-Dr。** 核实结果和建议见 `discussion_log_v4.md`。外部仓库 clone 在 `/home/claude/ext_repos/`（沙箱重置后需要重新 clone）。MedAgent-Pro 的正确仓库是 `jinlab-imvr/MedAgent-Pro`，它的分割工具没有发布；MAM 原版依赖本地 GPU 上的音频模型；ConSensus 自带 6 个基线 MAS，都跑同一批数据。等用户确认集成顺序和各项方案。

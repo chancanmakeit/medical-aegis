@@ -13,6 +13,7 @@ Usage:
 Built-in rules target MedAgents (medagents_mc); extend RULES for other frameworks.
 """
 import argparse
+import hashlib
 import json
 import re
 import threading
@@ -54,14 +55,28 @@ def reply_for(messages):
     if "scrutinize each option individually" in user:
         return "Options A-C mismatch displacement or laterality. Option D is plausible."
     # --- ConSensus (consensus + baselines) ---------------------------------
+    # REASON texts carry the agent name + a digest of the request so every
+    # step's output is unique (keeps scripts/check_trajectory_sources.py from
+    # flagging false "unlisted" reads). CONFIDENCE is added when the prompt
+    # asks for one (ReConcile).
+    agent = (re.search(r"You are (\S+) agent", system) or re.search(r"You are (an? \w+ \w+)", system))
+    agent = agent.group(1) if agent else "agent"
+    digest = hashlib.md5(json.dumps(messages, sort_keys=True).encode()).hexdigest()[:8]
+    wants_conf = "confidence" in user.lower() or any("confidence" in _text(m.get("content")).lower()
+                                                     for m in messages if m.get("role") == "user")
+    def _js(reason, ans):
+        d = {"REASON": f"{reason} [{agent} {digest}]"}
+        if wants_conf:
+            d["CONFIDENCE"] = "0.85"
+        d["ANSWER"] = ans
+        return json.dumps(d, indent=2)
     if "Failed to parse the JSON from the previous response" in user:
-        return '{"REASON": "Retry: spindle-like activity and low EMG.", "ANSWER": "N2"}'
+        return _js("Retry: spindle-like activity and low EMG.", "N2")
     if "You have received sensor features from" in user:
         # EMG agent breaks the JSON format on its first turn -> exercises retry.
         if "EMG" in system and len(messages) <= 2:
             return "I think it is N2 because the EMG is low."
-        ans = "N3" if "EEG-Pz-Oz" in system else "N2"
-        return '{\n  "REASON": "Features resemble the N2 example.",\n  "ANSWER": "%s"\n}' % ans
+        return _js("Features resemble the N2 example.", "N3" if "EEG-Pz-Oz" in system else "N2")
     m = re.search(r"You are on the side that the correct answer is (\S+) which", user)
     if m:
         return '{"REASON": "Majority is consistent; dissenting agents are noisy.", "ANSWER": "%s"}' % m.group(1)
@@ -91,7 +106,7 @@ def reply_for(messages):
             elif any(w in v.lower() for w in ("yes", "no", "agree")):
                 out[k] = "yes"
             else:
-                out[k] = f"mock {k.lower()} text for this turn."
+                out[k] = f"mock {k.lower()} text [{agent} {digest}]."
         if out:
             return json.dumps(out)
     # --- generic (LLM judge, describers, ...) ------------------------------

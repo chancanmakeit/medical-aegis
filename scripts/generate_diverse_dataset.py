@@ -149,6 +149,16 @@ FRAMEWORK_AGENT_POOL: Dict[str, List[Dict]] = {
            {"role": "StatisticalFusion", "role_index": 0, "agent_key": "StatisticalFusion"},
            {"role": "HybridFusion",      "role_index": 0, "agent_key": "HybridFusion"}]
     ),
+    # ConSensus-repo baselines (same data / ModalityAgent indexing as consensus).
+    # Debate rounds of a ModalityAgent share its agent_key (same logical agent).
+    # CMD's Secretary only runs on a tied vote, so it is left out of sampling.
+    "consensus_debate":    [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)],
+    "consensus_reconcile": [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)],
+    "consensus_cmd":       [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)],
+    "consensus_mad": (
+        [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)]
+        + [{"role": "Judge", "role_index": 0, "agent_key": "Judge"}]
+    ),
     # CMAS: 3-agent per-sample zero-shot NER pipeline (self-annotator is offline).
     # All singletons (idx=0), no runtime role renaming.
     "cmas": [
@@ -179,6 +189,10 @@ BASE_YAML_TEMPLATE = {
     "cmas": "experiments/fm_injection/ner/cmas_ner_inject.yaml",
     "medagents_mc": "experiments/fm_injection/medical/medagents_mc_medical_inject.yaml",
     "consensus": "experiments/fm_injection/sensing/consensus_sensing_inject.yaml",
+    "consensus_debate": "experiments/fm_injection/sensing/consensus_debate_sensing_inject.yaml",
+    "consensus_mad": "experiments/fm_injection/sensing/consensus_mad_sensing_inject.yaml",
+    "consensus_reconcile": "experiments/fm_injection/sensing/consensus_reconcile_sensing_inject.yaml",
+    "consensus_cmd": "experiments/fm_injection/sensing/consensus_cmd_sensing_inject.yaml",
 }
 
 

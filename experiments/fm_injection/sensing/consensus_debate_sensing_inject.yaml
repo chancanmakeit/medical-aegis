@@ -1,0 +1,54 @@
+# ConSensus-repo `debate` baseline INJECTION config -> ERROR trajectories. See consensus_sensing_normal.yaml for data prep.
+#   python main.py --method_name consensus_debate \
+#     --experiment_config experiments/fm_injection/sensing/consensus_debate_sensing_inject.yaml \
+#     --dataset_file ./datasets/data/sleepedf.json --test_dataset_name sleepedf --model_name <model>
+run_mode: "inject"
+injection_method: "direct_prepend"
+consensus_config_name: "config_sensing"
+inject_every_invocation: false
+
+system_under_test:
+  name: "consensus_debate"
+  wrapper_class_path: "aegis_core.agent_systems.fm_consensus_wrapper.FMConSensusWrapper"
+  method_config_path: "methods/consensus_baselines/configs/config_sensing.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+use_llm_judge: true
+judge_mode: "regex_first"
+
+# Structural sites: ModalityAgent(i) [i = modality position in info.json:
+#   SleepEDF 0 EEG-Fpz-Cz, 1 EEG-Pz-Oz, 2 EOG-horizontal, 3 EMG-submental, 4 Resp-oro-nasal].
+# The SAME ModalityAgent(i) makes the interpretation call and both debate-round calls
+# (phase "interpretation", then "debate" with round 1 and 2; event_ids "debate1"/"debate2").
+# With the default first-invocation-only policy a target on (role, role_index) fires on that
+# agent's FIRST call, i.e. its interpretation; the corrupted/misled answer is then read by every
+# other agent in debate1 (and, via their updated answers, in debate2). Hitting a debate-round
+# call directly needs `inject_every_invocation: true` (fires on ALL calls of the targeted agents)
+# or a wrapper that keys targets on the round.
+injection_plan:
+  targets:
+    - role: "ModalityAgent"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "prompt_injection"
+    - role: "ModalityAgent"
+      role_index: 3
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "response_corruption"
+
+experiment_settings:
+  max_workers: 5
+
+generate_injection_descriptions: false
+
+# Agents answer in {"REASON","ANSWER"} JSON with a class label.
+task_type: "classification"
+prompt_wrapper_style: "direct"

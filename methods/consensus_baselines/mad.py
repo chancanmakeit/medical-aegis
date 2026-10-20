@@ -92,12 +92,10 @@ class _ConversationAgent(SensingAgent):
     own earlier AI turns + the sources of every earlier call of this agent + the
     explicitly passed `sources`. (Upstream memory semantics are unchanged.)"""
 
-    def invoke(self, content, sources, round_=None, event_ids=None):
-        prior = {h["step_id"]: h for h in self.mas.conversation_history}
-        own = self.long_term_steps + self.short_term_steps
-        inherited = [s for st in own for s in prior[st]["sources"]]
-        return super().invoke(content, list(dict.fromkeys(inherited + list(sources))),
-                              round_=round_, event_ids=event_ids)
+
+    # The cumulative read set (own earlier turns + everything they read) is now
+    # implemented once in SensingAgent.invoke (methods/consensus/consensus_main.py),
+    # so no override is needed here; the class is kept as a named alias.
 
 
 class SensingMAD_Main(SensingMASBase):

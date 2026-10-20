@@ -8,7 +8,8 @@ Heuristic matching per source output (any one is enough):
   - classifier-style steps ("...Classifier"): one of the domain names it produced;
   - JSON outputs ({"REASON": ...}): the REASON text (frameworks re-serialise
     parsed JSON before passing it on, so the raw prefix need not survive);
-  - otherwise: the first 40 chars after an optional "Total Analysis:" header.
+  - otherwise: the first 40 chars after an optional "Total Analysis:" header;
+  - a source the step marks as source_how == "structured_field": its ANSWER value.
 Short outputs (< 25 chars, e.g. "YES") are skipped by the unlisted-read check.
 """
 import json
@@ -47,9 +48,15 @@ def main(path):
         by_id = {s["step_id"]: s for s in h}
         for s in h:
             inp = txt(s["input_messages"])
+            how = s.get("source_how", {})
             for src in s.get("sources", []):
                 checked += 1
-                if not any(p in inp for p in probes(by_id[src])):
+                pr = probes(by_id[src])
+                if how.get(src) == "structured_field":
+                    # only a derived field (e.g. the ANSWER, as a count line) enters the prompt
+                    m = re.findall(r'"ANSWER"\s*:\s*"([^"]*)"', by_id[src].get("content") or "")
+                    pr = m[-1:] if m else pr
+                if not any(p in inp for p in pr):
                     bad += 1
                     print("SOURCE NOT FOUND", rec["id"], s["step_id"], s["agent_name"], "<-", src)
             for p in h:

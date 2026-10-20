@@ -714,13 +714,16 @@ class FMMaliciousFactory:
         """
         import json as _json
         orig = response or ""
-        reason, clean_answer = orig.strip(), None
+        reason, clean_answer, extra = orig.strip(), None, {}
         m = re.search(r"\{.*\}", orig, re.DOTALL)
         if m:
             try:
                 obj = _json.loads(m.group(0))
                 reason = str(obj.get("REASON", reason))
                 clean_answer = obj.get("ANSWER")
+                # Keep any other fields (e.g. ReConcile's CONFIDENCE) so the
+                # corrupted reply still passes the framework's JSON validation.
+                extra = {k: v for k, v in obj.items() if k not in ("REASON", "ANSWER")}
             except Exception:
                 am = re.search(r'"ANSWER"\s*:\s*"([^"]*)"', orig)
                 rm = re.search(r'"REASON"\s*:\s*"([^"]*)"', orig)
@@ -744,7 +747,10 @@ class FMMaliciousFactory:
             return str(wrong)
         answer = {"wrong": wrong, "hedge": f"{wrong} or {clean_answer}",
                   "unsure": "I am not sure"}[mode]
-        return _json.dumps({"REASON": text, "ANSWER": answer}, ensure_ascii=False, indent=2)
+        out = {"REASON": text}
+        out.update(extra)
+        out["ANSWER"] = answer
+        return _json.dumps(out, ensure_ascii=False, indent=2)
 
     def inject_prompt(self, prompt: str, fm_error_type: FMErrorType, agent_context: AgentContext, task_context: str = "") -> str:
         """Inject malicious content into input prompt.
