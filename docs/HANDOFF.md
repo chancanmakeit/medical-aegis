@@ -28,6 +28,7 @@
 - 用户的本地环境是 Windows，GBK locale，项目路径 `F:\AEGIS-main\`。旧会话用的模型是 `gemini-2.5-flash-lite` 和 `grok-4-1-fast-reasoning`（走 qingyuntop 代理）。
 
 ## 4. 待决项（接力点）
+- 📨 **来自 MedHyperTrace 项目的轨迹需求（2026-10-19，用户安排两项目统筹）：** `docs/requests/2026-10-19_from_medhypertrace_HGFM_trajectory_spec_v1.md`。要点：方法侧要训跨框架零样本的超图基础模型，需要 ≥8 个框架、normal 每题多次采样（成功 + 自然失败）、干净的注入前 `input_messages`（mdagents / clinical_agent / clinical_agent5 目前缺，且记录的输入含注入指令原文 = 标签泄漏）、`labels` 与 `steps` 分离、拼 prompt 时记录 `sources`。文末有 6 个问题，请在 `docs/requests/` 写回复并推送。方法侧对注入频率倾向方案 A（最终由用户定）。
 - 🔴 **最高优先：注入频率的跨框架统一，等用户选择。**
   - dylan / agentverse / llm_debate：同一 agent 每次出现都会注入，没有 `fired_keys` 去重，也没有开关。
   - mdagents / clinical_agent / cmas：有 `inject_every_invocation` 开关，默认只注入第一次。
