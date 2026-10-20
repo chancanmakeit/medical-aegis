@@ -69,7 +69,10 @@ class FMMaliciousFactory:
     def __init__(self, llm=None, injection_method: str = "direct_prepend",
                  task_type: str = "mcq",
                  prompt_wrapper_style: str = "direct",
-                 factory_llm=None):
+                 factory_llm=None,
+                 template_pool: Optional[Union[str, Dict[str, Any]]] = None,
+                 template_pool_model: Optional[str] = None,
+                 seed: Union[int, str] = 0):
         """
         Args:
             llm: optional LLM instance for the legacy "llm_rewrite" mode.
@@ -109,6 +112,17 @@ class FMMaliciousFactory:
             factory_llm: dedicated LLM for the llm_rewrite* modes. When None,
                 falls back to `llm`. Lets you use a less safety-tuned model as
                 the rewriter while keeping a different model for the MAS run.
+            template_pool: path to (or dict of) a rewrite pool built by
+                scripts/build_rewrite_pool.py. When given, each response
+                corruption uses a variant of the template drawn from the pool
+                (keyed "<TABLE>|<FM-x.y>") instead of the one fixed wording, so
+                corrupted steps do not share a fixed sentence. The answer slot
+                ({wrong_answer} / {tags}) still decides the corrupted answer.
+            template_pool_model: which model's pool to use (pools can be built
+                per backbone so the wording matches that model's voice); falls
+                back to the pool's "default" entry.
+            seed: makes the variant and the wrong answer reproducible: both are
+                drawn from sha256(seed | FM type | clean response).
         """
         self.llm = llm
         self.factory_llm = factory_llm if factory_llm is not None else llm
@@ -121,6 +135,24 @@ class FMMaliciousFactory:
         # triggered, etc.). Wrappers can attach this to the trajectory entry for the
         # injected turn so users can audit the full injection process.
         self.last_injection_meta: Dict[str, Any] = {}
+        self.seed = seed
+        self.task_text: Optional[str] = None   # set per sample by the wrapper (MCQ option letters)
+        # Gold answer of the sample (set by the wrapper). Used only so that a
+        # corrupted answer is never accidentally the correct one; it never
+        # enters the trajectory.
+        self.gold_answer: Optional[str] = None
+        self._pool: Dict[str, List[str]] = {}
+        self._pool_name: Optional[str] = None
+        if template_pool:
+            import json as _json
+            data = _json.load(open(template_pool)) if isinstance(template_pool, str) else template_pool
+            pools = data.get("pools", data)
+            key = template_pool_model if template_pool_model in pools else "default"
+            self._pool = pools.get(key, {})
+            self._pool_name = key if self._pool else None
+            if not self._pool:
+                print(f"[FMMaliciousFactory] template_pool has no entry for model "
+                      f"{template_pool_model!r} (nor 'default'); using fixed templates.")
         self._fm_types = list(FMErrorType)
         self._strategies = list(InjectionStrategy)
         
@@ -792,6 +824,68 @@ class FMMaliciousFactory:
             )
         return f"{prompt}{injection_block}"
 
+    # ---- variant / wrong-answer selection (reproducible) ------------------ #
+    def _rng(self, fm_error_type, response: str, salt: str = ""):
+        import hashlib
+        import random as _random
+        fm = fm_error_type.value if hasattr(fm_error_type, "value") else str(fm_error_type)
+        h = hashlib.sha256(f"{self.seed}|{fm}|{salt}|{response or ''}".encode("utf-8")).hexdigest()
+        return _random.Random(int(h[:16], 16))
+
+    def _pick_template(self, table: str, fm_error_type, fixed: str, response: str) -> str:
+        """The fixed template, or a variant of it from the rewrite pool."""
+        fm = fm_error_type.value if hasattr(fm_error_type, "value") else str(fm_error_type)
+        variants = self._pool.get(f"{table}|{fm}") or []
+        if not variants:
+            self.last_injection_meta.update(template_table=table, template_variant=None)
+            return fixed
+        i = self._rng(fm_error_type, response, "variant").randrange(len(variants))
+        self.last_injection_meta.update(template_table=table, template_variant=i,
+                                        template_pool=self._pool_name)
+        return variants[i]
+
+    def _not_gold(self, cands):
+        g = str(self.gold_answer).strip().lower() if self.gold_answer is not None else None
+        rest = [c for c in cands if str(c).strip().lower() != g]
+        return rest or list(cands)
+
+    def _wrong_label(self, labels, clean, fm_error_type, response: str):
+        """A class label different from the clean one. Ordinal numeric labels
+        (e.g. ESI 1-5) move one level up or down, which is the realistic
+        mistake; other label sets draw uniformly from the remaining labels."""
+        orig_labels = list(labels)
+        labels = [str(l) for l in labels]
+        low = [l.lower() for l in labels]
+        ca = str(clean).strip().lower() if clean is not None else None
+        rng = self._rng(fm_error_type, response, "wrong")
+        if ca in low and all(l.isdigit() for l in labels):
+            i = low.index(ca)
+            near = [labels[j] for j in (i - 1, i + 1) if 0 <= j < len(labels)]
+            wrong = rng.choice(self._not_gold(near))
+        else:
+            rest = [l for l, lo in zip(labels, low) if lo != ca] or labels
+            wrong = rng.choice(self._not_gold(rest))
+        self.last_injection_meta["wrong_label_policy"] = (
+            "adjacent" if ca in low and all(l.isdigit() for l in labels) else "uniform")
+        return orig_labels[labels.index(wrong)]
+
+    _OPTION_LINE_RE = re.compile(r"(?m)^\s*\(?([A-J])[\).:]\s")
+
+    def _mcq_wrong_letter(self, response: str, fm_error_type) -> str:
+        """A letter different from the one the clean reply commits to, drawn
+        from the task's option letters (A-D when they cannot be read)."""
+        letters = sorted(set(self._OPTION_LINE_RE.findall(self.task_text or ""))) or list("ABCD")
+        try:
+            from methods.answer_parsing import mcq_answer
+            clean = mcq_answer(response or "")
+        except Exception:
+            clean = None
+        pool = self._not_gold([l for l in letters if l != clean] or letters)
+        wrong = self._rng(fm_error_type, response, "wrong").choice(pool)
+        self.last_injection_meta.update(clean_answer=clean, corrupted_answer=wrong,
+                                        option_letters="".join(letters))
+        return wrong
+
     def _direct_corrupt_response(self, response: str, fm_error_type: FMErrorType) -> str:
         """Deterministic response corruption (task-aware).
 
@@ -806,7 +900,13 @@ class FMMaliciousFactory:
             return self._corrupt_probability_tags(response, fm_error_type)
         table = self._DIRECT_RESPONSE_TABLES.get(self.task_type, self._DIRECT_RESPONSE_TEMPLATES_MCQ)
         template = table.get(fm_error_type, "{orig}\n\nFinal answer: {wrong_answer}.")
-        wrong = self._WRONG_ANSWER_FOR_TASK.get(self.task_type, "A")
+        tname = f"DIRECT_{self.task_type.upper()}" if self.task_type in self._DIRECT_RESPONSE_TABLES else "DIRECT_MCQ"
+        template = self._pick_template(tname, fm_error_type, template, response)
+        self.last_injection_meta["corruption_template"] = template
+        if self.task_type in ("mcq",) or tname == "DIRECT_MCQ":
+            wrong = self._mcq_wrong_letter(response, fm_error_type)
+        else:
+            wrong = self._WRONG_ANSWER_FOR_TASK.get(self.task_type, "A")
         return template.format(orig=response or "", wrong_answer=wrong)
 
     _PROB_TAG_RE = re.compile(r"<(final_result|\w+_score)>\s*([-+]?\d*\.?\d+)\s*(%?)\s*</\1>", re.IGNORECASE)
@@ -819,6 +919,8 @@ class FMMaliciousFactory:
         """
         orig = response or ""
         tpl, mode = self._PROBABILITY_CORRUPTION.get(fm_error_type, ("{orig}", "flip"))
+        tpl = self._pick_template("PROBABILITY", fm_error_type, tpl, orig)
+        self.last_injection_meta["corruption_template"] = tpl
         changes = []
 
         def _new_value(v: float) -> str:
@@ -858,8 +960,8 @@ class FMMaliciousFactory:
         ["HIGH","LOW"]), `classification_field_label` (e.g. "ESI level") and
         `classification_field_regex` (two groups: prefix, value). EVERY
         occurrence of the field gets the wrong value, so the answer changes
-        whichever occurrence a downstream parser reads. The wrong value is the
-        next label after the clean one (cyclic). Template text (with the clean
+        whichever occurrence a downstream parser reads. The wrong value comes
+        from _wrong_label (adjacent level for ordinal labels). Template text (with the clean
         reasoning removed) is appended as a "Note:" so the reply keeps its
         format; label_only replies are just the field line.
         """
@@ -872,12 +974,11 @@ class FMMaliciousFactory:
         clean_answer = matches[0].group(2).strip() if matches else None
         wrong = "UNKNOWN"
         if labels:
-            low = [l.lower() for l in labels]
-            ca = clean_answer.lower() if clean_answer else None
-            i = low.index(ca) if ca in low else -1
-            wrong = labels[(i + 1) % len(labels)]
+            wrong = self._wrong_label(labels, clean_answer, fm_error_type, orig)
         reason_tpl, mode = self._CLASSIFICATION_FIELD_CORRUPTION.get(
             fm_error_type, ("The answer is {wrong_answer}.", "wrong"))
+        if reason_tpl:
+            reason_tpl = self._pick_template("CLASSIFICATION_FIELD", fm_error_type, reason_tpl, orig)
         value = {"wrong": wrong, "label_only": wrong, "hedge": f"{wrong} or {clean_answer}",
                  "unsure": "I am not sure"}[mode]
         self.last_injection_meta.update({
@@ -905,10 +1006,12 @@ class FMMaliciousFactory:
                     clean_answer, last_pos = lab, mm.start()
         wrong = "UNKNOWN"
         if labels:
-            i = labels.index(clean_answer) if clean_answer in labels else -1
-            wrong = labels[(i + 1) % len(labels)]
+            wrong = self._wrong_label(labels, clean_answer, fm_error_type, orig)
         reason_tpl, mode = self._CLASSIFICATION_CORRUPTION.get(
             fm_error_type, ("{orig_reason} The answer is {wrong_answer}.", "wrong"))
+        if reason_tpl:
+            reason_tpl = self._pick_template("CLASSIFICATION", fm_error_type, reason_tpl, orig)
+            self.last_injection_meta["corruption_template"] = reason_tpl
         text = reason_tpl.format(orig_reason=orig.strip(), wrong_answer=wrong).strip()
         self.last_injection_meta["clean_answer"] = clean_answer
         self.last_injection_meta["corrupted_answer"] = wrong if mode in ("wrong", "label_only") else mode
@@ -922,8 +1025,7 @@ class FMMaliciousFactory:
     def _corrupt_classification_json(self, response: str, fm_error_type: FMErrorType) -> str:
         """Rewrite a {"REASON","ANSWER"} reply so the ANSWER really changes.
 
-        The wrong class is chosen deterministically: the class after the clean
-        answer in `self.classification_labels` (cyclic). Set that attribute
+        The wrong class comes from _wrong_label (reproducible, seeded). Set that attribute
         per sample from the wrapper; without it the answer becomes "UNKNOWN".
         """
         import json as _json
@@ -948,14 +1050,12 @@ class FMMaliciousFactory:
         labels = list(getattr(self, "classification_labels", None) or [])
         wrong = "UNKNOWN"
         if labels:
-            low = [str(l).lower() for l in labels]
-            ca = str(clean_answer).strip().lower() if clean_answer is not None else None
-            i = low.index(ca) if ca in low else -1
-            wrong = labels[(i + 1) % len(labels)]
-            if ca is not None and str(wrong).lower() == ca and len(labels) > 1:
-                wrong = labels[(i + 2) % len(labels)]
+            wrong = self._wrong_label(labels, clean_answer, fm_error_type, response)
         reason_tpl, mode = self._CLASSIFICATION_CORRUPTION.get(
             fm_error_type, ("{orig_reason} The answer is {wrong_answer}.", "wrong"))
+        if reason_tpl:
+            reason_tpl = self._pick_template("CLASSIFICATION", fm_error_type, reason_tpl, response)
+            self.last_injection_meta["corruption_template"] = reason_tpl
         text = reason_tpl.format(orig_reason=reason, wrong_answer=wrong).strip()
         self.last_injection_meta["clean_answer"] = clean_answer
         self.last_injection_meta["corrupted_answer"] = wrong if mode in ("wrong", "label_only") else mode

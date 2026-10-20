@@ -405,3 +405,25 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - **MedAgents 对 Synthesizer 注入会自我纠正**：注入后第 1 轮所有人都投 NO，修订后第 2 轮全票通过，翻转 0/30。normal 运行 160/160 在第 1 轮就通过，因此"有没有第 2 轮"几乎能完美区分注入与否（拓扑侧信道）。换注入目标或换更难的题，待 MHT 和用户商定。
 - triage：PI 能让 Doctor B 10/10 出错，但最终翻转 0/10。RC 的翻转是 llama 3/10、mercury 1/10。
 - 读取集修复：medagents 的 Reviser（建议按专科名称覆盖）。检查脚本已改；导出器会跳过 API 失败的运行。修复后 12 个文件全部 not_found=0、unlisted=0；导出 380 条，泄漏 0。
+
+## 第 12 轮（13:12）
+**用户建议**
+1. 如果锚点加入新的医学框架 MA-RAG（NJU-RL）和 MDTeamGPT（KaiChenNJ，配 HF collection 里的 SLAKE），能否不集成 camel 这类通用框架？
+2. mercury 按推荐跑。
+3. MAM 和 mdagents 的纯文本步骤统一用多模态模型，例如 mimo-v2.6-flash 或 gemini-2.5-flash-lite-nothink。
+4. 改写池按推荐做。
+
+**结果与回复**
+- (2) simulation 包装的 PI 补跑完成，40/40 成功，约 $0.60。medagents 翻转 1/10（两个 backbone 各一次），triage mercury 翻转 2/10。
+- (4) 改写池脚本和工厂支持已完成。试点覆盖 25 个模板 × 2 个 backbone，花 $0.115；全量估算约 $0.26–0.35，待批准。
+- 顺带修复：MCQ 的 RC 一直固定篡改成 "A"；ESI 用循环的"下一级"。细节见 `docs/pilot_2026-10-20_report.md` 第 4 节。
+- (1) 子 agent 读代码评估的结论：
+  - MA-RAG 在拓扑上约等于 llm_debate 加一个检索/查询节点；
+  - MDTeamGPT 约等于 medagents（专科医生 → 主治总结 → 安全审查收敛）；
+  - 都替代不了 mav（生成者与验证者的二部结构）和 macnet（DAG）。
+  - SLAKE 是开放式 VQA，要用图像，不能放进 100 题的文本锚点，只适合作为图像数据集。
+  - 建议见回复正文。
+- (3) 回复要点：
+  - MAM 上游的文本模型（Medichat-Llama3-8B）和音频模型（Qwen-Audio）是两个不同的模型，保真的关键是两者不同，而不是文本模型能不能处理多模态。文本也用 mimo 就等于不启用。
+  - gemini-2.5-flash-lite-nothink 目前在 aihubmix 上不可用，gemini-2.5-flash-lite 可用。
+  - mdagents 上游所有 agent 用同一个模型，所以建议不单独设文本模型，全程用同一个多模态 backbone。

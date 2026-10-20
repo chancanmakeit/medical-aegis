@@ -88,10 +88,23 @@ def _slug(s):
     return re.sub(r"[^a-z0-9]+", "_", str(s or "agent").lower()).strip("_")
 
 
-def _inject_signature(targets):
+def _inject_signature(targets, history=None):
     key = [{k: t.get(k) for k in ("injected_role", "injected_role_index", "injected_phase",
                                   "injected_round", "fm_error_type", "injection_strategy")}
            for t in targets or []]
+    # Injection variants that change the injected text but not the target
+    # (prompt wrapper style, rewrite pool) are part of the id too, so e.g. the
+    # "direct" and "simulation" reruns of one question do not collide. The
+    # default ("direct", no pool) adds nothing, which keeps earlier ids stable.
+    extra = set()
+    for h in history or []:
+        ip = h.get("injection_process") or {}
+        if ip.get("prompt_wrapper_style") not in (None, "direct"):
+            extra.add(f"wrapper={ip['prompt_wrapper_style']}")
+        if ip.get("template_pool"):
+            extra.add(f"pool={ip['template_pool']}")
+    if extra:
+        key.append(sorted(extra))
     return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]
 
 
@@ -125,7 +138,7 @@ def convert(rec, reg, alias, reasoning_mode):
     run_index = int(rec.get("run_index") or 0)
     run_mode = "normal" if rec.get("run_mode") == "clean" else "inject"
     targets = log.get("multi_injection_info") or []
-    mode_tag = run_mode if run_mode == "normal" else f"inject-{_inject_signature(targets)}"
+    mode_tag = run_mode if run_mode == "normal" else f"inject-{_inject_signature(targets, log.get('conversation_history'))}"
     # the backbone is part of the id: the same question / run index is run on
     # several backbones (a collision found on the first real probe, 2026-10-20)
     model_name = (rec.get("model") or {}).get("name") or "unknown-model"

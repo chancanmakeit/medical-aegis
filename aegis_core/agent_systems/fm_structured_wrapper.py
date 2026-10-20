@@ -98,6 +98,9 @@ class StructuredFMWrapper(SystemWrapper):
             task_type=exp_config.get("task_type", "mcq"),
             prompt_wrapper_style=exp_config.get("prompt_wrapper_style", "direct"),
             factory_llm=factory_llm,
+            template_pool=exp_config.get("template_pool"),
+            template_pool_model=exp_config.get("template_pool_model") or llm_config.get("model_name"),
+            seed=exp_config.get("injection_seed", 0),
         )
         print(f"{type(self).__name__} initialized (framework={self.FRAMEWORK}, "
               f"inject_every_invocation={self._inject_every}).")
@@ -186,6 +189,12 @@ class StructuredFMWrapper(SystemWrapper):
         call_counter = {"n": 0}
 
         sample = self.build_sample(task)
+        # the factory reads MCQ option letters from the task text (RC wrong answer)
+        self.fm_factory.task_text = getattr(task, "query", None) or str(sample.get("query", ""))
+        gt = getattr(task, "ground_truth", None)
+        if isinstance(gt, dict):
+            gt = gt.get("correct_answer")
+        self.fm_factory.gold_answer = gt if isinstance(gt, (str, int)) else None
         self.before_run(task, sample)
         _attach_task_images(self.mas, getattr(task, "image_paths", None))
         llm_capture = self._start_llm_capture(self.mas)     # what the model RECEIVED

@@ -120,6 +120,19 @@
 - 并行：main.py 已支持样本级线程池（`--max_workers`），线程安全。试点 16 路并发，0 次 429。
 - MHT 第 27 轮：锚点用 8 个家族（加 macnet 重移植、mav、camel 改造；不用 autogen）；模板风格捷径有风险，建议做改写池；建议启用 `mam_text_model_name`。**这三项都待用户决定。**
 
+**v9 第 12 轮（13:12–13:50）**：
+- 用户决定：
+  - mercury 按推荐用 simulation 重跑：已完成，40/40 成功，约 $0.60；
+  - 改写池按推荐做：已试点，$0.115；全量约 $0.26–0.35，待批准；
+  - MAM 和 mdagents 的文本步骤考虑用 mimo-v2.6-flash 或 gemini-2.5-flash-lite-nothink，我方已回复意见，待用户确认。
+- 修复：MCQ 的 RC 不再固定篡改成 "A"，而是随机抽取，并排除原答案和正确答案；ESI 改为相邻一级；导出器 run_id 区分 wrapper 和改写池。
+- MA-RAG / MDTeamGPT（子 agent 只读评估，代码在 `/home/claude/ext_repos/{MA-RAG,MDTeamGPT}`）：
+  - MA-RAG ≈ llm_debate + 检索：MMLU-Pro 题目格式现成可用，但依赖 logprobs、`n=` 采样和 MedCorp/BM25；
+  - MDTeamGPT ≈ medagents：是 Streamlit/LangGraph 演示版，带知识库（必须冻结或关闭）和联网工具（要关），输出是自由文本；
+  - 两者都没有 LICENSE 文件。
+- SLAKE 不在 HF 账户 UUUooUUU 的 datasets 里，也没有可见的 collection，需要用户给链接。
+- 可用性：aihubmix 的 gemini-2.5-flash-lite-nothink 目前返回 no_available_channel；gemini-2.5-flash-lite 可用。
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。

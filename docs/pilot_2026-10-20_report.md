@@ -60,3 +60,44 @@
 - mercury 的 completion token 约为 llama 的 4 倍（medagents 1.88M 对 0.44M），主要是隐藏的 reasoning。
 - 解析：所有成功运行都得到了答案（答案为空 0 次）。
 - 限流：16 路并发下，0 次 429。
+
+## 3. 补跑：simulation 包装的 PI（13:12–13:30，用户已批准）
+- 配置：`experiments/fm_injection/pilot/*_pilot_pisim.yaml`。与 `*_pilot_pi.yaml` 相同，只是 `prompt_wrapper_style: simulation`；同样 10 题，两个 backbone 都跑。
+- 40/40 成功。实际成本按列表价约 $0.60（事先估计约 $0.6）。
+
+| 框架 | backbone | 目标步错 | 最终错 | 翻转 | 步数 |
+|---|---|---|---|---|---|
+| medagents_mc | llama | – | 3 | 1 | 18×2，27–33×8 |
+| medagents_mc | mercury | – | 3 | 1 | 18×2，27–33×8 |
+| triage | llama | 10/10 | 1 | 0 | 9 |
+| triage | mercury | 10/10 | 3 | 2 | 9 |
+
+- 和 direct 包装比：medagents 有 2/10 的注入运行第 1 轮就全票通过，翻转 1/10（direct 为 0/10）。triage mercury 翻转 2/10。
+- 检查结果：读取集 not_found=0、unlisted=0；导出 420 条，问题 0，泄漏 0。
+- 导出器的 run_id 现在也区分注入变体：wrapper 不是 direct，或者用了改写池时，计入 `inject-<签名>`。这样 direct 与 simulation 跑同一题时 run_id 不会冲突，原有 id 保持不变（用旧 mock 样例核对过，42/42 一致）。
+
+## 4. 本轮发现并修复的工厂问题
+1. **MCQ 的 RC 总是篡改成 "A"**：`_WRONG_ANSWER_FOR_TASK["mcq"] = "A"`。
+   - 正确答案是 A 时，注入后答案反而是对的；而且 "A" 本身就是一个捷径特征。
+   - 已改：从题目实际的选项字母中随机抽一个，排除原回复所选的字母和正确答案。用 `injection_seed` 和回复内容做种子，可以复现。
+2. **分类任务的错误标签是"下一个标签"（循环）**：triage 会出现 ESI 5 变 1 这种跳跃。
+   - 已改：有序数字标签改为相邻的一级（±1）；其他标签集在剩余标签中均匀抽取。两种情况都不会抽到正确答案。
+3. 正确答案只用来保证篡改后的答案确实是错的，不会进入轨迹。
+4. 篡改后的答案、所选模板变体等信息都记在标签侧的 `injection_process` 里。
+
+## 5. 改写池试点（用户已同意做，按"先小批量试跑、再估算成本"执行）
+- 脚本：`scripts/build_rewrite_pool.py`。每个模板调用一次 LLM，生成 30 个改写。
+- 筛选规则（不通过的改写会被丢弃）：
+  - 占位符与原模板一致，`{orig}` 的位置不变；
+  - 不能写死答案（字母、数字、标签）；
+  - MCQ 用 `mcq_answer` 解析，结果必须与原模板一致；
+  - 长度在原模板的 0.4–3 倍之间；
+  - 不能提到模拟、模板或注入。
+- MCQ 的改写必须以明确的作答短语结尾（"the answer is X" / "Final answer: X" 等 8 种），这样各框架的解析器都能读到篡改后的答案。这类短语在正常回复里也常见，不构成捷径。
+- 改写池按 backbone 分别生成（用哪个模型跑的轨迹，就用哪个模型的措辞）。工厂用 `template_pool`、`template_pool_model`、`injection_seed` 三个配置项启用。
+- 试点范围：DIRECT_MCQ + CLASSIFICATION_FIELD，共 25 个模板，mercury 和 llama 各生成一份，实花 **$0.115**。
+  - 改写数：mercury 697 条，llama 680 条。
+  - llama 的 MCQ FM-1.4 三次都 0 条通过，原因是占位符不对；该模板会回退为原文。
+- 文件：`docs/requests/samples/rewrite_pool_trial_2026-10-20.json`，每个列表的第 0 条是原模板。
+- **全量**：7 张表共 89 个模板 × 2 个 backbone，估算约 **$0.26**，算上重试约 $0.35。**待用户批准。**
+- 局限：改写去掉了固定措辞，但"结尾突然改口"这一结构特征还在（MHT 已指出）。
