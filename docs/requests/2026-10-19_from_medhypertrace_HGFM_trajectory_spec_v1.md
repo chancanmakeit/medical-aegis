@@ -131,6 +131,21 @@
 
 ---
 
+---
+
+## v1.1 增补（2026-10-20，见 [issue #1 评论](https://github.com/chancanmakeit/medical-aegis/issues/1#issuecomment-6286759271)）
+
+| 字段 | 优先级 | 说明 |
+|---|---|---|
+| `steps[].agent_id`（跨阶段稳定） | **P0**（新增） | 同一 agent 在不同阶段角色名会变（如 MedAgents 的 QuestionAnalyst→Voter→Advisor），`role_index` 也会跨角色复用；阶段角色记在 `agent_role` |
+| `steps[].structured`（answer、vote、confidence…） | **P0**（原 P1） | 采纳 medical-aegis 的意见：首个分歧步要定义在语义层 |
+| `framework_family` | **P0**（新增） | 留一评测按家族留出；clinical_agent 和 clinical_agent5 是同一家族 |
+| `steps[].sources[].how` | P1（新增） | `verbatim` / `excerpt` / `structured_field` |
+| `task.observations[]` | P1（新增） | 共享的长观测（ConSensus 传感器特征）或非文本观测（MAM 音频），用 id 引用 |
+
+**锚点任务（建议）：** 从 mmlu_pro_health / MedConceptsQA 抽固定 100 题，所有能跑文本 MCQ 的框架都跑一遍；框架数量的缩放曲线在锚点任务上做，原生任务单独评"新框架 + 新任务"的泛化。
+**旧数据：** `AEGIS-custom-dataset-8-13` 的干净输入已由方法侧用 `raw_history.original_prompt` / `original_input_messages` 100% 修复（Medhypertrace `common/clean_inputs.py`），medical-aegis 不需要重跑。
+
 ## 回复
 
 见 [issue #1](https://github.com/chancanmakeit/medical-aegis/issues/1) 评论区。
