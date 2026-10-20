@@ -186,16 +186,46 @@ class ClinicalAgent_Main(MAS):
     # ------------------------------------------------------------------ #
     # Recording helpers (mirrors MDAgents_Main pattern)
     # ------------------------------------------------------------------ #
-    def _record(self, role: str, role_index: int, phase: str, content: str):
-        self.conversation_history.append({
+    # Stable agent ids (spec v1.1); tool steps use "tool:<name>".
+    _AGENT_IDS = {"Planner": "planner", "SafetyAgent": "safety_agent",
+                  "EfficacyAgent": "efficacy_agent", "EnrollmentAgent": "enrollment_agent",
+                  "Reasoner": "reasoner", "ToolSynth": "tool_synthesizer"}
+
+    def _record(self, role: str, role_index: int, phase: str, content: str,
+                sources=(), source_how=None, **extra) -> str:
+        sid = f"s{len(self.conversation_history)}"
+        entry = {
+            "step_id": sid,
             "role": role,
             "role_index": role_index,
             "phase": phase,
             "content": content,
-        })
+            "agent_id": extra.pop("agent_id", None) or self._AGENT_IDS.get(role, role.lower()),
+            "round": None, "event_ids": [],
+            "sources": list(dict.fromkeys(sources)),
+        }
+        if source_how:
+            entry["source_how"] = {k: v for k, v in source_how.items() if k in entry["sources"]}
+        entry.update(extra)
+        self.conversation_history.append(entry)
+        return sid
+
+    def _tool(self, name: str, arguments: Dict[str, str], stub_fn, synth) -> tuple:
+        """One tool lookup -> (text, step_id). placeholder mode: a deterministic
+        stub recorded as an `is_tool` step; llm_synth mode: the ToolSynth LLM
+        call is the step."""
+        if self.tools_mode == "llm_synth":
+            return synth(), self.conversation_history[-1]["step_id"]
+        out = stub_fn()
+        sid = self._record("Tool", 0, f"tool_{name}", out, agent_id=f"tool:{name}",
+                           is_tool=True, stub=True, observations=[],
+                           tool_calls=[{"name": name, "arguments": arguments,
+                                        "result": out, "error": None}])
+        return out, sid
 
     def _ask(self, role: str, role_index: int, phase: str,
-             prompt: str, system_prompt: Optional[str] = None) -> str:
+             prompt: str, system_prompt: Optional[str] = None,
+             sources=(), source_how=None) -> str:
         """Wrapper around self.call_llm that sets current_role/role_index/phase
         BEFORE the call so the FM wrapper can target this site.
 
@@ -207,57 +237,54 @@ class ClinicalAgent_Main(MAS):
         self.current_role = role
         self.current_role_index = role_index
         self.current_phase = phase
+        self.current_round = None
         resp = self.call_llm(prompt=prompt, system_prompt=system_prompt, images=None)
-        self._record(role, role_index, phase, resp if resp is not None else "")
+        self._record(role, role_index, phase, resp if resp is not None else "",
+                     sources=sources, source_how=source_how, observations=[])
         return resp or ""
 
     # ------------------------------------------------------------------ #
     # Deterministic-tool stubs (may be overridden by LLM synthesis)
     # ------------------------------------------------------------------ #
     def _tool_drug_risk(self, drug: str) -> str:
-        if self.tools_mode == "llm_synth":
-            return self._ask(
+        return self._tool("drug_risk", {"drug": drug}, lambda: _stub_drug_risk(drug),
+                          lambda: self._ask(
                 "ToolSynth", 0, "tool_drug_risk",
                 f"Synthesize a plausible one-line historical failure rate for the drug '{drug}' "
                 f"in clinical trials as a value in [0,1]. Reply with a single sentence.",
-            )
-        return _stub_drug_risk(drug)
+            ))
 
     def _tool_disease_risk(self, disease: str) -> str:
-        if self.tools_mode == "llm_synth":
-            return self._ask(
+        return self._tool("disease_risk", {"disease": disease}, lambda: _stub_disease_risk(disease),
+                          lambda: self._ask(
                 "ToolSynth", 0, "tool_disease_risk",
                 f"Synthesize a plausible one-line historical failure rate for trials targeting "
                 f"'{disease}' as a value in [0,1]. Reply with a single sentence.",
-            )
-        return _stub_disease_risk(disease)
+            ))
 
     def _tool_drugbank(self, drug: str) -> str:
-        if self.tools_mode == "llm_synth":
-            return self._ask(
+        return self._tool("drugbank", {"drug": drug}, lambda: _stub_drugbank(drug),
+                          lambda: self._ask(
                 "ToolSynth", 0, "tool_drugbank",
                 f"Summarize (2 sentences) plausible DrugBank facts for '{drug}': "
                 f"pharmacological class, route, metabolism.",
-            )
-        return _stub_drugbank(drug)
+            ))
 
     def _tool_hetionet(self, drug: str, disease: str) -> str:
-        if self.tools_mode == "llm_synth":
-            return self._ask(
+        return self._tool("hetionet", {"drug": drug, "disease": disease}, lambda: _stub_hetionet(drug, disease),
+                          lambda: self._ask(
                 "ToolSynth", 0, "tool_hetionet",
                 f"Describe (one sentence) the plausible Hetionet path linking '{drug}' to '{disease}'.",
-            )
-        return _stub_hetionet(drug, disease)
+            ))
 
-    def _tool_enrollment(self, criteria: str) -> str:
-        if self.tools_mode == "llm_synth":
-            head = (criteria or "")[:400]
-            return self._ask(
-                "ToolSynth", 0, "tool_enrollment",
-                f"Given this eligibility criteria, output a single sentence with a difficulty "
-                f"score in [0,1]:\n{head}",
-            )
-        return _stub_enrollment((criteria or "")[:100])
+    def _tool_enrollment(self, criteria: str):
+        head = (criteria or "")[:400]
+        return self._tool("enrollment", {"criteria_head": head},
+                          lambda: _stub_enrollment((criteria or "")[:100]),
+                          lambda: self._ask(
+                              "ToolSynth", 0, "tool_enrollment",
+                              f"Given this eligibility criteria, output a single sentence with a difficulty "
+                              f"score in [0,1]:\n{head}"))
 
     # ------------------------------------------------------------------ #
     # Extract (drugs, diseases, criteria) tuple from the sample query.
@@ -284,6 +311,7 @@ class ClinicalAgent_Main(MAS):
     def inference(self, sample) -> Dict[str, Any]:
         question = sample["query"] if isinstance(sample, dict) else str(sample)
         self.conversation_history = []
+        self.current_round = None
         parsed = self._parse_query(question)
         drugs = parsed["drugs"] or "the drug"
         diseases = parsed["diseases"] or "the disease"
@@ -310,6 +338,7 @@ class ClinicalAgent_Main(MAS):
         # top-level orchestrator agent, so folding it in here is closer to the
         # paper AND removes a redundant LLM turn.
         subproblems: List[str] = []
+        s_plan = None
         if self.use_planner:
             planner_system = (
                 "You are the planning and coordination agent of a clinical-trial "
@@ -334,6 +363,27 @@ class ClinicalAgent_Main(MAS):
             subproblems = [m.strip() for m in re.findall(
                 r"<subproblem>(.*?)</subproblem>", plan, re.DOTALL
             )]
+            s_plan = self.conversation_history[-1]["step_id"]
+            self.conversation_history[-1]["structured"] = {"n_subproblems": len(subproblems)}
+        # Upstream (lingyue404/clinical-agent, algo/solve_problem.py) prompts the
+        # agent that solves each subproblem with that subproblem. Restored
+        # 2026-10-20: before, the parsed subproblems were never passed on, so no
+        # step read the Planner. Each lane gets the subproblem naming its lane
+        # (keyword match, else position); planner-less runs get none.
+        lane_sp: Dict[str, Optional[str]] = {"safety": None, "efficacy": None, "enrollment": None}
+        if self.use_planner and subproblems:
+            rest = list(subproblems)
+            for lane in lane_sp:
+                hit = next((sp for sp in rest if lane in sp.lower()), None)
+                if hit is not None:
+                    lane_sp[lane] = hit; rest.remove(hit)
+            for lane in lane_sp:
+                if lane_sp[lane] is None and rest:
+                    lane_sp[lane] = rest.pop(0)
+
+        def _sp_block(lane):
+            sp = lane_sp[lane]
+            return (f"Subproblem assigned to you by the Planner:\n{sp}\n\n", [s_plan]) if sp else ("", [])
         if not subproblems:
             subproblems = [
                 "Safety agent: assess drug/disease historical failure rates.",
@@ -342,10 +392,9 @@ class ClinicalAgent_Main(MAS):
             ]
 
         # === Step 2: Safety Agent (scoped to safety ONLY) ===
-        safety_tool_out = "\n".join([
-            self._tool_drug_risk(drugs.split(";")[0].strip()),
-            self._tool_disease_risk(diseases.split(";")[0].strip()),
-        ])
+        (t1, st1), (t2, st2) = (self._tool_drug_risk(drugs.split(";")[0].strip()),
+                                self._tool_disease_risk(diseases.split(";")[0].strip()))
+        safety_tool_out = "\n".join([t1, t2])
         safety_system = (
             "You are a drug-safety specialist in a clinical-trial panel. Your "
             "SOLE responsibility is the SAFETY dimension — assess drug and "
@@ -355,20 +404,22 @@ class ClinicalAgent_Main(MAS):
             "<safety_score>0.X</safety_score> (0 = very safe / low failure risk, "
             "1 = very unsafe / high failure risk)."
         )
+        sp_text, sp_src = _sp_block("safety")
         safety_prompt = (
+            sp_text +
             f"Trial facts:\n{drug_disease_bg}\n\n"
             f"Safety tool outputs:\n{safety_tool_out}\n\n"
             "Give a brief (3-5 sentence) SAFETY-only analysis, then the "
             "<safety_score> tag."
         )
         safety_out = self._ask("SafetyAgent", 0, "safety_analysis",
-                               safety_prompt, system_prompt=safety_system)
+                               safety_prompt, system_prompt=safety_system, sources=sp_src + [st1, st2], source_how={s_plan: "excerpt"} if sp_src else None)
+        s_safety_step = self.conversation_history[-1]["step_id"]
 
         # === Step 3: Efficacy Agent (scoped to efficacy ONLY) ===
-        efficacy_tool_out = "\n".join([
-            self._tool_drugbank(drugs.split(";")[0].strip()),
-            self._tool_hetionet(drugs.split(";")[0].strip(), diseases.split(";")[0].strip()),
-        ])
+        (t3, st3), (t4, st4) = (self._tool_drugbank(drugs.split(";")[0].strip()),
+                                self._tool_hetionet(drugs.split(";")[0].strip(), diseases.split(";")[0].strip()))
+        efficacy_tool_out = "\n".join([t3, t4])
         efficacy_system = (
             "You are a drug-efficacy specialist in a clinical-trial panel. Your "
             "SOLE responsibility is the EFFICACY dimension — assess whether the "
@@ -378,17 +429,20 @@ class ClinicalAgent_Main(MAS):
             "<efficacy_score>0.X</efficacy_score> (0 = strong efficacy evidence / "
             "low failure risk, 1 = weak efficacy / high failure risk)."
         )
+        sp_text, sp_src = _sp_block("efficacy")
         efficacy_prompt = (
+            sp_text +
             f"Trial facts:\n{drug_disease_bg}\n\n"
             f"Efficacy tool outputs:\n{efficacy_tool_out}\n\n"
             "Give a brief (3-5 sentence) EFFICACY-only analysis, then the "
             "<efficacy_score> tag."
         )
         efficacy_out = self._ask("EfficacyAgent", 0, "efficacy_analysis",
-                                 efficacy_prompt, system_prompt=efficacy_system)
+                                 efficacy_prompt, system_prompt=efficacy_system, sources=sp_src + [st3, st4], source_how={s_plan: "excerpt"} if sp_src else None)
+        s_efficacy_step = self.conversation_history[-1]["step_id"]
 
         # === Step 4: Enrollment Agent (scoped to enrollment ONLY) ===
-        enrollment_tool_out = self._tool_enrollment(criteria)
+        enrollment_tool_out, st5 = self._tool_enrollment(criteria)
         enrollment_system = (
             "You are an enrollment-feasibility specialist in a clinical-trial "
             "panel. Your SOLE responsibility is the ENROLLMENT dimension — judge "
@@ -398,14 +452,17 @@ class ClinicalAgent_Main(MAS):
             "<enrollment_score>0.X</enrollment_score> (0 = easy recruitment / low "
             "failure risk, 1 = very hard recruitment / high failure risk)."
         )
+        sp_text, sp_src = _sp_block("enrollment")
         enrollment_prompt = (
+            sp_text +
             f"Eligibility criteria (truncated):\n{criteria[:1200]}\n\n"
             f"Enrollment tool output:\n{enrollment_tool_out}\n\n"
             "Give a brief (2-4 sentence) ENROLLMENT-only analysis, then the "
             "<enrollment_score> tag."
         )
         enrollment_out = self._ask("EnrollmentAgent", 0, "enrollment_analysis",
-                                   enrollment_prompt, system_prompt=enrollment_system)
+                                   enrollment_prompt, system_prompt=enrollment_system, sources=sp_src + [st5], source_how={s_plan: "excerpt"} if sp_src else None)
+        s_enroll_step = self.conversation_history[-1]["step_id"]
 
         # Pull the three lane scores back out (for the weighted computation and
         # for logging). If a sub-agent omitted its tag, we leave it None and the
@@ -413,6 +470,9 @@ class ClinicalAgent_Main(MAS):
         s_safety = _extract_dim_score(safety_out, "safety_score")
         s_efficacy = _extract_dim_score(efficacy_out, "efficacy_score")
         s_enroll = _extract_dim_score(enrollment_out, "enrollment_score")
+        for sid, val in ((s_safety_step, s_safety), (s_efficacy_step, s_efficacy),
+                         (s_enroll_step, s_enroll)):
+            next(h for h in self.conversation_history if h["step_id"] == sid)["structured"] = {"score": val}
 
         # Deterministic weighted average over whatever scores parsed (used as a
         # sanity value + logged; the authoritative number is the Reasoner's tag).
@@ -448,7 +508,9 @@ class ClinicalAgent_Main(MAS):
             f"in <final_result>0.X</final_result> tags (0-1, 1 = trial fails)."
         )
         final = self._ask("Reasoner", 0, "final_synthesis",
-                          reasoner_prompt, system_prompt=reasoner_system)
+                          reasoner_prompt, system_prompt=reasoner_system,
+                          sources=[s_safety_step, s_efficacy_step, s_enroll_step])
+        s_reasoner = self.conversation_history[-1]["step_id"]
 
         # Extract the Reasoner's final probability (authoritative). Fall back to
         # the deterministic weighted average if the tag is missing.
@@ -463,6 +525,9 @@ class ClinicalAgent_Main(MAS):
                 prob = max(0.0, min(1.0, v))
             except (ValueError, IndexError):
                 prob = None
+        next(h for h in self.conversation_history if h["step_id"] == s_reasoner)["structured"] = {
+            "failure_probability": prob,
+            "predicts_failure": None if prob is None else int(prob >= 0.5)}
         if prob is None:
             prob = computed_prob
 
@@ -470,6 +535,7 @@ class ClinicalAgent_Main(MAS):
             "response": final,
             "history": list(self.conversation_history),
             "prob": prob,
+            "final_step_id": s_reasoner,
             "lane_scores": {
                 "safety": s_safety, "efficacy": s_efficacy, "enrollment": s_enroll,
                 "weights": {"safety": w_safety, "efficacy": w_efficacy,

@@ -4,11 +4,21 @@ import re
 import os
 
 from methods.mas_base import MAS
+from methods.answer_parsing import mcq_answer
 
 class DyLAN_Main(MAS):
     """
     Dynamic LLM Agent Network (DyLAN) implementation.
     Inherits from MAS base class.
+
+    Step contract (StructuredFMWrapper, fm_dylan_structured_wrapper.py,
+    2026-10-20; prompts and control flow unchanged): roles are the node role
+    names (e.g. Physician) with role_index = node_idx % num_agents, phase
+    "answer", round = round_id + 1; the listwise ranker is Ranker(num_agents),
+    phase "ranking". Each call records step_id, agent_id (agent_<i> / ranker),
+    sources = the step ids of the previous-round replies inserted into its
+    prompt (the ranker: the replies it ranks) and structured
+    ({"answer": option letter, "peer_scores": [[...]]} / {"top2": [...]}).
     """
     
     def __init__(self, general_config, method_config_name=None):
@@ -35,6 +45,13 @@ class DyLAN_Main(MAS):
         self.cmp_res = lambda x, y: self._sentence_bleu(x, [y], lowercase=True) >= 0.9 * 100
         self.ans_parser = lambda x: x
 
+        # Step recording (see class docstring)
+        self.conversation_history = []
+        self.node_step = {}            # node idx -> step id of its current reply
+        self.current_role, self.current_role_index = None, 0
+        self.current_phase, self.current_round = None, None
+        self._rank_sources = []
+
         # Initialize network
         self.nodes = []  # List of node states
         self.edges = []  # List of edge weights and connections
@@ -43,6 +60,7 @@ class DyLAN_Main(MAS):
     def inference(self, sample):
         query = sample["query"]
         random.seed(self.seed)
+        self.conversation_history, self.node_step = [], {}
         
         self._zero_grad()
         self._set_allnodes_deactivated()
@@ -58,7 +76,7 @@ class DyLAN_Main(MAS):
             if idx >= math.floor(2/3 * self.num_agents):
                 reached, reply = self._check_consensus(activated_indices, list(range(self.num_agents)))
                 if reached:
-                    return reply
+                    return self._finish(reply, activated_indices)
 
         # Second round
         loop_indices = list(range(self.num_agents, self.num_agents*2))
@@ -70,7 +88,7 @@ class DyLAN_Main(MAS):
             if idx >= math.floor(2/3 * self.num_agents):
                 reached, reply = self._check_consensus(activated_indices, list(range(self.num_agents)))
                 if reached:
-                    return reply
+                    return self._finish(reply, activated_indices)
 
         # Subsequent rounds
         idx_mask = list(range(self.num_agents))
@@ -83,6 +101,8 @@ class DyLAN_Main(MAS):
                 shuffled_replies = [replies[idx] for idx in indices]
                 
                 if self.activation == 0:  # listwise
+                    self._rank_sources = [self.node_step.get(idxs[i]) for i in indices]
+                    self.current_round = rid + 1
                     tops = self._listwise_ranker(shuffled_replies, query)
                     idx_mask = list(map(lambda x: idxs[indices[x]] % self.num_agents, tops))
 
@@ -96,9 +116,27 @@ class DyLAN_Main(MAS):
                     if len(idxs) > math.floor(2/3 * len(idx_mask)):
                         reached, reply = self._check_consensus(idxs, idx_mask)
                         if reached:
-                            return reply
+                            return self._finish(reply, idxs)
         response = self._most_frequent([self.nodes[idx]['answer'] for idx in idxs], self.cmp_res)[0]
-        return {"response": response}
+        return self._finish(response, idxs)
+
+    def _record(self, role, role_index, agent_id, phase, round_, sources, content, structured):
+        sid = f"s{len(self.conversation_history)}"
+        self.conversation_history.append({
+            "step_id": sid, "role": role, "role_index": role_index, "agent_id": agent_id,
+            "agent_label": role, "phase": phase, "round": round_, "event_ids": [],
+            "sources": [x for x in dict.fromkeys(sources) if x], "observations": [],
+            "content": content, "structured": structured})
+        return sid
+
+    def _finish(self, response, idxs):
+        """Final output: the (consensus / most frequent) reply and the steps
+        whose replies agree with it (DyLAN's own BLEU comparison)."""
+        agree = [self.node_step[i] for i in idxs
+                 if i in self.node_step and self.cmp_res(self.nodes[i]['answer'], response)]
+        return {"response": response, "history": list(self.conversation_history),
+                "final_step_id": agree[0] if agree else None,
+                "final_source_step_ids": agree}
 
     def _get_activation_map(self):
         """Map activation names to their corresponding values"""
@@ -276,13 +314,27 @@ class DyLAN_Main(MAS):
         formers = [mess[0] for mess in formers]
 
         contexts.append(self._construct_message(formers, question))
+        role_index = idx % self.num_agents
+        self.current_role, self.current_role_index = node['role'], role_index
+        self.current_phase = "answer"
+        self.current_round = (round_id + 1) if round_id is not None else None
+        # formers (before shuffling) map to their source nodes via edges
+        src_nodes = [self.edges[e]['from'] for e in original_idxs]
         node['reply'] = self.call_llm(messages=contexts)
+        sid = self._record(node['role'], role_index, f"agent_{role_index}", "answer",
+                           self.current_round, [self.node_step.get(n) for n in src_nodes],
+                           node['reply'] or "", {"answer": mcq_answer(node['reply'] or "")})
+        self.node_step[idx] = sid
         
         # Parse answer and weights
         node['answer'] = self.ans_parser(node['reply'])
         weights = self._find_array(node['reply'])
         if len(weights) != len(formers):
             weights = [0 for _ in range(len(formers))]
+        # scores are given in the SHUFFLED order the agent saw
+        self.conversation_history[-1]["structured"]["peer_scores"] = (
+            [{"step_id": self.node_step.get(self.edges[e]['from']), "score": w}
+             for e, w in zip(shuffled_idxs, weights)] if formers else [])
 
         # Update edge weights
         shuffled_pairs = list(zip(shuffled_idxs, weights, formers))
@@ -313,8 +365,14 @@ class DyLAN_Main(MAS):
         """Rank responses and return top indices"""
         assert 2 < len(responses)
         message = self._construct_ranking_message(responses, question)
+        self.current_role, self.current_role_index = "Ranker", self.num_agents
+        self.current_phase = "ranking"
         completion = self.call_llm(messages=[message])
-        return self._parse_ranks(completion, max_num=len(responses))
+        tops = self._parse_ranks(completion, max_num=len(responses))
+        srcs = list(self._rank_sources)
+        self._record("Ranker", self.num_agents, "ranker", "ranking", self.current_round, srcs,
+                     completion or "", {"top2": [srcs[t] for t in tops if t < len(srcs)]})
+        return tops
 
     def _most_frequent(self, clist, cmp_func):
         """Find most frequent item in list using comparison function"""

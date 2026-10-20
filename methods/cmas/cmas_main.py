@@ -89,24 +89,56 @@ class CMAS_Main(MAS):
     # ------------------------------------------------------------------ #
     # Recording helpers
     # ------------------------------------------------------------------ #
-    def _record(self, role: str, role_index: int, phase: str, content: str):
+    _AGENT_IDS = {"TRFExtractor": "trf_extractor", "Discriminator": "demo_discriminator",
+                  "OverallPredictor": "overall_predictor"}
+
+    @staticmethod
+    def _parse_list(text: str):
+        """First parsable [...] in a reply as a list (None if there is none).
+        Tries the shortest span from the first '[' outwards, so trailing text
+        such as a second bracketed note does not break parsing."""
+        t = text or ""
+        start = t.find("[")
+        if start < 0:
+            return None
+        for end in [i for i, ch in enumerate(t) if ch == "]" and i > start]:
+            for loader in (json.loads, ast.literal_eval):
+                try:
+                    v = loader(t[start:end + 1])
+                    if isinstance(v, list):
+                        return v
+                except Exception:
+                    continue
+        return None
+
+    def _record(self, role: str, role_index: int, phase: str, content: str,
+                sources=(), observations=()) -> str:
+        sid = f"s{len(self.conversation_history)}"
         self.conversation_history.append({
+            "step_id": sid,
             "role": role,
             "role_index": role_index,
             "phase": phase,
             "content": content,
+            "agent_id": self._AGENT_IDS.get(role, role.lower()),
+            "round": None, "event_ids": [],
+            "sources": list(sources), "observations": list(observations),
         })
+        return sid
 
     def _ask(self, role: str, role_index: int, phase: str,
-             prompt: str, system_prompt: Optional[str] = None) -> str:
+             prompt: str, system_prompt: Optional[str] = None,
+             sources=(), observations=()) -> str:
         """call_llm wrapper that sets current_role/_index/_phase before the call
         so the FM wrapper can target this site. CMAS is text-only NER, so we
         pass images=None explicitly to skip the multimodal auto-attach layer."""
         self.current_role = role
         self.current_role_index = role_index
         self.current_phase = phase
+        self.current_round = None
         resp = self.call_llm(prompt=prompt, system_prompt=system_prompt, images=None)
-        self._record(role, role_index, phase, resp if resp is not None else "")
+        self.last_step = self._record(role, role_index, phase, resp if resp is not None else "",
+                                      sources=sources, observations=observations)
         return resp or ""
 
     # ------------------------------------------------------------------ #
@@ -188,6 +220,13 @@ class CMAS_Main(MAS):
                 lines.append(f"Text: {d['sentence']}\n"
                              f"Entity labels: {self._format_label(d['label'])}")
             demo_block = "\n\n".join(lines)
+        # The retrieved demonstrations are shared task input (spec v1.1
+        # task.observations), referenced by the steps that read them.
+        self.task_observations = ([{"id": "demonstrations", "type": "retrieved_demonstrations",
+                                    "retrieval": self.demo_retrieval_mode, "text": demo_block}]
+                                  if demo_block else [])
+        demo_obs = ["demonstrations"] if demo_block else []
+        s_trf = s_disc = None
 
         # === Agent 2: TRF Extractor ===
         trfs_text = ""
@@ -206,6 +245,8 @@ class CMAS_Main(MAS):
             )
             trfs_text = self._ask("TRFExtractor", 0, "trf_extraction",
                                   trf_prompt, system_prompt=trf_system)
+            s_trf = self.last_step
+            self.conversation_history[-1]["structured"] = {"trfs": self._parse_list(trfs_text)}
 
         # === Agent 3: Demonstration Discriminator (self-reflection) ===
         helpfulness_text = ""
@@ -227,7 +268,11 @@ class CMAS_Main(MAS):
                 "JSON format: [{\"sentence id\": \"helpfulness score\"}]."
             )
             helpfulness_text = self._ask("Discriminator", 0, "helpfulness_scoring",
-                                         disc_prompt, system_prompt=disc_system)
+                                         disc_prompt, system_prompt=disc_system,
+                                         sources=[s_trf] if trfs_text else [],
+                                         observations=demo_obs)
+            s_disc = self.last_step
+            self.conversation_history[-1]["structured"] = {"scores": self._parse_list(helpfulness_text)}
 
         # === Agent 4: Overall Predictor ===
         pred_system = (
@@ -252,11 +297,17 @@ class CMAS_Main(MAS):
         )
         pred_prompt = "\n\n".join(pred_parts)
         final = self._ask("OverallPredictor", 0, "final_prediction",
-                          pred_prompt, system_prompt=pred_system)
+                          pred_prompt, system_prompt=pred_system,
+                          sources=[x for x, t in ((s_trf, trfs_text), (s_disc, helpfulness_text)) if t],
+                          observations=demo_obs)
+        ents = self._parse_list(final)
+        self.conversation_history[-1]["structured"] = {
+            "entities": ents, "parse_ok": ents is not None}
 
         return {
             "response": final,
             "history": list(self.conversation_history),
             "trfs": trfs_text,
             "helpfulness": helpfulness_text,
+            "final_step_id": self.last_step,
         }

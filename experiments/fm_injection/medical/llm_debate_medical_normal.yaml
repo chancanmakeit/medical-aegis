@@ -5,7 +5,7 @@ run_mode: "clean"
 
 system_under_test:
   name: "llm_debate"
-  wrapper_class_path: "aegis_core.agent_systems.fm_debate_wrapper.FM_Debate_Wrapper"
+  wrapper_class_path: "aegis_core.agent_systems.fm_llm_debate_structured_wrapper.FMLLMDebateStructuredWrapper"
   method_config_path: "methods/llm_debate/configs/config_medical.yaml"
 
 llm_config:

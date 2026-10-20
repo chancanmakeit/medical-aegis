@@ -129,6 +129,13 @@ class StructuredFMWrapper(SystemWrapper):
 
     def _inject_into_call(self, args, kwargs, modified_text_fn):
         """Return (new_args, new_kwargs, original_text, modified_text)."""
+        # call_llm(prompt, system_prompt, messages, ...): a positional
+        # `messages` (e.g. AgentVerse's call_llm(None, None, msgs)) is moved to
+        # kwargs first, otherwise the prompt branch below would pass `prompt`
+        # twice.
+        if kwargs.get("messages") is None and len(args) >= 3 and args[2] is not None:
+            kwargs = dict(kwargs, messages=args[2])
+            args = tuple(args[3:])
         new_kwargs = dict(kwargs)
         msgs = kwargs.get("messages")
         if msgs is not None:

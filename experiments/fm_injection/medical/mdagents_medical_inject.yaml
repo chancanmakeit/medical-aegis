@@ -22,8 +22,8 @@ inject_every_invocation: false
 
 system_under_test:
   name: "mdagents"
-  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_wrapper.FMMDAgentsWrapper"
-  method_config_path: "configs/config_medical.yaml"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_structured_wrapper.FMMDAgentsStructuredWrapper"
+  method_config_path: "methods/mdagents/configs/config_medical.yaml"
 
 llm_config:
   provider: "openai"
@@ -52,7 +52,7 @@ judge_llm_config:
 # Recruiter (1 slot), Expert_0..Expert_4 (5 slots), Aggregator (1 slot).
 # In BASIC mode use ("MedicalExpert", 0). In ADAPTIVE mode the wrapper also
 # sees a ("Classifier", 0) turn at the start. ADVANCED mode has MDTMember and
-# TeamLead slots — see fm_mdagents_wrapper.py for the full list.
+# TeamLead slots — see fm_mdagents_structured_wrapper.py for the full list.
 injection_plan:
   targets:
     - role: "Recruiter"

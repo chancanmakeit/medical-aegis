@@ -8,8 +8,8 @@ dylan_config_name: "config_medical"
 
 system_under_test:
   name: "dylan"
-  wrapper_class_path: "aegis_core.agent_systems.fm_dylan_wrapper.FMDyLANWrapper"
-  method_config_path: "configs/config_medical.yaml"
+  wrapper_class_path: "aegis_core.agent_systems.fm_dylan_structured_wrapper.FMDyLANStructuredWrapper"
+  method_config_path: "methods/dylan/configs/config_medical.yaml"
 
 llm_config:
   provider: "openai"

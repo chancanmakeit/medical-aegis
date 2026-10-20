@@ -11,7 +11,8 @@ Heuristic matching per source output (any one is enough):
   - otherwise: the first 40 chars after an optional "Total Analysis:" header;
   - source_how "structured_field": its ANSWER value; without an ANSWER (e.g. a
     vote that only enters as a count) it is counted as derived_unverifiable;
-  - source_how "excerpt": any non-trivial line of the source output;
+  - source_how "excerpt": any non-trivial line of the source output (XML-style
+    tags stripped), or the value after a leading "Label:" on such a line;
   - tool steps (is_tool): checked against their tool_calls arguments.
 Short outputs (< 25 chars, e.g. "YES") are skipped by the unlisted-read check.
 """
@@ -66,7 +67,14 @@ def main(path):
                     pr = m[-1:]
                 elif how.get(src) == "excerpt":
                     # a parsed part of the output: any non-trivial line of it
-                    pr = [ln.strip() for ln in (by_id[src].get("content") or "").splitlines() if len(ln.strip()) >= 12]
+                    # (XML-style tags stripped: e.g. ClinicalAgent passes the text
+                    # inside <subproblem>...</subproblem> on, not the tags)
+                    lines = [re.sub(r"<[^>]+>", "", ln).strip()
+                             for ln in (by_id[src].get("content") or "").splitlines()]
+                    # (and the value after a leading "Label:", e.g. AgentVerse passes
+                    # on only the text after the evaluator's "Response:")
+                    lines += [ln.split(":", 1)[1].strip() for ln in lines if ":" in ln[:40]]
+                    pr = [ln for ln in lines if len(ln) >= 12]
                 if not any(p in inp for p in pr):
                     bad += 1
                     print("SOURCE NOT FOUND", rec["id"], s["step_id"], s["agent_name"], "<-", src)

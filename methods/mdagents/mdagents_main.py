@@ -18,7 +18,18 @@ Key adaptations vs. the upstream implementation:
     and INTERMEDIATE; ADVANCED is included in skeleton form with a clear
     fallback to intermediate (see `_process_advanced`).
 
-Injection contract (used by `fm_mdagents_wrapper.py`):
+Step contract (StructuredFMWrapper, fm_mdagents_structured_wrapper.py; the
+legacy fm_mdagents_wrapper.py is kept only to reproduce old data):
+  every call records step_id, agent_id (stable: recruiter, expert_<i>,
+  aggregator, classifier, medical_expert, team<t>_member<m>, team_lead_<t>),
+  agent_label (the recruited specialty), sources + source_how (experts read
+  the Recruiter's specialty/description as a structured field; the aggregator
+  reads the expert answers verbatim), observations (attached images, ids
+  image_<k>, registered in `task_observations`) and structured
+  ({"answer": <letter>} parsed from "Final answer: X"; recruiter: specialties;
+  classifier: difficulty).
+
+Injection contract (role names unchanged, so old YAML targets still apply):
   Every LLM call goes through `self.call_llm` AND carries a structural role
   context that the wrapper reads via `self.current_role` / `self.current_role_index`.
   The wrapper monkey-patches `call_llm` to selectively inject errors at
@@ -31,13 +42,19 @@ Injection contract (used by `fm_mdagents_wrapper.py`):
 """
 
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from methods.mas_base import MAS
+from methods.answer_parsing import mcq_answer
 
 
 # Letters used for MCQ option labelling (matches MedXpertQA up to 10 choices).
 _OPTION_LETTERS = "ABCDEFGHIJ"
+
+
+def final_letter(text: str) -> Optional[str]:
+    """Option letter the reply commits to (see methods/answer_parsing.py)."""
+    return mcq_answer(text)
 
 
 class MDAgents_Main(MAS):
@@ -77,16 +94,33 @@ class MDAgents_Main(MAS):
     # --------------------------------------------------------------------- #
     # Recording helper
     # --------------------------------------------------------------------- #
-    def _record(self, role: str, role_index: int, phase: str, content: str):
-        self.conversation_history.append({
+    def _record(self, role: str, role_index: int, phase: str, content: str,
+                agent_id: Optional[str] = None, agent_label: Optional[str] = None,
+                sources=(), source_how=None, observations=(), round_=None) -> str:
+        sid = f"s{len(self.conversation_history)}"
+        entry = {
+            "step_id": sid,
             "role": role,
             "role_index": role_index,
             "phase": phase,
             "content": content,
-        })
+            "agent_id": agent_id or f"{role.lower()}_{role_index}",
+            "agent_label": agent_label,
+            "round": round_,
+            "event_ids": [],
+            "sources": list(dict.fromkeys(sources)),
+            "observations": list(observations),
+            "structured": {"answer": final_letter(content)},
+        }
+        if source_how:
+            entry["source_how"] = {k: v for k, v in source_how.items() if k in entry["sources"]}
+        self.conversation_history.append(entry)
+        return sid
 
     def _ask(self, role: str, role_index: int, phase: str,
-             prompt: str, system_prompt: Optional[str] = None) -> str:
+             prompt: str, system_prompt: Optional[str] = None, *,
+             agent_id: Optional[str] = None, agent_label: Optional[str] = None,
+             sources=(), source_how=None, round_=None) -> str:
         """Wrapper around self.call_llm that sets current_role/role_index/phase
         before the call so the FM wrapper can target this site.
 
@@ -100,6 +134,7 @@ class MDAgents_Main(MAS):
         self.current_role = role
         self.current_role_index = role_index
         self.current_phase = phase
+        self.current_round = round_
         # Skip images for purely planning/classification turns.
         send_images = self.current_images if role not in ("Recruiter", "Classifier") else None
         resp = self.call_llm(prompt=prompt, system_prompt=system_prompt,
@@ -107,7 +142,11 @@ class MDAgents_Main(MAS):
         # If retries exhausted, mas_base returns None; downstream code must
         # treat that as a hard failure, but we keep recording so the trajectory
         # still reflects what was attempted.
-        self._record(role, role_index, phase, resp if resp is not None else "")
+        obs = [f"image_{k}" for k in range(len(send_images or []))]
+        self.last_step = self._record(role, role_index, phase, resp if resp is not None else "",
+                                      agent_id=agent_id, agent_label=agent_label,
+                                      sources=sources, source_how=source_how,
+                                      observations=obs, round_=round_)
         return resp
 
     # --------------------------------------------------------------------- #
@@ -117,12 +156,16 @@ class MDAgents_Main(MAS):
         """Dispatch by configured difficulty."""
         question = sample["query"] if isinstance(sample, dict) else str(sample)
         self.conversation_history = []  # reset per-sample
+        self.current_round = None
         # Pick up multimodal attachments from the sample (set by main.py via Task).
         self.current_images = None
         if isinstance(sample, dict):
             self.current_images = (sample.get("image_paths")
                                    or sample.get("images")
                                    or None)
+        self.task_observations = [{"id": f"image_{k}", "type": "image", "path": p}
+                                  for k, p in enumerate(self.current_images or [])]
+        self.final_step_id = None
 
         diff = (self.difficulty or "intermediate").lower()
         if diff == "adaptive":
@@ -136,7 +179,7 @@ class MDAgents_Main(MAS):
             response = self._process_intermediate(question)
 
         return {"response": response, "history": list(self.conversation_history),
-                "difficulty": diff}
+                "difficulty": diff, "final_step_id": self.final_step_id}
 
     # --------------------------------------------------------------------- #
     # ADAPTIVE classification (only used when difficulty == "adaptive")
@@ -151,13 +194,17 @@ class MDAgents_Main(MAS):
             f"Question:\n{question}\n\n"
             "Respond with a single word: basic, intermediate, or advanced."
         )
-        resp = self._ask("Classifier", 0, "difficulty_classification", prompt) or ""
+        resp = self._ask("Classifier", 0, "difficulty_classification", prompt,
+                         agent_id="classifier") or ""
         r = resp.lower()
         if "basic" in r or "1)" in r:
-            return "basic"
-        if "advanced" in r or "3)" in r:
-            return "advanced"
-        return "intermediate"
+            d = "basic"
+        elif "advanced" in r or "3)" in r:
+            d = "advanced"
+        else:
+            d = "intermediate"
+        self.conversation_history[-1]["structured"] = {"difficulty": d}
+        return d
 
     # --------------------------------------------------------------------- #
     # BASIC: single agent
@@ -168,7 +215,8 @@ class MDAgents_Main(MAS):
                          "then conclude with: 'Final answer: <letter>'.")
         prompt = f"Question:\n{question}\n\nAnswer:"
         resp = self._ask("MedicalExpert", 0, "basic_answer", prompt,
-                         system_prompt=system_prompt)
+                         system_prompt=system_prompt, agent_id="medical_expert")
+        self.final_step_id = self.last_step
         return resp or ""
 
     # --------------------------------------------------------------------- #
@@ -188,7 +236,9 @@ class MDAgents_Main(MAS):
             "Do not add any other text."
         )
         recruited = self._ask("Recruiter", 0, "recruitment",
-                              recruit_prompt, system_prompt=recruit_system) or ""
+                              recruit_prompt, system_prompt=recruit_system,
+                              agent_id="recruiter") or ""
+        s_rec = self.last_step
 
         # Parse specialty names; fall back to generic names if parsing fails.
         experts: List[Dict[str, str]] = []
@@ -202,12 +252,16 @@ class MDAgents_Main(MAS):
                                 "description": m.group(2).strip()})
             if len(experts) >= self.num_experts:
                 break
+        n_parsed = len(experts)
         while len(experts) < self.num_experts:
             experts.append({"specialty": f"Generalist {len(experts)+1}",
                             "description": "general medical reasoning"})
+        self.conversation_history[-1]["structured"] = {
+            "specialties": [e["specialty"] for e in experts], "parsed": n_parsed}
 
         # === Step 2: Each expert answers independently ===
         expert_answers: List[str] = []
+        latest = []      # step whose answer is expert idx's current entry
         for idx, ex in enumerate(experts):
             sp = ex["specialty"]
             desc = ex["description"]
@@ -221,13 +275,20 @@ class MDAgents_Main(MAS):
                 "Provide a concise reasoning (3-6 sentences) and conclude with "
                 "'Final answer: <letter>'."
             )
+            # The specialty / description come from the Recruiter's output only
+            # when they were parsed from it (fallback generalists are fixed text).
+            src = [s_rec] if idx < n_parsed else []
             ans = self._ask("Expert", idx, f"expert_answer/{sp}",
-                            expert_prompt, system_prompt=expert_system) or ""
+                            expert_prompt, system_prompt=expert_system,
+                            agent_id=f"expert_{idx}", agent_label=sp,
+                            sources=src, source_how={s_rec: "structured_field"}) or ""
             expert_answers.append(f"[{sp}] {ans}")
+            latest.append(self.last_step)
 
         # Optional extra debate rounds: experts see each other's answers and revise.
         for r in range(1, self.debate_rounds):
             joined = "\n\n".join(expert_answers)
+            snapshot = list(latest)   # `joined` is built once per round
             for idx, ex in enumerate(experts):
                 sp = ex["specialty"]
                 rev_system = (
@@ -240,8 +301,12 @@ class MDAgents_Main(MAS):
                     f"Your updated answer (conclude with 'Final answer: <letter>'):"
                 )
                 rev = self._ask("Expert", idx, f"expert_revise_r{r}/{sp}",
-                                rev_prompt, system_prompt=rev_system) or ""
+                                rev_prompt, system_prompt=rev_system,
+                                agent_id=f"expert_{idx}", agent_label=sp, round_=r,
+                                sources=list(snapshot) + ([s_rec] if idx < n_parsed else []),
+                                source_how={s_rec: "structured_field"}) or ""
                 expert_answers[idx] = f"[{sp}, r{r}] {rev}"
+                latest[idx] = self.last_step
 
         # === Step 3: Aggregator synthesizes a final answer ===
         agg_system = (
@@ -255,7 +320,9 @@ class MDAgents_Main(MAS):
             "conclude with 'Final answer: <letter>'."
         )
         final = self._ask("Aggregator", 0, "aggregation",
-                          agg_prompt, system_prompt=agg_system) or ""
+                          agg_prompt, system_prompt=agg_system,
+                          agent_id="aggregator", sources=latest) or ""
+        self.final_step_id = self.last_step
         return final
 
     # --------------------------------------------------------------------- #
@@ -269,9 +336,10 @@ class MDAgents_Main(MAS):
         n_teams = 2
         n_per_team = 3
         team_summaries: List[str] = []
+        lead_steps: List[str] = []
         for t in range(n_teams):
             team_role = f"Team{t+1}"
-            members = []
+            members, member_steps = [], []
             for m in range(n_per_team):
                 role_idx = t * n_per_team + m
                 ex_system = (
@@ -280,19 +348,25 @@ class MDAgents_Main(MAS):
                 )
                 ans = self._ask("MDTMember", role_idx, f"{team_role}_member{m+1}",
                                 f"Question:\n{question}\n\nYour view (3-5 sentences):",
-                                system_prompt=ex_system) or ""
+                                system_prompt=ex_system,
+                                agent_id=f"team{t+1}_member{m+1}") or ""
                 members.append(ans)
+                member_steps.append(self.last_step)
             # Team consensus
             joined = "\n\n".join(f"- {m}" for m in members)
             cons = self._ask("TeamLead", t, f"{team_role}_consensus",
                              f"Team views:\n{joined}\n\nQuestion:\n{question}\n\n"
                              "Produce the team's consensus answer ('Final answer: <letter>').",
-                             system_prompt=f"You lead {team_role}.") or ""
+                             system_prompt=f"You lead {team_role}.",
+                             agent_id=f"team_lead_{t+1}", sources=member_steps) or ""
             team_summaries.append(f"{team_role} consensus: {cons}")
+            lead_steps.append(self.last_step)
 
         # FRDT
         final = self._ask("Aggregator", 0, "frdt",
                           "Team consensus answers:\n" + "\n\n".join(team_summaries) +
                           f"\n\nQuestion:\n{question}\n\nProduce the final answer ('Final answer: <letter>').",
-                          system_prompt="You are the Final Review and Decision Team lead.") or ""
+                          system_prompt="You are the Final Review and Decision Team lead.",
+                          agent_id="aggregator", sources=lead_steps) or ""
+        self.final_step_id = self.last_step
         return final

@@ -1,3 +1,6 @@
+# DEPRECATED (2026-10-20): superseded by aegis_core.agent_systems.fm_llm_debate_structured_wrapper.FMLLMDebateStructuredWrapper
+# (structured contract: clean input_messages, read sets, agent ids, llm_meta,
+# inject-once). Kept only to reproduce data generated before the migration.
 # file: agent_systems/fm_debate_wrapper.py
 
 from .base_wrapper import SystemWrapper, _override_rounds, _llm_response_or_raise, LLMAPIFailure, _attach_task_images

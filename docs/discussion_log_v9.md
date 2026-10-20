@@ -177,3 +177,60 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 ### 下一步
 1. **(b) 迁移旧 wrapper**：mdagents、clinical_agent、cmas，外加 dylan、llm_debate、agentverse 的注入开关。这是 ClinicalAgent 重跑和统一用方案 A 的前提。
 2. **(c) 真实模型试跑**：用 mercury-2.5-preview 等模型小规模估算成本，**跑之前停下来请用户确认**。
+
+---
+
+## 第 6 轮（2026-10-20）：用户新决定；6 个旧框架全部迁移到 StructuredFMWrapper
+
+**用户的决定**：
+1. cmas、dylan、llm_debate、agentverse：**只迁移和修复，暂不重跑**（它们不算严格意义上的医学多智能体系统；以后需要重跑时用户会再说）。
+   - 我的理解：mdagents 和 clinical_agent 是医学专用框架，要重跑。已在 issue 里写明，请用户确认 mdagents 是否在重跑范围内。
+2. **文本类 backbone 增加备选 `llama-4-maverick`**（aihubmix）。
+3. 在 issue 里和 MedHyperTrace 沟通，听取对方意见。
+
+**核实（只查了模型列表，没有产生生成调用）**：
+- aihubmix 上有 `mercury-2.5-preview`、`mercury-2.5`、`llama-4-maverick`。
+- 蚂蚁百灵端点可以访问，`Ling-3.0-flash-VL` 在模型列表里。
+
+**issue #1**：
+- 发了第 6 轮评论：用户决定；双 backbone 交叉方案；不重跑 4 个通用框架对锚点任务的影响。
+- **读到 MedHyperTrace 第 25 轮（早于我们第 5 轮发出）**：
+  - 确认 10 个 `framework_family`。名称已对齐为 `modality_fusion` 和 `triage`。
+  - 建议锚点任务再加 macnet、autogen、camel 三个通用框架。
+  - 他们建议的顺序是：导出器 → 在 medagents_mc 和 triage 上做真实试点 → 迁移旧 wrapper → 补通用框架。
+  - 对旧 ClinicalAgent 数据：只用作无标签预训练，他们那边不需要重跑。
+- **与用户决定的冲突**：MedHyperTrace 需要更多通用框架做锚点任务，而用户决定通用框架暂不重跑。已交给用户决定。
+
+### 迁移（6 个框架，全部改用 StructuredFMWrapper，prompt 和控制流不变）
+| 框架 | 新 wrapper | 方法侧要点 |
+|---|---|---|
+| mdagents | `fm_mdagents_structured_wrapper` | agent_id 为 recruiter / expert_i / aggregator 等。专家读 Recruiter 的专长描述，标 structured_field。图片注册为 task observation（`image_k`）。`build_sample` 带上 `image_paths`：方法显式传 `images=`，不带的话专家会拿不到图片 |
+| clinical_agent | `fm_clinical_agent_structured_wrapper` | placeholder 工具记为 `is_tool` 步骤（`tool:<name>`，stub），lane 读这些工具步骤。structured 字段：score、failure_probability、predicts_failure |
+| cmas | `fm_cmas_structured_wrapper` | 检索到的示例注册为 task observation（`demonstrations`）。structured 字段：trfs / scores / entities |
+| llm_debate | `fm_llm_debate_structured_wrapper` | 每个 agent 一个累积对话，读取集为"自己的历史 + 历史读过的 + 对手上一轮"。round 从 1 开始 |
+| dylan | `fm_dylan_structured_wrapper` | 角色名不变（节点角色名，`role_index = idx % num_agents`）；Ranker 为 `(num_agents)`。peer_scores 按 agent 看到的打乱顺序映射回 step。`final_source_step_ids` 为与最终答案一致的步骤 |
+| agentverse | `fm_agentverse_structured_wrapper` | **角色在调用处显式设定**（旧 wrapper 靠关键词猜，例如 prompt 里有 "assessment" 就当成 Evaluator）。读取集按对象身份精确映射：共享 history 的每条记录都对应产生它的步骤 |
+
+- 旧 wrapper 文件加了 DEPRECATED 标记，只用于复现旧数据；已没有 YAML 引用它们。
+- 新增 `methods/answer_parsing.py` 的 `mcq_answer`：取回复中最后一个明确的答案表述，结尾在犹豫时返回 None。对工厂的 14 个 MCQ 篡改模板逐一测试，全部解析成篡改后实际声明的答案。
+
+### 迁移中发现并修复的问题
+1. **ClinicalAgent 的 Planner 是断开的**：解析出的子问题从来没有传给 lane agent。对照上游（lingyue404/clinical-agent，`algo/solve_problem.py`），每个子问题都应该驱动一次 agent 调用。**已恢复**：每个 lane 收到自己的子问题（先按关键词匹配，否则按顺序），Planner 成为真正的上游节点。**这会改变 clinical_agent 的行为**；它本来就要重跑，所以在重跑前修正。
+2. **共享 wrapper 的潜在 bug**：方法按位置传 `messages`（AgentVerse 的 `call_llm(None, None, msgs)`）时，prompt 注入会把 `prompt` 传两次，导致崩溃。已在 `_inject_into_call` 里先把位置参数转成关键字参数。
+3. **CMAS 的两个 YAML 指向不存在的 `configs/config_ner.yaml`**：迁移前就跑不起来。已改为 `methods/cmas/configs/config_ner.yaml`。mdagents、clinical_agent、dylan 的 YAML 原本指向 DyLAN 的根配置（无害但容易误导），也已改为各自的方法配置。
+4. **导出器**：
+   - 没有轨迹的错误记录现在会跳过并报告，不再导出成空记录。
+   - 是否属于结构化契约，改为从记录本身判断，不再看框架名。迁移后，同名框架的旧数据仍会被标为 legacy。
+5. **读取集检查脚本**：excerpt 探针支持去掉 XML 标签（ClinicalAgent 的 `<subproblem>`）以及 `Label:` 之后的值（AgentVerse 的 `Response:`）。
+
+### 已知但未改动（如实记录）
+- **AgentVerse**：只要有一个 critic 不同意，3 轮 criticizing 都会跑完，因为 `nonempty_reviews` 从不重置。另外，配置里的 `role_assigner_advice` 在第 1 轮会以 `[Evaluator]` 消息的形式进入历史。两点都写进了 `framework_description`。
+- **DyLAN**：答案是整段回复，共识按 BLEU ≥ 0.9 判定（原版开放式模式）。`structured.answer` 用 `mcq_answer` 作为语义层。
+- **NER 注入仍回退到 MCQ 模板**（例如篡改后输出 "A."），按用户之前的决定暂不处理。Evaluator 一类角色被套用 MCQ 篡改模板，在语义上也不太合适，这也是旧行为。
+
+### 全量 mock 回归（零 API 费用）
+- 14 个框架 × clean/inject × 2 题 × K=2，共 112 条运行。
+- 所有框架的对齐、干净输入、`llm_meta`、`agent_id` 都是 100%。读取集检查 unlisted=0。
+- not_found 只出现在 agentverse_inject，共 20 处，**全部来自同一个情况**：被篡改成 "A." 的 evaluator 输出太短，低于探针最短长度。读取集本身是对的。
+- 导出 112 条，0 个问题。60 个被 prompt 注入的步骤中，注入文本出现在 steps 里的次数为 0。
+- 新样例：`schema_v1_mock_export.jsonl` 共 42 条，覆盖 14 个框架和 10 个家族；原始 mock 样例全部换新。

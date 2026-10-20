@@ -8,8 +8,8 @@ mdagents_config_name: "config_medical"
 
 system_under_test:
   name: "mdagents"
-  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_wrapper.FMMDAgentsWrapper"
-  method_config_path: "configs/config_medical.yaml"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_structured_wrapper.FMMDAgentsStructuredWrapper"
+  method_config_path: "methods/mdagents/configs/config_medical.yaml"
 
 llm_config:
   provider: "openai"

@@ -13,7 +13,7 @@ agentverse_config_name: "config_medical"
 
 system_under_test:
   name: "agentverse"
-  wrapper_class_path: "aegis_core.agent_systems.fm_agentverse_wrapper.FMAgentVerseWrapper"
+  wrapper_class_path: "aegis_core.agent_systems.fm_agentverse_structured_wrapper.FMAgentVerseStructuredWrapper"
   method_config_path: "methods/agentverse/configs/config_medical.yaml"
 
 llm_config:

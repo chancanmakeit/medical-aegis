@@ -1,3 +1,6 @@
+# DEPRECATED (2026-10-20): superseded by aegis_core.agent_systems.fm_dylan_structured_wrapper.FMDyLANStructuredWrapper
+# (structured contract: clean input_messages, read sets, agent ids, llm_meta,
+# inject-once). Kept only to reproduce data generated before the migration.
 # file: agent_systems/fm_dylan_wrapper.py
 
 import re

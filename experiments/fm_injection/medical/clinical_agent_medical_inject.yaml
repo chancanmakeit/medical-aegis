@@ -23,8 +23,8 @@ inject_every_invocation: false
 
 system_under_test:
   name: "clinical_agent"
-  wrapper_class_path: "aegis_core.agent_systems.fm_clinical_agent_wrapper.FMClinicalAgentWrapper"
-  method_config_path: "configs/config_medical.yaml"
+  wrapper_class_path: "aegis_core.agent_systems.fm_clinical_agent_structured_wrapper.FMClinicalAgentStructuredWrapper"
+  method_config_path: "methods/clinical_agent/configs/config_medical.yaml"
 
 llm_config:
   provider: "openai"

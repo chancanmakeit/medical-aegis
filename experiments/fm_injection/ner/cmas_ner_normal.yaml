@@ -8,8 +8,8 @@ cmas_config_name: "config_ner"
 
 system_under_test:
   name: "cmas"
-  wrapper_class_path: "aegis_core.agent_systems.fm_cmas_wrapper.FMCMASWrapper"
-  method_config_path: "configs/config_ner.yaml"
+  wrapper_class_path: "aegis_core.agent_systems.fm_cmas_structured_wrapper.FMCMASStructuredWrapper"
+  method_config_path: "methods/cmas/configs/config_ner.yaml"
 
 llm_config:
   provider: "openai"

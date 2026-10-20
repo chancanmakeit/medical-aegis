@@ -1,3 +1,6 @@
+# DEPRECATED (2026-10-20): superseded by aegis_core.agent_systems.fm_clinical_agent_structured_wrapper.FMClinicalAgentStructuredWrapper
+# (structured contract: clean input_messages, read sets, agent ids, llm_meta,
+# inject-once). Kept only to reproduce data generated before the migration.
 # file: aegis_core/agent_systems/fm_clinical_agent_wrapper.py
 """
 FM-injection wrapper for the ClinicalAgent clinical-trial-outcome MAS.

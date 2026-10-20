@@ -1,3 +1,6 @@
+# DEPRECATED (2026-10-20): superseded by aegis_core.agent_systems.fm_mdagents_structured_wrapper.FMMDAgentsStructuredWrapper
+# (structured contract: clean input_messages, read sets, agent ids, llm_meta,
+# inject-once). Kept only to reproduce data generated before the migration.
 # file: aegis_core/agent_systems/fm_mdagents_wrapper.py
 """
 FM-injection wrapper for the MDAgents medical multi-agent system.

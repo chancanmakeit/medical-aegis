@@ -45,10 +45,13 @@ SCHEMA = "mas-traj/1"
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_REGISTRY = os.path.join(HERE, "..", "configs", "framework_registry.yaml")
 
-# Wrappers that implement the structured contract (clean inputs, sources,
-# step ids). Everything else is exported best-effort and flagged.
-STRUCTURED = {"medagents_mc", "consensus", "consensus_debate", "consensus_mad",
-              "consensus_reconcile", "consensus_cmd", "mam", "triage_agent"}
+# Whether a RECORD came from the structured contract (clean inputs, sources,
+# step ids) is read from the record itself: since 2026-10-20 every framework
+# runs on StructuredFMWrapper, but older result files of the same frameworks
+# were produced by the legacy wrappers and are exported best-effort + flagged.
+def _is_structured(log):
+    hist = [h for h in log.get("conversation_history") or [] if not h.get("is_input")]
+    return bool(log.get("input_messages_are_clean")) and bool(hist) and all("step_id" in h for h in hist)
 
 
 def load_registry(path):
@@ -104,7 +107,7 @@ def convert(rec, reg, alias, reasoning_mode):
     targets = log.get("multi_injection_info") or []
     mode_tag = run_mode if run_mode == "normal" else f"inject-{_inject_signature(targets)}"
     run_id = f"{fw}|{dataset}|{rec.get('id')}|{mode_tag}|r{run_index}"
-    structured_fw = fw in STRUCTURED
+    structured_fw = _is_structured(log)
 
     obs = log.get("task_observations") or []
     obs_ids = {o["id"] for o in obs}
@@ -178,7 +181,8 @@ def convert(rec, reg, alias, reasoning_mode):
         "task": task,
         "steps": steps,
         "final": {"answer": _final_answer(rec, log, by_id), "response": rec.get("response"),
-                  "source_step_ids": [log["final_step_id"]] if log.get("final_step_id") else []},
+                  "source_step_ids": list(log.get("final_source_step_ids") or [])
+                  or ([log["final_step_id"]] if log.get("final_step_id") else [])},
         "labels": {
             "gold": gold, "acceptable_answers": acceptable,
             "is_correct": rec.get("is_correct"), "is_valid": is_valid,
@@ -250,12 +254,20 @@ def main():
     a = ap.parse_args()
 
     reg, alias = load_registry(a.registry)
-    records = []
+    records, n_skipped = [], 0
     for path in a.inputs:
         with open(path, encoding="utf-8") as f:
             for line in f:
-                if line.strip():
-                    records.append(convert(json.loads(line), reg, alias, a.reasoning))
+                if not line.strip():
+                    continue
+                raw = json.loads(line)
+                if not raw.get("injection_log"):
+                    # a sample main.py could not run (status "error"): no trajectory
+                    n_skipped += 1
+                    print(f"-- skipped {path}:{raw.get('id')} (status={raw.get('status')}, no trajectory)",
+                          file=sys.stderr)
+                    continue
+                records.append(convert(raw, reg, alias, a.reasoning))
 
     normals = defaultdict(list)
     for r in records:
@@ -283,7 +295,8 @@ def main():
     by_fw = defaultdict(lambda: [0, 0])
     for r in records:
         by_fw[r["framework"]][0 if r["run_mode"] == "normal" else 1] += 1
-    print(f"exported {len(records)} runs -> {a.out}  (records with problems: {n_bad})")
+    print(f"exported {len(records)} runs -> {a.out}  (records with problems: {n_bad}; "
+          f"skipped without trajectory: {n_skipped})")
     for fw, (n, i) in sorted(by_fw.items()):
         print(f"  {fw:22s} normal={n:4d} inject={i:4d}")
     if a.strict and n_bad:

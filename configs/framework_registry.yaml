@@ -1,10 +1,10 @@
 # Framework metadata for the schema v1 exporter (scripts/export_schema_v1.py).
 #
 # family      : leave-one-out evaluation holds out a whole FAMILY (MedHyperTrace
-#               spec v1.1), so near-duplicate topologies share one. The debate
-#               grouping is a proposal pending MedHyperTrace's confirmation
-#               (issue #1). clinical_agent and the older dataset name
-#               clinical_agent5 are one family.
+#               spec v1.1), so near-duplicate topologies share one. Grouping
+#               confirmed by MedHyperTrace (issue #1, their round 25; 10 families).
+#               clinical_agent and the older dataset name clinical_agent5 are one
+#               family. `framework` stays the fine-grained id.
 # description : 2-5 sentences on roles, who reads whose output, rounds and how
 #               the answer is aggregated. Faithful-but-odd upstream behaviour
 #               and stubs are stated here so they are not mistaken for
@@ -39,11 +39,15 @@ frameworks:
     family: agentverse
     modality: text
     description: >-
-      AgentVerse: a role assigner recruits 3 experts for the question; the
-      experts solve it in a vertical scheme (a solver drafts, critics review
-      and the solver revises, up to 3 criticizing rounds); an evaluator scores
-      the solution and, if it is rejected, its feedback is passed back to the
-      role assigner for another turn (up to 3 turns).
+      AgentVerse: a role assigner recruits 3 experts; the first expert is the
+      solver and drafts a solution; the other two criticise it (reading a window
+      of the shared chat history) and the solver revises, for up to 3
+      criticizing rounds; an evaluator scores the final solution and, if it is
+      rejected, its advice goes to the role assigner and into the chat history
+      for another turn (up to 3 turns). Faithful port quirks: once any critic
+      has disagreed, all 3 criticizing rounds run (the disagreement list is
+      never reset); the configured role_assigner_advice enters turn 1's history
+      as an [Evaluator] message.
 
   mdagents:
     family: mdagents
@@ -62,10 +66,13 @@ frameworks:
     description: >-
       ClinicalAgent (5 agents, the original paper's version): a Planner splits
       the trial-outcome question into safety, efficacy and enrollment
-      sub-problems; three lane agents each analyse one sub-problem and output a
-      score; a Reasoner reads the three lane analyses and outputs the trial
-      failure probability in a <final_result> tag (thresholded at 0.5).
-      External tools of the original system are placeholders here.
+      subproblems; each lane agent receives its subproblem plus the output of
+      its lookup tools (deterministic placeholder stubs here, recorded as tool
+      steps) and outputs a lane failure-risk score; a Reasoner reads the three
+      lane analyses and outputs the trial failure probability in a
+      <final_result> tag (thresholded at 0.5). Passing each subproblem to its
+      lane follows upstream solve_problem.py and was restored on 2026-10-20
+      (earlier data: lanes did not read the Planner).
 
   cmas:
     family: cmas
@@ -91,7 +98,7 @@ frameworks:
       Knowledge section is dropped by its cleansing step.
 
   consensus:
-    family: consensus_fusion
+    family: modality_fusion
     modality: sensor
     description: >-
       ConSensus: one agent per sensor modality reads only its own modality's
@@ -157,7 +164,7 @@ frameworks:
       search step is a stub that returns nothing (upstream's failure path).
 
   triage_agent:
-    family: triage_agent
+    family: triage
     modality: text
     aliases: [triageagent]
     description: >-

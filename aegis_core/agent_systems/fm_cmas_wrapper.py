@@ -1,3 +1,6 @@
+# DEPRECATED (2026-10-20): superseded by aegis_core.agent_systems.fm_cmas_structured_wrapper.FMCMASStructuredWrapper
+# (structured contract: clean input_messages, read sets, agent ids, llm_meta,
+# inject-once). Kept only to reproduce data generated before the migration.
 # file: aegis_core/agent_systems/fm_cmas_wrapper.py
 """
 FM-injection wrapper for the CMAS zero-shot NER multi-agent system.

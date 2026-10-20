@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（会话 v9 第 5 轮：用户已决定 backbone、重跑和下一步；schema v1 导出器和 K 次重复运行已完成并通过 mock 验证）。
+> 最后更新：2026-10-20（会话 v9 第 6 轮：6 个旧框架全部迁移到 StructuredFMWrapper，14 个框架全量 mock 回归通过）。
 > 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
@@ -37,10 +37,12 @@
 
 | 方法名 | 来源 | wrapper | 任务 / 数据集 | task_type | 状态 |
 |---|---|---|---|---|---|
-| dylan / llm_debate / agentverse | 原 AEGIS | 旧版（fm_dylan / fm_debate / fm_agentverse） | 医学 MCQ | mcq | 可跑；每次调用都会注入，没有开关（A/B 待定） |
-| mdagents | 上一个会话 | 旧版 fm_mdagents | 医学 MCQ（含 MedXpertQA-MM 图像） | mcq | 可跑；⚠️ `input_messages` 含注入文本（问题 A） |
-| clinical_agent（别名 clinicalagent） | 上一个会话 | 旧版 fm_clinical_agent | trial_success（需要 csv） | probability | **就是原论文的 5 agent 版本**，即 MedHyperTrace 数据里的 `clinical_agent5`；6 agent 的旧版已删除。第 7 轮修复了 probability 注入；⚠️ 存在问题 A |
-| cmas | 上一个会话 | 旧版 fm_cmas | wikigold NER | ner | 可跑；⚠️ 存在问题 A；⚠️ `ner` 会回退成 mcq（用户决定暂不处理） |
+| dylan | 原 AEGIS，v9 第 6 轮迁移 | FMDyLANStructuredWrapper | 医学 MCQ | mcq | ✅；角色为节点角色名，`role_index = idx % num_agents`；Ranker 的 index 为 `num_agents` |
+| llm_debate | 原 AEGIS，v9 第 6 轮迁移 | FMLLMDebateStructuredWrapper | 医学 MCQ | mcq | ✅；Agent(0..2)，round 从 1 开始；Aggregator(0) |
+| agentverse | 原 AEGIS，v9 第 6 轮迁移 | FMAgentVerseStructuredWrapper | 医学 MCQ | mcq | ✅；角色显式设定（RoleAssigner / Solver / Critic(j) / Evaluator）；读取集按对象身份精确映射 |
+| mdagents | 上一个会话，v9 第 6 轮迁移 | FMMDAgentsStructuredWrapper | 医学 MCQ（含 MedXpertQA-MM 图像） | mcq | ✅；图片是 task observation |
+| clinical_agent（别名 clinicalagent） | 上一个会话，v9 第 6 轮迁移 | FMClinicalAgentStructuredWrapper | trial_success（需要 csv） | probability | ✅；即原论文的 5 agent 版本（数据里叫 clinical_agent5）。**v9 第 6 轮恢复了 Planner → lane 的子问题传递**（与上游一致；此前 Planner 是断开的）。工具是 stub 的 `is_tool` 步骤 |
+| cmas | 上一个会话，v9 第 6 轮迁移 | FMCMASStructuredWrapper | wikigold NER | ner | ✅；⚠️ `ner` 注入仍回退到 mcq（用户决定暂不处理） |
 | **medagents_mc** | 第 5 轮 | StructuredFMWrapper | MedConceptsQA、mmlu_pro_health | mcq | ✅ mock 回归通过 |
 | **consensus** | 第 6 轮 | FMConSensusWrapper | `datasets/data/{sleepedf,wesad}.json`（`--test_dataset_name sleepedf/wesad`） | classification | ✅ |
 | **consensus_debate / _mad / _reconcile / _cmd** | 第 6 轮（Sonnet 子 agent 移植，已和上游逐条比对消息） | FMConSensusWrapper | 同上 | classification | ✅ |
@@ -50,6 +52,8 @@
 
 - 实验 YAML：`experiments/fm_injection/{medical,sensing,audio,ner,triage}/<name>_*_{normal,inject}.yaml`。端点和密钥都是占位符。
 - 批量生成：`scripts/generate_diverse_dataset.py` 已经包含所有新框架的注入位点池。
+- **所有 14 个框架都已使用结构化契约**。旧 wrapper（`fm_{mdagents,clinical_agent,cmas,debate,dylan,agentverse}_wrapper.py`）带 DEPRECATED 标记，只用于复现旧数据。注入默认只触发一次（方案 A），`inject_every_invocation: true` 为方案 B。
+- 共享的 MCQ 答案解析：`methods/answer_parsing.py` 的 `mcq_answer`。
 
 ## 3. 共享基础设施（新框架要遵守的契约）
 
@@ -91,8 +95,14 @@
 - **注入频率**：由两个项目在 issue 里商定。我方在 v9 第 5 轮提议：方案 A（每个目标只注入一次）为默认，方案 B 作为可选的鲁棒性子集。等 MedHyperTrace 回复。
 - 下一步先做导出器和 K 次重复运行：**已完成**。
 
+**用户新决定（v9 第 6 轮）**：
+- cmas、dylan、llm_debate、agentverse 只迁移不重跑（已迁移）；mdagents 和 clinical_agent 要重跑（mdagents 是否包含在内待用户确认）。
+- 文本 backbone 备选增加 aihubmix 的 `llama-4-maverick`（已核实存在）。
+
+**MedHyperTrace 第 25 轮**：确认 10 个家族；建议锚点任务再加 macnet、autogen、camel；建议先做真实试点（medagents_mc + triage）。**冲突**：锚点任务需要通用框架的新数据，而用户决定通用框架暂不重跑，待用户决定。
+
 **待办（按顺序）**：
-1. **(b) 迁移旧 wrapper**：mdagents、clinical_agent、cmas 迁移到 StructuredFMWrapper；dylan、llm_debate、agentverse 加上"只注入一次"的开关。这是 ClinicalAgent 重跑和统一用 A 的前提。
+1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。
 3. **待 MedHyperTrace 确认**：`framework_family` 分组（debate 家族 = llm_debate + 4 个 consensus 基线）；注入频率；backbone 和模态完全重合的问题（spec §5 建议 ≥2 个 backbone 交叉）。
 4. **待用户提供**：本地还有哪些 normal 轨迹；`trial_success.csv`；MedXpertQA 的图片。
@@ -117,6 +127,13 @@
 
 - **TriageAgent 的上游解析器很宽松**：它先找 `ESI level: N`，找不到再找 "final … ESI N"，再找 "ESI N"。所以在 Coordinator 上做 "unsure" 一类的篡改时，可能会被正文其他地方提到的等级"救回来"（mock 中实测到过）。这是真实系统本来的行为，有意保留，没有改。
 - TriageAgent 的 mock 回归需要 `scripts/mock_openai_server.py --reasoning`，这样才会返回 `reasoning_content`。
+- **全量 mock 回归的做法**（v9 第 6 轮）：
+  - MCQ 用 medagents_mc 的 mock 样例拼一个小数据集；mdagents 再加一道带 2×2 PNG 的题。
+  - clinical_agent 用 2 条合成的 trial 记录；cmas 用 2 句 NER 加一个 2 条的示例池，需要 YAML 里写 `cmas_demo_pool_path`。
+  - MAM 需要占位 wav，跑完要删掉 `datasets/audio`。
+  - 汇总脚本的思路见 discussion_log_v9 第 6 轮。
+- AgentVerse 在 inject 时，被篡改成 "A." 的 evaluator 输出太短，读取集检查会报 not_found。这是检查脚本最短探针长度造成的假阳性。
+- 方法按位置传 `messages` 时，StructuredFMWrapper 现在会自动转成关键字参数（v9 第 6 轮修复了 prompt 被传两次的 bug）。
 - 重建 Triage 数据需要 TriageAgent 的 clone 和 `pdftotext`（沙箱里已有）。用的是 numpy 版 TF-IDF，不需要额外安装依赖。
 
 - 结束 mock 进程**不要**用 `pkill -f mock_openai_server`，它会匹配到执行命令的 shell 自身（exit 144）。应该用 `ps -eo pid,args | awk '$2 ~ /python3/ && /mock_openai/ {print $1}' | xargs -r kill`。
