@@ -15,6 +15,10 @@ Heuristic matching per source output (any one is enough):
     tags stripped), or the value after a leading "Label:" on such a line;
   - tool steps (is_tool): checked against their tool_calls arguments.
 Short outputs (< 25 chars, e.g. "YES") are skipped by the unlisted-read check.
+Unlisted-read check: an earlier output counts as read only if a probe from its
+BODY (chars 60-140) is in the input, and not when a listed source's own output
+already contains the matched text (transitive copy, e.g. a reviser quoting the
+report it revises).
 """
 import json
 import re
@@ -85,10 +89,20 @@ def main(path):
                     break
                 if p["step_id"] in s.get("sources", []) or p.get("agent_name", "").endswith("Classifier"):
                     continue
-                pr = [x for x in probes(p) if len(x) >= 25]
-                if pr and any(x in inp for x in pr):
+                # Probe from the BODY of the earlier output, not its opener: real
+                # models open by echoing their persona ("As a medical expert
+                # specialized in ..."), which the later prompt template may
+                # contain too (seen on real llama-4-maverick runs).
+                body = (p.get("content") or "").split("Total Analysis:")[-1].strip()
+                pr = [x for x in probes(p) + [body[60:140]] if len(x) >= 25]
+                hits = [x for x in pr if x in inp]
+                if hits and len(hits) == len([x for x in pr if x]) or (hits and body[60:140] in hits):
                     if any(by_id[x]["content"] == p["content"] for x in s.get("sources", [])):
                         continue  # identical text produced by a listed source
+                    # carried transitively: a listed source quotes the earlier output
+                    if any(all(h in (by_id[x].get("content") or "") for h in hits)
+                           for x in s.get("sources", []) if x in by_id):
+                        continue
                     missing += 1
                     print("UNLISTED READ", rec["id"], s["step_id"], s["agent_name"], "reads", p["step_id"], p["agent_name"])
     print(f"checked={checked} not_found={bad} unlisted={missing} derived_unverifiable={derived}")

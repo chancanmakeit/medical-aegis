@@ -106,7 +106,10 @@ def convert(rec, reg, alias, reasoning_mode):
     run_mode = "normal" if rec.get("run_mode") == "clean" else "inject"
     targets = log.get("multi_injection_info") or []
     mode_tag = run_mode if run_mode == "normal" else f"inject-{_inject_signature(targets)}"
-    run_id = f"{fw}|{dataset}|{rec.get('id')}|{mode_tag}|r{run_index}"
+    # the backbone is part of the id: the same question / run index is run on
+    # several backbones (a collision found on the first real probe, 2026-10-20)
+    model_name = (rec.get("model") or {}).get("name") or "unknown-model"
+    run_id = f"{fw}|{model_name}|{dataset}|{rec.get('id')}|{mode_tag}|r{run_index}"
     structured_fw = _is_structured(log)
 
     obs = log.get("task_observations") or []

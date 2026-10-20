@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（会话 v9 第 6 轮：6 个旧框架全部迁移到 StructuredFMWrapper，14 个框架全量 mock 回归通过）。
+> 最后更新：2026-10-20（会话 v9 第 7 轮：首次真实模型探测完成，4 条运行约 $0.056；400 条运行的试点方案估计 $6–12，待用户确认）。
 > 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
@@ -101,6 +101,17 @@
 
 **MedHyperTrace 第 25 轮**：确认 10 个家族；建议锚点任务再加 macnet、autogen、camel；建议先做真实试点（medagents_mc + triage）。**冲突**：锚点任务需要通用框架的新数据，而用户决定通用框架暂不重跑，待用户决定。
 
+**v9 第 7 轮的决定与发现**：
+- 通用框架（dylan、llm_debate、agentverse 等）**只跑锚点任务**（100 道固定医学 MCQ），用户已同意。
+- clinical_agent 要重新生成，数据用 HF `UUUooUUU/clinical-agents/trial_success-200.json`。mdagents 保留旧数据，另外按新流程生成新数据（详见 discussion_log_v9 第 7 轮）。
+- 真实探测（`docs/requests/samples/real_probe_2026-10-20/`）：
+  - mercury-2.5-preview 隐藏推理，89% 的 completion 是计费的 reasoning token，不返回推理文本；
+  - 每条运行的成本：medagents_mc 用 mercury $0.029、用 llama $0.011；triage 用 mercury $0.013、用 llama $0.0026。价格按第三方列表价，aihubmix 实价未核实。
+- 真实运行的脚手架（只放在 scratch，不入库）：
+  - `real_api.json`：用 aihubmix 的 key 生成，权限 600；
+  - 运行器：用 sed 把 YAML 的占位符替换成真实 key 和 URL，写成 scratch 下的 YAML，权限 600；
+  - 参数：`--model_temperature 0.7 --model_max_tokens 4096`。
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。
@@ -133,6 +144,8 @@
   - MAM 需要占位 wav，跑完要删掉 `datasets/audio`。
   - 汇总脚本的思路见 discussion_log_v9 第 6 轮。
 - AgentVerse 在 inject 时，被篡改成 "A." 的 evaluator 输出太短，读取集检查会报 not_found。这是检查脚本最短探针长度造成的假阳性。
+- 真实模型会在输出开头复述 prompt 里的人设，也会原样转引上游内容。读取集检查的 unlisted 判定（v9 第 7 轮）因此改为：从输出正文的第 60–140 个字符取探针，并排除已登记来源转载的文字。
+- 导出器的 `run_id` 中包含模型名（v9 第 7 轮修复了跨 backbone 冲突）。
 - 方法按位置传 `messages` 时，StructuredFMWrapper 现在会自动转成关键字参数（v9 第 6 轮修复了 prompt 被传两次的 bug）。
 - 重建 Triage 数据需要 TriageAgent 的 clone 和 `pdftotext`（沙箱里已有）。用的是 numpy 版 TF-IDF，不需要额外安装依赖。
 

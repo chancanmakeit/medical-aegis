@@ -234,3 +234,55 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - not_found 只出现在 agentverse_inject，共 20 处，**全部来自同一个情况**：被篡改成 "A." 的 evaluator 输出太短，低于探针最短长度。读取集本身是对的。
 - 导出 112 条，0 个问题。60 个被 prompt 注入的步骤中，注入文本出现在 steps 里的次数为 0。
 - 新样例：`schema_v1_mock_export.jsonl` 共 42 条，覆盖 14 个框架和 10 个家族；原始 mock 样例全部换新。
+
+---
+
+## 第 7 轮（2026-10-20）：mdagents/clinical_agent 是否重跑；为什么要跑通用框架；首次真实模型探测
+
+**用户**：
+1. 现有数据对应的 mdagents 和 clinical_agent 需要重跑吗？
+2. 锚点任务与"通用框架不重跑"的冲突按推荐处理（通用框架只跑锚点任务）；但不理解为什么要跑通用框架。
+3. 可以开始真实试跑。
+
+### 1. 重跑建议
+- **clinical_agent：要重新生成。** 旧数据的标签有三处问题：
+  - MedHyperTrace 实测，全部注入都是 direct_prepend 的轨迹占 38% / 58%（ca / ca5），这些注入在 probability 任务上基本无效；
+  - Planner 是断开的（第 6 轮已修复），所以注入到 Planner 的标签必然是错的；
+  - 没有 normal 运行，也没有 K 次重复运行。
+  - 数据来源已找到：HF `UUUooUUU/clinical-agents` 里有 `trial_success-200.json` 和完整版，不需要再找用户要 csv。
+- **mdagents：不重跑旧配置，保留旧数据，另外按新流程生成新数据。**
+  - 旧的注入是 mcq 类型，有效；旧 wrapper 默认只注入一次；干净输入已由 MedHyperTrace 修复。
+  - mdagents 的拓扑很简单（专家只读 Recruiter，aggregator 读所有专家），读取集可以从角色确定性地恢复。
+  - 但新数据无论如何都要生成：旧数据缺 normal 运行、K 次重复、llm_meta、新 backbone，也缺锚点任务的覆盖。
+  - MedXpertQA-MM 的图片仍需用户提供，多模态部分用 Ling-3.0-flash-VL。
+  - 旧数据集（AEGIS-custom-dataset-8-13）不在用户的 HF 账号下，无法直接复核。以上判断依据的是 MedHyperTrace 的实测数字，以及本会话核实过的代码事实。
+
+### 2. 为什么要跑通用框架（通用框架只跑锚点任务）
+- HGFM 要证明的是"**跨框架**零样本归因"。主要证据是：见过的框架越多，在没见过的框架上效果越好（按家族留一）。
+- 医学专用框架几乎各自绑定自己的任务：triage 是分诊，clinical_agent 是试验预测，mam 是音频，consensus 是传感器。所以在原生任务上，"换框架"和"换任务"分不开。
+- 锚点任务把任务固定成同样 100 道医学 MCQ，只变化拓扑。能跑医学 MCQ 的医学专用框架只有 mdagents 和 medagents_mc 两个家族，一条曲线只有 2 个点。
+- 通用框架跑的仍然是医学题，相当于"把通用拓扑部署到医学任务上"。很多已发表的医学 MAS 本质上就是这样：MedAgents 近似专家共识，辩论也常用于医学 QA。所以领域焦点没有变，通用框架提供的是拓扑多样性。
+- 如果只想要医学专用框架，替代方案是：放弃锚点任务上的缩放曲线，在约 7 个医学家族的原生任务上做留一评测，并在论文里承认框架与任务的混杂。代价是"跨框架泛化"的结论会变弱。
+
+### 3. 首次真实模型探测（成本估算用）
+- 范围：medagents_mc 和 triage_agent × mercury-2.5-preview 和 llama-4-maverick，各跑 1 道题，只做 clean，K=1，温度 0.7，max_tokens 4096。共 4 条运行、62 次调用。
+- **结果**：
+  - 62 次调用全部 `finish_reason=stop`，没有空 content；投票、ESI 等级、置信度全部解析成功。
+  - triage 两个模型都答对；medagents 的那道 ICD 题两个模型都答错。只有 1 题，不能当准确率看。
+  - **mercury 是隐藏推理的模型**：completion token 中 89% 是计费的 reasoning token，但不返回推理文本（`llm_meta.reasoning` 为 null）。所以虽然标价更低，实际成本反而高于 llama。
+  - 每次运行的成本按第三方列表价估算（mercury $0.20/$0.75，llama $0.27/$0.85，单位为每百万 token；aihubmix 的实际价格可能不同）：
+    - medagents_mc：mercury $0.029，llama $0.011
+    - triage：mercury $0.013，llama $0.0026
+    - 4 条合计约 $0.056。
+- **真实数据暴露的问题（mock 发现不了）**：
+  1. **导出器的 `run_id` 跨 backbone 冲突**：同一题、同一 run_index，换模型后 run_id 相同。已把模型名加入 run_id。
+  2. **读取集检查脚本在真实数据上报了 13 处 unlisted，全部是误报**：
+     - 8 处是传递复制：Reviser 原样引用了 Synthesizer 的文字，而 voter 读的是 Reviser；
+     - 5 处是模板撞车：OptionAnalyst 的输出以 "As a medical expert specialized in …" 开头，和 voter 的 prompt 模板相同。
+     - 读取集本身是对的。检查脚本已改为从输出正文中段取探针，并排除被已登记来源转载的文字。
+     - 用"人为删掉一个真实来源"做反向测试：真实数据上能正确报出（triage、medagents_mc 各 1 处）。mock 的 llm_debate 上报不出，原因是 3 个辩手第 1 轮的输出完全相同，本来就无法区分。
+- 样例：`docs/requests/samples/real_probe_2026-10-20/`（4 条原始记录和 schema v1 导出），已确认不含密钥。
+
+### 试点方案（待用户确认成本）
+- MedHyperTrace 建议的规模：medagents_mc 和 triage × 2 个 backbone × 20 题 × (K=4 normal + 1 inject)，共 400 条运行。
+- 按探测的单价估算约 **$5.6**。medagents 的调用次数在 18 到约 50 之间（最多 3 轮投票），加上 aihubmix 价格的不确定性，**估计区间 $6–12**。
