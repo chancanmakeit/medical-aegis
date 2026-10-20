@@ -1,0 +1,51 @@
+# Enhanced Malicious Injection Example Configuration
+# This example shows how to use the new OWL-style injection types
+
+experiment_name: "Enhanced Malicious Injection Test"
+benchmark_name: "GSM8K"
+model_name: "gpt-4o-mini-azure"
+
+system_under_test:
+  name: "dylan"
+  wrapper_class_path: "agent_systems.dylan_wrapper.DyLANWrapper"
+  method_config_path: "methods/dylan/configs/config_main.yaml"
+
+llm_config:
+  model: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 2048
+  timeout: 600
+
+# Enhanced injection configuration
+injection_plan:
+  target:
+    role: "Assistant"  # Target role
+    role_index: 0      # Target agent index
+  
+  attack_spec:
+    # New FM-based injection types (replaces old method numbers)
+    injection_type: "FM-2.3"      # Deviate from main goal
+    injection_mode: "input"       # "input", "output", or "both"
+
+    
+    # Alternative injection types you can use:
+    # "FM-1.1": Task specification deviation
+    # "FM-1.2": Role specification deviation  
+    # "FM-1.3": Add redundant steps
+    # "FM-1.4": Remove conversation history
+    # "FM-1.5": Remove termination conditions
+    # "FM-2.1": Repeat handled tasks
+    # "FM-2.2": Make request ambiguous
+    # "FM-2.3": Deviate from main goal
+    # "FM-2.4": Hide important information
+    # "FM-2.5": Ignore other agents
+    # "FM-2.6": Inconsistent reasoning
+    # "FM-3.1": Premature termination
+    # "FM-3.2": Remove verification steps
+    # "FM-3.3": Incorrect verification
+
+# Backward compatibility: You can still use old method numbers
+# The adapter will automatically map them to appropriate FM types:
+# method: 1 -> FM-1.1 (Sabotage)
+# method: 2 -> FM-2.3 (Corruption) 
+# method: 3 -> FM-2.4 (Injection) 

@@ -1,0 +1,27 @@
+# CMAS CLEAN config -> NORMAL zero-shot-NER trajectories (no injection).
+# Run: python main.py --method_name cmas \
+#        --experiment_config experiments/fm_injection/ner/cmas_ner_normal.yaml \
+#        --dataset_file ./datasets/data/wikigold.json --test_dataset_name wikigold --model_name <model> --no_inject
+run_mode: "clean"
+
+cmas_config_name: "config_ner"
+
+system_under_test:
+  name: "cmas"
+  wrapper_class_path: "aegis_core.agent_systems.fm_cmas_wrapper.FMCMASWrapper"
+  method_config_path: "configs/config_ner.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+benchmark_name: "wikigold"
+
+ner_f1_threshold: 1.0
+use_llm_judge: false
+
+experiment_settings:
+  max_workers: 4

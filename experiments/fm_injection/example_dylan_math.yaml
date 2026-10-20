@@ -1,0 +1,33 @@
+# FM DyLAN Math Injection Configuration Example
+# This is a sample configuration for running FM error injection experiments
+
+# System under test configuration
+system_under_test:
+  name: "dylan_math"
+  wrapper_class_path: "aegis_core.agent_systems.fm_dylan_math_wrapper.FMDyLANMathWrapper"
+  method_config_path: "methods/dylan/configs/config_math.yaml"
+
+# LLM configuration - Replace with your own API credentials
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"  # e.g., "https://api.openai.com/v1"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.7
+
+# Benchmark configuration
+benchmark_name: "MATH"
+
+# Injection plan - Configure which agent to inject and how
+injection_plan:
+  target:
+    role: "Assistant"
+    role_index: 0  # Target first assistant (0-based index)
+  attack_spec:
+    fm_error_type: "FM-2.3"  # Deviate from main goal
+    injection_strategy: "prompt_injection"  # or "response_corruption"
+
+# Experiment settings
+experiment_settings:
+  max_workers: 1
+  debug: true

@@ -1,0 +1,28 @@
+# MDAgents CLEAN config -> NORMAL medical trajectories (no error injection).
+# Run: python main.py --method_name mdagents \
+#        --experiment_config experiments/fm_injection/medical/mdagents_medical_normal.yaml \
+#        --dataset_file ./datasets/data/<dataset>.json --model_name <model> --no_inject
+run_mode: "clean"
+
+mdagents_config_name: "config_medical"
+
+system_under_test:
+  name: "mdagents"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_wrapper.FMMDAgentsWrapper"
+  method_config_path: "configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gemini-2.5-flash-lite"
+  model_url: "https://api.qingyuntop.top/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+benchmark_name: "medxpertqa-mm"
+
+# Verifier knobs (decides which clean trajectories qualify as "valid normal")
+use_llm_judge: true
+judge_mode: "llm_primary"
+
+experiment_settings:
+  max_workers: 5

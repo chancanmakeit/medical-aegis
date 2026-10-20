@@ -1,0 +1,22 @@
+# MDAgents Method Configuration - MEDICAL
+# Loaded when method_config_name == "config_medical".
+#
+# MDAgents has three "difficulty" branches:
+#   basic        : a single medical_expert agent answers (with optional fewshot).
+#   intermediate : a Recruiter LLM proposes N experts; experts discuss; aggregator decides.
+#   advanced     : multiple MDTs (multidisciplinary teams) with FRDT review.
+#   adaptive     : let an LLM classify difficulty per question (paper default).
+#
+# For dataset generation we PIN the difficulty so the trajectory schema is
+# consistent across samples (otherwise some samples have 1 turn, others have 30).
+# `intermediate` is the natural medical setting and the one most amenable to
+# error-injection.
+difficulty: "intermediate"
+
+# Intermediate-mode knobs
+num_experts: 5           # how many experts the Recruiter is asked to recruit
+debate_rounds: 1         # how many synthesis rounds after independent expert answers
+                         # (1 = each expert answers once, then aggregator decides)
+
+# Recruiter LLM bias: medical-expert panel for medical QA.
+recruiter_advice: "Recruit a diverse, clinically-grounded panel of medical experts (e.g. an attending physician, a specialist relevant to the question's body system, a pathologist or radiologist if applicable, and a clinical pharmacologist) to discuss and answer the medical question."

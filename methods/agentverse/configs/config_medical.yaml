@@ -1,0 +1,8 @@
+cnt_agents: 3
+max_turn: 3
+max_criticizing_rounds: 3
+
+# Steer the RoleAssigner toward a medical expert panel. AgentVerse assigns roles
+# dynamically (the LLM names them), so this advice biases it to recruit clinically
+# relevant experts and give them medical role names that will appear in the trajectory.
+role_assigner_advice: "This is a medical question. Recruit experts from clinical medicine, e.g. an attending physician skilled in differential diagnosis, a clinical pharmacologist, and a pathologist or relevant medical specialist. Give each expert a clear medical role name."

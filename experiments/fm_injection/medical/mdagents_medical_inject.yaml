@@ -1,0 +1,112 @@
+# MDAgents INJECTION config -> ERROR medical trajectories.
+# Run: python main.py --method_name mdagents \
+#        --experiment_config experiments/fm_injection/medical/mdagents_medical_inject.yaml \
+#        --dataset_file ./datasets/data/<dataset>.json --model_name <model>
+run_mode: "inject"
+
+# Injection mechanism: direct_prepend (default, reliable) or llm_rewrite (legacy).
+injection_method: "direct_prepend"
+
+# MDAgents method config (methods/mdagents/configs/config_medical.yaml).
+mdagents_config_name: "config_medical"
+
+# OPTIONAL: override knobs declared inside config_medical.yaml without editing it.
+# mdagents_difficulty: "intermediate"   # basic | intermediate | advanced | adaptive
+# mdagents_num_experts: 5
+# mdagents_debate_rounds: 1
+
+# If the SAME logical role gets called multiple times (e.g. Expert idx=0 in two
+# debate rounds), the wrapper by default injects only on the FIRST matching call
+# for cleaner attribution. Set true to inject on every matching call.
+inject_every_invocation: false
+
+system_under_test:
+  name: "mdagents"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mdagents_wrapper.FMMDAgentsWrapper"
+  method_config_path: "configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gemini-2.5-flash-lite"
+  model_url: "https://api.qingyuntop.top/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+benchmark_name: "medxpertqa-mm"
+
+# ---- LLM-as-a-judge for the normal/error split (is_correct) ----
+use_llm_judge: true          # master switch; false = pure regex, no LLM judge
+judge_mode: "llm_primary"    # llm_primary (default) | llm_only | regex_first
+# Optionally use a DIFFERENT model for judging than the MAS run.
+# Option A: just override the model name (reuses llm_config provider/url/key):
+# judge_model_name: "gpt-4o"
+# Option B: a full separate config block for the judge:
+judge_llm_config:
+  provider: "openai"
+  model_name: "gpt-5.4-mini"
+  model_url: "https://api.qingyuntop.top/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+# Two distinct logical agents in the MDAgents intermediate-mode panel:
+# Recruiter (1 slot), Expert_0..Expert_4 (5 slots), Aggregator (1 slot).
+# In BASIC mode use ("MedicalExpert", 0). In ADAPTIVE mode the wrapper also
+# sees a ("Classifier", 0) turn at the start. ADVANCED mode has MDTMember and
+# TeamLead slots — see fm_mdagents_wrapper.py for the full list.
+injection_plan:
+  targets:
+    - role: "Recruiter"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-1.2"
+        injection_strategy: "prompt_injection"
+    - role: "Expert"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "response_corruption"
+
+experiment_settings:
+  max_workers: 5
+
+# ---- LLM-powered injection descriptions ----
+# Have an LLM read the evidence (original/injected prompts, clean/actual response)
+# and write a CONCRETE, sample-specific description of HOW the FM error manifested
+# in this particular trajectory. The result replaces the static
+# `malicious_action_description` strings produced by the factory.
+generate_injection_descriptions: true
+describe_per_turn: true       # one description per injected turn (detailed)
+describe_sample_summary: true # one summary per sample (how injections combined)
+# Pick the model used for describing. Priority:
+#   description_llm_config > description_model_name > judge_llm (default).
+description_model_name: "gpt-5.4-nano"
+description_llm_config:
+  provider: "openai"
+  model_name: "gpt-5.4-mini"
+  model_url: "https://api.qingyuntop.top/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+# ---- Discussion / round controls (MDAgents-specific) ----
+# MDAgents has no "rounds_num" / "max_turn" knob like DyLAN / LLM-Debate /
+# AgentVerse. Its loop structure is controlled by these two method-config
+# fields, which you can override here from the experiment YAML:
+#
+#   mdagents_num_experts: 5      # intermediate-mode panel size
+#   mdagents_debate_rounds: 1    # extra rounds after initial expert answers
+#                                # (1 = each expert answers once, then aggregator)
+#
+# See methods/mdagents/configs/config_medical.yaml for the per-mode defaults.
+
+# ---- Injection engine knobs ----
+task_type: "mcq"            # MedQA / MedMCQA / MedXpertQA-Text|MM -> mcq
+prompt_wrapper_style: "direct"
+# injection_method: "direct_prepend"
+
+# Optional separate LLM for the factory rewriter (llm_rewrite[_strong] modes).
+# factory_llm_config:
+#   provider: "openai"
+#   model_name: "deepseek-chat"
+#   model_url: "YOUR_BASE_URL"
+#   api_key: "YOUR_API_KEY"
+#   temperature: 0.0

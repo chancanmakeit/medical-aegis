@@ -1,0 +1,123 @@
+# llm_debate INJECTION config -> ERROR medical trajectories.
+# Run: python main.py --method_name llm_debate --experiment_config experiments/fm_injection/medical/llm_debate_medical_inject.yaml \
+#        --dataset_file ./datasets/data/<dataset>.json --model_name <model>
+run_mode: "inject"
+
+# Injection mechanism: direct_prepend (default, reliable) or llm_rewrite (legacy)
+# direct_prepend prepends a strong adversarial instruction to the target prompt;
+# llm_rewrite asks self.llm to rewrite it (may silently fail on RLHF'd models).
+injection_method: "direct_prepend"
+
+system_under_test:
+  name: "llm_debate"
+  wrapper_class_path: "aegis_core.agent_systems.fm_debate_wrapper.FM_Debate_Wrapper"
+  method_config_path: "methods/llm_debate/configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+benchmark_name: "medqa"
+# ---- LLM-as-a-judge for the normal/error split (is_correct) ----
+use_llm_judge: true          # master switch; false = pure regex, no LLM judge
+judge_mode: "llm_primary"    # llm_primary (default) | llm_only | regex_first
+# Optionally use a DIFFERENT model for judging than the MAS run.
+# Option A: just override the model name (reuses llm_config provider/url/key):
+# judge_model_name: "gpt-4o"
+# Option B: a full separate config block for the judge:
+# judge_llm_config:
+#   provider: "openai"
+#   model_name: "gpt-4o"
+#   model_url: "YOUR_BASE_URL_HERE"
+#   api_key: "YOUR_API_KEY_HERE"
+#   temperature: 0.0
+
+injection_plan:
+  targets:
+    - role: "Agent"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-2.6"
+        injection_strategy: "prompt_injection"
+    - role: "Aggregator"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-3.3"
+        injection_strategy: "response_corruption"
+
+
+experiment_settings:
+  max_workers: 4
+
+# ---- Discussion / round controls ----
+# All three frameworks have a notion of "rounds" but call it differently. You can
+# override the per-framework setting from here without editing the method config.
+# Either set max_rounds (framework-agnostic; maps to the primary loop bound) or set
+# the framework-specific keys explicitly.
+#
+#   max_rounds: 3                  # generic; -> dylan.num_rounds / debate.rounds_num / agentverse.max_turn
+#   num_rounds: 3                  # DyLAN only (MUST be > 2)
+#   rounds_num: 2                  # LLM-Debate only
+#   max_turn: 3                    # AgentVerse outer Solver/Evaluator loop
+#   max_criticizing_rounds: 3      # AgentVerse Critic->Solver inner loop
+
+# ---- LLM-powered injection descriptions ----
+# Have an LLM read the evidence (original/injected prompts, clean/actual response)
+# and write a CONCRETE, sample-specific description of HOW the FM error manifested
+# in this particular trajectory. The result replaces the static
+# `malicious_action_description` strings produced by the factory.
+generate_injection_descriptions: true
+describe_per_turn: true       # one description per injected turn (detailed)
+describe_sample_summary: true # one summary per sample (how injections combined)
+# Pick the model used for describing. Priority:
+#   description_llm_config > description_model_name > judge_llm (default).
+# description_model_name: "gpt-4o"
+# description_llm_config:
+#   provider: "openai"
+#   model_name: "gpt-4o"
+#   model_url: "YOUR_BASE_URL_HERE"
+#   api_key: "YOUR_API_KEY_HERE"
+#   temperature: 0.0
+
+# ---- Injection engine knobs (Q4 redesign) ----
+# task_type selects which template family the factory uses. Choose per dataset:
+#   "mcq"             : MedQA / MedMCQA / PubMedQA / MMLU subsets (default)
+#   "numeric"         : MedCalc-Bench (numeric clinical calculations)
+#   "error_correction": MEDEC-MS (find/correct error in clinical note)
+#   "open"            : free-form text tasks
+task_type: "mcq"
+
+# Wrapper style for the adversarial instruction visible to the target agent:
+#   "direct"    : visible "[UPDATED INSTRUCTION - SUPERSEDES ALL EARLIER]" block (default)
+#   "jailbreak" : covert fake-supervisor / role-play preamble (harder to detect)
+prompt_wrapper_style: "direct"
+
+# injection_method values:
+#   "direct_prepend"     : deterministic, task-aware templates, no second LLM call
+#   "llm_rewrite"        : legacy AEGIS-paper meta-prompt -> factory LLM
+#   "llm_rewrite_strong" : llm_rewrite + jailbreak wrap on meta-prompt to raise
+#                          compliance from RLHF'd factory LLMs
+# injection_method: "direct_prepend"   # already set above
+
+# Optional dedicated LLM for the factory rewriter (used only by llm_rewrite[_strong]).
+# Lets you use a less-aligned model as the factory while the MAS uses gpt-4o-mini etc.
+# factory_llm_config:
+#   provider: "openai"
+#   model_name: "deepseek-chat"
+#   model_url: "YOUR_BASE_URL"
+#   api_key: "YOUR_API_KEY"
+#   temperature: 0.0
+
+
+# ---- LLM-Debate trajectory display (Q2) ----
+# In LLM-Debate, OpenAI chat-protocol "user" messages appear in the trajectory as
+# separate User turns (the per-Agent context alternates user-assistant-user-...).
+# Two display modes:
+#   false (default): keep User entries as separate turns tagged is_input=true,
+#                    so the original chat structure is visible.
+#   true:            FOLD User entries into the next Agent's input_messages and
+#                    drop them as standalone turns (cleaner; loses some context).
+llm_debate_fold_user_inputs: false

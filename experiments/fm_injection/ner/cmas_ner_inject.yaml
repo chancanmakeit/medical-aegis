@@ -1,0 +1,77 @@
+# CMAS INJECTION config -> ERROR zero-shot-NER trajectories.
+# Run: python main.py --method_name cmas \
+#        --experiment_config experiments/fm_injection/ner/cmas_ner_inject.yaml \
+#        --dataset_file ./datasets/data/wikigold.json --test_dataset_name wikigold --model_name <model>
+run_mode: "inject"
+
+injection_method: "direct_prepend"
+
+# CMAS method config (methods/cmas/configs/config_ner.yaml).
+cmas_config_name: "config_ner"
+
+# OPTIONAL overrides (see methods/cmas/configs/config_ner.yaml for defaults):
+# cmas_use_trf_extractor: true
+# cmas_use_discriminator: true
+# cmas_few_shot_number: 4
+# cmas_demo_retrieval_mode: "stub_topk"   # stub_topk | none
+# Point this at the CMAS wikigold train.json to enable in-context demonstrations
+# (the discriminator agent only runs when demonstrations are present):
+# cmas_demo_pool_path: "F:/AEGIS-main/datasets/cmas_wikigold/train.json"
+
+inject_every_invocation: false
+
+system_under_test:
+  name: "cmas"
+  wrapper_class_path: "aegis_core.agent_systems.fm_cmas_wrapper.FMCMASWrapper"
+  method_config_path: "configs/config_ner.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+# CMAS's benchmark is zero-shot NER on wikigold. The NER verifier
+# (aegis_core/utils/ner_verifier.py) scores this with entity-level micro-F1.
+benchmark_name: "wikigold"
+
+# NER is scored deterministically (exact span+type match -> per-sample F1).
+# A sample counts as correct when its F1 >= ner_f1_threshold. Default 1.0
+# requires a perfect prediction; lower it (e.g. 0.5) for partial credit.
+ner_f1_threshold: 1.0
+# No LLM judge is used for NER; these are ignored but kept for consistency.
+use_llm_judge: false
+
+# 3 stable logical agents in the CMAS per-sample pipeline:
+#   TRFExtractor (1) + Discriminator (1) + OverallPredictor (1)
+# Example targets: corrupt the TRF extraction (wrong type-related features) via
+# prompt_injection, and corrupt the final prediction via response_corruption.
+injection_plan:
+  targets:
+    - role: "TRFExtractor"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "prompt_injection"
+    - role: "OverallPredictor"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-3.1"
+        injection_strategy: "response_corruption"
+
+experiment_settings:
+  max_workers: 4
+
+# ---- LLM-powered injection descriptions ----
+generate_injection_descriptions: true
+describe_per_turn: true
+describe_sample_summary: true
+# description_model_name: "gpt-4o"
+
+# ---- Injection engine knobs ----
+# task_type "ner" -> the malicious factory uses an NER-specific wrong-answer
+# template (mislabel types / omit entities). See
+# aegis_core/malicious_factory/fm_malicious_system.py:_WRONG_ANSWER_FOR_TASK.
+task_type: "ner"
+prompt_wrapper_style: "direct"

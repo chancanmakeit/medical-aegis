@@ -1,0 +1,103 @@
+# ClinicalAgent INJECTION config -> ERROR clinical-trial-outcome trajectories.
+# Run: python main.py --method_name clinical_agent \
+#        --experiment_config experiments/fm_injection/medical/clinical_agent_medical_inject.yaml \
+#        --dataset_file ./datasets/data/trial_success.json --model_name <model>
+run_mode: "inject"
+
+# Injection mechanism: direct_prepend (default, reliable) or llm_rewrite (legacy).
+injection_method: "direct_prepend"
+
+# ClinicalAgent method config (methods/clinical_agent/configs/config_medical.yaml).
+clinical_agent_config_name: "config_medical"
+
+# OPTIONAL: override knobs declared inside config_medical.yaml without editing it.
+# ca_use_planner: true               # true | false
+# ca_planner_subproblems: 3          # 2-5 typical
+# ca_tools_mode: "placeholder"       # placeholder | llm_synth
+
+# If the SAME logical role somehow gets called multiple times (not expected in
+# ClinicalAgent's linear pipeline, but future extensions may add loops), the
+# wrapper by default injects only on the FIRST matching call. Set true to
+# inject on every matching call.
+inject_every_invocation: false
+
+system_under_test:
+  name: "clinical_agent"
+  wrapper_class_path: "aegis_core.agent_systems.fm_clinical_agent_wrapper.FMClinicalAgentWrapper"
+  method_config_path: "configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+# ClinicalAgent's benchmark is clinical-trial-outcome prediction (binary via
+# <final_result>0.X</final_result> tag). The verifier registers this name in
+# aegis_core/utils/medical_verifier.py:_DETERMINISTIC.
+benchmark_name: "trial_success"
+
+# ---- LLM-as-a-judge for the normal/error split (is_correct) ----
+use_llm_judge: true          # master switch; false = pure regex, no LLM judge
+judge_mode: "llm_primary"    # llm_primary (default) | llm_only | regex_first
+# Optionally use a DIFFERENT model for judging than the MAS run.
+# judge_model_name: "gpt-4o"
+# judge_llm_config:
+#   provider: "openai"
+#   model_name: "gpt-4o"
+#   model_url: "YOUR_BASE_URL_HERE"
+#   api_key: "YOUR_API_KEY_HERE"
+#   temperature: 0.0
+
+# 5 stable logical agents in the ClinicalAgent pipeline (matches the paper):
+#   Planner (1) + SafetyAgent (1) + EfficacyAgent (1) + EnrollmentAgent (1)
+#   + Reasoner (1). There is NO separate top-level "ClinicalAgent" orchestrator
+#   turn — the Planner handles decomposition + coordination.
+# Example targets below inject an error into the safety-analysis step
+# (SafetyAgent) via prompt_injection, plus corrupt the final synthesis
+# (Reasoner) via response_corruption — a common pairing that mimics both
+# "wrong evidence gathered" and "wrong final conclusion" scenarios.
+injection_plan:
+  targets:
+    - role: "SafetyAgent"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "prompt_injection"
+    - role: "Reasoner"
+      role_index: 0
+      attack_spec:
+        fm_error_type: "FM-3.1"
+        injection_strategy: "response_corruption"
+
+experiment_settings:
+  max_workers: 4
+
+# ---- LLM-powered injection descriptions ----
+generate_injection_descriptions: true
+describe_per_turn: true
+describe_sample_summary: true
+# description_model_name: "gpt-4o"
+# description_llm_config:
+#   provider: "openai"
+#   model_name: "gpt-4o"
+#   model_url: "YOUR_BASE_URL_HERE"
+#   api_key: "YOUR_API_KEY_HERE"
+#   temperature: 0.0
+
+# ---- Injection engine knobs ----
+# task_type "probability" tells the malicious factory to use a probability-
+# specific wrong-answer template ("the opposite probability"). See
+# aegis_core/malicious_factory/fm_malicious_system.py:_WRONG_ANSWER_FOR_TASK.
+task_type: "probability"
+prompt_wrapper_style: "direct"
+# injection_method: "direct_prepend"
+
+# Optional separate LLM for the factory rewriter (llm_rewrite[_strong] modes).
+# factory_llm_config:
+#   provider: "openai"
+#   model_name: "deepseek-chat"
+#   model_url: "YOUR_BASE_URL"
+#   api_key: "YOUR_API_KEY"
+#   temperature: 0.0

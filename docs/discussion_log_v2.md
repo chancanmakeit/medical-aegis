@@ -1,0 +1,44 @@
+# medical-aegis 讨论记录 v2
+
+每轮讨论追加一节；内容有实质变化时升版本号（v2、v3…），旧版本保留在仓库里。
+
+---
+
+## 第 1 轮（2026-10-19）：新会话续接，环境与权限检查
+
+**用户需求**
+1. 新建 GitHub private 仓库 `medical-aegis`
+2. 测试对该仓库的写权限
+3. 测试能否访问 HF collection `UUUooUUU/data4-mas-simulated-fault-and-realworld-fault-trajectory-gen`
+4. 之后每轮结果同步到 `medical-aegis`（不再同步到 `Medhypertrace`）
+
+**过程与结果**（三项均由 Sonnet 子 agent 执行）
+- 会话代理只放行已挂载仓库的 repo 级接口，`POST /user/repos` 返回 403，无法从会话内建仓库。用户改为在网页上手动创建。
+- 仓库挂载（add_repo，push 权限）成功。仓库为 private，默认分支 `main`，admin/push 权限均为 true。
+- 写权限测试通过：两次真实 push，一次添加 `.write_test`（`e440b6c`），一次删除（`8f60252`）。git push 经会话代理完成，不需要 token。
+- HF collection 访问通过：读 token 直接 curl 即可。collection 为 private，含 7 个 dataset（详见交接文档）。抽查了私有的 `ConSensus` 和公开的 `Heartbeat`，文件列表和 README 均可读。
+
+**决定**
+- 结果同步仓库：`chancanmakeit/medical-aegis`
+- 文档：`docs/discussion_log_vN.md`（带版本号的讨论记录）和 `docs/HANDOFF.md`（交接文档，每轮覆盖更新）
+
+---
+
+## 第 2 轮（2026-10-19）：从旧会话恢复 AEGIS 代码环境
+
+**用户提供**：旧会话的 `HANDOFF.md`、`HANDOFF_RESOURCES.md`、`AEGIS-main.zip`
+
+**恢复过程**
+- 解压 `AEGIS-main.zip`（约 44 MB）。包内的 `HANDOFF.md` 与单独上传的那份内容一致。
+- 安装依赖（不含 torch、transformers，核心路径不依赖它们）。原 `requirements.txt` 缺了 `tenacity`、`sacrebleu`、`Wikipedia-API`、`termcolor`、`tiktoken`，已补上。
+- 冒烟测试，全部离线、不调 API：
+  - 核心代码 `compileall` 通过。
+  - `method2class` 能正常导入，6 个目标框架（dylan / llm_debate / agentverse / mdagents / clinical_agent / cmas）都已注册。
+  - `main.py` 和 5 个脚本（generate_diverse_dataset / build_paired_dataset / recompute_trial_success_verdicts / 两个数据转换器）的 `--help` 都正常。
+  - NER verifier：对 wikigold 第 0 条，完全匹配得 F1=1.0，漏一个实体得 F1=0.667，符合预期。
+  - trial_success verifier：让一个总是回答 INCORRECT 的假 judge 参与，0.72 判为正确、0.30 判为错误，judge 调用 0 次。说明旧会话修复的 `DETERMINISTIC_AUTHORITATIVE` 生效。
+- 安全处理：代码里有 3 个文件写着真实的 qingyuntop 代理密钥（`model_api_configs/model_api_config.json` 和 `mdagents_medical_{inject,normal}.yaml`）。推送到仓库的版本已替换为 `YOUR_API_KEY`，原密钥只保存在沙箱本地的 `/home/claude/.mht_api.env`（`QINGYUN_API_KEY`）。
+- 完整代码已推送到 `medical-aegis` 仓库根目录。旧交接文档存为 `docs/HANDOFF_prev_session.md`，要点合并进了 `docs/HANDOFF.md`。
+
+**沿用的待决项**
+- 🔴 注入频率跨框架不一致：方案 A（全部只注入一次）或方案 B（全部每次都注入），等用户选择。

@@ -1,0 +1,35 @@
+# CMAS Method Configuration - NER (zero-shot Named Entity Recognition)
+# Loaded when method_config_name == "config_ner".
+#
+# Paper: Wang et al., "A Cooperative Multi-Agent Framework for Zero-Shot Named
+#        Entity Recognition", WWW 2025. (arXiv:2502.18702)
+#        https://github.com/WZH-NLP/WWW25-CMAS
+
+# Number of in-context demonstrations shown to the agents. The paper uses 16;
+# we default lower to keep prompts short and trajectories injectable. Demos are
+# drawn from the self-annotated train pool (data/wikigold/train.json). If the
+# pool is unavailable, the framework runs demo-free (still valid, lower quality).
+few_shot_number: 4
+
+# Demonstration retrieval mode:
+#   "stub_topk"  - take the first N demos from the pool (deterministic, fast;
+#                  recommended for injection experiments so the effect is
+#                  isolated to the LLM reasoning, not confounded by retrieval).
+#   "none"       - no demonstrations (pure zero-shot).
+# The full CMAS uses GPTEmb diverse-KNN retrieval over sentence embeddings; that
+# requires the *_GPTEmb.npy artifacts and is NOT reproduced here (it's offline
+# retrieval machinery, orthogonal to the multi-agent reasoning we inject into).
+demo_retrieval_mode: "stub_topk"
+
+# Path to the demonstration pool json (list of {idx, sentence, label}). If null
+# or missing, the framework runs demo-free. Set this to your wikigold train.json.
+demo_pool_path: null
+
+# Whether to run the TRF (type-related-feature) extractor agent. Disabling it
+# ('- TRF extractor' ablation in the paper) makes CMAS revert toward SILLM.
+use_trf_extractor: true
+
+# Whether to run the demonstration discriminator (self-reflection/helpfulness)
+# agent. Disabling it ('- Discriminator' ablation) makes the overall predictor
+# use only TRFs.
+use_discriminator: true

@@ -1,0 +1,53 @@
+# ClinicalAgent Method Configuration - MEDICAL / clinical-trial-outcome prediction
+# Loaded when method_config_name == "config_medical".
+#
+# Paper: Yue et al., "ClinicalAgent: Clinical Trial Multi-Agent System with
+#        Large Language Model-based Reasoning", ACM-BCB 2024
+#        (arXiv:2404.14777, https://github.com/lingyue404/clinical-agent).
+
+# Whether to run the Planner agent. The Planner decomposes the task into the
+# three analysis lanes (safety / efficacy / enrollment) AND announces the
+# weighting scheme the Reasoner will apply (it absorbs the coordination role;
+# there is no separate top-level orchestrator agent, matching the paper's
+# 5-agent design). If false, the pipeline skips straight to the three domain
+# agents + Reasoner.
+use_planner: true
+
+# How many subproblems the Planner is asked to emit. Kept at 3 (one per lane).
+planner_subproblems: 3
+
+# Weights for combining the three per-lane failure-risk scores into the final
+# failure probability. Announced by the Planner and applied (with explicit
+# arithmetic) by the Reasoner. Defaults match the example weighting in the
+# ClinicalAgent coordination step (30% safety / 40% efficacy / 30% enrollment).
+# They are renormalized to sum to 1 at load time.
+dimension_weights:
+  safety: 0.30
+  efficacy: 0.40
+  enrollment: 0.30
+
+# Deterministic-tool stub mode. The real ClinicalAgent has 4 tool modules
+# (drugbank / hetionet / enrollment model / risk_model) that need external
+# data + trained models. We stub them here so the framework runs end-to-end
+# without those dependencies:
+#   "placeholder" - return a fixed innocuous string per tool (fastest, most
+#                   reproducible; the framework's LLM agents still make all
+#                   their LLM calls, only the deterministic tools are stubbed).
+#   "llm_synth"   - ask the LLM to *synthesize* what each tool would return
+#                   (slower + non-deterministic, but more realistic content
+#                   for the sub-agents to reason over).
+# For error-injection experiments, "placeholder" is recommended: it keeps the
+# effect of the injection isolated to the LLM reasoning, not confounded by
+# stochastic tool synthesis.
+tools_mode: "placeholder"
+
+# Final synthesis LLM behavior. The paper uses gpt-4-turbo for the final
+# integration step and gpt-3.5-turbo for everything else. Because AEGIS routes
+# all calls through a single model config, we don't split here — but we DO
+# expose a "reasoner_extra_hint" that biases the final synthesis toward the
+# expected output format.
+reasoner_extra_hint: |
+  Analyze the safety, efficacy and enrollment findings from the sub-agents,
+  then output your final failure probability wrapped in
+  `<final_result>0.X</final_result>` tags (value between 0 and 1, where 1
+  means the trial will fail). You MUST include the tag exactly once.

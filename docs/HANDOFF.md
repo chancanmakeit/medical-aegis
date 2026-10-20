@@ -1,38 +1,37 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-19（第 1 轮）。每轮覆盖更新。新会话请先读本文件，再读最新的 `docs/discussion_log_vN.md`。
+> 最后更新：2026-10-19（第 2 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
 
-## 项目
-- claude.ai Project：「医学多智能体系统模拟故障轨迹以及真实故障轨迹获取」
-- 方向：把 AEGIS 多智能体故障归因扩展到医学多智能体系统，生成模拟故障轨迹，并获取真实故障轨迹。
-- 结果同步仓库：https://github.com/chancanmakeit/medical-aegis（private，`main`）。旧仓库 `Medhypertrace` 不再作为同步目标。
+## 0. 项目一句话
+把 AEGIS（多智能体故障注入 + 失败归因，arxiv 2509.14295，ICLR 2026）扩展到**医学**和 **NER**：新增 3 个框架（MDAgents / ClinicalAgent / CMAS），4 个新数据集（MedXpertQA-Text/MM、MedConceptsQA、trial_success、wikigold），支持多模态。在注入故障的情况下生成错误轨迹，同时生成干净的正常轨迹，两者配对用于失败归因研究。
 
-## 用户的工作约定（来自 Project 说明）
-- 每轮更新带版本号的讨论记录，以及本交接文档，并推送到 `medical-aegis`。
-- 子 agent 要合理使用，考虑模型切换带来的 token 开销。
+用户：Alvin Chan。偏好直接的同行级交流和诚实的批评，经验性结论要对着真实数据核实。讨论用中文，代码注释用英文。
+
+## 1. 用户的工作约定（来自 Project 说明）
+- 每轮更新带版本号的讨论记录和本交接文档，并推送到 `medical-aegis`。
+- 子 agent 要合理使用，权衡模型切换带来的 token 开销。用户明确指定时用 Sonnet 子 agent。
 - `sleep` / `timeout` 不要设得太长。
-- 调用任何 LLM API 前，先小规模试跑估算成本，然后停下来问用户是否接受。
-- API 端点和密钥见 Project 文档「api端点」。密钥只放在沙箱本地 `/home/claude/.mht_api.env`，不写进仓库。
+- **调用任何 LLM API 前，先小规模试跑估算成本，然后停下来问用户。**
+- API 端点见 Project 文档「api端点」。密钥只放在沙箱本地的 `/home/claude/.mht_api.env`，不写进仓库。
 
-## 环境要点（新会话需重做）
-- GitHub：会话代理只允许访问已挂载的仓库。新会话需先 `add_repo(owner=chancanmakeit, repo=medical-aegis, access=push)`，再 `git clone https://github.com/chancanmakeit/medical-aegis`。clone 和 push 走会话代理，不需要 token，也不要把 token 写进 `.git/config`。
-- 会话内无法新建 GitHub 仓库（`POST /user/repos` 返回 403），需要新仓库时请用户手动创建。
-- Hugging Face：用户的读 token 在 Project 同步源里，shell 里 curl 可直接访问 huggingface.co；也可用 HF connector（已认证为 `UUUooUUU`）。
+## 2. 恢复环境（新会话照做）
+1. `add_repo(owner=chancanmakeit, repo=medical-aegis, access=push)`，然后 `git clone https://github.com/chancanmakeit/medical-aegis /home/claude/medical-aegis`。clone 和 push 都走会话代理，不需要 token，也不要把 token 写进 `.git/config`。会话内无法新建 GitHub 仓库，需要新仓库时请用户手动建。
+2. 代码就在仓库根目录，这就是完整的 AEGIS-main，不必再上传 zip。
+3. `pip install --break-system-packages -r requirements.txt`。torch、transformers、wandb 可以先跳过，核心路径不需要。Python 3.13 已验证可用。
+4. 密钥：仓库里的 `model_api_configs/model_api_config.json` 和 `experiments/fm_injection/medical/mdagents_medical_*.yaml` 中的 `api_key` 都是 `YOUR_API_KEY` 占位符。真实运行前从 `/home/claude/.mht_api.env` 填入，沙箱重置后需要重新向用户索取或从 Project 文档获取。**不要提交填了密钥的文件。**
+5. 冒烟测试（离线）：`python3 main.py --help`；`python3 -c "from methods import method2class; print(sorted(method2class))"`。
+6. 大数据源（ClinicalAgent 7z、CMAS.zip、MedXpertQA.tar）不在仓库里，按需请用户上传，清单见 `docs/HANDOFF_prev_session.md` §5，或旧会话的 HANDOFF_RESOURCES。`datasets/data/wikigold.json`（274 条）和 `datasets/cmas_wikigold/` 已在仓库中。
+7. HF collection `UUUooUUU/data4-mas-simulated-fault-and-realworld-fault-trajectory-gen`（private）可以用用户的读 token 直接 curl 访问，HF connector 也可以用。里面有 7 个 dataset：MedXpertQA、MedConceptsQA、mmlu_pro_health、DAICWOZ（私有）、ConSensus（私有）、Heartbeat、Sound-Dr。
 
-## 数据：HF collection
-`UUUooUUU/data4-mas-simulated-fault-and-realworld-fault-trajectory-gen`（private），共 7 个 dataset，均非 gated：
+## 3. 当前状态
+- 第 2 轮已在沙箱中恢复环境并通过离线冒烟测试（详见 discussion_log_v2）。代码已推送到仓库，提交时密钥已脱敏。
+- 用户的本地环境是 Windows，GBK locale，项目路径 `F:\AEGIS-main\`。旧会话用的模型是 `gemini-2.5-flash-lite` 和 `grok-4-1-fast-reasoning`（走 qingyuntop 代理）。
 
-| repo | private |
-|---|---|
-| TsinghuaC3I/MedXpertQA | 否 |
-| ofir408/MedConceptsQA | 否 |
-| ywchoi/mmlu_pro_health | 否 |
-| UUUooUUU/DAICWOZ | 是 |
-| UUUooUUU/ConSensus | 是 |
-| UUUooUUU/Heartbeat | 否 |
-| UUUooUUU/Sound-Dr | 否 |
-
-## 当前状态
-- 已完成：仓库创建与挂载、写权限验证、HF collection 访问验证、文档初始化。
-- 仓库中暂时只有 `docs/`，还没有代码或数据。
-- 下一步：等用户给出本会话的具体任务。如果需要旧会话的上下文（例如旧仓库 `Medhypertrace` 里的交接文档），先向用户确认是否挂载该仓库。
+## 4. 待决项（接力点）
+- 🔴 **最高优先：注入频率的跨框架统一，等用户选择。**
+  - dylan / agentverse / llm_debate：同一 agent 每次出现都会注入，没有 `fired_keys` 去重，也没有开关。
+  - mdagents / clinical_agent / cmas：有 `inject_every_invocation` 开关，默认只注入第一次。
+  - 方案 A（便于归因研究）：全部只注入一次。给前 3 个 wrapper 加 `fired_keys` 和开关，默认 false。
+  - 方案 B（便于鲁棒性测试）：全部每次都注入。把后 3 个框架的 YAML 默认值改成 true。
+  - 用户选定后：统一实现，验证，并在所有相关 YAML 里写明默认值。
+- 🟡 已知局限：ClinicalAgent 和 CMAS 的确定性工具都是 stub，所以论文里的绝对指标复现不了；probability 类任务注入后不一定翻转答案，大约一半样本会翻；MedXpertQA-MM 成本高，要先用 `--limit` 试跑。

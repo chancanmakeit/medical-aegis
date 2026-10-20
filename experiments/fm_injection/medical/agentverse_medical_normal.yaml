@@ -1,0 +1,50 @@
+# agentverse CLEAN (no-injection) config -> NORMAL medical trajectories.
+# Run: python main.py --method_name agentverse --experiment_config experiments/fm_injection/medical/agentverse_medical_normal.yaml \
+#        --dataset_file ./datasets/data/<dataset>.json --model_name <model> --no_inject
+run_mode: "clean"
+
+# Use the AgentVerse medical role-assigner config
+agentverse_config_name: "config_medical"
+
+system_under_test:
+  name: "agentverse"
+  wrapper_class_path: "aegis_core.agent_systems.fm_agentverse_wrapper.FMAgentVerseWrapper"
+  method_config_path: "methods/agentverse/configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+# benchmark_name selects the verifier; override per dataset or set via --test_dataset_name.
+benchmark_name: "medqa"
+# ---- LLM-as-a-judge for the normal/error split (is_correct) ----
+use_llm_judge: true          # master switch; false = pure regex, no LLM judge
+judge_mode: "llm_primary"    # llm_primary (default) | llm_only | regex_first
+# Optionally use a DIFFERENT model for judging than the MAS run.
+# Option A: just override the model name (reuses llm_config provider/url/key):
+# judge_model_name: "gpt-4o"
+# Option B: a full separate config block for the judge:
+# judge_llm_config:
+#   provider: "openai"
+#   model_name: "gpt-4o"
+#   model_url: "YOUR_BASE_URL_HERE"
+#   api_key: "YOUR_API_KEY_HERE"
+#   temperature: 0.0
+
+experiment_settings:
+  max_workers: 4
+
+# ---- Discussion / round controls ----
+# All three frameworks have a notion of "rounds" but call it differently. You can
+# override the per-framework setting from here without editing the method config.
+# Either set max_rounds (framework-agnostic; maps to the primary loop bound) or set
+# the framework-specific keys explicitly.
+#
+#   max_rounds: 3                  # generic; -> dylan.num_rounds / debate.rounds_num / agentverse.max_turn
+#   num_rounds: 3                  # DyLAN only (MUST be > 2)
+#   rounds_num: 2                  # LLM-Debate only
+#   max_turn: 3                    # AgentVerse outer Solver/Evaluator loop
+#   max_criticizing_rounds: 3      # AgentVerse Critic->Solver inner loop

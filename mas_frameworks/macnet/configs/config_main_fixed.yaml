@@ -1,0 +1,8 @@
+agent_num: 4
+topology: chain
+reverse: false
+type: default
+aggregate_retry_limit: 15
+aggregate_unit_num: 2
+node_in_id: -1
+node_out_id: -2

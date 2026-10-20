@@ -1,0 +1,6 @@
+# LLM-Debate Method Configuration - MEDICAL
+# Loaded when method_config_name == "config_medical".
+# LLM-Debate is homogeneous: agents debate, then an aggregator synthesizes.
+
+agents_num: 3       # number of debating agents
+rounds_num: 2       # how many full debate rounds before the aggregator step

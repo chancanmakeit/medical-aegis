@@ -1,0 +1,28 @@
+# ClinicalAgent CLEAN config -> NORMAL clinical-trial-outcome trajectories.
+# Run: python main.py --method_name clinical_agent \
+#        --experiment_config experiments/fm_injection/medical/clinical_agent_medical_normal.yaml \
+#        --dataset_file ./datasets/data/trial_success.json --model_name <model> --no_inject
+run_mode: "clean"
+
+clinical_agent_config_name: "config_medical"
+
+system_under_test:
+  name: "clinical_agent"
+  wrapper_class_path: "aegis_core.agent_systems.fm_clinical_agent_wrapper.FMClinicalAgentWrapper"
+  method_config_path: "configs/config_medical.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "gpt-4o-mini"
+  model_url: "YOUR_BASE_URL_HERE"
+  api_key: "YOUR_API_KEY_HERE"
+  temperature: 0.0
+
+benchmark_name: "trial_success"
+
+# Verifier knobs (decides which clean trajectories qualify as "valid normal")
+use_llm_judge: true
+judge_mode: "llm_primary"
+
+experiment_settings:
+  max_workers: 4

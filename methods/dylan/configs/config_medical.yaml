@@ -1,0 +1,19 @@
+# DyLAN Method Configuration - MEDICAL roles
+# Loaded by DyLAN_Main / DyLAN_MMLU when method_config_name == "config_medical".
+# The role names here MUST exist in dylan_main.py:_get_role_map() and
+# utils_mmlu.py:ROLE_MAP (medical roles were added there).
+
+random_seed: 0
+debug: false
+
+num_agents: 4
+num_rounds: 3
+activation: "listwise"
+type: "open-ended"
+
+# Medical expert panel.
+roles:
+  - "Physician"
+  - "Pharmacologist"
+  - "Pathologist"
+  - "Medical_Researcher"
