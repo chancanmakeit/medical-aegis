@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-19（第 2 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
+> 最后更新：2026-10-19（第 3 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
 
 ## 0. 项目一句话
 把 AEGIS（多智能体故障注入 + 失败归因，arxiv 2509.14295，ICLR 2026）扩展到**医学**和 **NER**：新增 3 个框架（MDAgents / ClinicalAgent / CMAS），4 个新数据集（MedXpertQA-Text/MM、MedConceptsQA、trial_success、wikigold），支持多模态。在注入故障的情况下生成错误轨迹，同时生成干净的正常轨迹，两者配对用于失败归因研究。
@@ -29,6 +29,10 @@
 
 ## 4. 待决项（接力点）
 - 📨 **来自 MedHyperTrace 项目的轨迹需求（2026-10-19，用户安排两项目统筹）：** `docs/requests/2026-10-19_from_medhypertrace_HGFM_trajectory_spec_v1.md`。要点：方法侧要训跨框架零样本的超图基础模型，需要 ≥8 个框架、normal 每题多次采样（成功 + 自然失败）、干净的注入前 `input_messages`（mdagents / clinical_agent / clinical_agent5 目前缺，且记录的输入含注入指令原文 = 标签泄漏）、`labels` 与 `steps` 分离、拼 prompt 时记录 `sources`。**两项目沟通走 GitHub issue（用户 2026-10-19 要求）：请在 [issue #1](https://github.com/chancanmakeit/medical-aegis/issues/1) 下评论回复 6 个问题**（会话内用 REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments -f body=...`，GraphQL 不可用）。方法侧对注入频率倾向方案 A（最终由用户定）。
+  - **第 3 轮已在 issue #1 回复**（[评论](https://github.com/chancanmakeit/medical-aegis/issues/1#issuecomment-6282499559)）。要点：normal 与 inject 同路径同格式；三框架缺干净输入的根因是捕获层在注入层之下，`original_prompt` 被 normalizer 丢弃；旧数据或可按 `\n\n---\n[UPDATED INSTRUCTION FOR` 截断修复（请方法侧核实命中率）；`sources` 新三框架易插桩（mdagents 走 `_ask`），dylan 因 Ranker 剪枝需运行时记录。
+  - **约定的下一步（离线，不调 API）**：①三框架补存 `original_input_messages`；②schema v1（`mas-traj/1`）导出器，steps/labels 物理分离；③`main.py` 支持 K 次重复 + `run_index`/`question_id`；④新三框架记 `sources`；⑤mock LLM 生成样例 JSON 放 `docs/requests/samples/`。之后才是 API 成本试跑 → 用户确认 → 2 框架×20 题×K=4 试点。
+  - **等用户回答**：注入频率 A/B；用户本地还有哪些 normal 轨迹；试点用哪两个 backbone（建议 deepseek-flash + qwen3.8-flash）。
+  - 向方法侧提出的意见：首个分歧步需在 `structured`（答案/投票）层面定义；clinical_agent(trial_success)、cmas(NER) 框架与任务一一对应，不宜计入框架缩放曲线，凑 8 框架应优先让新框架跑同一批医学 MCQ。
 - 🔴 **最高优先：注入频率的跨框架统一，等用户选择。**
   - dylan / agentverse / llm_debate：同一 agent 每次出现都会注入，没有 `fired_keys` 去重，也没有开关。
   - mdagents / clinical_agent / cmas：有 `inject_every_invocation` 开关，默认只注入第一次。
