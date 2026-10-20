@@ -794,6 +794,32 @@ class FMMaliciousFactory:
             {"tag": t, "clean": v, "corrupted": nv} for t, v, nv in changes]
         return out
 
+    def _corrupt_classification_freetext(self, orig: str, fm_error_type: FMErrorType) -> str:
+        """Free-text class answers (e.g. MAM diagnoses): the clean label is the
+        class mentioned LAST in the text; the corrupted reply ends with an
+        explicit "Final answer: <label>" line, which label extractors prefer."""
+        labels = list(getattr(self, "classification_labels", None) or [])
+        clean_answer, last_pos = None, -1
+        for lab in labels:
+            for mm in re.finditer(r"\b" + re.escape(str(lab)) + r"\b", orig, re.IGNORECASE):
+                if mm.start() > last_pos:
+                    clean_answer, last_pos = lab, mm.start()
+        wrong = "UNKNOWN"
+        if labels:
+            i = labels.index(clean_answer) if clean_answer in labels else -1
+            wrong = labels[(i + 1) % len(labels)]
+        reason_tpl, mode = self._CLASSIFICATION_CORRUPTION.get(
+            fm_error_type, ("{orig_reason} The answer is {wrong_answer}.", "wrong"))
+        text = reason_tpl.format(orig_reason=orig.strip(), wrong_answer=wrong).strip()
+        self.last_injection_meta["clean_answer"] = clean_answer
+        self.last_injection_meta["corrupted_answer"] = wrong if mode in ("wrong", "label_only") else mode
+        self.last_injection_meta["format"] = "free_text"
+        if mode == "label_only":
+            return f"Final answer: {wrong}"
+        tail = {"wrong": f"Final answer: {wrong}", "hedge": f"Final answer: {wrong} or {clean_answer}",
+                "unsure": "Final answer: I am not sure"}[mode]
+        return f"{text}\n\n{tail}"
+
     def _corrupt_classification_json(self, response: str, fm_error_type: FMErrorType) -> str:
         """Rewrite a {"REASON","ANSWER"} reply so the ANSWER really changes.
 
@@ -805,6 +831,8 @@ class FMMaliciousFactory:
         orig = response or ""
         reason, clean_answer, extra = orig.strip(), None, {}
         m = re.search(r"\{.*\}", orig, re.DOTALL)
+        if not m:
+            return self._corrupt_classification_freetext(orig, fm_error_type)
         if m:
             try:
                 obj = _json.loads(m.group(0))

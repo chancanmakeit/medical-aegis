@@ -349,11 +349,62 @@ def extract_class_label(text: str) -> Optional[str]:
     return None
 
 
+def _label_lookup(gt: Dict[str, Any]) -> Dict[str, str]:
+    """surface form (lowercase) -> canonical class, from gt['classes'] + gt['aliases']."""
+    table = {}
+    for c in gt.get("classes") or []:
+        table[str(c).lower()] = str(c)
+    for c, al in (gt.get("aliases") or {}).items():
+        for a in al or []:
+            table[str(a).lower()] = str(c)
+    return table
+
+
+def extract_free_text_label(text: str, gt: Dict[str, Any]) -> Optional[str]:
+    """Class label from a free-text answer (e.g. a MAM diagnosis), or None.
+
+    Order: explicit marker ("Final answer:" / "answer|diagnosis|category|label
+    is|:" / a bold **label**; the LAST one wins) -> the only class mentioned in
+    the text. Binary yes/no tasks only accept explicit markers or a reply that
+    starts with yes/no, since "no" occurs in ordinary prose.
+    """
+    if not text:
+        return None
+    table = _label_lookup(gt)
+    if not table:
+        return None
+    forms = sorted(table, key=len, reverse=True)
+    alt = "|".join(re.escape(f) for f in forms)
+    explicit = []
+    for pat in (rf"final answer\s*[:：]\s*\**\s*({alt})\b",
+                rf"\b(?:answer|diagnosis|classification|category|label)\s*(?:is|:|：)\s*\**\s*[\"'“]?({alt})\b",
+                rf"\*\*\s*({alt})\s*\*\*"):
+        for m in re.finditer(pat, text, re.IGNORECASE):
+            explicit.append((m.start(), table[m.group(1).lower()]))
+    if explicit:
+        return sorted(explicit)[-1][1]
+    binary = set(v.lower() for v in table.values()) <= {"yes", "no"}
+    if binary:
+        m = re.match(r"\s*\**\s*(yes|no)\b", text, re.IGNORECASE)
+        return table.get(m.group(1).lower()) if m else None
+    found = {table[m.group(1).lower()] for m in re.finditer(rf"\b({alt})\b", text, re.IGNORECASE)}
+    return found.pop() if len(found) == 1 else None
+
+
 def _verify_label(response: str, gt: Dict[str, Any]) -> Optional[bool]:
-    """Exact (case-insensitive) class-label match, e.g. WESAD 'stress', SleepEDF 'N2'."""
-    pred = extract_class_label(response)
+    """Class-label match (case-insensitive), e.g. WESAD 'stress', SleepEDF 'N2',
+    Heartbeat 'murmur'. JSON/"Final answer" first; free-text fallback when the
+    ground truth carries the class list (MAM)."""
     gold = str(gt.get("correct_answer", "")).strip()
-    if pred is None or not gold:
+    if not gold:
+        return None
+    pred = extract_class_label(response)
+    if pred is not None and gt.get("classes"):
+        # an explicit answer that is not a valid class is no answer at all
+        pred = _label_lookup(gt).get(pred.lower())
+    if pred is None and gt.get("classes"):
+        pred = extract_free_text_label(response, gt)
+    if pred is None:
         return None
     return pred.lower() == gold.lower()
 
@@ -367,6 +418,10 @@ _DETERMINISTIC = {
     # ConSensus multimodal-sensing classification (class-label answers).
     "wesad": _verify_label,
     "sleepedf": _verify_label,
+    # MAM audio diagnosis (free-text answers; class list in ground_truth).
+    "heartbeat_a": _verify_label,
+    "heartbeat_b": _verify_label,
+    "sounddr": _verify_label,
     "sleep-edf": _verify_label,
     # ClinicalAgent trial-outcome-prediction dataset (binary via probability).
     "trial_success": _verify_probability,
@@ -391,7 +446,7 @@ _DETERMINISTIC = {
 # is decisive (not None), and only fall back to the LLM judge when the
 # deterministic parser could not extract an answer at all.
 DETERMINISTIC_AUTHORITATIVE = {
-    "wesad", "sleepedf", "sleep-edf",
+    "wesad", "sleepedf", "sleep-edf", "heartbeat_a", "heartbeat_b", "sounddr",
     "trial_success", "trial-success",
     "clinical_trial_outcome", "clinical-trial-outcome",
     "clinicalagent",

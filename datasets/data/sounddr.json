@@ -1,0 +1,1502 @@
+[
+ {
+  "id": "sounddr_0000",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0000.wav",
+   "duration_s": 22.36,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T05:47:49.399Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0001",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0001.wav",
+   "duration_s": 21.25,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-06T08:02:30.972Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0002",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0002.wav",
+   "duration_s": 24.66,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-13T01:38:57.061Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0003",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0003.wav",
+   "duration_s": 26.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-21T02:36:36.607Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0004",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0004.wav",
+   "duration_s": 28.67,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-15T10:34:25.628Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0005",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0005.wav",
+   "duration_s": 22.78,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-24T02:02:35.512Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0006",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0006.wav",
+   "duration_s": 16.73,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T04:02:49.098Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0007",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0007.wav",
+   "duration_s": 23.96,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-01T04:10:03.922Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0008",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0008.wav",
+   "duration_s": 19.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-12T02:53:25.017Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0009",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0009.wav",
+   "duration_s": 28.42,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-26T14:03:00.487Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0010",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0010.wav",
+   "duration_s": 15.27,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-06T11:26:45.461Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0011",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0011.wav",
+   "duration_s": 24.15,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T05:06:03.546Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0012",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0012.wav",
+   "duration_s": 16.47,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-06T11:01:51.990Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0013",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0013.wav",
+   "duration_s": 20.05,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-05T06:43:34.696Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0014",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0014.wav",
+   "duration_s": 25.6,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-02T02:07:14.957Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0015",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0015.wav",
+   "duration_s": 26.62,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-10T08:04:12.561Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0016",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0016.wav",
+   "duration_s": 19.54,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-25T14:25:11.201Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0017",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0017.wav",
+   "duration_s": 22.19,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-07T01:57:13.328Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0018",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0018.wav",
+   "duration_s": 22.01,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-06T14:04:08.016Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0019",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0019.wav",
+   "duration_s": 26.54,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-02T14:10:18.299Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0020",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0020.wav",
+   "duration_s": 18.77,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T06:39:09.929Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0021",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0021.wav",
+   "duration_s": 16.55,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-18T00:55:01.995Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0022",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0022.wav",
+   "duration_s": 26.11,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-22T14:07:19.652Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0023",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0023.wav",
+   "duration_s": 16.3,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-23T01:24:03.319Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0024",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0024.wav",
+   "duration_s": 17.15,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-04T09:54:42.999Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0025",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0025.wav",
+   "duration_s": 24.83,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-08T07:59:28.678Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0026",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0026.wav",
+   "duration_s": 23.89,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-08T06:53:52.392Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0027",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0027.wav",
+   "duration_s": 17.92,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-11T05:52:17.124Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0028",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0028.wav",
+   "duration_s": 22.27,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T09:13:40.771Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0029",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0029.wav",
+   "duration_s": 23.55,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T05:11:53.919Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0030",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0030.wav",
+   "duration_s": 29.27,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T09:45:43.734Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0031",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0031.wav",
+   "duration_s": 18.86,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-02T03:14:10.994Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0032",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0032.wav",
+   "duration_s": 27.14,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-09T01:30:26.039Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0033",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0033.wav",
+   "duration_s": 20.65,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-26T12:10:30.990Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0034",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0034.wav",
+   "duration_s": 21.93,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-26T12:29:44.386Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0035",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0035.wav",
+   "duration_s": 27.99,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-12T13:11:55.865Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0036",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0036.wav",
+   "duration_s": 18.6,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-26T07:31:11.364Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0037",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0037.wav",
+   "duration_s": 17.66,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-15T17:58:03.119Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0038",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0038.wav",
+   "duration_s": 21.42,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-23T08:42:51.494Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0039",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0039.wav",
+   "duration_s": 27.65,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T09:17:01.581Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0040",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0040.wav",
+   "duration_s": 17.75,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-01T03:23:07.662Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0041",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0041.wav",
+   "duration_s": 23.21,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-09-15T13:57:29.159Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0042",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0042.wav",
+   "duration_s": 17.58,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T09:19:32.032Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0043",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0043.wav",
+   "duration_s": 28.07,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-09T01:13:54.086Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0044",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0044.wav",
+   "duration_s": 29.35,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-16T02:20:14.815Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0045",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0045.wav",
+   "duration_s": 29.18,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T14:24:15.994Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0046",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0046.wav",
+   "duration_s": 26.03,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-01T04:16:03.985Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0047",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0047.wav",
+   "duration_s": 20.91,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-20T16:27:48.296Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0048",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0048.wav",
+   "duration_s": 18.09,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-11T05:58:12.891Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0049",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0049.wav",
+   "duration_s": 29.44,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-09T01:24:16.846Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0050",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0050.wav",
+   "duration_s": 19.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T04:33:50.700Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0051",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0051.wav",
+   "duration_s": 24.06,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-15T11:15:08.867Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0052",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0052.wav",
+   "duration_s": 27.39,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-08-13T04:22:29.334Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0053",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0053.wav",
+   "duration_s": 29.18,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-09T01:30:45.616Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0054",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0054.wav",
+   "duration_s": 27.31,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T09:08:30.278Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0055",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0055.wav",
+   "duration_s": 23.38,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-17T02:15:44.461Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0056",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0056.wav",
+   "duration_s": 29.27,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-08T15:32:36.702Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0057",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0057.wav",
+   "duration_s": 27.65,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-07T03:33:36.101Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0058",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "no",
+  "ground_truth": {
+   "correct_answer": "no",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0058.wav",
+   "duration_s": 20.48,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/good_cough_2021-08-23T09:07:00.427Z.wav"
+  }
+ },
+ {
+  "id": "sounddr_0059",
+  "query": "This is a recording of a person coughing. Does this person currently have respiratory symptoms? Options: yes, no. Answer with one of these labels.",
+  "answer": "yes",
+  "ground_truth": {
+   "correct_answer": "yes",
+   "classes": [
+    "yes",
+    "no"
+   ],
+   "aliases": {
+    "yes": [],
+    "no": []
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/sounddr/sounddr_0059.wav",
+   "duration_s": 20.91,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Sound-Dr",
+   "source_file": "../data_mam/sounddr/cough/bad_cough_2021-09-22T06:06:35.179Z.wav"
+  }
+ }
+]

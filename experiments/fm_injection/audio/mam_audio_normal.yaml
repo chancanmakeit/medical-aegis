@@ -1,0 +1,32 @@
+# MAM (Zhou et al., ACL'25 Findings) CLEAN config -> NORMAL trajectories on audio.
+# Datasets (user decision 2026-10-20): heartbeat_b (primary), heartbeat_a, sounddr
+#   built by data_processing/audio/convert_mam_datasets.py (audio under datasets/audio/).
+# Audio backend: mimo-v2.6-flash (supports OpenAI-style input_audio). Run from the repo root:
+#   python main.py --method_name mam --experiment_config experiments/fm_injection/audio/mam_audio_normal.yaml \
+#     --dataset_file ./datasets/data/heartbeat_b.json --test_dataset_name heartbeat_b --model_name mimo-v2.6-flash --no_inject
+# model_api_config entry for MiMo should set  "extra_body": {"thinking": {"type": "disabled"}}  (or enabled).
+run_mode: "clean"
+mam_config_name: "config_audio"
+# mam_audio_model_name: "mimo-v2.6-flash"   # default: --model_name
+# mam_text_model_name:  "mimo-v2.6-flash"   # default: --model_name
+# mam_web_search: "fail"                    # fail (upstream failure path) | skip
+
+system_under_test:
+  name: "mam"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mam_wrapper.FMMAMWrapper"
+  method_config_path: "methods/mam/configs/config_audio.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "mimo-v2.6-flash"
+  model_url: "https://api.xiaomimimo.com/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+# Labels are extracted from the free-text diagnosis deterministically when the
+# text is unambiguous; otherwise the LLM judge decides.
+use_llm_judge: true
+judge_mode: "regex_first"
+
+experiment_settings:
+  max_workers: 3

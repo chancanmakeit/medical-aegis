@@ -1,0 +1,3272 @@
+[
+ {
+  "id": "heartbeat_a_0000",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0000.wav",
+   "duration_s": 7.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201103170134.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0001",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0001.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106010602.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0002",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0002.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101241433.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0003",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0003.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222221.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0004",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0004.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201102270940.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0005",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0005.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201103182227.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0006",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0006.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106101314.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0007",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0007.wav",
+   "duration_s": 7.95,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103140135.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0008",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0008.wav",
+   "duration_s": 7.86,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201102071835.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0009",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0009.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106040933.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0010",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0010.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222246.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0011",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0011.wav",
+   "duration_s": 5.97,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201106141148.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0012",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0012.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105060108.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0013",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0013.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201102241217.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0014",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0014.wav",
+   "duration_s": 7.77,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106151236.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0015",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0015.wav",
+   "duration_s": 7.5,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201103291548.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0016",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0016.wav",
+   "duration_s": 8.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201101051114.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0017",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0017.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201012172012.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0018",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0018.wav",
+   "duration_s": 8.03,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201101180902.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0019",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0019.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106221254.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0020",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0020.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222243.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0021",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0021.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106131834.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0022",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0022.wav",
+   "duration_s": 3.24,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201104270458.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0023",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0023.wav",
+   "duration_s": 7.89,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201102081321.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0024",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0024.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105190800.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0025",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0025.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106121242.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0026",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0026.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222226.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0027",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0027.wav",
+   "duration_s": 8.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201101051108.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0028",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0028.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106070537.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0029",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0029.wav",
+   "duration_s": 7.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106221418.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0030",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0030.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222258.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0031",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0031.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106041452.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0032",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0032.wav",
+   "duration_s": 0.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201104021355.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0033",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0033.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222242.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0034",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0034.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222223.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0035",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0035.wav",
+   "duration_s": 7.14,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201102081152.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0036",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0036.wav",
+   "duration_s": 4.96,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106111136.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0037",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0037.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222251.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0038",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0038.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222233.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0039",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0039.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222256.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0040",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0040.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222232.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0041",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0041.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105051017.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0042",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0042.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103101140.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0043",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0043.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222255.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0044",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0044.wav",
+   "duration_s": 4.83,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201104291843.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0045",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0045.wav",
+   "duration_s": 8.03,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101152255.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0046",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0046.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103151912.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0047",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0047.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222237.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0048",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0048.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106161019.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0049",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0049.wav",
+   "duration_s": 6.17,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101160808.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0050",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0050.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101241423.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0051",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0051.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201108011115.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0052",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0052.wav",
+   "duration_s": 8.01,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103140822.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0053",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0053.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222224.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0054",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0054.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222227.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0055",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0055.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201103200218.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0056",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0056.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201103150114.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0057",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0057.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201108011114.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0058",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0058.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201104241315.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0059",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0059.wav",
+   "duration_s": 8.01,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103090635.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0060",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0060.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222245.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0061",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0061.wav",
+   "duration_s": 8.03,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103170121.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0062",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0062.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106101955.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0063",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0063.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101091153.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0064",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0064.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106190520.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0065",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0065.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201101151127.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0066",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0066.wav",
+   "duration_s": 8.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101070953.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0067",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0067.wav",
+   "duration_s": 0.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201104021355.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0068",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0068.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201104122156.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0069",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0069.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105280851.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0070",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0070.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106131835.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0071",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0071.wav",
+   "duration_s": 6.28,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201102260502.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0072",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0072.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106161016.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0073",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0073.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106161219.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0074",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0074.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106221450.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0075",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0075.wav",
+   "duration_s": 8.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201101051104.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0076",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0076.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106010559.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0077",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0077.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106110909.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0078",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0078.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106141701.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0079",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0079.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105041959.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0080",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0080.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201102201230.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0081",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0081.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201105011626.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0082",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0082.wav",
+   "duration_s": 3.46,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103221214.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0083",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0083.wav",
+   "duration_s": 1.95,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201104140118.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0084",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0084.wav",
+   "duration_s": 5.96,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101161027.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0085",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0085.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106212112.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0086",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0086.wav",
+   "duration_s": 8.01,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201102070251.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0087",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0087.wav",
+   "duration_s": 8.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201101070538.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0088",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0088.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106050353.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0089",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0089.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106021541.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0090",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0090.wav",
+   "duration_s": 8.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201105021654.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0091",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0091.wav",
+   "duration_s": 5.75,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106141148.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0092",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0092.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201108011118.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0093",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0093.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222231.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0094",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0094.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106211041.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0095",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0095.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201103140132.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0096",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0096.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222252.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0097",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0097.wav",
+   "duration_s": 5.85,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201106210943.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0098",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0098.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106040722.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0099",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0099.wav",
+   "duration_s": 7.54,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201105151450.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0100",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0100.wav",
+   "duration_s": 6.82,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201102051443.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0101",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0101.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201106121445.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0102",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0102.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201105021804.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0103",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0103.wav",
+   "duration_s": 7.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201108222253.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0104",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0104.wav",
+   "duration_s": 7.64,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_normal/201104141251.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0105",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0105.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_murmur/201102052338.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0106",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "artifact",
+  "ground_truth": {
+   "correct_answer": "artifact",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0106.wav",
+   "duration_s": 9.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_artifact/201105061143.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0107",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0107.wav",
+   "duration_s": 7.02,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201101160804.wav"
+  }
+ },
+ {
+  "id": "heartbeat_a_0108",
+  "query": "This is a heart sound recording captured with a smartphone stethoscope app. Which category does it belong to? Options: normal, murmur, extra heart sound, artifact. Answer with one of these labels.",
+  "answer": "extra heart sound",
+  "ground_truth": {
+   "correct_answer": "extra heart sound",
+   "classes": [
+    "normal",
+    "murmur",
+    "extra heart sound",
+    "artifact"
+   ],
+   "aliases": {
+    "extra heart sound": [
+     "extrahls",
+     "extra heart sounds",
+     "gallop"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_a/heartbeat_a_0108.wav",
+   "duration_s": 1.65,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Atraining_extrahls/201104270459.wav"
+  }
+ }
+]

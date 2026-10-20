@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（第 6 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
+> 最后更新：2026-10-20（第 7 轮）。每轮覆盖更新。新会话请按顺序读：本文件 → 最新的 `docs/discussion_log_vN.md` → `docs/HANDOFF_prev_session.md`（上一个代码会话的完整技术交接，包括文件地图、框架细节和典型命令）。
 
 ## 0. 项目一句话
 把 AEGIS（多智能体故障注入 + 失败归因，arxiv 2509.14295，ICLR 2026）扩展到**医学**和 **NER**：新增 3 个框架（MDAgents / ClinicalAgent / CMAS），4 个新数据集（MedXpertQA-Text/MM、MedConceptsQA、trial_success、wikigold），支持多模态。在注入故障的情况下生成错误轨迹，同时生成干净的正常轨迹，两者配对用于失败归因研究。
@@ -28,6 +28,10 @@
 - 用户的本地环境是 Windows，GBK locale，项目路径 `F:\AEGIS-main\`。旧会话用的模型是 `gemini-2.5-flash-lite` 和 `grok-4-1-fast-reasoning`（走 qingyuntop 代理）。
 
 ## 4. 待决项（接力点）
+- ✅ **第 7 轮：probability 注入已修复**（ClinicalAgent；修复前后对比见 `discussion_log_v7.md`），ner/cmas 按用户要求未改。**待用户决定：旧的 `direct_prepend` 注入数据是重跑还是过滤。**
+- ✅ **第 7 轮：MAM 已集成**（`methods/mam`，`fm_mam_wrapper.py`，`experiments/fm_injection/audio/mam_audio_*.yaml`）。数据集 `datasets/data/{heartbeat_b,heartbeat_a,sounddr}.json`。音频在 `datasets/audio/`，**没有提交到仓库**，需要用 `data_processing/audio/convert_mam_datasets.py` 从 HF 的 Heartbeat 和 Sound-Dr 重新生成（Sound-Dr 先用 `--list_only` 列出要下载的 60 个咳嗽文件）。**必须在仓库根目录下运行**，因为音频路径是相对路径。
+  - MiMo 的 model_api_config 条目示例：`{"model_name": "mimo-v2.6-flash", "model_url": "https://api.xiaomimimo.com/v1", "api_key": "...", "extra_body": {"thinking": {"type": "disabled"}}}`。
+- ⚠️ **待办**：mdagents、clinical_agent、cmas 三个旧 wrapper 仍会把注入文本记录进 `input_messages`（问题 A），生成新数据前需要迁移到 `StructuredFMWrapper`。
 - ✅ **第 6 轮：ConSensus 和它的 4 个多智能体基线已集成**，方法名为 `consensus`、`consensus_debate`、`consensus_mad`、`consensus_reconcile`、`consensus_cmd`。数据集是 `datasets/data/{sleepedf,wesad}.json`。离线回归全部通过，详见 `discussion_log_v6.md`。
   - **运行**：`python main.py --method_name <m> --experiment_config experiments/fm_injection/sensing/<m>_sensing_{normal,inject}.yaml --dataset_file datasets/data/sleepedf.json --test_dataset_name sleepedf ...`。注意这里用 `--test_dataset_name` 决定 verifier，YAML 里不写 benchmark_name；consensus 本体的 YAML 文件名是 `consensus_sensing_*.yaml`。
   - **重建数据**：从 HF `UUUooUUU/ConSensus` 下载（脚本见本轮讨论记录），运行上游仓库 `nokia/multi-agent-collaboration-for-multimodal-sensing` 里的 `preprocess/preprocess_{WESAD,SleepEDF}.py` 和 `split.py --test_per_class 30 --examples_per_class 1`，再运行 `data_processing/sensing/convert_consensus_datasets.py`。

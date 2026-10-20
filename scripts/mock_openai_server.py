@@ -20,6 +20,13 @@ import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 LOCK = threading.Lock()
+COUNTS = {}
+
+
+def _bump(key):
+    with LOCK:
+        COUNTS[key] = COUNTS.get(key, 0) + 1
+        return COUNTS[key]
 
 
 def _text(content):
@@ -54,6 +61,37 @@ def reply_for(messages):
         return "The scenario concerns a femur fracture code. The laterality is right. Option D fits best."
     if "scrutinize each option individually" in user:
         return "Options A-C mismatch displacement or laterality. Option D is plausible."
+    # --- MAM (audio) ------------------------------------------------------------
+    # Counters make the first Sonographer discussion fail the quality check
+    # (exercises the re-discussion branch) and the Nurse's first vote "no"
+    # (exercises a second meeting round).
+    if "What kind of audio is this? Cardiovascular, Respiratory" in user:
+        return "Cardiovascular"
+    if "generate a system prompt that assigns tasks to relevant medical roles" in user:
+        return ("**Specialist Doctor** (Cardiologist):\n- Auscultation review: identify murmurs\n"
+                "**Radiologic Technologist** (Sonographer):\n- Echo correlation: check valve flow\n"
+                "**Nurse** (Cardiac Nurse):\n- Vital signs: record heart rate and rhythm")
+    if "Please describe this audio" in user:
+        return "A short heart sound recording with a regular lub-dub rhythm."
+    if "Please thoughtfully express your views for the following question" in user:
+        who = re.search(r"You are a (.*?), responsible", user)
+        who = who.group(1) if who else "role"
+        n = _bump("discuss:" + who)
+        if "Sonographer" in who and n == 1:
+            return f"DRAFT ({who}) incomplete notes."
+        return f"[take {n} of {who}] **Conclusion**: systolic murmur suspected. Answer: murmur."
+    if "Is there any medical reasoning errors" in user:
+        return "yes" if "DRAFT" in user else "no"
+    if "serving as the moderator of this meeting" in user:
+        return f"[summary {_bump('summary')}] **Conclusions**:\n- The panel leans towards murmur."
+    if "Do you agree with the summery above" in user:
+        who = re.search(r"You are a (.*?), responsible", user)
+        who = who.group(1) if who else "role"
+        return "no" if ("Nurse" in who and _bump("vote:" + who) == 1) else "yes"
+    if "please provide answer to the following question" in user:
+        return "Based on the meeting, the recording shows a systolic murmur. Final answer: murmur"
+    if "check whether the answer to this question is reasonable" in user:
+        return "yes"
     # --- ClinicalAgent ------------------------------------------------------
     for tag, val in (("safety_score", "0.3"), ("efficacy_score", "0.4"), ("enrollment_score", "0.2")):
         if f"<{tag}>0.X</{tag}>" in user:

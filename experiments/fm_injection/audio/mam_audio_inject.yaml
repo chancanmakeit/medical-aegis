@@ -1,0 +1,48 @@
+# MAM INJECTION config -> ERROR trajectories on audio. See mam_audio_normal.yaml.
+run_mode: "inject"
+injection_method: "direct_prepend"
+mam_config_name: "config_audio"
+inject_every_invocation: false
+
+system_under_test:
+  name: "mam"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mam_wrapper.FMMAMWrapper"
+  method_config_path: "methods/mam/configs/config_audio.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "mimo-v2.6-flash"
+  model_url: "https://api.xiaomimimo.com/v1"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+use_llm_judge: true
+judge_mode: "regex_first"
+
+# Structural sites: TypeClassifier(0) RoleGenerator(0) AudioDescriber(0)
+#   Specialist(0..2) phase discussion|vote, round 1..3
+#   Moderator(0)     phase quality_check|summary, round 1..3
+#   Diagnostician(0) Reviewer(0)
+injection_plan:
+  targets:
+    - role: "Specialist"
+      role_index: 0
+      phase: "discussion"
+      round: 1
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "prompt_injection"
+    - role: "Moderator"
+      role_index: 0
+      phase: "summary"
+      round: 1
+      attack_spec:
+        fm_error_type: "FM-2.3"
+        injection_strategy: "response_corruption"
+
+experiment_settings:
+  max_workers: 3
+
+generate_injection_descriptions: false
+task_type: "classification"
+prompt_wrapper_style: "direct"

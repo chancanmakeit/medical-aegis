@@ -45,6 +45,50 @@ def _image_to_openai_part(ref) -> dict:
     return {"type": "image_url", "image_url": {"url": f"data:{mime};base64,{b64}"}}
 
 
+def _audio_to_openai_part(ref, style="data_uri"):
+    """One audio ref -> an OpenAI-compatible `input_audio` content part.
+
+    `ref` is a local path, an http(s) URL, or a data URI. style:
+      - "data_uri" (default; Xiaomi MiMo docs): input_audio.data = "data:audio/<fmt>;base64,..."
+                   or the URL itself, plus input_audio.format
+      - "openai"  : input_audio.data = raw base64, input_audio.format = "<fmt>"
+    """
+    import base64, mimetypes
+    if isinstance(ref, str) and (ref.startswith("http://") or ref.startswith("https://") or ref.startswith("data:")):
+        fmt = "wav"
+        if ref.startswith("data:audio/"):
+            fmt = ref[len("data:audio/"):].split(";", 1)[0] or "wav"
+        return {"type": "input_audio", "input_audio": {"data": ref, "format": fmt}}
+    path = os.path.abspath(ref)
+    fmt = os.path.splitext(path)[1].lstrip(".").lower() or "wav"
+    with open(path, "rb") as f:
+        b64 = base64.b64encode(f.read()).decode("ascii")
+    if style == "openai":
+        return {"type": "input_audio", "input_audio": {"data": b64, "format": fmt}}
+    mime = mimetypes.types_map.get("." + fmt, f"audio/{fmt}")
+    if fmt == "wav":
+        mime = "audio/wav"
+    return {"type": "input_audio", "input_audio": {"data": f"data:{mime};base64,{b64}", "format": fmt}}
+
+
+def _attach_audios_to_messages(messages, audios, style="data_uri"):
+    """Like _attach_images_to_messages but for audio: the LAST user message gets
+    the audio parts placed BEFORE its text (Qwen-Audio / MAM order: audio, text)."""
+    if not audios:
+        return messages
+    parts = [_audio_to_openai_part(a, style) for a in audios]
+    new_msgs = [dict(m) for m in messages]
+    idx = next((i for i in range(len(new_msgs) - 1, -1, -1) if new_msgs[i].get("role") == "user"), None)
+    if idx is None:
+        new_msgs.append({"role": "user", "content": parts})
+        return new_msgs
+    content = new_msgs[idx].get("content", "")
+    text_parts = [{"type": "text", "text": content}] if isinstance(content, str) and content else (
+        list(content) if isinstance(content, list) else [])
+    new_msgs[idx]["content"] = parts + text_parts
+    return new_msgs
+
+
 def _attach_images_to_messages(messages, images):
     """Return a NEW messages list where the LAST user message carries the given
     images (in addition to its existing text). Other messages are untouched.
@@ -117,7 +161,7 @@ class MAS():
 
     @retry(wait=wait_exponential(multiplier=1, min=4, max=10), stop=stop_after_attempt(_LLM_RETRIES), retry_error_callback=handle_retry_error)
     def call_llm(self, prompt=None, system_prompt=None, messages=None,
-                 model_name=None, temperature=None, images=None, **kwargs):
+                 model_name=None, temperature=None, images=None, audios=None, **kwargs):
         """Make a single LLM call.
 
         Args:
@@ -157,6 +201,10 @@ class MAS():
         # ---- Multimodal: attach images to the last user message ----------- #
         if images:
             messages = _attach_images_to_messages(messages, images)
+        # ---- Audio: attach input_audio parts to the last user message ---- #
+        if audios:
+            messages = _attach_audios_to_messages(
+                messages, audios, style=model_dict.get("audio_input_style", "data_uri"))
         # ------------------------------------------------------------------- #
 
         model_temperature = temperature if temperature is not None else self.model_temperature
@@ -173,6 +221,10 @@ class MAS():
             request_dict["temperature"] = model_temperature
         if reasoning_effort is not None:
             request_dict["reasoning_effort"] = reasoning_effort
+        # Provider-specific request fields from model_api_config, e.g. MiMo's
+        # {"thinking": {"type": "disabled"}} or Qwen's {"enable_thinking": false}.
+        if model_dict.get("extra_body"):
+            request_dict["extra_body"] = model_dict["extra_body"]
 
         # 根据是否有 base_url 来决定初始化方式
         if model_url and model_url.strip():

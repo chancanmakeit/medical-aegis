@@ -159,6 +159,18 @@ FRAMEWORK_AGENT_POOL: Dict[str, List[Dict]] = {
         [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)]
         + [{"role": "Judge", "role_index": 0, "agent_key": "Judge"}]
     ),
+    # MAM (audio): Specialist i exists only if the GP's role text yields >= i+1
+    # roles (upstream keeps <= 3); a random Specialist target fires on its
+    # first call (round-1 discussion). Reviewer is left out: its output does
+    # not feed the answer. Specialist discussion and vote share an agent_key.
+    "mam": (
+        [{"role": "TypeClassifier", "role_index": 0, "agent_key": "TypeClassifier"},
+         {"role": "RoleGenerator",  "role_index": 0, "agent_key": "RoleGenerator"},
+         {"role": "AudioDescriber", "role_index": 0, "agent_key": "AudioDescriber"}]
+        + [{"role": "Specialist", "role_index": i, "agent_key": f"Specialist_{i}"} for i in range(3)]
+        + [{"role": "Moderator",     "role_index": 0, "agent_key": "Moderator"},
+           {"role": "Diagnostician", "role_index": 0, "agent_key": "Diagnostician"}]
+    ),
     # CMAS: 3-agent per-sample zero-shot NER pipeline (self-annotator is offline).
     # All singletons (idx=0), no runtime role renaming.
     "cmas": [
@@ -189,6 +201,7 @@ BASE_YAML_TEMPLATE = {
     "cmas": "experiments/fm_injection/ner/cmas_ner_inject.yaml",
     "medagents_mc": "experiments/fm_injection/medical/medagents_mc_medical_inject.yaml",
     "consensus": "experiments/fm_injection/sensing/consensus_sensing_inject.yaml",
+    "mam": "experiments/fm_injection/audio/mam_audio_inject.yaml",
     "consensus_debate": "experiments/fm_injection/sensing/consensus_debate_sensing_inject.yaml",
     "consensus_mad": "experiments/fm_injection/sensing/consensus_mad_sensing_inject.yaml",
     "consensus_reconcile": "experiments/fm_injection/sensing/consensus_reconcile_sensing_inject.yaml",

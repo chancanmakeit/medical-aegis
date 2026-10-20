@@ -253,8 +253,11 @@ class StructuredFMWrapper(SystemWrapper):
             self._stop_llm_capture(self.mas)
 
         raw_history = list(getattr(self.mas, "conversation_history", []))
-        alignment_ok = (len(raw_history) == len(clean_messages_by_call) == len(llm_capture))
-        for i, h in enumerate(raw_history):
+        # Tool entries (`is_tool`, e.g. MAM's web search) are not LLM calls:
+        # exclude them from the call <-> history alignment.
+        llm_history = [h for h in raw_history if not h.get("is_tool")]
+        alignment_ok = (len(llm_history) == len(clean_messages_by_call) == len(llm_capture))
+        for i, h in enumerate(llm_history):
             received = llm_capture[i].get("input_messages") if i < len(llm_capture) else None
             clean = clean_messages_by_call.get(i)
             h["input_messages"] = clean if clean is not None else received
@@ -267,7 +270,7 @@ class StructuredFMWrapper(SystemWrapper):
                 h["agent_name"] = h["role"]
         if not alignment_ok:
             print(f"[{type(self).__name__}] WARNING: history/capture misalignment "
-                  f"({len(raw_history)} history, {len(clean_messages_by_call)} calls, "
+                  f"({len(llm_history)} LLM history entries, {len(clean_messages_by_call)} calls, "
                   f"{len(llm_capture)} captures)")
 
         log = {

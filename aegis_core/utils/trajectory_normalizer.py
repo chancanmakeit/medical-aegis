@@ -87,7 +87,8 @@ def _normalize_entry(framework: str, e: Dict[str, Any], step: int,
             out[k] = e[k]
     # Read-set / event structure recorded at prompt-assembly time by wrappers
     # that support it (medagents_mc so far). Passed through unchanged.
-    for k in ("step_id", "sources", "source_how", "round", "event_ids", "agent_label"):
+    for k in ("step_id", "agent_id", "sources", "source_how", "round", "event_ids", "agent_label",
+              "observations", "structured", "is_tool", "tool_calls", "stub"):
         if k in e:
             out[k] = e[k]
     return out

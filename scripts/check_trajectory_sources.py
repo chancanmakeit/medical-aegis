@@ -9,7 +9,10 @@ Heuristic matching per source output (any one is enough):
   - JSON outputs ({"REASON": ...}): the REASON text (frameworks re-serialise
     parsed JSON before passing it on, so the raw prefix need not survive);
   - otherwise: the first 40 chars after an optional "Total Analysis:" header;
-  - a source the step marks as source_how == "structured_field": its ANSWER value.
+  - source_how "structured_field": its ANSWER value; without an ANSWER (e.g. a
+    vote that only enters as a count) it is counted as derived_unverifiable;
+  - source_how "excerpt": any non-trivial line of the source output;
+  - tool steps (is_tool): checked against their tool_calls arguments.
 Short outputs (< 25 chars, e.g. "YES") are skipped by the unlisted-read check.
 """
 import json
@@ -39,7 +42,7 @@ def probes(step):
 
 
 def main(path):
-    checked = bad = missing = 0
+    checked = bad = missing = derived = 0
     for rec in map(json.loads, open(path)):
         log = rec.get("injection_log")
         if not log:
@@ -47,18 +50,28 @@ def main(path):
         h = log["conversation_history"]
         by_id = {s["step_id"]: s for s in h}
         for s in h:
-            inp = txt(s["input_messages"])
+            # tool steps have no chat input: check against their call arguments
+            inp = json.dumps(s.get("tool_calls"), ensure_ascii=False) if s.get("is_tool") else txt(s["input_messages"])
             how = s.get("source_how", {})
             for src in s.get("sources", []):
                 checked += 1
                 pr = probes(by_id[src])
                 if how.get(src) == "structured_field":
-                    # only a derived field (e.g. the ANSWER, as a count line) enters the prompt
+                    # only a derived field enters the prompt: an ANSWER (count line)
+                    # if the source has one; otherwise (e.g. vote counts) unverifiable
                     m = re.findall(r'"ANSWER"\s*:\s*"([^"]*)"', by_id[src].get("content") or "")
-                    pr = m[-1:] if m else pr
+                    if not m:
+                        derived += 1
+                        continue
+                    pr = m[-1:]
+                elif how.get(src) == "excerpt":
+                    # a parsed part of the output: any non-trivial line of it
+                    pr = [ln.strip() for ln in (by_id[src].get("content") or "").splitlines() if len(ln.strip()) >= 12]
                 if not any(p in inp for p in pr):
                     bad += 1
                     print("SOURCE NOT FOUND", rec["id"], s["step_id"], s["agent_name"], "<-", src)
+            if s.get("is_tool"):
+                continue
             for p in h:
                 if p["step_id"] == s["step_id"]:
                     break
@@ -70,7 +83,7 @@ def main(path):
                         continue  # identical text produced by a listed source
                     missing += 1
                     print("UNLISTED READ", rec["id"], s["step_id"], s["agent_name"], "reads", p["step_id"], p["agent_name"])
-    print(f"checked={checked} not_found={bad} unlisted={missing}")
+    print(f"checked={checked} not_found={bad} unlisted={missing} derived_unverifiable={derived}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,2612 @@
+[
+ {
+  "id": "heartbeat_b_0000",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0000.wav",
+   "duration_s": 4.7,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/213_1308245263936_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0001",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0001.wav",
+   "duration_s": 4.64,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/242_1309197394064_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0002",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0002.wav",
+   "duration_s": 1.47,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/176_1307988171173_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0003",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0003.wav",
+   "duration_s": 4.58,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/217_1308246111629_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0004",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0004.wav",
+   "duration_s": 3.56,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/249_1309202052376_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0005",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0005.wav",
+   "duration_s": 3.22,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/292_1311185449649_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0006",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0006.wav",
+   "duration_s": 4.88,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/275_1310990852160_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0007",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0007.wav",
+   "duration_s": 4.13,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/215_1308245664733_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0008",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0008.wav",
+   "duration_s": 5.81,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/107_1305654946865_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0009",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0009.wav",
+   "duration_s": 5.29,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/207_1308159792607_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0010",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0010.wav",
+   "duration_s": 2.56,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/188_1308074301731_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0011",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0011.wav",
+   "duration_s": 4.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/148_1306768801551_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0012",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0012.wav",
+   "duration_s": 2.84,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/211_1308163238707_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0013",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0013.wav",
+   "duration_s": 5.64,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/209_1308162216750_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0014",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0014.wav",
+   "duration_s": 13.13,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/184_1308073010307_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0015",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0015.wav",
+   "duration_s": 2.63,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/256_1309351470137_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0016",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0016.wav",
+   "duration_s": 2.14,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/244_1309198148498_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0017",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0017.wav",
+   "duration_s": 3.16,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/262_1309355283807_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0018",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0018.wav",
+   "duration_s": 11.31,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/151_1306779785624_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0019",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0019.wav",
+   "duration_s": 1.81,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/209_1308162216750_A1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0020",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0020.wav",
+   "duration_s": 2.5,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/216_1308245839516_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0021",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0021.wav",
+   "duration_s": 9.69,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/210_1308162935880_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0022",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0022.wav",
+   "duration_s": 1.23,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/134_1306428161797_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0023",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0023.wav",
+   "duration_s": 6.64,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/193_1308078104592_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0024",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0024.wav",
+   "duration_s": 7.12,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/248_1309201683806_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0025",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0025.wav",
+   "duration_s": 1.97,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/274_1311075637574_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0026",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0026.wav",
+   "duration_s": 2.56,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/134_1306428161797_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0027",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0027.wav",
+   "duration_s": 3.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/274_1311075637574_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0028",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0028.wav",
+   "duration_s": 2.73,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/278_1311163365896_A1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0029",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0029.wav",
+   "duration_s": 12.44,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/179_1307990076841_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0030",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0030.wav",
+   "duration_s": 11.35,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/240_1309196119795_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0031",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0031.wav",
+   "duration_s": 11.59,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/112_1306243000964_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0032",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0032.wav",
+   "duration_s": 2.31,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/286_1311170606028_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0033",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0033.wav",
+   "duration_s": 2.72,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/195_1308140095331_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0034",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0034.wav",
+   "duration_s": 4.36,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/204_1308159229275_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0035",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0035.wav",
+   "duration_s": 4.31,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/183_1308072703477_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0036",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0036.wav",
+   "duration_s": 2.05,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/245_1309200438094_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0037",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0037.wav",
+   "duration_s": 1.87,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/190_1308076920011_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0038",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0038.wav",
+   "duration_s": 10.47,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/197_1308141235553_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0039",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0039.wav",
+   "duration_s": 24.16,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/116_1306258689913_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0040",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0040.wav",
+   "duration_s": 5.34,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/144_1306522408528_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0041",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0041.wav",
+   "duration_s": 6.22,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/276_1311162716489_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0042",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0042.wav",
+   "duration_s": 8.62,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/116_1306258689913_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0043",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0043.wav",
+   "duration_s": 2.39,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/154_1306935608852_D2.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0044",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0044.wav",
+   "duration_s": 9.85,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/248_1309201683806_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0045",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0045.wav",
+   "duration_s": 3.62,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/162_1307101835989_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0046",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0046.wav",
+   "duration_s": 4.1,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/265_1309367698923_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0047",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0047.wav",
+   "duration_s": 16.96,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/160_1307100683334_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0048",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0048.wav",
+   "duration_s": 5.98,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/140_1306519735121_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0049",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0049.wav",
+   "duration_s": 8.05,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/235_1308749032454_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0050",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0050.wav",
+   "duration_s": 1.87,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/215_1308245664733_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0051",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0051.wav",
+   "duration_s": 8.46,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/163_1307104470471_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0052",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0052.wav",
+   "duration_s": 1.73,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/175_1307987962616_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0053",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0053.wav",
+   "duration_s": 12.36,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/150_1306776340746_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0054",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0054.wav",
+   "duration_s": 6.99,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/207_1308159792607_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0055",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0055.wav",
+   "duration_s": 1.38,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/133_1306759619127_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0056",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0056.wav",
+   "duration_s": 6.38,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/242_1309197394064_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0057",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0057.wav",
+   "duration_s": 8.94,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/294_1311681084248_D1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0058",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0058.wav",
+   "duration_s": 2.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/154_1306935608852_A1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0059",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0059.wav",
+   "duration_s": 2.59,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/154_1306935608852_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0060",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0060.wav",
+   "duration_s": 5.48,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/240_1309201366049_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0061",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0061.wav",
+   "duration_s": 2.08,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/202_1308145175747_C2.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0062",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0062.wav",
+   "duration_s": 2.9,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/173_1307973611151_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0063",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0063.wav",
+   "duration_s": 2.79,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/171_1307971016233_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0064",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0064.wav",
+   "duration_s": 7.0,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/240_1309196119795_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0065",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0065.wav",
+   "duration_s": 4.48,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/207_1308159792607_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0066",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0066.wav",
+   "duration_s": 13.38,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/184_1308073010307_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0067",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0067.wav",
+   "duration_s": 5.57,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/122_1306325762831_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0068",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0068.wav",
+   "duration_s": 10.25,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/281_1311165683454_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0069",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0069.wav",
+   "duration_s": 8.58,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/287_1311170903290_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0070",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0070.wav",
+   "duration_s": 3.76,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/129_1306344506305_D1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0071",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0071.wav",
+   "duration_s": 3.6,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/224_1308337157445_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0072",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0072.wav",
+   "duration_s": 2.22,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/175_1307987962616_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0073",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0073.wav",
+   "duration_s": 5.86,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/194_1308139824187_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0074",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0074.wav",
+   "duration_s": 5.19,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/261_1309353556003_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0075",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0075.wav",
+   "duration_s": 9.78,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/146_1306778707532_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0076",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0076.wav",
+   "duration_s": 6.73,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/286_1311170606028_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0077",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0077.wav",
+   "duration_s": 2.75,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/193_1308078104592_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0078",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0078.wav",
+   "duration_s": 5.12,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/198_1308141739338_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0079",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0079.wav",
+   "duration_s": 5.41,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/300_1311772096120_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0080",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0080.wav",
+   "duration_s": 12.83,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/164_1307106095995_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0081",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0081.wav",
+   "duration_s": 1.62,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/230_1308595300880_B.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0082",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0082.wav",
+   "duration_s": 4.34,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/203_1308162026258_C1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0083",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0083.wav",
+   "duration_s": 11.01,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/281_1311165683454_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0084",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0084.wav",
+   "duration_s": 3.28,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/128_1306344005749_D.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0085",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0085.wav",
+   "duration_s": 2.38,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/106_1306776721273_C2.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0086",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0086.wav",
+   "duration_s": 3.61,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/237_1308750231222_C.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0087",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "murmur",
+  "ground_truth": {
+   "correct_answer": "murmur",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0087.wav",
+   "duration_s": 13.81,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_murmur/162_1307101835989_A.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0088",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "extrasystole",
+  "ground_truth": {
+   "correct_answer": "extrasystole",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0088.wav",
+   "duration_s": 3.35,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Btraining_extrastole/144_1306522408528_B1.wav"
+  }
+ },
+ {
+  "id": "heartbeat_b_0089",
+  "query": "This is a heart sound recording captured with a digital stethoscope. Which category does it belong to? Options: normal, murmur, extrasystole. Answer with one of these labels.",
+  "answer": "normal",
+  "ground_truth": {
+   "correct_answer": "normal",
+   "classes": [
+    "normal",
+    "murmur",
+    "extrasystole"
+   ],
+   "aliases": {
+    "extrasystole": [
+     "extrastole",
+     "extra systole",
+     "premature beat"
+    ]
+   }
+  },
+  "audio": {
+   "path": "datasets/audio/heartbeat_b/heartbeat_b_0089.wav",
+   "duration_s": 3.09,
+   "sample_rate": 16000
+  },
+  "provenance": {
+   "source": "Heartbeat (PASCAL CHSC2011)",
+   "source_file": "../data_mam/heartbeat_raw/Training B Normal/180_1307990956284_A.wav"
+  }
+ }
+]

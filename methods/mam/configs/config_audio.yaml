@@ -1,0 +1,8 @@
+# MAM (Zhou et al., ACL'25 Findings) for audio diagnosis.
+# Models are keys of model_api_config; null -> the run's --model_name.
+audio_model_name: null      # user decision 2026-10-20: mimo-v2.6-flash
+text_model_name: null
+max_rounds: 3               # upstream discussion_and_voting max_rounds
+web_search: "fail"          # fail: upstream failure path (describe call + empty search); skip: drop step 4
+use_memory: false           # upstream cross-sample history; off to keep samples independent
+use_original_max_tokens: false
