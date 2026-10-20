@@ -14,6 +14,8 @@ from .self_consistency import SelfConsistency
 from .mav import MAV_GPQA, MAV_HumanEval, MAV_Main, MAV_MATH, MAV_MMLU
 from .mdagents import MDAgents_Main
 from .medagents_mc import MedAgentsMC_Main
+from .consensus import ConSensus_Main
+from .consensus_baselines import SensingDebate_Main, SensingMAD_Main, SensingReconcile_Main, SensingCMD_Main
 from .clinical_agent import ClinicalAgent_Main
 from .cmas import CMAS_Main
 
@@ -46,6 +48,11 @@ method2class = {
     "mav_mmlu": MAV_MMLU,
     "mdagents": MDAgents_Main,
     "medagents_mc": MedAgentsMC_Main,
+    "consensus": ConSensus_Main,
+    "consensus_debate": SensingDebate_Main,
+    "consensus_mad": SensingMAD_Main,
+    "consensus_reconcile": SensingReconcile_Main,
+    "consensus_cmd": SensingCMD_Main,
     "clinical_agent": ClinicalAgent_Main,
     "clinicalagent": ClinicalAgent_Main,
     "cmas": CMAS_Main

@@ -29,14 +29,20 @@ def write_to_jsonl(lock, file_name, data):
             f.write('\n')
 
 def reserve_unprocessed_queries(output_path, test_dataset):
-    processed_queries = set()
+    # Resume key: the sample `id` when present, else the query text. Keying on
+    # the query alone silently skips every sample that shares a query with an
+    # already-processed one (e.g. ConSensus samples all share the task text,
+    # and repeated runs of the same question share everything but the id).
+    def _key(sample):
+        return ("id", sample["id"]) if sample.get("id") is not None else ("query", sample.get("query"))
+
+    processed = set()
     if os.path.exists(output_path):
         with open(output_path, "r", encoding="utf-8") as f:
             for line in f:
-                infered_sample = json.loads(line)
-                processed_queries.add(infered_sample["query"])
+                processed.add(_key(json.loads(line)))
 
-    test_dataset = [sample for sample in test_dataset if sample["query"] not in processed_queries]
+    test_dataset = [sample for sample in test_dataset if _key(sample) not in processed]
     return test_dataset
 
 def retry_on_exception(retries=3, delay=2, backoff=2, exceptions_to_catch=None):

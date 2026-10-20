@@ -53,6 +53,47 @@ def reply_for(messages):
         return "The scenario concerns a femur fracture code. The laterality is right. Option D fits best."
     if "scrutinize each option individually" in user:
         return "Options A-C mismatch displacement or laterality. Option D is plausible."
+    # --- ConSensus (consensus + baselines) ---------------------------------
+    if "Failed to parse the JSON from the previous response" in user:
+        return '{"REASON": "Retry: spindle-like activity and low EMG.", "ANSWER": "N2"}'
+    if "You have received sensor features from" in user:
+        # EMG agent breaks the JSON format on its first turn -> exercises retry.
+        if "EMG" in system and len(messages) <= 2:
+            return "I think it is N2 because the EMG is low."
+        ans = "N3" if "EEG-Pz-Oz" in system else "N2"
+        return '{\n  "REASON": "Features resemble the N2 example.",\n  "ANSWER": "%s"\n}' % ans
+    m = re.search(r"You are on the side that the correct answer is (\S+) which", user)
+    if m:
+        return '{"REASON": "Majority is consistent; dissenting agents are noisy.", "ANSWER": "%s"}' % m.group(1)
+    if "analyze the reasonings and answers and provide a final reasoned answer" in user:
+        return '{"REASON": "Most modalities indicate N2.", "ANSWER": "N2"}'
+    if "determine the responses from the fusion agents" in user:
+        return '{"REASON": "Both fusion agents agree on N2.", "ANSWER": "N2"}'
+    # --- generic JSON template filler (any "strict JSON format" request) ----
+    # Fills every "FIELD": "<...>" placeholder in the requested template;
+    # ANSWER-like fields get the first class of "<Answer among [...]>" (or a
+    # literal value already present in the template). Lets new sensing
+    # baselines run under the mock without per-framework rules.
+    tmpl = re.search(r"strict JSON format:\s*(\{.*?\n\})", user, re.DOTALL)
+    if tmpl:
+        fields = re.findall(r'"([A-Z_]+)"\s*:\s*"([^"]*)"', tmpl.group(1))
+        out = {}
+        for k, v in fields:
+            if not (v.startswith("<") and v.endswith(">")):
+                out[k] = v                      # literal (e.g. a fixed majority answer)
+                continue
+            cls = re.search(r"among \[([^\]]*)\]", v)
+            if cls:
+                first = [c.strip().strip("'\"") for c in cls.group(1).split(",")][0]
+                out[k] = first
+            elif any(w in v.lower() for w in ("confidence", "score")):
+                out[k] = "0.8"
+            elif any(w in v.lower() for w in ("yes", "no", "agree")):
+                out[k] = "yes"
+            else:
+                out[k] = f"mock {k.lower()} text for this turn."
+        if out:
+            return json.dumps(out)
     # --- generic (LLM judge, describers, ...) ------------------------------
     if re.search(r"\bCORRECT\b|\bINCORRECT\b", user):
         return "CORRECT"

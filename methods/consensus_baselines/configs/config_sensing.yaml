@@ -1,0 +1,3 @@
+# ConSensus (Yoon et al., ACL'26 Findings). No method-level knobs: modalities,
+# classes and task text come from each sample's info.json (dataset-defined).
+{}

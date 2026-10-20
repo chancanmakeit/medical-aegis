@@ -163,7 +163,11 @@ async def process_sample(args, sample: dict, lock: threading.Lock, output_path: 
         task = Task(
             query=sample['query'],
             ground_truth=sample.get('answer') or sample.get('ground_truth'),
-            metadata={'dataset': exp_config.get('benchmark_name'), 'id': sample.get('id')},
+            # `raw_sample` lets wrappers read structured, framework-specific
+            # fields the query string cannot carry (e.g. ConSensus sensor
+            # features / few-shot examples). Existing wrappers ignore it.
+            metadata={'dataset': exp_config.get('benchmark_name'), 'id': sample.get('id'),
+                      'raw_sample': sample},
             image_paths=_resolve_sample_image_paths(sample, args, exp_config),
         )
 

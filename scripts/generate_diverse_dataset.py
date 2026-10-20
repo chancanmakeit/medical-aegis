@@ -140,6 +140,15 @@ FRAMEWORK_AGENT_POOL: Dict[str, List[Dict]] = {
         + [{"role": "Voter", "role_index": 5 + j, "agent_key": f"OExpert_{j}"} for j in range(2)]
         + [{"role": "Decider",         "role_index": 0, "agent_key": "Decider"}]
     ),
+    # ConSensus: ModalityAgent role_index = modality position in info.json.
+    # Only indices 0..4 are listed so the pool is valid for both datasets
+    # (SleepEDF has 5 modalities, WESAD more). Fusion agents are singletons.
+    "consensus": (
+        [{"role": "ModalityAgent", "role_index": i, "agent_key": f"Modality_{i}"} for i in range(5)]
+        + [{"role": "SemanticFusion",    "role_index": 0, "agent_key": "SemanticFusion"},
+           {"role": "StatisticalFusion", "role_index": 0, "agent_key": "StatisticalFusion"},
+           {"role": "HybridFusion",      "role_index": 0, "agent_key": "HybridFusion"}]
+    ),
     # CMAS: 3-agent per-sample zero-shot NER pipeline (self-annotator is offline).
     # All singletons (idx=0), no runtime role renaming.
     "cmas": [
@@ -169,6 +178,7 @@ BASE_YAML_TEMPLATE = {
     "clinical_agent": "experiments/fm_injection/medical/clinical_agent_medical_inject.yaml",
     "cmas": "experiments/fm_injection/ner/cmas_ner_inject.yaml",
     "medagents_mc": "experiments/fm_injection/medical/medagents_mc_medical_inject.yaml",
+    "consensus": "experiments/fm_injection/sensing/consensus_sensing_inject.yaml",
 }
 
 

@@ -41,6 +41,7 @@ _STRONG_PATTERNS = [
     r"\banswer\s*(?:is|:)\s*\**\s*\(?\s*([A-J])\b",          # "answer: D" / "answer is D"
     r"\\boxed\{\s*\(?\s*([A-J])\b",                            # \boxed{D}
     r"\*\*\s*\(?\s*([A-J])\s*[\).:\-]",                       # "**D. Cross-linking**"
+    r"\boption\s*:\s*\**\s*\(?\s*([A-J])\b",                  # "Option: D" (MedAgents decider format)
 ]
 _WEAK_PATTERNS = [
     r"\boption\s+\(?\s*([A-J])\b",      # "option D"  (require a space -> avoids 'opti(o)n')
@@ -331,12 +332,42 @@ def _verify_probability(response: str, gt: Dict[str, Any]) -> Optional[bool]:
     return pred_binary == gold_binary
 
 
+def extract_class_label(text: str) -> Optional[str]:
+    """Pull a class label out of a sensing-framework response.
+
+    Priority: the LAST "Final answer: <label>" line (frameworks append it),
+    then the "ANSWER" field of the LAST JSON object in the text.
+    """
+    if not text:
+        return None
+    m = re.findall(r"Final answer:\s*([^\n]+)", text)
+    if m:
+        return m[-1].strip().strip('"\'.').strip()
+    m = re.findall(r'"ANSWER"\s*:\s*"([^"]*)"', text)
+    if m:
+        return m[-1].strip()
+    return None
+
+
+def _verify_label(response: str, gt: Dict[str, Any]) -> Optional[bool]:
+    """Exact (case-insensitive) class-label match, e.g. WESAD 'stress', SleepEDF 'N2'."""
+    pred = extract_class_label(response)
+    gold = str(gt.get("correct_answer", "")).strip()
+    if pred is None or not gold:
+        return None
+    return pred.lower() == gold.lower()
+
+
 _DETERMINISTIC = {
     "pubmedqa": _verify_pubmedqa,
     "medcalc-bench": _verify_medcalc,
     "medcalc": _verify_medcalc,
     "medec-ms": _verify_medec,
     "medec": _verify_medec,
+    # ConSensus multimodal-sensing classification (class-label answers).
+    "wesad": _verify_label,
+    "sleepedf": _verify_label,
+    "sleep-edf": _verify_label,
     # ClinicalAgent trial-outcome-prediction dataset (binary via probability).
     "trial_success": _verify_probability,
     "trial-success": _verify_probability,
@@ -360,6 +391,7 @@ _DETERMINISTIC = {
 # is decisive (not None), and only fall back to the LLM judge when the
 # deterministic parser could not extract an answer at all.
 DETERMINISTIC_AUTHORITATIVE = {
+    "wesad", "sleepedf", "sleep-edf",
     "trial_success", "trial-success",
     "clinical_trial_outcome", "clinical-trial-outcome",
     "clinicalagent",
