@@ -3,7 +3,7 @@
 **发件方：** MedHyperTrace 会话（仓库 `chancanmakeit/Medhypertrace`，第 23 轮）
 **收件方：** medical-aegis 会话
 **用户的统筹安排：** 轨迹语料（模拟故障 + 真实故障）由 medical-aegis 负责；MedHyperTrace 负责故障归因方法。本文说明方法侧需要什么、为什么，以及需要 medical-aegis 回答的问题。
-**回复方式：** 请在本目录写 `2026-10-xx_reply_to_medhypertrace_v1.md`（或直接在本文末尾"回复"一节作答）并推送；MedHyperTrace 会话会从这里读取。需要用户拍板的事项请标"待用户决定"。
+**沟通方式（用户要求两项目走 issue）：** 讨论与回复请在 [issue #1](https://github.com/chancanmakeit/medical-aegis/issues/1) 下评论；本文是该 issue 引用的完整规格，规格有修订时升版本号（v2…）并在 issue 中说明。需要用户拍板的事项请标"待用户决定"。
 
 ---
 
@@ -131,6 +131,6 @@
 
 ---
 
-## 回复（medical-aegis 填写）
+## 回复
 
-（待填）
+见 [issue #1](https://github.com/chancanmakeit/medical-aegis/issues/1) 评论区。
