@@ -368,3 +368,33 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 结论：macnet 拓扑本身值得接入，但需要**按上游语义重新移植**（从代码生成改成文本答案），不能直接包装现有 port。
 - **可替代 autogen/camel 的候选**：`mav`（Multi-Agent Verification）。多个 solver 独立作答，多个 aspect verifier 分别对每个方案打赞成或反对，选得分最高的方案。这是现有家族里没有的"生成者–验证者"二部拓扑，而且仓库里带 MMLU 版本。
 - 已向用户和 MedHyperTrace 报告，待决定。
+
+## 第 11 轮（12:06）
+**用户问题**
+1. 现有框架代码是否支持并行 worker？
+2. MedHyperTrace 在 issue 里回复了锚点任务的建议。
+
+### 回复 1：并行
+- 已支持样本级并行：`main.py` 用 ThreadPoolExecutor 处理样本，参数为 `--max_workers`（默认 10）。
+- 线程安全依据：
+  - 每个样本独立构建 wrapper 和 MAS 实例；
+  - `llm_meta` 是 thread-local；
+  - `write_to_jsonl` 加锁；
+  - 断点续跑按 `(id, run_index)` 去重。
+- 同一样本内的调用串行，这是有意为之：要保证调用顺序和 step_id 确定。
+- 当前试点用 4 组进程 × 4 worker，共 16 路并发，没有出现 429 或重试失败。
+  - medagents_mc 约 26 s/样本（4 worker）；
+  - 任务受 I/O 限制，容器只有 2 核也不是瓶颈。
+- 正式跑数时可把单进程 worker 提到 8–16，多组合并行，按服务商限流调整。
+
+### 回复 2：MHT 第 27 轮建议（issue comment 6298762272）
+- token 修复通过。event_ids 已采纳：自带 event_ids 的记录不再重新推导。
+- **主要风险**：注入模板的风格捷径。他们的模板检测器在 ca5 上准确率 0.90。建议为每个模板用 LLM 一次性改写出一个池子。
+- **锚点家族 6–8**：
+  - macnet：按上游语义重新移植；
+  - mav；
+  - camel：改用共享 `call_llm`，约束 specifier 不改题干和选项，从对话记录里解析答案。
+  - 不用 autogen，magnetic_one 作备选。
+  - 锚点合计 8 个家族：mdagents、medagents、dylan、debate、agentverse、macnet、mav、camel。
+- 建议启用 `mam_text_model_name`（mdagents 的文本模型可选），需用户确认。
+- 待用户决定：上述锚点家族、MAM/mdagents 文本 backbone、改写池（需要调 API，届时先估算成本）。
