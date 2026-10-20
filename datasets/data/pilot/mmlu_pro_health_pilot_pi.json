@@ -1,0 +1,82 @@
+[
+ {
+  "id": "mmlu_pro_health_6c8b6402",
+  "query": "A 37-year-old woman comes to the physician because of a 1-day history of throbbing facial pain. She describes the pain as 7 out of 10 in intensity. Over the past 9 days, she has had nasal congestion, purulent nasal discharge, sore throat, and a nonproductive cough. She does not smoke. Her husband and children have had no recent illness. Her temperature is 38.5°C (101.3°F). Examination shows congested nasal mucosa and purulent discharge on the left. There is tenderness to palpation over the left cheek and no transillumination over the left maxillary sinus. The tympanic membranes are normal, and there is no erythema of the throat. Examination shows no cervical adenopathy. The lungs are clear to auscultation. Which of the following is the most likely causal organism?\n\nOptions:\nA. Escherichia coli\nB. Staphylococcus aureus\nC. Haemophilus influenzae type b\nD. Mycoplasma pneumoniae\nE. Neisseria meningitidis\nF. Pseudomonas aeruginosa\nG. Bordetella pertussis\nH. Streptococcus pneumoniae\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "H",
+  "ground_truth": {
+   "correct_answer": "H"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_d568dab4",
+  "query": "The mutational mechanism in δβ-thalassaemia consists of:\n\nOptions:\nA. a frame shift mutation.\nB. a missense mutation.\nC. a silent mutation.\nD. an inversion.\nE. a point mutation.\nF. a deletion.\nG. an insertion.\nH. a nonsense mutation.\nI. a duplication.\nJ. a translocation.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "F",
+  "ground_truth": {
+   "correct_answer": "F"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_9c3c1420",
+  "query": "Which virus infection was not first identified by clinical observation?\n\nOptions:\nA. HIV\nB. Rubella teratogenicity\nC. Microcephaly and Zika\nD. Hepatitis C\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "D",
+  "ground_truth": {
+   "correct_answer": "D"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_7f903801",
+  "query": "A 30-year-old nulliparous female presents to the office with the complaint of mood changes. She says that for the past several months she has been anxious, hyperactive, and unable to sleep 3 to 4 days prior to the onset of menses. She further reports that on the day her menses begins she becomes acutely depressed, anorectic, irritable, and lethargic. She has no psychiatric history. Physical examination findings are normal. She and her husband have been trying to conceive for over 2 years. History reveals a tuboplasty approximately 1 year ago to correct a closed fallopian tube. The most likely diagnosis is\n\nOptions:\nA. generalized anxiety disorder\nB. bipolar I disorder, mixed\nC. Premenstrual dysphoric disorder\nD. cyclothymic personality\nE. Persistent depressive disorder (dysthymia)\nF. Post-traumatic stress disorder\nG. Seasonal affective disorder\nH. Bipolar II disorder\nI. adjustment disorder with depressed mood\nJ. Major depressive disorder\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "I",
+  "ground_truth": {
+   "correct_answer": "I"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_239fd0f9",
+  "query": "How does the papilloma family of viruses cause cancer?\n\nOptions:\nA. Alters the host's immune response to cancer cells\nB. Mutates the host's DNA, leading to uncontrolled cell growth\nC. Stimulates cell division, leading to overgrowth and cancer formation\nD. Acts as a co factor for a cellular oncogene\nE. Produces toxins that damage cellular DNA\nF. Causes inflammation and cell death, leading to cancer\nG. Integrates viral genome into cellular DNA\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "G",
+  "ground_truth": {
+   "correct_answer": "G"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_4e8151ec",
+  "query": "Mutations that cause achondroplasia exert an effect which can be classified as:\n\nOptions:\nA. recessive negative.\nB. haplosufficiency.\nC. neutral mutation.\nD. loss-of-function.\nE. recessive positive.\nF. gain-of-function.\nG. dominant negative.\nH. gain-of-regulation.\nI. haploinsufficiency.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "F",
+  "ground_truth": {
+   "correct_answer": "F"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_6ab23a13",
+  "query": "A 55-year-old man who is a business executive is admitted to the hospital for evaluation of abdominal pain. He is polite to the physician but berates the nurses and other staff. The patient's wife and two of his three adult children arrive for a visit. The patient says with disgust that the missing child is and always has been worthless. Which of the following is the most likely explanation for this patient's behavior?\n\nOptions:\nA. Splitting\nB. Regression\nC. Projective identification\nD. Reaction formation\nE. Sublimation\nF. Rationalization\nG. Displacement\nH. Denial\nI. Intellectualization\nJ. Projection\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_e7a38317",
+  "query": "Newborn infants in countries with limited access to safe water and low levels of education should be:\n\nOptions:\nA. Exclusively formula fed for six months\nB. Exclusively breast fed for six months\nC. Should receive both breast milk and other foods as tolerated in the first 6 months\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_c8dfe3b6",
+  "query": "An investigator is studying the incidence of the common cold among medical students at various time points during the school year. Results show an increased incidence of upper respiratory tract infections among these students during finals week. It is hypothesized that the stress of studying for examinations adversely affects the immune system, making the students more susceptible to infection. Which of the following laboratory findings in these students during examination week is most likely to support this hypothesis?\n\nOptions:\nA. Increased AM serum cortisol concentration\nB. Increased eosinophil count\nC. Decreased neutrophil count\nD. Decreased AM serum cortisol concentration\nE. Decreased basophil count\nF. Increased basophil count\nG. Increased lymphocyte count\nH. Decreased lymphocyte count\nI. Increased macrophage activity\nJ. Decreased macrophage activity\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_6a433c88",
+  "query": "Which of the following will provide the main fuel for muscle contraction during short-term intense activity such as sprinting?\n\nOptions:\nA. Plasma lactate\nB. Liver glycogen\nC. Muscle glycogen\nD. Plasma free fatty acids\nE. Muscle protein\nF. Ingested carbohydrates\nG. Muscle triacylglycerol\nH. Plasma glucose\nI. Plasma amino acids\nJ. Plasma triacylglycerol in VLDL\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "C",
+  "ground_truth": {
+   "correct_answer": "C"
+  }
+ }
+]

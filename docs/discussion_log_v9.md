@@ -333,5 +333,5 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - **consensus_cmd**：每轮辩论里的 agent 被随机分成 2 组，组内互读全文，组间只能看到答案计数。step 的 `event_ids` 由 `["debate<k>"]` 改为 `["debate<k>", "debate<k>_group<g>"]`。mock 回归通过，读取集检查为 0 问题。
 - **mdagents**：新增可选的 `mdagents_text_model_name`，默认关闭，让 Recruiter 和 Classifier 这两个不看图的角色改用文本 backbone。mock 验证：recruiter 的 `llm_meta.model` 为文本模型，专家和 aggregator 仍用原模型并带图。
   - MAM 原本就有 `mam_text_model_name`，而且上游本身就是文本模型和音频模型分开，所以给 MAM 的文本步骤用文本 backbone 反而更忠实于原版。
-  - **是否启用这两项，需要用户决定**：这会改动用户"一个模态对应一个 backbone"的分配。
+  - **是否启用这两项，需要用户决定**：（更正，见第 10 轮：用户从未规定"一个模态对应一个 backbone"，这是我的误述。）
 - 样例已更新：mock 导出、真实探测导出、consensus_cmd 的 mock 原始样例。

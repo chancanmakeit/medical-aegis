@@ -1,0 +1,31 @@
+# Pilot 2026-10-20 (user-approved): medagents_mc, response_corruption, single target {'role': 'Synthesizer', 'role_index': 0}, FM-2.3, scheme A.
+# Same config for both backbones (mercury-2.5-preview, llama-4-maverick).
+run_mode: inject
+injection_method: direct_prepend
+medagents_config_name: config_medical
+inject_every_invocation: false
+system_under_test:
+  name: medagents_mc
+  wrapper_class_path: aegis_core.agent_systems.fm_medagents_mc_wrapper.FMMedAgentsMCWrapper
+  method_config_path: configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.0
+benchmark_name: medconceptsqa
+use_llm_judge: true
+judge_mode: regex_first
+injection_plan:
+  targets:
+  - role: Synthesizer
+    role_index: 0
+    attack_spec:
+      fm_error_type: FM-2.3
+      injection_strategy: response_corruption
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+prompt_wrapper_style: direct

@@ -9,10 +9,11 @@
 #               the answer is aggregated. Faithful-but-odd upstream behaviour
 #               and stubs are stated here so they are not mistaken for
 #               injected faults.
-# modality    : text | image | audio | sensor (decides the backbone, user
-#               decision 2026-10-20: text -> mercury-2.5-preview, image/video ->
-#               Ling-3.0-flash-VL, audio -> mimo-v2.6-flash; sensor features are
-#               serialised text -> text backbone).
+# modality    : text | image | audio | sensor (sensor features are serialised
+#               text). Constrains which backbones CAN run a framework; it does
+#               not fix one. The user's backbones (Project doc "api端点") are a
+#               pool of candidates incl. multimodal / omni-modal models; pick per
+#               case and ASK THE USER before using one (user, 2026-10-20).
 
 frameworks:
   dylan:

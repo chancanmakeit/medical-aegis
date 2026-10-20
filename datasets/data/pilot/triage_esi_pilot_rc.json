@@ -1,0 +1,482 @@
+[
+ {
+  "id": "triage_test1_040",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nEMS arrived with an unresponsive 19-year-old male with a single self-inflicted gunshot wound to the head. Prior to intubation, his Glasgow Coma Scale score was 3.",
+  "answer": "1",
+  "ground_truth": {
+   "correct_answer": "1",
+   "acceptable_answers": [
+    "1"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "EMS arrived with an unresponsive 19-year-old male with a single self-inflicted gunshot wound to the head. Prior to intubation, his Glasgow Coma Scale score was 3.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 73,
+      "text": "6% on a non- the daughter of a 72-year-old female. “She is rebreather. sleeping more than usual and complains that it 2. A 28-year-old male presents to the ED hurts to pee.” VS: T 100.8° F, HR 98, RR 22, BP requesting to be checked. He has a severe 122/80. The patient responds to verbal stimuli shellfish allergy and mistakenly ate a dip that but is disoriented to time and place. contained shrimp. He immediately felt his 9. EMS arrives with a 75-year-old male with a self- throat start to close so he used his EpiPen®. He inflicted 6-cm laceration to his neck.",
+      "score": 0.26626256108283997
+     },
+     {
+      "page": 79,
+      "text": "luck hydrated and is afebrile. finding a bed. She denies suicidal or homicidal ideation. She is calm and cooperative. 5. “I think I need a tetanus shot,” a 29-year-old female tells you. “I stepped on a rusty nail this 12. EMS radios in that they are in route with a 17- morning and I know I haven't had one for year-old with a single gun shot wound to the years.” No past medical history (PMH), no left chest. On scene the patient was alert, known drug allergies (NKDA), no medications. oriented and had a BP of 82/palp. Two large bore IV's were immediately inserted. Two 6.",
+      "score": 0.16170495748519897
+     },
+     {
+      "page": 83,
+      "text": "d be categorized ESI level 2; immediate placement should be facilitated. 3. ____ A 22-year-old who needs a work note. 4. ____ A 12-year-old with an earache. Post-test Questions and Answers 5. ____ A 45-year-old involved in MVC, ejected ______ from vehicle, BP 100/60. Questions. Read each case and determine whether the patient meets the criteria for ESI level 2. Justify 6. ____ An unresponsive 14-year-old. EMS tells your decision. ______ you he and his friends “had been doing ______ shots.” 1.",
+      "score": 0.15968751907348633
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-1",
+   "upstream_id": "Test-1#40"
+  }
+ },
+ {
+  "id": "triage_test1_029",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nThis morning, I stepped on a rusty nail, and it went right through my shoe into my foot. I washed it really well. I read on the Internet that I need a tetanus shot.” No previous medical history, and vital signs are within normal limits.",
+  "answer": "5",
+  "ground_truth": {
+   "correct_answer": "5",
+   "acceptable_answers": [
+    "5"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "This morning, I stepped on a rusty nail, and it went right through my shoe into my foot. I washed it really well. I read on the Internet that I need a tetanus shot.” No previous medical history, and vital signs are within normal limits.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 79,
+      "text": "luck hydrated and is afebrile. finding a bed. She denies suicidal or homicidal ideation. She is calm and cooperative. 5. “I think I need a tetanus shot,” a 29-year-old female tells you. “I stepped on a rusty nail this 12. EMS radios in that they are in route with a 17- morning and I know I haven't had one for year-old with a single gun shot wound to the years.” No past medical history (PMH), no left chest. On scene the patient was alert, known drug allergies (NKDA), no medications. oriented and had a BP of 82/palp. Two large bore IV's were immediately inserted. Two 6.",
+      "score": 0.2507045269012451
+     },
+     {
+      "page": 73,
+      "text": "Chapter 9. Practice Cases The cases in this chapter are provided to give a nurse verbally and physically acting out and the opportunity to practice categorizing patients threatening to kill the family. He is cooperative using ESI. Please read each case and based on the at triage and answers your questions information provided assign a triage acuity rating appropriately. He has no past medical history using ESI. (PMH), allergies, and is currently taking no medications. Vital signs are within normal 1. “I just turned my back for a minute,” cried the limits. mother of a 4-year-old.",
+      "score": 0.1948857605457306
+     },
+     {
+      "page": 76,
+      "text": "has had instructions. previous ear infections and is presenting today with the same type of symptoms. He is not ill 23. ESI level 2: high-risk situation. The appearing and his vital signs are within normal mechanism of injury is significant and this limits. The child requires a physical exam and patient has the potential for serious injuries. He should be discharged with a prescription. needs to be evaluated by the trauma team and should be considered high risk. If his BP was 16. ESI level 5: no resources.",
+      "score": 0.1905817985534668
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-1",
+   "upstream_id": "Test-1#29"
+  }
+ },
+ {
+  "id": "triage_test3_046",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nI was smoking a cigarette and had this coughing fit, and now I feel short of breath,” reports a tall, thin 19-year-old man. No past medical history, No meds or allergies, Vital signs: T 98˚F, HR 102, RR 36, BP 128/76, SpO2 92%. Pain 0/10",
+  "answer": "2",
+  "ground_truth": {
+   "correct_answer": "2",
+   "acceptable_answers": [
+    "2"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "I was smoking a cigarette and had this coughing fit, and now I feel short of breath,” reports a tall, thin 19-year-old man. No past medical history, No meds or allergies, Vital signs: T 98˚F, HR 102, RR 36, BP 128/76, SpO2 92%. Pain 0/10",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 55,
+      "text": "was coughing so much, I am just pediatrician, has had the Haemophilus influenza so tired,” reports a 57-year-old female. She tells type b (HIB) vaccine and presents with a fever and you that she had a temperature of 101° last night pulling on his ear could be assigned to an ESI and that she is coughing up this yellow stuff. Her level 5. history includes a hysterectomy 3 years ago; she takes no medications but is allergic to Penicillin. Vital signs: T 101.4°, RR 28, HR 100, SpO2 90 Case Examples percent.",
+      "score": 0.24845536053180695
+     },
+     {
+      "page": 73,
+      "text": "d, tender, and No known drug allergies (NKDA). VS: BP swollen. She hands you a list of medications 148/70, P 126, RR 24. and reports she has no allergies. She is afebrile. 5. “I have this infection in my cuticle,” reports a VS: HR 72, RR 16, BP 102/60. 26-year-old healthy female. “It started hurting 2 12. A 76-year-old male is brought to the ED because days ago and today I noticed the pus.” The of severe abdominal pain. He tells you “it feels patient has a small paronychia on her right 2nd like someone is ripping me apart.” The pain finger.",
+      "score": 0.20092129707336426
+     },
+     {
+      "page": 51,
+      "text": "he decision to move a patient from ESI level 3 to an ESI ages and the influence of factors such as medications, level 2. It should be stressed that it is always the past medical history, and pain level. decision of the experienced triage nurse to determine whether the patient meets criteria for ESI level 2, based upon their past medical history, current What Are Vital Signs? medications, and subjective and objective assessment Vital signs traditionally include simple measurements that includes general appearance.",
+      "score": 0.19445741176605225
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-3",
+   "upstream_id": "Test-3#46"
+  }
+ },
+ {
+  "id": "triage_test3_047",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nOur pediatrician told us to bring the baby to the emergency department to see a surgeon and have some tests. Every time I feed him, he vomits and it just comes flying out,” reports the mother of a healthy appearing 3–week-old. “None of my other kids did this.” Normal vaginal delivery. Vital signs are within normal limits.",
+  "answer": "3",
+  "ground_truth": {
+   "correct_answer": "3",
+   "acceptable_answers": [
+    "3"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "Our pediatrician told us to bring the baby to the emergency department to see a surgeon and have some tests. Every time I feed him, he vomits and it just comes flying out,” reports the mother of a healthy appearing 3–week-old. “None of my other kids did this.” Normal vaginal delivery. Vital signs are within normal limits.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 74,
+      "text": "° F and is NKDA. Vital signs within normal limits. She trying to grab your stethoscope. He has a rates her pain as 6/10. history of frequent ear infections and is currently taking no medications. He has a 22. “I have this rash in my groin area,” reports a normal appetite and urine output according to 20-year-old healthy male. “I think its jock rot the mother. but I can't get rid of it.” Using OTC spray, NKDA. VS: T 98° F, HR 58, RR 16, BP 112/70. 16. A 76-year-old male requests to see a doctor because his toenails are hard. Upon further 23.",
+      "score": 0.2515958547592163
+     },
+     {
+      "page": 80,
+      "text": "I thought it was the heat getting to me.” She only complaint is right thigh pain. She has a denies any other complaints. VS: BP 148/90, HR laceration on her left hand and an abrasion on 86, RR 16, T 98° F. her left knee. VS: BP 110/74, HR 72, RR 16, no 24. “My baby has a temperature of 101 rectally. I medications, no allergies, no PMH. called the pediatrician and he told me to come 16. “My doctor told me to come to the ED. I had a here,” reports the mother of a 3-week-old. The gastric bypass 3 weeks ago and have been doing baby is alert and sucking on a pacifier.",
+      "score": 0.21693246066570282
+     },
+     {
+      "page": 79,
+      "text": "sclerosis. She is bedridden and (RR) 40. His family tells you he has a history of her family provides care in the home. The atrial fibrillation and takes a “little blue pill to visiting nurse sent her to the ED because her thin his blood.” Foley catheter came out this morning. No other complaints. Vital signs are within normal range, 2. “The pediatrician sent us to the emergency currently on antibiotics for a UTI. department (ED) because my son may have appendicitis,” reports the mother of a healthy 9. “How long am I going to have to wait before I 7-year-old.",
+      "score": 0.209427148103714
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-3",
+   "upstream_id": "Test-3#47"
+  }
+ },
+ {
+  "id": "triage_test1_068",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nYou are trying to triage an 18-month-old whose mother brought him in for vomiting. The toddler is very active and trying to get off his mother’s lap. To distract him, the mother hands him a bottle of juice, which he immediately begins sucking on. The child looks well hydrated and is afebrile.",
+  "answer": "5",
+  "ground_truth": {
+   "correct_answer": "5",
+   "acceptable_answers": [
+    "5"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "You are trying to triage an 18-month-old whose mother brought him in for vomiting. The toddler is very active and trying to get off his mother’s lap. To distract him, the mother hands him a bottle of juice, which he immediately begins sucking on. The child looks well hydrated and is afebrile.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 79,
+      "text": "for vomiting. The and tells you that she needs to go into detox toddler is very active and trying to get off his again. She has been clean for 18 months but mother's lap. To distract him the mother hands started using heroin again 2 weeks ago when him a bottle of juice, which he immediately her boyfriend broke up with her. She had called begins sucking on. The child looks well several detox centers but was having no luck hydrated and is afebrile. finding a bed. She denies suicidal or homicidal ideation. She is calm and cooperative. 5.",
+      "score": 0.63114333152771
+     },
+     {
+      "page": 79,
+      "text": "p the feeding tube fell out again. The patient is left leg of his shorts you notice two wounds. He usually unresponsive. He has been in the tells you that he heard three shots. He is alert nursing home since he suffered a massive stroke and responding appropriately to questions. about 4 years ago. Initial VS: T 98.2° F, HR 78, RR 16, BP 118/80. 4. You are trying to triage an 18-month-old whose 11. A 26-year-old female walks into the triage room mother brought him in for vomiting. The and tells you that she needs to go into detox toddler is very active and trying to get off his again.",
+      "score": 0.375044047832489
+     },
+     {
+      "page": 74,
+      "text": "° F and is NKDA. Vital signs within normal limits. She trying to grab your stethoscope. He has a rates her pain as 6/10. history of frequent ear infections and is currently taking no medications. He has a 22. “I have this rash in my groin area,” reports a normal appetite and urine output according to 20-year-old healthy male. “I think its jock rot the mother. but I can't get rid of it.” Using OTC spray, NKDA. VS: T 98° F, HR 58, RR 16, BP 112/70. 16. A 76-year-old male requests to see a doctor because his toenails are hard. Upon further 23.",
+      "score": 0.16870281100273132
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-1",
+   "upstream_id": "Test-1#68"
+  }
+ },
+ {
+  "id": "triage_test2_047",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nOur pediatrician told us to bring the baby to the emergency department to see a surgeon and have some tests. Every time I feed him, he vomits and it just comes flying out,” reports the mother of a healthy appearing 3–week-old. “None of my other kids did this.” Normal vaginal delivery. Vital signs are within normal limits.",
+  "answer": "3",
+  "ground_truth": {
+   "correct_answer": "3",
+   "acceptable_answers": [
+    "3"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "Our pediatrician told us to bring the baby to the emergency department to see a surgeon and have some tests. Every time I feed him, he vomits and it just comes flying out,” reports the mother of a healthy appearing 3–week-old. “None of my other kids did this.” Normal vaginal delivery. Vital signs are within normal limits.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 74,
+      "text": "° F and is NKDA. Vital signs within normal limits. She trying to grab your stethoscope. He has a rates her pain as 6/10. history of frequent ear infections and is currently taking no medications. He has a 22. “I have this rash in my groin area,” reports a normal appetite and urine output according to 20-year-old healthy male. “I think its jock rot the mother. but I can't get rid of it.” Using OTC spray, NKDA. VS: T 98° F, HR 58, RR 16, BP 112/70. 16. A 76-year-old male requests to see a doctor because his toenails are hard. Upon further 23.",
+      "score": 0.2515958547592163
+     },
+     {
+      "page": 80,
+      "text": "I thought it was the heat getting to me.” She only complaint is right thigh pain. She has a denies any other complaints. VS: BP 148/90, HR laceration on her left hand and an abrasion on 86, RR 16, T 98° F. her left knee. VS: BP 110/74, HR 72, RR 16, no 24. “My baby has a temperature of 101 rectally. I medications, no allergies, no PMH. called the pediatrician and he told me to come 16. “My doctor told me to come to the ED. I had a here,” reports the mother of a 3-week-old. The gastric bypass 3 weeks ago and have been doing baby is alert and sucking on a pacifier.",
+      "score": 0.21693246066570282
+     },
+     {
+      "page": 79,
+      "text": "sclerosis. She is bedridden and (RR) 40. His family tells you he has a history of her family provides care in the home. The atrial fibrillation and takes a “little blue pill to visiting nurse sent her to the ED because her thin his blood.” Foley catheter came out this morning. No other complaints. Vital signs are within normal range, 2. “The pediatrician sent us to the emergency currently on antibiotics for a UTI. department (ED) because my son may have appendicitis,” reports the mother of a healthy 9. “How long am I going to have to wait before I 7-year-old.",
+      "score": 0.209427148103714
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-2",
+   "upstream_id": "Test-2#47"
+  }
+ },
+ {
+  "id": "triage_test2_032",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\n“I called my pediatrician, and she told me to bring him in because of his fever,” reports the mother of a 2-week-old. Vital signs: T 101˚F, HR 154, RR 42, SpO2 100%. Uncomplicated, vaginal delivery. The baby is acting appropriately.",
+  "answer": "2",
+  "ground_truth": {
+   "correct_answer": "2",
+   "acceptable_answers": [
+    "2"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "“I called my pediatrician, and she told me to bring him in because of his fever,” reports the mother of a 2-week-old. Vital signs: T 101˚F, HR 154, RR 42, SpO2 100%. Uncomplicated, vaginal delivery. The baby is acting appropriately.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 80,
+      "text": "I thought it was the heat getting to me.” She only complaint is right thigh pain. She has a denies any other complaints. VS: BP 148/90, HR laceration on her left hand and an abrasion on 86, RR 16, T 98° F. her left knee. VS: BP 110/74, HR 72, RR 16, no 24. “My baby has a temperature of 101 rectally. I medications, no allergies, no PMH. called the pediatrician and he told me to come 16. “My doctor told me to come to the ED. I had a here,” reports the mother of a 3-week-old. The gastric bypass 3 weeks ago and have been doing baby is alert and sucking on a pacifier.",
+      "score": 0.3271728754043579
+     },
+     {
+      "page": 55,
+      "text": "was coughing so much, I am just pediatrician, has had the Haemophilus influenza so tired,” reports a 57-year-old female. She tells type b (HIB) vaccine and presents with a fever and you that she had a temperature of 101° last night pulling on his ear could be assigned to an ESI and that she is coughing up this yellow stuff. Her level 5. history includes a hysterectomy 3 years ago; she takes no medications but is allergic to Penicillin. Vital signs: T 101.4°, RR 28, HR 100, SpO2 90 Case Examples percent.",
+      "score": 0.2497042417526245
+     },
+     {
+      "page": 55,
+      "text": "takes no medications but is allergic to Penicillin. Vital signs: T 101.4°, RR 28, HR 100, SpO2 90 Case Examples percent. The following case studies are examples of how vital At the beginning of her triage assessment, this signs data are used in ESI triage. patient sounds as though she could have Table 6-3. ESI Pediatric Temperature Criteria Age Temperature ESI level 1 - 28 days Fever over 100.4° F 2 (38.0° C) 1 - 3 months Fever over 100.4° F Consider 2 (38.0° C) 3 - 36 months Fever over 102.2° F Consider 3 (39.0° C) (see text) 45",
+      "score": 0.2090776413679123
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-2",
+   "upstream_id": "Test-2#32"
+  }
+ },
+ {
+  "id": "triage_test1_070",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nA 12-year-old boy is brought to the ED by his parents after falling off his bicycle. He was not wearing a helmet and hit his head on the pavement. The boy is conscious and answering questions but complains of a severe headache and nausea. His parents report that he was unconscious for about 30 seconds after the fall. Vital signs: BP 108/72, HR 90, RR 18. No other injuries are noted, and there is no vomiting.",
+  "answer": "2",
+  "ground_truth": {
+   "correct_answer": "2",
+   "acceptable_answers": [
+    "2"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "A 12-year-old boy is brought to the ED by his parents after falling off his bicycle. He was not wearing a helmet and hit his head on the pavement. The boy is conscious and answering questions but complains of a severe headache and nausea. His parents report that he was unconscious for about 30 seconds after the fall. Vital signs: BP 108/72, HR 90, RR 18. No other injuries are noted, and there is no vomiting.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 64,
+      "text": "instructor spend time reviewing priority. Many participants will assign her to the the A notes on the back of the card. The instructor urgent category, whereas a few may think she is should also include examples of ESI level-1 patients emergent. and the reason they fall into that triage level. Experienced ED nurses have no problems identifying Case 3. A 10-day-old baby boy is brought to the ED this group of patients. by the parents because he feels warm and is not nursing well. Mom thinks he has the bug that her Decision point B: Is this a patient who shouldn't other kids are getting over.",
+      "score": 0.20230567455291748
+     },
+     {
+      "page": 80,
+      "text": "Chapter 10. Competency Cases 14. “Nurse, I have this pressure in my chest that and hit a tree. Bystanders report that he lost started about an hour ago. I was shoveling that control and hit his head. He was intubated at the wet snow and I may have over done it,” reports scene and remains unresponsive. an obese 52-year-old male. He tells you his pain 23. “I have this aching pain in my left leg,” reports is 10 out of 10 and that he is nauseous and short an obese 52-year-old female. “The whole ride of breath. His skin is cool and clammy.",
+      "score": 0.14059102535247803
+     },
+     {
+      "page": 84,
+      "text": "Appendix A. Frequently Asked Questions “feverish.” She is dyspneic, drooling at triage, 9. A 28-year-old male arrives with friends with a and her skin is hot to touch. chief complaint of a scalp laceration. Patient states he was struck in the head with a baseball 3. A 68-year-old male brought in by his wife for bat one hour prior to arrival. Friends state he sudden onset of left arm weakness, slurred “passed out for a couple of minutes.” Patient speech, and difficulty walking. Symptoms began complains of headache, neck pain, mild nausea, 2 hours prior to arrival. PMH: Atrial fibrillation.",
+      "score": 0.137369766831398
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-1",
+   "upstream_id": "Test-1#70"
+  }
+ },
+ {
+  "id": "triage_test3_055",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\nA 16-year-old male wearing a swimsuit walks into the ED. He explains that he dove into a pool, and his face struck the bottom. You notice an abrasion on his forehead and nose as he tells you that he needs to see a doctor because of tingling in both hands.",
+  "answer": "2",
+  "ground_truth": {
+   "correct_answer": "2",
+   "acceptable_answers": [
+    "2"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "A 16-year-old male wearing a swimsuit walks into the ED. He explains that he dove into a pool, and his face struck the bottom. You notice an abrasion on his forehead and nose as he tells you that he needs to see a doctor because of tingling in both hands.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 74,
+      "text": "Chapter 9. Practice Cases diaphoretic. VS: HR 122, BP 88/68, RR 24, with my other two pregnancies. Can I lie down SpO2 94%. before I pass out?” VS: BP 86/40, HR 132, RR 22, SpO2 98%. 13. A 16-year-old male wearing a swimsuit walks into the ED. He explains that he dove into a 20. A 26-year-old female is transported by EMS to pool and his face struck the bottom. You notice the ED because she experienced the sudden an abrasion on his forehead and nose as he tells onset of a severe headache that began after you that he needs to see a doctor because of moving her bowels. She is 28 weeks pregnant.",
+      "score": 0.6080422401428223
+     },
+     {
+      "page": 74,
+      "text": "vere headache that began after you that he needs to see a doctor because of moving her bowels. She is 28 weeks pregnant. tingling in both hands. Her husband tells you that she is healthy, takes only prenatal vitamins, and has no allergies. On 14. “I have a fever and a sore throat. I have finals arrival in the ED the patient is moaning and this week and I am scared this is strep,” reports does not respond to voice. EMT's tell you that a 19-year-old college student. She is sitting at she vomited about 5 minutes ago. triage drinking bottled water.",
+      "score": 0.2203904241323471
+     },
+     {
+      "page": 80,
+      "text": "“I ran out of my blood pressure medicine and half the day in the pool with his friends so I am my doctor is on vacation. Can someone here not surprised,” the mother of a 10-year-old boy write me a prescription?” requests a 56-year-old tells you. The child has no complaints except male with a history of hypertension. VS: BP painful, itchy ears. VS: T 97° F, HR 88, RR 18, BP 128/84, HR 76, RR 16, T 97° F. 100/68. 30. EMS presents to the ED with an 18-year-old 22. The medical helicopter is en route to your facility female with a suspected medication overdose.",
+      "score": 0.17199526727199554
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-3",
+   "upstream_id": "Test-3#55"
+  }
+ },
+ {
+  "id": "triage_test3_057",
+  "query": "Assign the Emergency Severity Index (ESI) triage level (1-5) for the following emergency department case.\n\nClinical record:\n“I just turned my back for a minute,” cried the mother of a 4-year-old. The child was pulled out of the family pool by a neighbor who immediately administered mouth-to-mouth resuscitation. The child is now breathing spontaneously but continues to be unresponsive. On arrival in the ED, vital signs were: HR 126, RR 28, BP 80/64, SpO2 96% on a non-rebreather.",
+  "answer": "1",
+  "ground_truth": {
+   "correct_answer": "1",
+   "acceptable_answers": [
+    "1"
+   ],
+   "classes": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  },
+  "triage": {
+   "vignette": "“I just turned my back for a minute,” cried the mother of a 4-year-old. The child was pulled out of the family pool by a neighbor who immediately administered mouth-to-mouth resuscitation. The child is now breathing spontaneously but continues to be unresponsive. On arrival in the ED, vital signs were: HR 126, RR 28, BP 80/64, SpO2 96% on a non-rebreather.",
+   "retrieval": {
+    "tool": "tfidf_esi_handbook",
+    "top_k": 3,
+    "query": "vignette",
+    "hits": [
+     {
+      "page": 73,
+      "text": "ations. Vital signs are within normal 1. “I just turned my back for a minute,” cried the limits. mother of a 4-year-old. The child was pulled out of the family pool by a neighbor who 7. “I should have paid more attention to what I immediately administered mouth-to-mouth was doing,” states a 37-year-old carpenter who resuscitation. The child is now breathing presents to the ED with a 3-cm laceration to his spontaneously but continues to be right thumb. The thumb is wrapped in a clean unresponsive. On arrival in the emergency rag.",
+      "score": 0.7411296963691711
+     },
+     {
+      "page": 73,
+      "text": "aneously but continues to be right thumb. The thumb is wrapped in a clean unresponsive. On arrival in the emergency rag. “I know I need a tetanus shot,” he tells department (ED) vital signs (VS) were: heart rate you. BP 142/76, P 88, RR 16, T 98.6° F. (HR) 126, respiratory rate (RR), 28, blood 8. “My mother is just not acting herself,” reports pressure (BP) 80/64, SpO2 96% on a non- the daughter of a 72-year-old female. “She is rebreather. sleeping more than usual and complains that it 2.",
+      "score": 0.26699098944664
+     },
+     {
+      "page": 73,
+      "text": "Chapter 9. Practice Cases The cases in this chapter are provided to give a nurse verbally and physically acting out and the opportunity to practice categorizing patients threatening to kill the family. He is cooperative using ESI. Please read each case and based on the at triage and answers your questions information provided assign a triage acuity rating appropriately. He has no past medical history using ESI. (PMH), allergies, and is currently taking no medications. Vital signs are within normal 1. “I just turned my back for a minute,” cried the limits. mother of a 4-year-old.",
+      "score": 0.21495498716831207
+     }
+    ]
+   }
+  },
+  "provenance": {
+   "source": "TriageAgent (Lu et al., EMNLP 2024 Findings) / ESI Handbook v4",
+   "split": "Test-3",
+   "upstream_id": "Test-3#57"
+  }
+ }
+]

@@ -1,0 +1,162 @@
+[
+ {
+  "id": "mmlu_pro_health_6c8b6402",
+  "query": "A 37-year-old woman comes to the physician because of a 1-day history of throbbing facial pain. She describes the pain as 7 out of 10 in intensity. Over the past 9 days, she has had nasal congestion, purulent nasal discharge, sore throat, and a nonproductive cough. She does not smoke. Her husband and children have had no recent illness. Her temperature is 38.5°C (101.3°F). Examination shows congested nasal mucosa and purulent discharge on the left. There is tenderness to palpation over the left cheek and no transillumination over the left maxillary sinus. The tympanic membranes are normal, and there is no erythema of the throat. Examination shows no cervical adenopathy. The lungs are clear to auscultation. Which of the following is the most likely causal organism?\n\nOptions:\nA. Escherichia coli\nB. Staphylococcus aureus\nC. Haemophilus influenzae type b\nD. Mycoplasma pneumoniae\nE. Neisseria meningitidis\nF. Pseudomonas aeruginosa\nG. Bordetella pertussis\nH. Streptococcus pneumoniae\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "H",
+  "ground_truth": {
+   "correct_answer": "H"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_d568dab4",
+  "query": "The mutational mechanism in δβ-thalassaemia consists of:\n\nOptions:\nA. a frame shift mutation.\nB. a missense mutation.\nC. a silent mutation.\nD. an inversion.\nE. a point mutation.\nF. a deletion.\nG. an insertion.\nH. a nonsense mutation.\nI. a duplication.\nJ. a translocation.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "F",
+  "ground_truth": {
+   "correct_answer": "F"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_9c3c1420",
+  "query": "Which virus infection was not first identified by clinical observation?\n\nOptions:\nA. HIV\nB. Rubella teratogenicity\nC. Microcephaly and Zika\nD. Hepatitis C\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "D",
+  "ground_truth": {
+   "correct_answer": "D"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_7f903801",
+  "query": "A 30-year-old nulliparous female presents to the office with the complaint of mood changes. She says that for the past several months she has been anxious, hyperactive, and unable to sleep 3 to 4 days prior to the onset of menses. She further reports that on the day her menses begins she becomes acutely depressed, anorectic, irritable, and lethargic. She has no psychiatric history. Physical examination findings are normal. She and her husband have been trying to conceive for over 2 years. History reveals a tuboplasty approximately 1 year ago to correct a closed fallopian tube. The most likely diagnosis is\n\nOptions:\nA. generalized anxiety disorder\nB. bipolar I disorder, mixed\nC. Premenstrual dysphoric disorder\nD. cyclothymic personality\nE. Persistent depressive disorder (dysthymia)\nF. Post-traumatic stress disorder\nG. Seasonal affective disorder\nH. Bipolar II disorder\nI. adjustment disorder with depressed mood\nJ. Major depressive disorder\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "I",
+  "ground_truth": {
+   "correct_answer": "I"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_239fd0f9",
+  "query": "How does the papilloma family of viruses cause cancer?\n\nOptions:\nA. Alters the host's immune response to cancer cells\nB. Mutates the host's DNA, leading to uncontrolled cell growth\nC. Stimulates cell division, leading to overgrowth and cancer formation\nD. Acts as a co factor for a cellular oncogene\nE. Produces toxins that damage cellular DNA\nF. Causes inflammation and cell death, leading to cancer\nG. Integrates viral genome into cellular DNA\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "G",
+  "ground_truth": {
+   "correct_answer": "G"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_4e8151ec",
+  "query": "Mutations that cause achondroplasia exert an effect which can be classified as:\n\nOptions:\nA. recessive negative.\nB. haplosufficiency.\nC. neutral mutation.\nD. loss-of-function.\nE. recessive positive.\nF. gain-of-function.\nG. dominant negative.\nH. gain-of-regulation.\nI. haploinsufficiency.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "F",
+  "ground_truth": {
+   "correct_answer": "F"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_6ab23a13",
+  "query": "A 55-year-old man who is a business executive is admitted to the hospital for evaluation of abdominal pain. He is polite to the physician but berates the nurses and other staff. The patient's wife and two of his three adult children arrive for a visit. The patient says with disgust that the missing child is and always has been worthless. Which of the following is the most likely explanation for this patient's behavior?\n\nOptions:\nA. Splitting\nB. Regression\nC. Projective identification\nD. Reaction formation\nE. Sublimation\nF. Rationalization\nG. Displacement\nH. Denial\nI. Intellectualization\nJ. Projection\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_e7a38317",
+  "query": "Newborn infants in countries with limited access to safe water and low levels of education should be:\n\nOptions:\nA. Exclusively formula fed for six months\nB. Exclusively breast fed for six months\nC. Should receive both breast milk and other foods as tolerated in the first 6 months\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_c8dfe3b6",
+  "query": "An investigator is studying the incidence of the common cold among medical students at various time points during the school year. Results show an increased incidence of upper respiratory tract infections among these students during finals week. It is hypothesized that the stress of studying for examinations adversely affects the immune system, making the students more susceptible to infection. Which of the following laboratory findings in these students during examination week is most likely to support this hypothesis?\n\nOptions:\nA. Increased AM serum cortisol concentration\nB. Increased eosinophil count\nC. Decreased neutrophil count\nD. Decreased AM serum cortisol concentration\nE. Decreased basophil count\nF. Increased basophil count\nG. Increased lymphocyte count\nH. Decreased lymphocyte count\nI. Increased macrophage activity\nJ. Decreased macrophage activity\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_6a433c88",
+  "query": "Which of the following will provide the main fuel for muscle contraction during short-term intense activity such as sprinting?\n\nOptions:\nA. Plasma lactate\nB. Liver glycogen\nC. Muscle glycogen\nD. Plasma free fatty acids\nE. Muscle protein\nF. Ingested carbohydrates\nG. Muscle triacylglycerol\nH. Plasma glucose\nI. Plasma amino acids\nJ. Plasma triacylglycerol in VLDL\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "C",
+  "ground_truth": {
+   "correct_answer": "C"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_9b40dc4a",
+  "query": "What is the phenotype of a congenital disorder impairing the secretion of leptin?\n\nOptions:\nA. Normal energy intake, normal body weight and hyperthyroidism\nB. Obesity, excess energy intake, normal growth and hypoinsulinaemia\nC. Obesity, abnormal growth, hypothyroidism, hyperinsulinaemia\nD. Underweight, abnormal growth, hypothyroidism, hyperinsulinaemia\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "C",
+  "ground_truth": {
+   "correct_answer": "C"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_87404b54",
+  "query": "How long can a cannula remain in situ?\n\nOptions:\nA. 96 hours.\nB. 36 hours.\nC. 60 hours.\nD. 2 weeks.\nE. 1 week.\nF. 48 hours.\nG. 12 hours.\nH. 24 hours.\nI. Indefinitely, as long as it is regularly cleaned.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_f9f2dd75",
+  "query": "The term \"senescence\" refers to\n\nOptions:\nA. The loss of physical abilities\nB. The process of cellular division\nC. The development of disease\nD. Biological aging\nE. The process of becoming older\nF. The acquisition of knowledge and wisdom\nG. The loss of mental abilities\nH. The process of physical growth\nI. An increased vulnerability\nJ. The increase in physical strength\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "I",
+  "ground_truth": {
+   "correct_answer": "I"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_a4570148",
+  "query": "A 23-year-old woman with bone marrow failure is treated with a large dose of rabbit antithymocyte globulin. Ten days later, she develops fever, lymphadenopathy, arthralgias, and erythema on her hands and feet. Which of the following is the most likely cause of these symptoms?\n\nOptions:\nA. Activation of complement system\nB. Overproduction of monocytes\nC. Cytokine secretion by natural killer cells\nD. Hyperactive B-lymphocyte response\nE. Allergic reaction to rabbit proteins\nF. Immune complex deposition in tissues\nG. Polyclonal T-lymphocyte activation\nH. Eosinophil degranulation\nI. Increased production of interferon-gamma\nJ. Acute graft-versus-host disease\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "F",
+  "ground_truth": {
+   "correct_answer": "F"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_e302b4aa",
+  "query": "What size of catheter bag may be used at night?\n\nOptions:\nA. 2.5L.\nB. 4L.\nC. 350ml.\nD. 2L.\nE. 1L.\nF. 1.5L.\nG. 500ml.\nH. 5L.\nI. 750ml.\nJ. 3L.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "D",
+  "ground_truth": {
+   "correct_answer": "D"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_e6d70cc4",
+  "query": "A normal heart rate for an adult at rest is:\n\nOptions:\nA. 60-110 bpm.\nB. 70-90 bpm.\nC. 50-80 bpm.\nD. 60-80 bpm.\nE. 60-90 bpm.\nF. 80-100 bpm.\nG. 40-60 bpm.\nH. 70-110 bpm.\nI. 50-70 bpm.\nJ. 60-100 bpm.\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "J",
+  "ground_truth": {
+   "correct_answer": "J"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_5e4932fd",
+  "query": "Which of the following is true of rheumatoid arthritis?\n\nOptions:\nA. It is always associated with psoriasis\nB. It is caused by deposition of uric acid crystals in the joints\nC. It is an example of an oligoarthropathy\nD. Heberden's nodes are a feature\nE. Rheumatoid factor is present in 25% of rheumatoid cases\nF. It is a non-inflammatory condition\nG. High levels of calcium in the blood is a common symptom\nH. It is a type of infectious arthritis\nI. It predominantly affects the lower limbs\nJ. Anaemia is a common finding\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "J",
+  "ground_truth": {
+   "correct_answer": "J"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_f77fc4bc",
+  "query": "Disease can most often be prevented by which of the following:\n\nOptions:\nA. Sunscreen\nB. Vaccines\nC. Antivirals\nD. Pain Relievers\nE. Hand Sanitizer\nF. Antibiotics\nG. mosquito nets\nH. Surgical Masks\nI. Insect Repellent\nJ. Hygiene\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_1dcfe1e3",
+  "query": "A 22-year-old woman comes to the office because of urticaria. This is her first episode of urticaria and it has occurred and then resolved several times in the past week. The history and physical examination disclose no abnormalities. Which of the following is the most appropriate course of action?\n\nOptions:\nA. Determine the serum IgE concentration\nB. Determine the total eosinophil count\nC. Refer her to an allergist\nD. Treat the symptoms\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "D",
+  "ground_truth": {
+   "correct_answer": "D"
+  }
+ },
+ {
+  "id": "mmlu_pro_health_3561b9ab",
+  "query": "A 5-year-old girl is brought to the physician by her parents for evaluation of recurrent injuries. Her parents say that she started walking at the age of 14 months and since then has always seemed clumsier and had more injuries than other children. She has had increasingly frequent chest pain with exertion since starting a soccer program 3 months ago. She usually has pain or swelling of her knees or ankles after practice. She has been wearing glasses for 2 years. Her 16-year-old brother has required two operations for a severe rotator cuff injury he sustained while taking a shower, and she has a maternal cousin who died of a ruptured aortic aneurysm at the age of 26 years. Today, the patient walks with a limp. She is at the 99th percentile for height and 50th percentile for weight. A midsystolic click is heard at the apex. The left ankle is swollen and tender; range of motion is limited by pain. The joints of the upper and lower extremities are hypermobile, including 25 degrees of genu recurvatum, thumbs that may be extended to touch the forearms, and flexibility at the waist, with palms easily touching the floor with straight knees. Which of the following is the most appropriate next step in diagnosis?\n\nOptions:\nA. Skeletal survey\nB. Echocardiography\nC. Bone scan\nD. MRI of the shoulder\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B"
+  }
+ }
+]

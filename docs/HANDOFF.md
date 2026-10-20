@@ -90,7 +90,7 @@
 ## 4. 决定与待办
 
 **用户已决定（2026-10-20，v9 第 5 轮）**：
-- **backbone**：纯文本（含传感器特征）用 aihubmix 的 `mercury-2.5-preview`；多模态（图像/视频）用蚂蚁百灵的 `Ling-3.0-flash-VL`（`https://api.ant-ling.com/v1/`）；音频用 `mimo-v2.6-flash`。框架对应的模态写在 `configs/framework_registry.yaml` 里。密钥见 Project 的「api端点」文档第 2、6、7 节。
+- **backbone（v9 第 10 轮更正）**：用户给的是一个**候选池**，并没有规定"一个模态对应一个 backbone"。候选包括 aihubmix 的 `mercury-2.5-preview` 和 `llama-4-maverick`（文本）、蚂蚁百灵的 `Ling-3.0-flash-VL`（多模态）、`mimo-v2.6-flash`（全模态），以及「api端点」文档里的其他模型。可以视情况选用，**但每次使用前都必须先问用户**。目前已获批：试点用 mercury-2.5-preview 和 llama-4-maverick。各框架能处理的模态记录在 `configs/framework_registry.yaml`。
 - **旧 ClinicalAgent 注入数据：重跑**。需要先把 clinical_agent 迁移到 StructuredFMWrapper，并拿到 `trial_success.csv`（见 HANDOFF_RESOURCES）。
 - **注入频率**：由两个项目在 issue 里商定。我方在 v9 第 5 轮提议：方案 A（每个目标只注入一次）为默认，方案 B 作为可选的鲁棒性子集。等 MedHyperTrace 回复。
 - 下一步先做导出器和 K 次重复运行：**已完成**。
