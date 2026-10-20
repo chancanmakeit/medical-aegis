@@ -110,3 +110,13 @@ Triage 缺、我们有（对 HGFM 是关键）：
 3. 注入频率 A / B。
 4. 试点 backbone。
 5. 用户本地还有哪些 normal 轨迹。
+
+---
+
+## 第 4 轮（2026-10-20）：用户问"试点 backbone"是什么意思
+
+**解释**：
+- **backbone**：驱动多智能体系统里每个 agent 的底层大模型。框架只规定"谁说话、看到什么、按什么顺序"，每个 agent 实际的输出由 backbone 生成。
+- **试点**：在正式批量生成之前，先用真实 API 小规模跑一次。目的是估算成本、检查格式是否可解析、看截断率和准确率，跑完后停下来请用户确认。
+- **为什么要用户决定**：backbone 会影响轨迹的错误分布、clean 运行的准确率（关系到 normal 和 error 两类样本的比例）、是否有单独的 reasoning 文本、成本，以及 HGFM 是否会学到"模型风格"而非"故障结构"这一混杂因素。
+- 候选（来自 Project 的「api端点」文档）：deepseek-flash、qwen3.8-flash、glm-5.3-flash、mimo-v2.6-flash（MAM 的音频只能用它）、gpt-5.6-sol-disc（可取 logprobs）、claude-opus-5（贵）。此前建议：deepseek-flash + qwen3.8-flash，音频用 mimo。
