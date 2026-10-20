@@ -1,7 +1,7 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（第 8 轮，为开新会话整理的完整版）。
-> 新会话按顺序读：**本文件** → `docs/discussion_log_v8.md`（最新讨论记录，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
+> 最后更新：2026-10-20（新会话 v9 第 1 轮：环境已按本文件恢复，mock 冒烟测试通过；内容无实质变化）。
+> 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
 ---
@@ -130,4 +130,4 @@
   - `scripts/build_paired_dataset.py`
   - `scripts/recompute_trial_success_verdicts.py`
 - mock 样例：`docs/requests/samples/*_mock_{clean,inject}.jsonl`（共 7 个框架）。
-- 讨论记录：`docs/discussion_log_v1..v8.md`。
+- 讨论记录：`docs/discussion_log_v1..v9.md`。
