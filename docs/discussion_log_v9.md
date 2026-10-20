@@ -398,3 +398,10 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 锚点合计 8 个家族：mdagents、medagents、dylan、debate、agentverse、macnet、mav、camel。
 - 建议启用 `mam_text_model_name`（mdagents 的文本模型可选），需用户确认。
 - 待用户决定：上述锚点家族、MAM/mdagents 文本 backbone、改写池（需要调 API，届时先估算成本）。
+
+## 第 11 轮（续，13:05）：试点完成
+- 后台任务结束，400 条运行全部跑完，用时 69 分钟。按列表价估算约 $4.50。完整报告：`docs/pilot_2026-10-20_report.md`。
+- **mercury 的 PI 全部失败（20/20）**：aihubmix 返回 403，原因是 Inception 上游拦截 `[UPDATED INSTRUCTION ... SUPERSEDES]` 这种覆盖式写法。已新增 `simulation` 包装（如实说明是研究模拟中的角色犯错），mercury 实测 2/2 通过，输出被带偏，也没有提到注入。**重跑约 $0.6，待用户批准。**
+- **MedAgents 对 Synthesizer 注入会自我纠正**：注入后第 1 轮所有人都投 NO，修订后第 2 轮全票通过，翻转 0/30。normal 运行 160/160 在第 1 轮就通过，因此"有没有第 2 轮"几乎能完美区分注入与否（拓扑侧信道）。换注入目标或换更难的题，待 MHT 和用户商定。
+- triage：PI 能让 Doctor B 10/10 出错，但最终翻转 0/10。RC 的翻转是 llama 3/10、mercury 1/10。
+- 读取集修复：medagents 的 Reviser（建议按专科名称覆盖）。检查脚本已改；导出器会跳过 API 失败的运行。修复后 12 个文件全部 not_found=0、unlisted=0；导出 380 条，泄漏 0。

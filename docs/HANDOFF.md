@@ -112,6 +112,14 @@
   - 运行器：用 sed 把 YAML 的占位符替换成真实 key 和 URL，写成 scratch 下的 YAML，权限 600；
   - 参数：`--model_temperature 0.7 --model_max_tokens 4096`。
 
+**v9 第 11 轮（2026-10-20 12:06–13:05）：试点完成**，报告见 `docs/pilot_2026-10-20_report.md`，数据见 `docs/requests/samples/pilot_2026-10-20/`：
+- 400 条运行，估算成本约 $4.50。
+- mercury 的 PI 20/20 失败：Inception 上游返回 403，拦截 "direct" 包装。已新增 `prompt_wrapper_style: simulation`（如实说明是研究模拟），实测可通过。**用 simulation 重跑 PI（约 $0.6）待用户批准。**
+- MedAgents 对 Synthesizer 注入会自我纠正，翻转 0/30。有拓扑侧信道：normal 永远 1 轮，注入时 2 轮。注入目标的选择待与 MHT、用户商定。
+- 修复：medagents 的 Reviser 读取集（专科名称冲突时后一条建议覆盖前一条）。另有 `scripts/repair_medagents_advice_sources.py`；导出器跳过 `llm_api_failure`；检查脚本的 excerpt 匹配先规范化空白。
+- 并行：main.py 已支持样本级线程池（`--max_workers`），线程安全。试点 16 路并发，0 次 429。
+- MHT 第 27 轮：锚点用 8 个家族（加 macnet 重移植、mav、camel 改造；不用 autogen）；模板风格捷径有风险，建议做改写池；建议启用 `mam_text_model_name`。**这三项都待用户决定。**
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。

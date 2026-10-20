@@ -445,7 +445,7 @@ class MedAgentsMC_Main(MAS):
             num_try += 1
             hasno_flag = False
             vote_event = f"vote{num_try}"
-            domain_opinions, revision_advice, advice_steps = {}, {}, []
+            domain_opinions, revision_advice, advice_by_domain = {}, {}, {}
             for vi, domain in enumerate(all_domains):
                 voter, cons_prompt = get_consensus_prompt(domain, syn_report)
                 raw_v, s_v = self._ask("Voter", vi, "consensus_vote", "vote",
@@ -469,10 +469,15 @@ class MedAgentsMC_Main(MAS):
                     # The advisor is the same expert who just voted NO; its
                     # prompt does not quote the vote, so the link is structural.
                     self._set_structured(responds_to_vote_step=s_v)
+                    # Upstream keys advice by domain name: when a question expert
+                    # and an option expert share a domain, the later advice
+                    # replaces the earlier one in the reviser prompt. Keep that
+                    # behaviour, and list only the advice the reviser really reads.
                     revision_advice[domain] = adv
-                    advice_steps.append(s_adv)
+                    advice_by_domain[domain] = s_adv
                     hasno_flag = True
             if hasno_flag:
+                advice_steps = list(advice_by_domain.values())
                 rev_prompt = get_revision_prompt(syn_report, revision_advice)
                 revised, s_rev = self._ask("Reviser", 0, "revision", "revision",
                                            rev_prompt, None,

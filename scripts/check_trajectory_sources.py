@@ -79,6 +79,11 @@ def main(path):
                     # on only the text after the evaluator's "Response:")
                     lines += [ln.split(":", 1)[1].strip() for ln in lines if ":" in ln[:40]]
                     pr = [ln for ln in lines if len(ln) >= 12]
+                    # whitespace-normalised and clipped excerpts (e.g. TriageAgent
+                    # passes on each rationale joined onto one line, cut at 400 chars)
+                    flat_in = " ".join(inp.split())
+                    if any(" ".join(ln.split())[:60] in flat_in for ln in pr if len(ln) >= 12):
+                        continue
                 if not any(p in inp for p in pr):
                     bad += 1
                     print("SOURCE NOT FOUND", rec["id"], s["step_id"], s["agent_name"], "<-", src)

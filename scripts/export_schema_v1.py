@@ -292,8 +292,9 @@ def main():
                 if not line.strip():
                     continue
                 raw = json.loads(line)
-                if not raw.get("injection_log"):
-                    # a sample main.py could not run (status "error"): no trajectory
+                if not raw.get("injection_log") or raw.get("status") in ("error", "llm_api_failure"):
+                    # a sample main.py could not run (status "error"), or an API call
+                    # failed mid-run ("llm_api_failure"): no complete trajectory
                     n_skipped += 1
                     print(f"-- skipped {path}:{raw.get('id')} (status={raw.get('status')}, no trajectory)",
                           file=sys.stderr)
