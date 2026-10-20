@@ -335,3 +335,36 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - MAM 原本就有 `mam_text_model_name`，而且上游本身就是文本模型和音频模型分开，所以给 MAM 的文本步骤用文本 backbone 反而更忠实于原版。
   - **是否启用这两项，需要用户决定**：（更正，见第 10 轮：用户从未规定"一个模态对应一个 backbone"，这是我的误述。）
 - 样例已更新：mock 导出、真实探测导出、consensus_cmd 的 mock 原始样例。
+
+---
+
+## 第 10 轮（2026-10-20）：用户决定；试点开跑；三个候选通用框架的核实结果
+
+**用户**：
+1. 锚点任务加入 macnet、autogen、camel（按推荐）。
+2. **更正**：用户**从未要求"一个模态对应一个 backbone"**。用户给的是一个候选池，包括多模态和全模态大模型，Claude 可以视情况选用，**但每次使用前都必须先问用户**。
+   - 这是我的误述。已更正 framework_registry 的注释、HANDOFF、讨论记录，以及 Project 的「api端点」文档。
+3. 试点可以开跑。
+
+### 试点（11:49 开始，后台运行）
+- 数据：`datasets/data/pilot/`，种子 20261020。从 mmlu_pro_health（818 题，由 HF TIGER-Lab/MMLU-Pro 新转换）中抽 20 题，从 triage_esi 中抽 20 题；每个框架的前 10 题用于 PI，后 10 题用于 RC。
+- 注入配置：`experiments/fm_injection/pilot/`。
+  - medagents_mc 的目标是 Synthesizer(0)。已确认篡改文本在 cleansing 后仍保留在报告里。
+  - triage 的目标是 Doctor(1)，phase classify。
+  - 两者都用 FM-2.3、direct_prepend、方案 A。两个 backbone 用完全相同的配置。
+- 运行：每个框架、每个 backbone 跑 20 题 × K=4 的 normal，加 10 题 PI 和 10 题 RC，合计 400 条运行。参数为温度 0.7、max_tokens 4096、4 个 worker；4 组并行。
+- 运行器只放在 scratch（密钥在权限 600 的 scratch YAML 里）。
+
+### 三个候选通用框架的核实（对照代码，MedHyperTrace 的假设有偏差）
+- **autogen**（MASLab 版）：**不是**群聊加管理者动态选发言人，而是 AssistantAgent 与一个 LLM 驱动的 UserProxy 的两人对话。assistant 的 prompt 要求做完就回复 "TERMINATE"，所以在 MCQ 上**通常第一条回复就结束**，轨迹只有 1 次 LLM 调用，是退化拓扑。
+- **camel**（MASLab 版）：
+  - 自带一个 `call_llm`，绕过了重试、extra_body 和 llm_meta，出错时直接返回 None；
+  - 第一步的 task specifier 会**改写用户的任务**，在 MCQ 上可能把题目本身改掉；
+  - 返回的是整段对话记录，不是答案。
+  - 能改造，但不如预期干净。
+- **macnet**（MASLab 版）：**数据流与上游不符**。对照上游 OpenBMB/ChatDev macnet 分支的 `graph.py`：
+  - 上游：每条边 u→v 上，由后继 v 针对 u 的方案做 critic + optimize；v 把各条边的结果聚合成自己的方案，**再传给下游**；最终答案是输出节点的聚合方案。
+  - 本仓库的 port：每个节点对拼接起来的所有前驱答案只做一次交互；**中间节点的聚合结果写进 `generated_answer` 后无人读取**；输出节点自己的 critic/actor 调用结果被丢弃。
+  - 结论：macnet 拓扑本身值得接入，但需要**按上游语义重新移植**（从代码生成改成文本答案），不能直接包装现有 port。
+- **可替代 autogen/camel 的候选**：`mav`（Multi-Agent Verification）。多个 solver 独立作答，多个 aspect verifier 分别对每个方案打赞成或反对，选得分最高的方案。这是现有家族里没有的"生成者–验证者"二部拓扑，而且仓库里带 MMLU 版本。
+- 已向用户和 MedHyperTrace 报告，待决定。
