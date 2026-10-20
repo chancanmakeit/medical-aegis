@@ -11,7 +11,8 @@ adaptive mode adds Classifier(0); basic MedicalExpert(0); advanced
 MDTMember(0..5) / TeamLead(0..1) / Aggregator(0).
 
 YAML overrides kept from the legacy wrapper: mdagents_config_name,
-mdagents_difficulty, mdagents_num_experts, mdagents_debate_rounds.
+mdagents_difficulty, mdagents_num_experts, mdagents_debate_rounds;
+new: mdagents_text_model_name (text backbone for Recruiter / Classifier).
 """
 from typing import Any, Dict
 
@@ -30,6 +31,8 @@ class FMMDAgentsStructuredWrapper(StructuredFMWrapper):
             self.mas.num_experts = int(exp_config["mdagents_num_experts"])
         if exp_config.get("mdagents_debate_rounds") is not None:
             self.mas.debate_rounds = int(exp_config["mdagents_debate_rounds"])
+        if exp_config.get("mdagents_text_model_name") is not None:
+            self.mas.text_model_name = exp_config["mdagents_text_model_name"]
 
     def build_sample(self, task: Any) -> Dict[str, Any]:
         # The method forwards these to every expert / aggregator call

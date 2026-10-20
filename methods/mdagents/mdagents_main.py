@@ -72,6 +72,10 @@ class MDAgents_Main(MAS):
         self.difficulty = mc.get("difficulty", "intermediate")
         self.num_experts = int(mc.get("num_experts", 5))
         self.debate_rounds = int(mc.get("debate_rounds", 1))
+        # Optional text backbone for the image-free roles (Recruiter,
+        # Classifier); None = the run's model. Lets a multimodal run separate
+        # modality from backbone on those steps (MedHyperTrace issue #1, r26).
+        self.text_model_name = mc.get("text_model_name") or None
         self.recruiter_advice = mc.get("recruiter_advice",
             "Recruit a diverse panel of medical experts relevant to the question.")
 
@@ -136,9 +140,11 @@ class MDAgents_Main(MAS):
         self.current_phase = phase
         self.current_round = round_
         # Skip images for purely planning/classification turns.
-        send_images = self.current_images if role not in ("Recruiter", "Classifier") else None
+        text_only = role in ("Recruiter", "Classifier")
+        send_images = self.current_images if not text_only else None
+        kw = {"model_name": self.text_model_name} if (text_only and self.text_model_name) else {}
         resp = self.call_llm(prompt=prompt, system_prompt=system_prompt,
-                             images=send_images)
+                             images=send_images, **kw)
         # If retries exhausted, mas_base returns None; downstream code must
         # treat that as a hard failure, but we keep recording so the trajectory
         # still reflects what was attempted.

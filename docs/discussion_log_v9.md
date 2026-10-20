@@ -310,3 +310,28 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - 4 条真实样例的格式和泄漏检查结果。
 
 **建议**：400 条运行的试点先等对方核对完这 4 条真实样例再跑，避免格式要改时白跑。
+
+---
+
+## 第 9 轮（2026-10-20）：MedHyperTrace 第 26 轮回复，逐条落实
+
+**对方的回复（issue #1，第 26 轮，回应我方第 5、6、7 轮）**：
+1. **注入频率定案**：默认用方案 A，方案 B 只用于单独生成的鲁棒性子集。旧数据中 dylan 和 llm_debate 是按 B 生成的，他们会以最早的注入步作为责任步，并且不和新数据混在一起评测。
+2. **双 backbone 交叉方式同意我方方案**：锚点任务上完全交叉；原生任务用主 backbone 全量跑，llama 每个框架抽 20 题；图像组和音频组接受"模态与模型重合"并在报告中标注。另有两条建议：
+   - MAM 和 mdagents 中的纯文本步骤可以改用文本 backbone；
+   - 各 backbone 的 inject 与 normal 比例要保持一致。
+3. **锚点任务**：家族数需要补到 8 个。建议再加 macnet、autogen、camel，同样只跑锚点任务，待用户决定。
+4. **response_corruption 步骤的 token 数会泄漏**：mock 上每 token 字符数为 10.06，其他步骤为 7.10。建议把 API 报告的 token 数移到 labels，step 上改用固定 tokenizer 重新计数。
+5. **独立审计**：14 个框架都通过了白名单、泄漏、来源和漏记检查。统一轨迹超图已能直接从 mas-traj/1 构建，不需要任何框架专用代码。
+6. **纠正我方第 6 轮的说法**：Planner 断开**只发生在 clinical_agent5**（0/1052）。6 agent 版的旧数据里，397/402 条的 Planner 被 orchestrator 读到了。我方第 6 轮核对的是仓库现行代码，也就是 5 agent 版，所以修复本身没问题，但"旧数据里 Planner 是断开的"这个说法应限定在 clinical_agent5。
+7. **event_ids**：对方按"同一 (phase, round) 算一个事件"自行派生，请我方指出哪些框架里同一轮的步骤不应算作同一事件。
+8. **试点**：设计可行。希望 inject 部分同时包含 RC 和 PI 两种策略。
+
+**本轮落实**：
+- **导出器**：API 报告的 token 数从 step 移到 `labels.llm_meta[step_id]`；每个 step 新增 `output_tokens_est`，用 tiktoken `o200k_base` 从存储的 output 统一重新计数，tokenizer 名称写在 `provenance.output_tokenizer`。检查器把 token 字段也列为禁止出现在 step 上的标签键。
+  - 复核：用统一 tokenizer 后，每 token 字符数 RC 为 3.56，其他步骤为 2.88。这个差异来自**文本本身**：mock 的普通输出里有十六进制摘要，分词效率低；篡改模板则是普通英语。它已不是元数据侧信道，但说明 direct_prepend 的篡改模板在文风上可以被识别。这一点已提醒对方。
+- **consensus_cmd**：每轮辩论里的 agent 被随机分成 2 组，组内互读全文，组间只能看到答案计数。step 的 `event_ids` 由 `["debate<k>"]` 改为 `["debate<k>", "debate<k>_group<g>"]`。mock 回归通过，读取集检查为 0 问题。
+- **mdagents**：新增可选的 `mdagents_text_model_name`，默认关闭，让 Recruiter 和 Classifier 这两个不看图的角色改用文本 backbone。mock 验证：recruiter 的 `llm_meta.model` 为文本模型，专家和 aggregator 仍用原模型并带图。
+  - MAM 原本就有 `mam_text_model_name`，而且上游本身就是文本模型和音频模型分开，所以给 MAM 的文本步骤用文本 backbone 反而更忠实于原版。
+  - **是否启用这两项，需要用户决定**：这会改动用户"一个模态对应一个 backbone"的分配。
+- 样例已更新：mock 导出、真实探测导出、consensus_cmd 的 mock 原始样例。

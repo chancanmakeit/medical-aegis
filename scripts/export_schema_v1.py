@@ -24,8 +24,13 @@ labels (`labels`) are physically separate:
     `labels.injection[].reasoning` for injected ones (so its absence on a
     step is itself a weak label signal; drop the field when training an
     attribution model on inject runs).
-  * `finish_reason` / token counts stay on the step. On a response-corrupted
-    step they describe the clean call whose output was replaced.
+  * Token counts reported by the API are LABEL-side (`labels.llm_meta[step_id]`):
+    on a response-corrupted step they describe the clean call whose output was
+    replaced, so output length / API token count identifies corrupted steps
+    (MedHyperTrace measured 10.06 vs 7.10 chars per token on the mock data,
+    issue #1 round 26). Steps instead carry `output_tokens_est`, recounted from
+    the stored `output` with one fixed tokenizer for every step
+    (`provenance.output_tokenizer`). `finish_reason` stays on the step.
 
 Pairing: `labels.paired_normal_run_ids` lists the normal runs of the same
 (framework, question_id, model) found among ALL input files, so pass the clean
@@ -40,6 +45,21 @@ import sys
 from collections import defaultdict
 
 import yaml
+
+try:   # fixed tokenizer for output_tokens_est (the same for every step / backbone)
+    import tiktoken
+    _ENC = tiktoken.get_encoding("o200k_base")
+    TOKENIZER = "tiktoken:o200k_base"
+except Exception:      # offline fallback: words + punctuation
+    _ENC = None
+    TOKENIZER = "regex:words+punct"
+
+
+def count_tokens(text):
+    text = text or ""
+    if _ENC is not None:
+        return len(_ENC.encode(text, disallowed_special=()))
+    return len(re.findall(r"\w+|[^\w\s]", text))
 
 SCHEMA = "mas-traj/1"
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -116,6 +136,7 @@ def convert(rec, reg, alias, reasoning_mode):
     obs_ids = {o["id"] for o in obs}
 
     steps, injections, order = [], [], 0
+    llm_meta_labels = {}
     for h in log.get("conversation_history") or []:
         if h.get("is_input"):            # legacy "User" prompt entries are not calls
             continue
@@ -145,10 +166,12 @@ def convert(rec, reg, alias, reasoning_mode):
             "structured": h.get("structured"),
             "tool_calls": h.get("tool_calls") or [],
             "finish_reason": lm.get("finish_reason"),
-            "prompt_tokens": lm.get("prompt_tokens"),
-            "completion_tokens": lm.get("completion_tokens"),
-            "reasoning_tokens": lm.get("reasoning_tokens"),
         }
+        step["output_tokens_est"] = count_tokens(step["output"]) if not is_tool else None
+        if lm:
+            llm_meta_labels[sid] = {k: lm.get(k) for k in
+                                    ("model", "max_tokens", "prompt_tokens",
+                                     "completion_tokens", "reasoning_tokens")}
         if is_tool and h.get("stub"):
             step["tool_stub"] = True
         if reasoning_mode == "keep":
@@ -194,6 +217,9 @@ def convert(rec, reg, alias, reasoning_mode):
             "execution_successful": log.get("execution_successful"),
             "injection": injections,
             "injection_targets": [dict(t) for t in targets],
+            # API-reported token usage per step: NOT a model input (side channel
+            # on response-corrupted steps); see the module docstring.
+            "llm_meta": llm_meta_labels,
             "paired_normal_run_ids": [],
         },
         "provenance": {
@@ -202,6 +228,7 @@ def convert(rec, reg, alias, reasoning_mode):
             "sources_recorded": all(s["sources"] is not None for s in steps if s["kind"] == "llm"),
             "history_alignment_ok": log.get("history_alignment_ok"),
             "reasoning_exported": reasoning_mode == "keep",
+            "output_tokenizer": TOKENIZER,
         },
     }
     return out
@@ -209,7 +236,8 @@ def convert(rec, reg, alias, reasoning_mode):
 
 # ---------------------------------------------------------------------- checks
 INJECTION_MARKERS = ("[UPDATED INSTRUCTION", "SUPERSEDES ALL EARLIER INSTRUCTIONS")
-LABEL_KEYS = {"injection_applied", "fm_error_type", "injection_strategy", "prompt_modified",
+LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
+              "injection_applied", "fm_error_type", "injection_strategy", "prompt_modified",
               "injected_input_messages", "clean_response_before_corruption",
               "response_corrupted", "injection_process", "injection_description",
               "target_index", "current_role", "current_role_index"}

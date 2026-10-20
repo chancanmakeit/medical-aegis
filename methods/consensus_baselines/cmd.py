@@ -69,7 +69,8 @@ Deviations from upstream:
 Injection contract (fm_consensus_wrapper.py):
   role "ModalityAgent", role_index = position of the modality in info.json
   (stable per dataset; `agent_label` carries the modality name), phases
-  "interpretation" (round None) and "debate" (round 1..2, event_ids ["debate<k>"]);
+  "interpretation" (round None) and "debate" (round 1..2, event_ids ["debate<k>",
+  "debate<k>_group<g>"]);
   role "Secretary", role_index 0, phase "tie_break" (only called on a tie, so a
   target on it stays un-fired on samples without a tie).
   A JSON-retry turn reuses the agent's (role, role_index, round).
@@ -326,8 +327,14 @@ class SensingCMD_Main(SensingMASBase):
                 "}\n\n"
                 "Do not include any additional text outside the JSON.")
             a.phase = "debate"
+            # Round event + this agent's group event: members of one group read
+            # each other in full, the other group only as answer counts
+            # (MedHyperTrace issue #1 round 26 asked which same-round steps
+            # are separate events).
+            gi = next(i for i, g in enumerate(groups) if name in g)
             results[name] = a.run_json_turn(content, sources=sources, round_=k,
-                                            event_ids=[f"debate{k}"], source_how=source_how)
+                                            event_ids=[f"debate{k}", f"debate{k}_group{gi}"],
+                                            source_how=source_how)
         if any(r is None for r in results.values()):
             return None
         for a in agents.values():
