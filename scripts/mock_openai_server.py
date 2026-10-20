@@ -54,6 +54,12 @@ def reply_for(messages):
         return "The scenario concerns a femur fracture code. The laterality is right. Option D fits best."
     if "scrutinize each option individually" in user:
         return "Options A-C mismatch displacement or laterality. Option D is plausible."
+    # --- ClinicalAgent ------------------------------------------------------
+    for tag, val in (("safety_score", "0.3"), ("efficacy_score", "0.4"), ("enrollment_score", "0.2")):
+        if f"<{tag}>0.X</{tag}>" in user:
+            return f"Lane analysis for {tag.split('_')[0]}. <{tag}>{val}</{tag}>"
+    if "<final_result>0.X</final_result> tags (0-1" in user:
+        return "p = 0.30*0.3 + 0.40*0.4 + 0.30*0.2 = 0.31\n<final_result>0.31</final_result>"
     # --- ConSensus (consensus + baselines) ---------------------------------
     # REASON texts carry the agent name + a digest of the request so every
     # step's output is unique (keeps scripts/check_trajectory_sources.py from
