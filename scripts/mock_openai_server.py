@@ -98,6 +98,37 @@ def reply_for(messages):
             return f"Lane analysis for {tag.split('_')[0]}. <{tag}>{val}</{tag}>"
     if "<final_result>0.X</final_result> tags (0-1" in user:
         return "p = 0.30*0.3 + 0.40*0.4 + 0.30*0.2 = 0.31\n<final_result>0.31</final_result>"
+    # --- TriageAgent (triage_agent) ------------------------------------------
+    # Doctor B says 2, Doctor C says 3, so the discussion runs: round 1 A/B keep
+    # 2 at 95% and C keeps 3 at 85%; round 2 A and B exit (same high-confidence
+    # answer twice) and C, now with no active peers, switches to 2 at 92% ->
+    # early stop (b). Texts carry a request digest so steps stay unique.
+    tdig = hashlib.md5(json.dumps(messages, sort_keys=True).encode()).hexdigest()[:8]
+    if "TASK (coarse classification)" in user:
+        return (f"Coarse class: HIGH\nConfidence: 80%\nRationale: Unstable presentation [{tdig}].\n"
+                "References: Chapter 3, p. 15-20")
+    if "TASK (fine-grained refinement)" in user:
+        return (f"ESI level: 2\nConfidence: 85%\nRationale: High-risk situation [{tdig}].\n"
+                "References: Chapter 4, p. 22")
+    if "TASK (direct fine-grained classification)" in user:
+        return (f"ESI level: 3\nConfidence: 70%\nRationale: Needs two resources [{tdig}].\n"
+                "References: Chapter 5, p. 30")
+    if "Synthesize the three doctors' ESI classifications" in user:
+        return (f"Key information: trauma case [{tdig}].\nConfidence scores: B ESI 2 (85%), C ESI 3 (70%)\n"
+                "Rationales: B high risk; C two resources.\nConsolidated analysis: high-risk features dominate.\n"
+                "Suggested ESI level: 2")
+    if "The team is discussing the ESI classification" in user:
+        cur = re.search(r"Your current position: ESI level (\S+), confidence", user)
+        cur = cur.group(1) if cur else "2"
+        peers = user.split("Your colleagues' latest positions:", 1)[1].split("Your current position:", 1)[0].strip()
+        if "Doctor C" in system:
+            lvl, conf, ch = ("3", 85, "no") if peers else ("2", 92, "yes")
+        else:
+            lvl, conf, ch = (cur if cur in "12345" and cur else "2"), 95, "no"
+        return f"ESI level: {lvl}\nConfidence: {conf}%\nChanged: {ch}\nRationale: Reviewed the team summary [{tdig}]."
+    if "Determine the single final ESI level" in user:
+        return (f"ESI level: 2\nConfidence: 90%\nRationale: Team converged [{tdig}].\n"
+                "References: Chapter 4\nFinal justification: consensus on ESI 2.")
     # --- ConSensus (consensus + baselines) ---------------------------------
     # REASON texts carry the agent name + a digest of the request so every
     # step's output is unique (keeps scripts/check_trajectory_sources.py from
@@ -161,6 +192,7 @@ def reply_for(messages):
 
 class Handler(BaseHTTPRequestHandler):
     log_path = None
+    reasoning = False
 
     def log_message(self, *a):  # silence
         pass
@@ -184,6 +216,10 @@ class Handler(BaseHTTPRequestHandler):
             "usage": {"prompt_tokens": sum(len(_text(m.get("content")).split()) for m in msgs),
                       "completion_tokens": len(content.split()), "total_tokens": 0},
         }
+        if self.reasoning:
+            # DeepSeek/Qwen-style separate reasoning channel + usage details.
+            resp["choices"][0]["message"]["reasoning_content"] = f"(mock reasoning) thinking about: {content[:40]}"
+            resp["usage"]["completion_tokens_details"] = {"reasoning_tokens": 7}
         data = json.dumps(resp).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
@@ -196,8 +232,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=18080)
     ap.add_argument("--log", default=None)
+    ap.add_argument("--reasoning", action="store_true",
+                    help="add reasoning_content + reasoning_tokens to every reply")
     a = ap.parse_args()
     Handler.log_path = a.log
+    Handler.reasoning = a.reasoning
     ThreadingHTTPServer(("127.0.0.1", a.port), Handler).serve_forever()
 
 

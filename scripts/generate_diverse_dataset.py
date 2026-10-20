@@ -171,6 +171,14 @@ FRAMEWORK_AGENT_POOL: Dict[str, List[Dict]] = {
         + [{"role": "Moderator",     "role_index": 0, "agent_key": "Moderator"},
            {"role": "Diagnostician", "role_index": 0, "agent_key": "Diagnostician"}]
     ),
+    # TriageAgent: Doctor 0/1/2 = Doctor A/B/C (a random Doctor target fires on
+    # its first call, the classify step; discussion rounds of a doctor share
+    # its agent_key). Summarizer and Coordinator are singletons.
+    "triage_agent": (
+        [{"role": "Doctor", "role_index": i, "agent_key": f"Doctor_{'ABC'[i]}"} for i in range(3)]
+        + [{"role": "Summarizer",  "role_index": 0, "agent_key": "Summarizer"},
+           {"role": "Coordinator", "role_index": 0, "agent_key": "Coordinator"}]
+    ),
     # CMAS: 3-agent per-sample zero-shot NER pipeline (self-annotator is offline).
     # All singletons (idx=0), no runtime role renaming.
     "cmas": [
@@ -206,6 +214,7 @@ BASE_YAML_TEMPLATE = {
     "consensus_mad": "experiments/fm_injection/sensing/consensus_mad_sensing_inject.yaml",
     "consensus_reconcile": "experiments/fm_injection/sensing/consensus_reconcile_sensing_inject.yaml",
     "consensus_cmd": "experiments/fm_injection/sensing/consensus_cmd_sensing_inject.yaml",
+    "triage_agent": "experiments/fm_injection/triage/triage_agent_triage_inject.yaml",
 }
 
 

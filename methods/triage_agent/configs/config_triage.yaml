@@ -1,0 +1,4 @@
+# TriageAgent (Lu et al., EMNLP'24 Findings), port of chancanmakeit/TriageAgent.
+max_discuss_rounds: 5          # upstream MAX_DISCUSS_ROUNDS (paper's AutoGen max_iter is 12)
+high_conf_threshold: 90        # upstream HIGH_CONF_THRESHOLD (%), early-stop rules (a)/(b)
+use_original_max_tokens: false # true -> upstream budgets 1024/2048/1024/1024 (truncated ~51% of upstream's reasoning-model calls)

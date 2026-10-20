@@ -1,5 +1,6 @@
 import os
 import random
+import threading
 import openai
 from tenacity import retry, wait_exponential, stop_after_attempt
 
@@ -127,6 +128,50 @@ def _attach_images_to_messages(messages, images):
     return new_msgs
 
 
+def _extract_call_meta(completion, model_name, request_dict) -> dict:
+    """Per-call metadata from an OpenAI-compatible chat completion.
+
+    `reasoning` is the provider's separate reasoning text when it returns one
+    (`reasoning_content`: DeepSeek / Qwen / vLLM / SGLang; `reasoning`:
+    OpenRouter); None when the model has no separate reasoning channel.
+    """
+    meta = {"model": model_name, "max_tokens": request_dict.get("max_tokens")}
+    try:
+        choice = completion.choices[0]
+        msg = choice.message
+        extra = getattr(msg, "model_extra", None) or {}
+        reasoning = (getattr(msg, "reasoning_content", None) or extra.get("reasoning_content")
+                     or getattr(msg, "reasoning", None) or extra.get("reasoning"))
+        meta["reasoning"] = reasoning if isinstance(reasoning, str) and reasoning else None
+        meta["finish_reason"] = getattr(choice, "finish_reason", None)
+    except Exception:
+        meta.setdefault("reasoning", None)
+        meta.setdefault("finish_reason", None)
+    usage = getattr(completion, "usage", None)
+    meta["prompt_tokens"] = getattr(usage, "prompt_tokens", None)
+    meta["completion_tokens"] = getattr(usage, "completion_tokens", None)
+    details = getattr(usage, "completion_tokens_details", None)
+    meta["reasoning_tokens"] = getattr(details, "reasoning_tokens", None) if details is not None else None
+    return meta
+
+
+def _set_last_call_meta(inst, meta) -> None:
+    tls = inst.__dict__.get("_call_meta_tls")
+    if tls is None:
+        tls = inst.__dict__["_call_meta_tls"] = threading.local()
+    tls.meta = meta
+
+
+def pop_last_call_meta(inst):
+    """Return and clear the metadata of the latest call_llm on this thread."""
+    tls = inst.__dict__.get("_call_meta_tls")
+    if tls is None:
+        return None
+    meta = getattr(tls, "meta", None)
+    tls.meta = None
+    return meta
+
+
 class MAS():
 
     def __init__(self, general_config, method_config_name=None):
@@ -244,6 +289,11 @@ class MAS():
         try:
             completion = llm.chat.completions.create(**request_dict)
             response, num_prompt_tokens, num_completion_tokens = completion.choices[0].message.content, completion.usage.prompt_tokens, completion.usage.completion_tokens
+            # Per-call metadata (reasoning text, finish_reason, token usage),
+            # read by the FM wrappers right after this call returns and stored
+            # on the matching step as `llm_meta`. Thread-local so a method
+            # that parallelizes its own calls cannot mix up two calls' meta.
+            _set_last_call_meta(self, _extract_call_meta(completion, model_name, request_dict))
         except Exception as e:
             # Wrap with diagnostic context so handle_retry_error can show the
             # user exactly which request failed (model, has_images, msg count,
@@ -268,12 +318,13 @@ class MAS():
             llm.close()     # TODO: Check if this is necessary
 
         if isinstance(response, str):       # in cases where response is None or an error message
-            if model_name not in self.token_stats:
-                self.token_stats[model_name] = {"num_llm_calls": 0, "prompt_tokens": 0, "completion_tokens": 0}
-            else:
-                self.token_stats[model_name]["num_llm_calls"] += 1
-                self.token_stats[model_name]["prompt_tokens"] += num_prompt_tokens
-                self.token_stats[model_name]["completion_tokens"] += num_completion_tokens
+            # (fixed 2026-10-20: the first call of a model name used to be
+            # registered but not counted)
+            stats = self.token_stats.setdefault(
+                model_name, {"num_llm_calls": 0, "prompt_tokens": 0, "completion_tokens": 0})
+            stats["num_llm_calls"] += 1
+            stats["prompt_tokens"] += num_prompt_tokens or 0
+            stats["completion_tokens"] += num_completion_tokens or 0
         else:
             # Response was None -- most commonly because the provider's safety
             # filter blocked the content (Gemini does this on medical images

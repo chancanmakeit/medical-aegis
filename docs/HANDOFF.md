@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（会话 v9 第 2 轮：评估 TriageAgent 及其轨迹格式，接入方案待用户确认）。
+> 最后更新：2026-10-20（会话 v9 第 3 轮：TriageAgent 已接入并通过 mock 回归；所有结构化框架新增按步骤记录的 `llm_meta`）。
 > 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
@@ -46,9 +46,9 @@
 | **consensus_debate / _mad / _reconcile / _cmd** | 第 6 轮（Sonnet 子 agent 移植，已和上游逐条比对消息） | FMConSensusWrapper | 同上 | classification | ✅ |
 | **mam** | 第 7 轮 | FMMAMWrapper | `datasets/data/{heartbeat_b,heartbeat_a,sounddr}.json`（音频需要重新生成） | classification（自由文本） | ✅；音频后端是 mimo-v2.6-flash，已做 1 次真实探测，格式可用 |
 | MedAgent-Pro | — | — | REFUGE2 | — | **用户决定暂不做**（上游缺少分割工具，plan 在病例之间共享） |
-| triage_agent（计划） | 用户仓库 `chancanmakeit/TriageAgent`（只读，clone 到 /home/claude/triageagent） | 计划用 StructuredFMWrapper | ESI 分诊 Test-1/2/3，216 条 | classification（1–5，含多值 gold） | **用户第 2 轮提议纳入**；方案见 discussion_log_v9 第 2 轮，待确认 |
+| **triage_agent**（别名 triageagent） | v9 第 3 轮，移植自用户仓库 `chancanmakeit/TriageAgent`（HEAD `fdec6ee`） | FMTriageAgentWrapper | `datasets/data/triage_esi.json`（Test-1/2/3，216 条；`--test_dataset_name triage_esi`） | **classification_field**（字段式答案：`ESI level: N` / `Coarse class: HIGH\|LOW`） | ✅ mock 回归通过。RAG 检索结果预先算好，存在数据里，和上游运行的结果逐条一致（216/216） |
 
-- 实验 YAML：`experiments/fm_injection/{medical,sensing,audio,ner}/<name>_*_{normal,inject}.yaml`。端点和密钥都是占位符。
+- 实验 YAML：`experiments/fm_injection/{medical,sensing,audio,ner,triage}/<name>_*_{normal,inject}.yaml`。端点和密钥都是占位符。
 - 批量生成：`scripts/generate_diverse_dataset.py` 已经包含所有新框架的注入位点池。
 
 ## 3. 共享基础设施（新框架要遵守的契约）
@@ -58,18 +58,26 @@
   - 多轮对话（`messages=` 方式调用）的注入只改最后一条 user 消息。
   - 注入目标可以额外指定 `phase` / `round`，每个目标记录 `fired`。
   - `is_tool` 步骤不参与调用对齐。
+  - **每个 LLM 步骤都带 `llm_meta`**（v9 第 3 轮新增）：`reasoning`（供应商单独返回的推理文本：`reasoning_content` 或 `reasoning`；没有则为 null）、`finish_reason`、`prompt_tokens`、`completion_tokens`、`reasoning_tokens`、`max_tokens`、`model`。被 response_corruption 的步骤，`llm_meta` 描述的是篡改前那次干净调用。实现方式：`mas_base.call_llm` 把这些信息写进线程局部变量，wrapper 在调用返回后立即取走。**旧版 wrapper（mdagents / clinical_agent / cmas / dylan / llm_debate / agentverse）没有 `llm_meta`**。
+  - 新增钩子 `before_injection(role, role_index, phase, round_)`：注入触发前调用，用来按 agent 设置工厂的答案字段和类别（Triage 在用）。
 - **方法侧契约**：
   - 每次 `call_llm` 之前设置 `current_role` / `current_role_index` / `current_phase` / `current_round`。
   - 每次 LLM 调用只往 `conversation_history` 里写一条记录，包含 `step_id`、`sources`，可选 `source_how`（`excerpt` / `structured_field`）、`round`、`event_ids`、`agent_label`、`agent_id`、`observations`、`structured`。
   - ConSensus 系列复用 `methods/consensus/consensus_main.py` 中的 `SensingMASBase` / `SensingAgent`，读取集合会自动累积。
 - **注入工厂**（`malicious_factory/` 和 `aegis_core/malicious_factory/` 两份**必须保持一致**，改完一份就 `cp` 到另一份）：
-  - 支持的 task_type：mcq、numeric、error_correction、open、**classification**（JSON 和自由文本两种篡改都支持）、**probability**（直接替换标签里的值）。
+  - 支持的 task_type：mcq、numeric、error_correction、open、**classification**（JSON 和自由文本两种篡改都支持）、**probability**（直接替换标签里的值）、**classification_field**（v9 第 3 轮新增）。
+  - `classification_field` 的篡改方式：把字段（`classification_field_regex`）的**每一处**取值都改成下一个类别（循环）；hedge 模式写成 "错误值 or 原值"，unsure 模式写成 "I am not sure"，label_only 模式只输出字段那一行。
+  - `classification_field` 有自己的指令表和篡改表，措辞与领域无关。`classification` 的表里写的是 "sensor features"，不适合临床场景。
   - `ner` 仍然会回退成 mcq。
 - **verifier**：
-  - wesad / sleepedf / heartbeat_* / sounddr 按类别标签匹配，确定性结果优先（authoritative）。自由文本时先看显式答案标记，再看是否只提到一个类别。
+  - wesad / sleepedf / heartbeat_* / sounddr 按类别标签匹配，确定性结果优先（authoritative）。
+  - triage_esi：读取 `ESI level: N`，N 在 `acceptable_answers` 里即算正确（有 1 条标签是 "4 or 5"）；确定性结果优先。自由文本时先看显式答案标记，再看是否只提到一个类别。
   - 显式答案不在类别表里时，视为无法判定。
   - 能识别 `Option: X` 这种写法。
 - **`mas_base.call_llm`**：支持单次调用的 `max_tokens`、`audios=`（`input_audio` 的 data URI），以及从 model config 透传 `extra_body`。
+  - 第 3 轮修了一个统计 bug：某个模型名的第一次调用以前只登记、不计数。
+  - ⚠️ 推理模型如果 `content` 为 None（例如 token 用完时只返回了 reasoning），仍然按原逻辑抛错并重试。真实试跑时 max_tokens 要留足。
+- **`trajectory_normalizer`**：步骤字段是**白名单透传**的。新增步骤字段时必须同时加进 `aegis_core/utils/trajectory_normalizer.py` 里的那个列表，否则会被静默丢掉（第 3 轮的 `llm_meta` 就踩了这个坑）。
 - **`main.py`**：`Task.metadata['raw_sample']` 携带完整样本；断点续跑按**样本 id** 判断是否已处理（以前按 query，会漏跑）。
 - **verifier 的数据集名**：取 `benchmark_name or --test_dataset_name`。sensing 和 audio 的 YAML 不写 benchmark_name，由命令行决定。
 
@@ -85,7 +93,7 @@
 3. **注入频率**：方案 A（全部只注入一次；我们和 MedHyperTrace 都倾向这个）还是方案 B。新框架默认都是 A，注入目标可以按 phase/round 指定。
 4. **试点 backbone**：建议 deepseek-flash + qwen3.8-flash；MAM 的音频用 mimo-v2.6-flash。
 5. 用户本地还有哪些 normal 轨迹。
-6. **TriageAgent 接入方案**（v9 第 2 轮）：用我们的契约接入，不改用 Triage 的格式；同时在 `call_llm` 里按步骤记录 reasoning、finish_reason 和 token 用量。待用户确认。
+6. ~~TriageAgent 接入方案~~：用户已确认，第 3 轮完成。
 
 ## 5. MedHyperTrace 的需求（尚未完成的部分）
 
@@ -105,6 +113,10 @@
 
 ## 6. 已知坑
 
+- **TriageAgent 的上游解析器很宽松**：它先找 `ESI level: N`，找不到再找 "final … ESI N"，再找 "ESI N"。所以在 Coordinator 上做 "unsure" 一类的篡改时，可能会被正文其他地方提到的等级"救回来"（mock 中实测到过）。这是真实系统本来的行为，有意保留，没有改。
+- TriageAgent 的 mock 回归需要 `scripts/mock_openai_server.py --reasoning`，这样才会返回 `reasoning_content`。
+- 重建 Triage 数据需要 TriageAgent 的 clone 和 `pdftotext`（沙箱里已有）。用的是 numpy 版 TF-IDF，不需要额外安装依赖。
+
 - 结束 mock 进程**不要**用 `pkill -f mock_openai_server`，它会匹配到执行命令的 shell 自身（exit 144）。应该用 `ps -eo pid,args | awk '$2 ~ /python3/ && /mock_openai/ {print $1}' | xargs -r kill`。
 - 沙箱里**没有** `/usr/bin/time`。
 - HF 的 tree API 加 `recursive=true` 时单页最多 1000 条，会截断。要分目录查（第 4 轮曾因此误判 REFUGE2 不完整）。
@@ -116,20 +128,21 @@
 ## 7. 文件地图（新增和改动）
 
 - 框架：
-  - `methods/{medagents_mc, consensus, consensus_baselines, mam}/`
+  - `methods/{medagents_mc, consensus, consensus_baselines, mam, triage_agent}/`
   - 旧框架：`methods/{mdagents, clinical_agent, cmas, dylan, llm_debate, agentverse}/`
-- wrapper：`aegis_core/agent_systems/fm_{structured, medagents_mc, consensus, mam}_wrapper.py`
+- wrapper：`aegis_core/agent_systems/fm_{structured, medagents_mc, consensus, mam, triage_agent}_wrapper.py`
 - 数据转换：
   - `data_processing/medical/convert_medical_datasets.py`
   - `data_processing/sensing/convert_consensus_datasets.py`
   - `data_processing/audio/convert_mam_datasets.py`
+  - `data_processing/triage/convert_triage_dataset.py`（需要 `--triage_repo <TriageAgent clone>`）
   - `data_processing/ner/…`
-- 数据：`datasets/data/{sleepedf, wesad, heartbeat_b, heartbeat_a, sounddr, wikigold}.json`
+- 数据：`datasets/data/{sleepedf, wesad, heartbeat_b, heartbeat_a, sounddr, wikigold, triage_esi}.json`
 - 脚本：
   - `scripts/mock_openai_server.py`：带各框架的规则和通用的 JSON 填充。
   - `scripts/check_trajectory_sources.py`
   - `scripts/generate_diverse_dataset.py`
   - `scripts/build_paired_dataset.py`
   - `scripts/recompute_trial_success_verdicts.py`
-- mock 样例：`docs/requests/samples/*_mock_{clean,inject}.jsonl`（共 7 个框架）。
+- mock 样例：`docs/requests/samples/*_mock_{clean,inject}.jsonl`（共 8 个框架；triage_agent 另有 `_mock_inject_multi`，含 3 个篡改目标）。
 - 讨论记录：`docs/discussion_log_v1..v9.md`。

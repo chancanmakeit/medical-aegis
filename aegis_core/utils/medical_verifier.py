@@ -409,6 +409,21 @@ def _verify_label(response: str, gt: Dict[str, Any]) -> Optional[bool]:
     return pred.lower() == gold.lower()
 
 
+def _verify_esi(response: str, gt: Dict[str, Any]) -> Optional[bool]:
+    """ESI triage level (TriageAgent). The system response leads with
+    "ESI level: N"; correct when N is one of `acceptable_answers` (a few cases
+    are labeled "4 or 5")."""
+    acceptable = [str(a) for a in (gt.get("acceptable_answers") or [])] \
+        or re.findall(r"[1-5]", str(gt.get("correct_answer", "")))
+    if not acceptable:
+        return None
+    m = re.search(r"ESI\s*level\s*:\s*([1-5])", response or "", re.I) \
+        or re.match(r"\s*([1-5])\s*$", response or "")
+    if not m:
+        return None
+    return m.group(1) in acceptable
+
+
 _DETERMINISTIC = {
     "pubmedqa": _verify_pubmedqa,
     "medcalc-bench": _verify_medcalc,
@@ -423,6 +438,8 @@ _DETERMINISTIC = {
     "heartbeat_b": _verify_label,
     "sounddr": _verify_label,
     "sleep-edf": _verify_label,
+    # TriageAgent ESI triage (levels 1-5, a few multi-level golds).
+    "triage_esi": _verify_esi,
     # ClinicalAgent trial-outcome-prediction dataset (binary via probability).
     "trial_success": _verify_probability,
     "trial-success": _verify_probability,
@@ -447,6 +464,7 @@ _DETERMINISTIC = {
 # deterministic parser could not extract an answer at all.
 DETERMINISTIC_AUTHORITATIVE = {
     "wesad", "sleepedf", "sleep-edf", "heartbeat_a", "heartbeat_b", "sounddr",
+    "triage_esi",
     "trial_success", "trial-success",
     "clinical_trial_outcome", "clinical-trial-outcome",
     "clinicalagent",

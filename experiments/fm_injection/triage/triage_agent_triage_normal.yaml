@@ -1,0 +1,32 @@
+# TriageAgent (Lu et al., EMNLP'24 Findings) CLEAN config -> NORMAL trajectories
+# on ESI triage (TriageAgent Test-1/2/3, 216 cases). Build the dataset first:
+#   python3 data_processing/triage/convert_triage_dataset.py --triage_repo <TriageAgent clone> \
+#     --out datasets/data/triage_esi.json
+# Run:
+#   python main.py --method_name triage_agent \
+#     --experiment_config experiments/fm_injection/triage/triage_agent_triage_normal.yaml \
+#     --dataset_file ./datasets/data/triage_esi.json --test_dataset_name triage_esi --model_name <model> --no_inject
+run_mode: "clean"
+triage_config_name: "config_triage"
+# triage_max_discuss_rounds: 5
+# triage_use_original_max_tokens: false   # true -> upstream 1024/2048 budgets
+
+system_under_test:
+  name: "triage_agent"
+  wrapper_class_path: "aegis_core.agent_systems.fm_triage_agent_wrapper.FMTriageAgentWrapper"
+  method_config_path: "methods/triage_agent/configs/config_triage.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.0
+
+# The final response is "ESI level: N"; the deterministic ESI verifier is
+# authoritative (multi-level golds such as "4 or 5" accept either).
+use_llm_judge: true
+judge_mode: "regex_first"
+
+experiment_settings:
+  max_workers: 5

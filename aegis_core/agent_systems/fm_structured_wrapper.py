@@ -22,6 +22,9 @@ What this wrapper guarantees (MedHyperTrace issue #1, problems A and C):
     (from current_phase / current_round). It fires only on its FIRST matching
     call unless `inject_every_invocation: true`; each target reports `fired`.
   * `step_id` / `sources` / `round` / `event_ids` pass through untouched.
+  * Every LLM step gets `llm_meta` (reasoning text, finish_reason, token usage,
+    max_tokens; see mas_base._extract_call_meta). For a response-corrupted step
+    it describes the clean call whose output was then corrupted.
 
 Subclasses set FRAMEWORK, CONFIG_NAME_KEY and may override `configure()`,
 `build_sample()`, `before_run()` and `extra_log()`.
@@ -35,6 +38,7 @@ from .base_wrapper import (
 )
 from malicious_factory import FMMaliciousFactory, FMMaliciousAgent, InjectionStrategy
 from methods import get_method_class
+from methods.mas_base.mas_base import pop_last_call_meta
 
 
 def messages_from_call(args, kwargs) -> List[Dict[str, Any]]:
@@ -111,6 +115,10 @@ class StructuredFMWrapper(SystemWrapper):
     def extra_log(self, final_output: Any) -> Dict[str, Any]:
         return {}
 
+    def before_injection(self, role, role_index, phase, round_) -> None:
+        """Called right before a target fires (e.g. set the factory's answer
+        field / class labels for this agent)."""
+
     # ---- entry points -------------------------------------------------- #
     def run_clean(self, task: Any) -> Tuple[Any, Dict[str, Any]]:
         return self.run_with_multi_injection(task, malicious_agents=[], injection_targets=[])
@@ -161,6 +169,13 @@ class StructuredFMWrapper(SystemWrapper):
             return None
         injection_meta_by_call: Dict[int, Dict[str, Any]] = {}
         clean_messages_by_call: Dict[int, List[Dict[str, Any]]] = {}
+        llm_meta_by_call: Dict[int, Any] = {}
+
+        def _call(turn_idx, where, *a, **kw):
+            pop_last_call_meta(self.mas)          # drop any stale meta
+            r = _llm_response_or_raise(original_llm_call(*a, **kw), where=where)
+            llm_meta_by_call[turn_idx] = pop_last_call_meta(self.mas)
+            return r
         call_counter = {"n": 0}
 
         sample = self.build_sample(task)
@@ -184,10 +199,11 @@ class StructuredFMWrapper(SystemWrapper):
             ti = _match(role, role_index, phase, round_)
             where = f"{fw}:{role}_idx{role_index}_turn{turn_idx}"
             if ti is None:
-                return _llm_response_or_raise(original_llm_call(*args, **kwargs), where=where)
+                return _call(turn_idx, where, *args, **kwargs)
 
             fired_targets.add(ti)
             malicious_agent = targets[ti][0]
+            self.before_injection(role, role_index, phase, round_)
             print(f"*** FM injection on {fw} '{role}' (idx {role_index}, phase '{phase}', "
                   f"turn {turn_idx}): {malicious_agent.fm_error_type.value} / "
                   f"{malicious_agent.injection_strategy.value} ***")
@@ -220,21 +236,18 @@ class StructuredFMWrapper(SystemWrapper):
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
                     args, kwargs,
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
-                resp = _llm_response_or_raise(original_llm_call(*new_args, **new_kwargs),
-                                              where=f"{where}_inject")
+                resp = _call(turn_idx, f"{where}_inject", *new_args, **new_kwargs)
                 meta["prompt_modified"] = (mod_txt != orig_txt)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
             elif malicious_agent.injection_strategy == InjectionStrategy.RESPONSE_CORRUPTION:
-                clean = _llm_response_or_raise(original_llm_call(*args, **kwargs),
-                                               where=f"{where}_clean_for_corruption")
+                clean = _call(turn_idx, f"{where}_clean_for_corruption", *args, **kwargs)
                 resp = self.fm_factory.corrupt_response(
                     clean, malicious_agent.fm_error_type, agent_context)
                 meta["clean_response_before_corruption"] = clean
                 meta["response_corrupted"] = (resp != clean)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
             else:
-                resp = _llm_response_or_raise(original_llm_call(*args, **kwargs),
-                                              where=f"{where}_unknown_strategy")
+                resp = _call(turn_idx, f"{where}_unknown_strategy", *args, **kwargs)
             injection_meta_by_call[turn_idx] = meta
             return resp
 
@@ -261,6 +274,7 @@ class StructuredFMWrapper(SystemWrapper):
             received = llm_capture[i].get("input_messages") if i < len(llm_capture) else None
             clean = clean_messages_by_call.get(i)
             h["input_messages"] = clean if clean is not None else received
+            h["llm_meta"] = llm_meta_by_call.get(i)
             if i in injection_meta_by_call:
                 meta = injection_meta_by_call[i]
                 if meta.get("injection_strategy") == InjectionStrategy.PROMPT_INJECTION.value:

@@ -16,6 +16,7 @@ from .mdagents import MDAgents_Main
 from .medagents_mc import MedAgentsMC_Main
 from .consensus import ConSensus_Main
 from .mam import MAM_Main
+from .triage_agent import TriageAgent_Main
 from .consensus_baselines import SensingDebate_Main, SensingMAD_Main, SensingReconcile_Main, SensingCMD_Main
 from .clinical_agent import ClinicalAgent_Main
 from .cmas import CMAS_Main
@@ -51,6 +52,8 @@ method2class = {
     "medagents_mc": MedAgentsMC_Main,
     "consensus": ConSensus_Main,
     "mam": MAM_Main,
+    "triage_agent": TriageAgent_Main,
+    "triageagent": TriageAgent_Main,
     "consensus_debate": SensingDebate_Main,
     "consensus_mad": SensingMAD_Main,
     "consensus_reconcile": SensingReconcile_Main,
