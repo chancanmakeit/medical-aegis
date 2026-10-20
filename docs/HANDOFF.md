@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（新会话 v9 第 1 轮：环境已按本文件恢复，mock 冒烟测试通过；内容无实质变化）。
+> 最后更新：2026-10-20（会话 v9 第 2 轮：评估 TriageAgent 及其轨迹格式，接入方案待用户确认）。
 > 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
@@ -46,6 +46,7 @@
 | **consensus_debate / _mad / _reconcile / _cmd** | 第 6 轮（Sonnet 子 agent 移植，已和上游逐条比对消息） | FMConSensusWrapper | 同上 | classification | ✅ |
 | **mam** | 第 7 轮 | FMMAMWrapper | `datasets/data/{heartbeat_b,heartbeat_a,sounddr}.json`（音频需要重新生成） | classification（自由文本） | ✅；音频后端是 mimo-v2.6-flash，已做 1 次真实探测，格式可用 |
 | MedAgent-Pro | — | — | REFUGE2 | — | **用户决定暂不做**（上游缺少分割工具，plan 在病例之间共享） |
+| triage_agent（计划） | 用户仓库 `chancanmakeit/TriageAgent`（只读，clone 到 /home/claude/triageagent） | 计划用 StructuredFMWrapper | ESI 分诊 Test-1/2/3，216 条 | classification（1–5，含多值 gold） | **用户第 2 轮提议纳入**；方案见 discussion_log_v9 第 2 轮，待确认 |
 
 - 实验 YAML：`experiments/fm_injection/{medical,sensing,audio,ner}/<name>_*_{normal,inject}.yaml`。端点和密钥都是占位符。
 - 批量生成：`scripts/generate_diverse_dataset.py` 已经包含所有新框架的注入位点池。
@@ -84,6 +85,7 @@
 3. **注入频率**：方案 A（全部只注入一次；我们和 MedHyperTrace 都倾向这个）还是方案 B。新框架默认都是 A，注入目标可以按 phase/round 指定。
 4. **试点 backbone**：建议 deepseek-flash + qwen3.8-flash；MAM 的音频用 mimo-v2.6-flash。
 5. 用户本地还有哪些 normal 轨迹。
+6. **TriageAgent 接入方案**（v9 第 2 轮）：用我们的契约接入，不改用 Triage 的格式；同时在 `call_llm` 里按步骤记录 reasoning、finish_reason 和 token 用量。待用户确认。
 
 ## 5. MedHyperTrace 的需求（尚未完成的部分）
 
