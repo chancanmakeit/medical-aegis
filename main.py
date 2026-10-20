@@ -145,6 +145,13 @@ async def process_sample(args, sample: dict, lock: threading.Lock, output_path: 
     general_config.update({"model_api_config": model_api_config})
     general_config.update({"experiment_config": exp_config})
     save_data = sample.copy()
+    # Run provenance for the schema v1 exporter (scripts/export_schema_v1.py).
+    save_data.setdefault('run_index', 0)
+    save_data['framework'] = args.method_name
+    save_data['dataset'] = (exp_config or {}).get('benchmark_name') or args.test_dataset_name
+    save_data.setdefault('question_id', f"{save_data['dataset']}/{sample.get('id')}")
+    save_data['model'] = {"name": args.model_name, "temperature": args.model_temperature,
+                          "max_tokens": args.model_max_tokens}
     try:
         # 1. Load method-specific config
         method_config_path = exp_config['system_under_test']['method_config_path']
@@ -479,6 +486,21 @@ async def main(args):
     print(f"--- Loading Experiment Config: {args.experiment_config} ---")
     with open(args.experiment_config, 'r', encoding='utf-8') as f:
         exp_config = yaml.safe_load(f)
+
+    # K repeated runs per question (MedHyperTrace spec v1: paired success /
+    # failure runs of the same question). Every sample is expanded into
+    # num_runs copies tagged with `run_index`; `question_id` is shared by all
+    # runs of a question and is what pairing keys on. Resume keys on
+    # (id, run_index), so a run can be extended later with --run_index_start.
+    question_dataset = exp_config.get('benchmark_name') or args.test_dataset_name
+    if args.num_runs < 1:
+        raise ValueError("--num_runs must be >= 1")
+    if args.num_runs > 1 and not args.model_temperature:
+        print(f"!! WARNING: --num_runs {args.num_runs} with --model_temperature "
+              f"{args.model_temperature}: repeated runs will be near-identical.")
+    dataset = [dict(s, run_index=k, question_id=f"{question_dataset}/{s.get('id')}")
+               for s in dataset
+               for k in range(args.run_index_start, args.run_index_start + args.num_runs)]
     
     # Extract injection information for filename - support both single and multi-target
     injection_plan = exp_config.get('injection_plan', {})
@@ -587,10 +609,14 @@ async def main(args):
     # Filter out already processed samples to allow resuming runs
     unprocessed_samples = reserve_unprocessed_queries(output_path, dataset)
     
-    # Apply limit if specified
-    if args.limit is not None and len(unprocessed_samples) > args.limit:
-        unprocessed_samples = unprocessed_samples[:args.limit]
-        print(f">> Applied limit: Processing only {args.limit} samples")
+    # Apply limit if specified: --limit counts QUESTIONS, so all runs of each
+    # selected question are kept (identical to the old behaviour when K=1).
+    if args.limit is not None:
+        keep_ids = list(dict.fromkeys(s.get('id') for s in unprocessed_samples))[:args.limit]
+        keep = set(keep_ids)
+        if len(keep_ids) < len(set(s.get('id') for s in unprocessed_samples)):
+            print(f">> Applied limit: Processing only {args.limit} questions x {args.num_runs} run(s)")
+        unprocessed_samples = [s for s in unprocessed_samples if s.get('id') in keep]
     
     print(f">> Total samples: {len(dataset)} | Unprocessed: {len(unprocessed_samples)}")
 
@@ -647,6 +673,11 @@ if __name__ == "__main__":
     parser.add_argument("--sequential", action="store_true", help="Run experiments sequentially instead of in parallel.")
     parser.add_argument("--no_inject", action="store_true", help="Run in CLEAN mode (no error injection) to collect normal trajectories.")
     parser.add_argument("--debug", action="store_true", help="Run in debug mode (currently same as sequential).")
+    parser.add_argument("--num_runs", type=int, default=1,
+                        help="K repeated runs per question (records carry run_index / question_id). "
+                             "Use a temperature > 0 so runs differ.")
+    parser.add_argument("--run_index_start", type=int, default=0,
+                        help="First run_index (to add more runs to an existing output later).")
     
     args = parser.parse_args()
 

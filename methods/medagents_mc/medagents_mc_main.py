@@ -321,7 +321,8 @@ class MedAgentsMC_Main(MAS):
     def _ask(self, role: str, role_index: int, phase: str, stage: str,
              prompt: str, system_prompt: Optional[str],
              sources: List[str], round_: Optional[int] = None,
-             event_ids: Optional[List[str]] = None) -> Tuple[str, str]:
+             event_ids: Optional[List[str]] = None, agent_id: Optional[str] = None,
+             source_how: Optional[Dict[str, str]] = None) -> Tuple[str, str]:
         """call_llm with structural context; returns (response, step_id)."""
         self.current_role = role
         self.current_role_index = role_index
@@ -344,8 +345,17 @@ class MedAgentsMC_Main(MAS):
             "event_ids": list(event_ids or []),
             "sources": list(sources),
             "content": resp,
+            # stable across phases (MedHyperTrace spec v1.1): an expert keeps
+            # its id from analysis through voting and advice
+            "agent_id": agent_id or role.lower(),
         })
+        if source_how:
+            self.conversation_history[-1]["source_how"] = {
+                k: v for k, v in source_how.items() if k in sources}
         return resp, step_id
+
+    def _set_structured(self, **kv):
+        self.conversation_history[-1]["structured"] = kv
 
     # ------------------------------------------------------------------ #
     def inference(self, sample) -> Dict[str, Any]:
@@ -364,17 +374,26 @@ class MedAgentsMC_Main(MAS):
         # ---- Stage 1: expert gathering --------------------------------- #
         sys_p, p = get_question_domains_prompt(question)
         raw_qd, s_qd = self._ask("QuestionClassifier", 0, "expert_gathering",
-                                 "question_domain", p, sys_p, sources=[])
+                                 "question_domain", p, sys_p, sources=[],
+                                 agent_id="question_classifier")
         if not raw_qd:
             raw_qd = "Medical Field: " + " | ".join(["General Medicine"] * NUM_QD)
         question_domains = raw_qd.split(":")[-1].strip().split(" | ")
+        self._set_structured(domains=list(question_domains))
 
         sys_p, p = get_options_domains_prompt(question, options)
         raw_od, s_od = self._ask("OptionClassifier", 0, "expert_gathering",
-                                 "option_domain", p, sys_p, sources=[])
+                                 "option_domain", p, sys_p, sources=[],
+                                 agent_id="option_classifier")
         if not raw_od:
             raw_od = "Medical Field: " + " | ".join(["General Medicine"] * NUM_OD)
         options_domains = raw_od.split(":")[-1].strip().split(" | ")
+        self._set_structured(domains=list(options_domains))
+        # How each source enters a prompt: the classifiers contribute a domain
+        # NAME (structured_field); analyses / reports pass through cleansing
+        # (incomplete last sentence dropped, "Total Analysis" section cut), so
+        # they enter as excerpts.
+        SF, EX, VB = "structured_field", "excerpt", "verbatim"
 
         # ---- Stage 2: analysis proposition ----------------------------- #
         # The domain NAME produced by the classifier is inserted into the
@@ -383,7 +402,8 @@ class MedAgentsMC_Main(MAS):
         for i, dom in enumerate(question_domains):
             sys_p, p = get_question_analysis_prompt(question, dom)
             r, sid = self._ask("QuestionAnalyst", i, "question_analysis",
-                               "question_analysis", p, sys_p, sources=[s_qd])
+                               "question_analysis", p, sys_p, sources=[s_qd],
+                               agent_id=f"q_expert_{i}", source_how={s_qd: SF})
             tmp_q.append(r); q_steps.append(sid)
         question_analyses = cleansing_analysis(tmp_q, question_domains, "question")
         # Steps whose analysis survived dict de-duplication (last writer wins).
@@ -394,7 +414,9 @@ class MedAgentsMC_Main(MAS):
             sys_p, p = get_options_analysis_prompt(question, options, dom, question_analyses)
             r, sid = self._ask("OptionAnalyst", i, "option_analysis",
                                "option_analysis", p, sys_p,
-                               sources=[s_od] + list(q_kept.values()))
+                               sources=[s_od] + list(q_kept.values()),
+                               agent_id=f"o_expert_{i}",
+                               source_how={s_od: SF, **{q: EX for q in q_kept.values()}})
             tmp_o.append(r); o_steps.append(sid)
         option_analyses = cleansing_analysis(tmp_o, options_domains, "option")
         o_kept = {dom: o_steps[i] for i, dom in enumerate(options_domains)}
@@ -404,7 +426,9 @@ class MedAgentsMC_Main(MAS):
         o_text = transform_dict2text(option_analyses, "options", options)
         sys_p, p = get_synthesized_report_prompt(q_text, o_text)
         raw_syn, s_syn = self._ask("Synthesizer", 0, "synthesis", "synthesis", p, sys_p,
-                                   sources=list(q_kept.values()) + list(o_kept.values()))
+                                   sources=list(q_kept.values()) + list(o_kept.values()),
+                                   agent_id="synthesizer",
+                                   source_how={x: EX for x in list(q_kept.values()) + list(o_kept.values())})
         syn_report = cleansing_syn_report(question, options, raw_syn)
         report_step = s_syn  # step whose output currently IS the report
 
@@ -412,6 +436,9 @@ class MedAgentsMC_Main(MAS):
         all_domains = question_domains + options_domains
         # Each voter's domain name comes from one of the two classifiers.
         dom_src = [s_qd] * len(question_domains) + [s_od] * len(options_domains)
+        nq = len(question_domains)
+        expert_id = [f"q_expert_{i}" for i in range(nq)] + \
+                    [f"o_expert_{j}" for j in range(len(options_domains))]
         syn_repo_history, vote_history, revision_history = [syn_report], [], []
         hasno_flag, num_try = True, 0
         while num_try < self.max_attempt_vote and hasno_flag:
@@ -421,18 +448,27 @@ class MedAgentsMC_Main(MAS):
             domain_opinions, revision_advice, advice_steps = {}, {}, []
             for vi, domain in enumerate(all_domains):
                 voter, cons_prompt = get_consensus_prompt(domain, syn_report)
-                raw_v, _ = self._ask("Voter", vi, "consensus_vote", "vote",
-                                     cons_prompt, voter,
-                                     sources=[report_step, dom_src[vi]],
-                                     round_=num_try, event_ids=[vote_event])
+                raw_v, s_v = self._ask("Voter", vi, "consensus_vote", "vote",
+                                       cons_prompt, voter,
+                                       sources=[report_step, dom_src[vi]],
+                                       round_=num_try, event_ids=[vote_event],
+                                       agent_id=expert_id[vi],
+                                       source_how={report_step: EX, dom_src[vi]: SF})
                 opinion = cleansing_voting(raw_v)
+                self._set_structured(vote=opinion.upper() if opinion in ("yes", "no") else None,
+                                     on_report_step=report_step)
                 domain_opinions[domain] = opinion
                 if opinion == "no":
                     advice_prompt = get_consensus_opinion_prompt(domain, syn_report)
                     adv, s_adv = self._ask("Advisor", vi, "revision_advice", "advice",
                                            advice_prompt, voter,
                                            sources=[report_step, dom_src[vi]],
-                                           round_=num_try, event_ids=[vote_event])
+                                           round_=num_try, event_ids=[vote_event],
+                                           agent_id=expert_id[vi],
+                                           source_how={report_step: EX, dom_src[vi]: SF})
+                    # The advisor is the same expert who just voted NO; its
+                    # prompt does not quote the vote, so the link is structural.
+                    self._set_structured(responds_to_vote_step=s_v)
                     revision_advice[domain] = adv
                     advice_steps.append(s_adv)
                     hasno_flag = True
@@ -441,7 +477,9 @@ class MedAgentsMC_Main(MAS):
                 revised, s_rev = self._ask("Reviser", 0, "revision", "revision",
                                            rev_prompt, None,
                                            sources=[report_step] + advice_steps,
-                                           round_=num_try, event_ids=[vote_event])
+                                           round_=num_try, event_ids=[vote_event],
+                                           agent_id="reviser",
+                                           source_how={report_step: EX, **{a: VB for a in advice_steps}})
                 syn_report = cleansing_syn_report(question, options, revised)
                 report_step = s_rev
                 revision_history.append(revision_advice)
@@ -451,8 +489,10 @@ class MedAgentsMC_Main(MAS):
         # ---- Stage 5: decision making ---------------------------------- #
         answer_prompt = get_final_answer_prompt_wsyn(syn_report)
         output, s_dec = self._ask("Decider", 0, "decision", "decision",
-                                  answer_prompt, None, sources=[report_step])
+                                  answer_prompt, None, sources=[report_step],
+                                  agent_id="decider", source_how={report_step: EX})
         ans = cleansing_final_output(output, letters)
+        self._set_structured(answer=ans or None)
 
         # The verifier reads `response`; keep upstream's raw decider output
         # and make the chosen letter explicit for robust extraction.

@@ -1,0 +1,294 @@
+#!/usr/bin/env python3
+"""
+Export main.py result files to the MedHyperTrace trajectory schema
+"mas-traj/1" (docs/requests/2026-10-19_from_medhypertrace_HGFM_trajectory_spec_v1.md,
+incl. the v1.1 additions).
+
+  python3 scripts/export_schema_v1.py results_a.jsonl [results_b.jsonl ...] \
+      --out export.jsonl [--reasoning omit|keep] [--registry configs/framework_registry.yaml]
+
+One output record = one run. Trajectory content (`task`, `steps`, `final`) and
+labels (`labels`) are physically separate:
+
+  * Step fields are copied from a WHITELIST, so injection bookkeeping
+    (injection_applied, fm_error_type, injected_input_messages,
+    clean_response_before_corruption, injection_process, ...) can never reach
+    `steps`; it is collected into `labels.injection` instead.
+  * `input_messages` is the clean (pre-injection) input. For the legacy
+    wrappers that do not guarantee this, `provenance.input_messages_clean` is
+    false (original_input_messages is used when the record has it).
+  * `reasoning` (the provider's separate reasoning text) is OMITTED by
+    default: on a prompt-injected step a reasoning model's thinking usually
+    discusses the injected instruction, i.e. it leaks the label. With
+    `--reasoning keep` it is exported for non-injected steps and moved to
+    `labels.injection[].reasoning` for injected ones (so its absence on a
+    step is itself a weak label signal; drop the field when training an
+    attribution model on inject runs).
+  * `finish_reason` / token counts stay on the step. On a response-corrupted
+    step they describe the clean call whose output was replaced.
+
+Pairing: `labels.paired_normal_run_ids` lists the normal runs of the same
+(framework, question_id, model) found among ALL input files, so pass the clean
+and inject outputs together.
+"""
+import argparse
+import hashlib
+import json
+import os
+import re
+import sys
+from collections import defaultdict
+
+import yaml
+
+SCHEMA = "mas-traj/1"
+HERE = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_REGISTRY = os.path.join(HERE, "..", "configs", "framework_registry.yaml")
+
+# Wrappers that implement the structured contract (clean inputs, sources,
+# step ids). Everything else is exported best-effort and flagged.
+STRUCTURED = {"medagents_mc", "consensus", "consensus_debate", "consensus_mad",
+              "consensus_reconcile", "consensus_cmd", "mam", "triage_agent"}
+
+
+def load_registry(path):
+    reg = (yaml.safe_load(open(path, encoding="utf-8")) or {}).get("frameworks", {})
+    alias = {}
+    for name, meta in reg.items():
+        alias[name] = name
+        for a in meta.get("aliases") or []:
+            alias[a] = name
+    return reg, alias
+
+
+def _slug(s):
+    return re.sub(r"[^a-z0-9]+", "_", str(s or "agent").lower()).strip("_")
+
+
+def _inject_signature(targets):
+    key = [{k: t.get(k) for k in ("injected_role", "injected_role_index", "injected_phase",
+                                  "injected_round", "fm_error_type", "injection_strategy")}
+           for t in targets or []]
+    return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]
+
+
+def _gold(gt):
+    if isinstance(gt, dict):
+        if gt.get("acceptable_answers"):
+            return gt.get("correct_answer"), list(gt["acceptable_answers"])
+        return gt.get("correct_answer"), None
+    return gt, None
+
+
+def _final_answer(rec, log, steps_by_id):
+    for v in (rec.get("pred_answer"), log.get("final_level")):
+        if v not in (None, ""):
+            return v
+    fs = log.get("final_step_id")
+    st = (steps_by_id.get(fs) or {}).get("structured") or {}
+    for k in ("answer", "esi_level"):
+        if st.get(k) not in (None, ""):
+            return st[k]
+    return (rec.get("verification") or {}).get("regex_extracted")
+
+
+def convert(rec, reg, alias, reasoning_mode):
+    log = rec.get("injection_log") or {}
+    fw_raw = rec.get("framework") or log.get("framework") or "unknown"
+    fw = alias.get(fw_raw, fw_raw)
+    meta = reg.get(fw, {})
+    dataset = rec.get("dataset") or "unknown"
+    qid = rec.get("question_id") or f"{dataset}/{rec.get('id')}"
+    run_index = int(rec.get("run_index") or 0)
+    run_mode = "normal" if rec.get("run_mode") == "clean" else "inject"
+    targets = log.get("multi_injection_info") or []
+    mode_tag = run_mode if run_mode == "normal" else f"inject-{_inject_signature(targets)}"
+    run_id = f"{fw}|{dataset}|{rec.get('id')}|{mode_tag}|r{run_index}"
+    structured_fw = fw in STRUCTURED
+
+    obs = log.get("task_observations") or []
+    obs_ids = {o["id"] for o in obs}
+
+    steps, injections, order = [], [], 0
+    for h in log.get("conversation_history") or []:
+        if h.get("is_input"):            # legacy "User" prompt entries are not calls
+            continue
+        sid = h.get("step_id") or f"s{order}"
+        is_tool = bool(h.get("is_tool"))
+        lm = h.get("llm_meta") or {}
+        injected = bool(h.get("injection_applied"))
+        role = h.get("role") or h.get("agent_name")
+        clean_in = h.get("input_messages")
+        if not structured_fw and h.get("original_input_messages"):
+            clean_in = h["original_input_messages"]
+        how = h.get("source_how") or {}
+        sources = None
+        if "sources" in h:
+            sources = [{"step_id": s, "how": how.get(s, "verbatim")} for s in h.get("sources") or []]
+            sources += [{"step_id": f"task:obs:{o}", "how": "verbatim"}
+                        for o in h.get("observations") or [] if o in obs_ids]
+        step = {
+            "step_id": sid, "order": order, "kind": "tool" if is_tool else "llm",
+            "agent_id": h.get("agent_id") or f"{_slug(role)}_{h.get('role_index', 0)}",
+            "agent_role": role, "agent_label": h.get("agent_label"),
+            "phase": h.get("phase"), "round": h.get("round"),
+            "event_ids": list(h.get("event_ids") or []),
+            "input_messages": None if is_tool else clean_in,
+            "sources": sources,
+            "output": h.get("content") if h.get("content") is not None else h.get("response"),
+            "structured": h.get("structured"),
+            "tool_calls": h.get("tool_calls") or [],
+            "finish_reason": lm.get("finish_reason"),
+            "prompt_tokens": lm.get("prompt_tokens"),
+            "completion_tokens": lm.get("completion_tokens"),
+            "reasoning_tokens": lm.get("reasoning_tokens"),
+        }
+        if is_tool and h.get("stub"):
+            step["tool_stub"] = True
+        if reasoning_mode == "keep":
+            step["reasoning"] = None if injected else lm.get("reasoning")
+        steps.append(step)
+        if injected:
+            inj = {
+                "step_id": sid, "agent_id": step["agent_id"],
+                "strategy": h.get("injection_strategy"), "fm_error_type": h.get("fm_error_type"),
+                "target_index": h.get("target_index"), "applied": True,
+                "injected_input_messages": h.get("injected_input_messages"),
+                "clean_output": h.get("clean_response_before_corruption"),
+                "injection_process": h.get("injection_process"),
+            }
+            if reasoning_mode == "keep":
+                inj["reasoning"] = lm.get("reasoning")
+            injections.append(inj)
+        order += 1
+
+    by_id = {s["step_id"]: s for s in steps}
+    gold, acceptable = _gold(rec.get("ground_truth"))
+    is_valid = rec.get("is_valid_normal") if run_mode == "normal" else rec.get("is_valid_error")
+    task = {"dataset": dataset, "query": rec.get("query"),
+            "images": list(rec.get("images") or []),
+            "observations": [dict(o, id=f"obs:{o['id']}") for o in obs]}
+    out = {
+        "schema_version": SCHEMA,
+        "run_id": run_id, "question_id": qid, "run_mode": run_mode,
+        "run_index": run_index, "seed": None,
+        "framework": fw, "framework_family": meta.get("family", fw),
+        "framework_description": meta.get("description"),
+        "model": rec.get("model") or {"name": None},
+        "task": task,
+        "steps": steps,
+        "final": {"answer": _final_answer(rec, log, by_id), "response": rec.get("response"),
+                  "source_step_ids": [log["final_step_id"]] if log.get("final_step_id") else []},
+        "labels": {
+            "gold": gold, "acceptable_answers": acceptable,
+            "is_correct": rec.get("is_correct"), "is_valid": is_valid,
+            "status": rec.get("status"),
+            "verification_path": (rec.get("verification") or {}).get("decision_path"),
+            "execution_successful": log.get("execution_successful"),
+            "injection": injections,
+            "injection_targets": [dict(t) for t in targets],
+            "paired_normal_run_ids": [],
+        },
+        "provenance": {
+            "source_record_id": rec.get("id"), "wrapper_contract": "structured" if structured_fw else "legacy",
+            "input_messages_clean": bool(log.get("input_messages_are_clean")) or not injections,
+            "sources_recorded": all(s["sources"] is not None for s in steps if s["kind"] == "llm"),
+            "history_alignment_ok": log.get("history_alignment_ok"),
+            "reasoning_exported": reasoning_mode == "keep",
+        },
+    }
+    return out
+
+
+# ---------------------------------------------------------------------- checks
+INJECTION_MARKERS = ("[UPDATED INSTRUCTION", "SUPERSEDES ALL EARLIER INSTRUCTIONS")
+LABEL_KEYS = {"injection_applied", "fm_error_type", "injection_strategy", "prompt_modified",
+              "injected_input_messages", "clean_response_before_corruption",
+              "response_corrupted", "injection_process", "injection_description",
+              "target_index", "current_role", "current_role_index"}
+
+
+def check(rec):
+    """Schema invariants + leak checks; returns a list of problems."""
+    probs = []
+    ids = {s["step_id"]: s["order"] for s in rec["steps"]}
+    obs = {o["id"] for o in rec["task"]["observations"]}
+    for s in rec["steps"]:
+        leaked = LABEL_KEYS & set(s)
+        if leaked:
+            probs.append(f"{s['step_id']}: label keys in step {sorted(leaked)}")
+        blob = json.dumps(s.get("input_messages"), ensure_ascii=False)
+        if any(m in blob for m in INJECTION_MARKERS):
+            probs.append(f"{s['step_id']}: injection marker in input_messages")
+        for src in s["sources"] or []:
+            sid = src["step_id"]
+            if sid.startswith("task:"):
+                if sid[len("task:"):] not in obs:
+                    probs.append(f"{s['step_id']}: unknown observation {sid}")
+            elif sid not in ids:
+                probs.append(f"{s['step_id']}: unknown source {sid}")
+            elif ids[sid] >= s["order"]:
+                probs.append(f"{s['step_id']}: source {sid} is not earlier")
+            if src["how"] not in ("verbatim", "excerpt", "structured_field", "summary"):
+                probs.append(f"{s['step_id']}: bad how {src['how']}")
+    for inj in rec["labels"]["injection"]:
+        if inj["step_id"] not in ids:
+            probs.append(f"injection on unknown step {inj['step_id']}")
+    for fs in rec["final"]["source_step_ids"]:
+        if fs not in ids:
+            probs.append(f"final source {fs} unknown")
+    return probs
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("inputs", nargs="+")
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--reasoning", choices=("omit", "keep"), default="omit")
+    ap.add_argument("--registry", default=DEFAULT_REGISTRY)
+    ap.add_argument("--strict", action="store_true", help="exit 1 if any record fails the checks")
+    a = ap.parse_args()
+
+    reg, alias = load_registry(a.registry)
+    records = []
+    for path in a.inputs:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    records.append(convert(json.loads(line), reg, alias, a.reasoning))
+
+    normals = defaultdict(list)
+    for r in records:
+        if r["run_mode"] == "normal":
+            normals[(r["framework"], r["question_id"], r["model"].get("name"))].append(r["run_id"])
+    for r in records:
+        if r["run_mode"] == "inject":
+            r["labels"]["paired_normal_run_ids"] = sorted(
+                normals.get((r["framework"], r["question_id"], r["model"].get("name")), []))
+
+    seen, n_bad = set(), 0
+    for r in records:
+        if r["run_id"] in seen:
+            print(f"!! duplicate run_id {r['run_id']}", file=sys.stderr); n_bad += 1
+        seen.add(r["run_id"])
+        probs = check(r)
+        if probs:
+            n_bad += 1
+            print(f"!! {r['run_id']}: " + "; ".join(probs[:5]), file=sys.stderr)
+
+    os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
+    with open(a.out, "w", encoding="utf-8") as f:
+        for r in records:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    by_fw = defaultdict(lambda: [0, 0])
+    for r in records:
+        by_fw[r["framework"]][0 if r["run_mode"] == "normal" else 1] += 1
+    print(f"exported {len(records)} runs -> {a.out}  (records with problems: {n_bad})")
+    for fw, (n, i) in sorted(by_fw.items()):
+        print(f"  {fw:22s} normal={n:4d} inject={i:4d}")
+    if a.strict and n_bad:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

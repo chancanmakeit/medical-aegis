@@ -274,6 +274,10 @@ class MAM_Main(MAS):
         self.conversation_history, self._step_counter = [], 0
         question = sample["query"]
         self._audio = sample["audio_path"]
+        # Shared non-text observation (spec v1.1 task.observations); AUDIO
+        # steps reference it via `observations: ["audio"]`.
+        self.task_observations = [{"id": "audio", "type": "audio",
+                                   "path": sample.get("audio_path_rel") or self._audio}]
         modality_type = "audio"  # step 1: upstream modality_selection by extension (.wav)
 
         # ---- step 2: type classification (audio) ------------------------ #

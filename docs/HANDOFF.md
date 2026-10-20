@@ -1,6 +1,6 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-20（会话 v9 第 3 轮：TriageAgent 已接入并通过 mock 回归；所有结构化框架新增按步骤记录的 `llm_meta`）。
+> 最后更新：2026-10-20（会话 v9 第 5 轮：用户已决定 backbone、重跑和下一步；schema v1 导出器和 K 次重复运行已完成并通过 mock 验证）。
 > 新会话按顺序读：**本文件** → `docs/discussion_log_v9.md`（当前会话记录）→ `docs/discussion_log_v8.md`（上一会话，有逐轮细节）→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
@@ -77,23 +77,25 @@
 - **`mas_base.call_llm`**：支持单次调用的 `max_tokens`、`audios=`（`input_audio` 的 data URI），以及从 model config 透传 `extra_body`。
   - 第 3 轮修了一个统计 bug：某个模型名的第一次调用以前只登记、不计数。
   - ⚠️ 推理模型如果 `content` 为 None（例如 token 用完时只返回了 reasoning），仍然按原逻辑抛错并重试。真实试跑时 max_tokens 要留足。
+- **schema v1 导出器**：`python3 scripts/export_schema_v1.py <clean.jsonl> <inject.jsonl> ... --out x.jsonl [--reasoning omit|keep] [--strict]`。clean 和 inject 文件要一起传，才能配对。框架元数据来自 `configs/framework_registry.yaml`，**新增框架时要同时在这里登记 family、modality 和 description（描述要对照代码核实）**。`reasoning` 默认不导出，因为注入步的推理文本会泄漏标签。
+- **方法侧可选字段 `task_observations`**：方法把共享观测注册为 `self.task_observations=[{id,type,...}]`，step 用 `observations: [id]` 引用；StructuredFMWrapper 会把它写进日志。
 - **`trajectory_normalizer`**：步骤字段是**白名单透传**的。新增步骤字段时必须同时加进 `aegis_core/utils/trajectory_normalizer.py` 里的那个列表，否则会被静默丢掉（第 3 轮的 `llm_meta` 就踩了这个坑）。
 - **`main.py`**：`Task.metadata['raw_sample']` 携带完整样本；断点续跑按**样本 id** 判断是否已处理（以前按 query，会漏跑）。
 - **verifier 的数据集名**：取 `benchmark_name or --test_dataset_name`。sensing 和 audio 的 YAML 不写 benchmark_name，由命令行决定。
 
-## 4. 待用户决定（按优先级）
+## 4. 决定与待办
 
-1. **旧的 ClinicalAgent 注入数据**（`direct_prepend` 生成的 clinical_agent 和 clinical_agent5）：
-   - 已确认：response_corruption **没有一条**能可控地跨过 0.5 阈值；prompt 注入用的是 MCQ 指令。
-   - 待定：重跑还是过滤（只保留最终答案相对 clean 运行确实翻转的样本）。
-2. **下一步做什么**：
-   - (a) schema v1 导出器，同时实现 `main.py` 的 K 次重复运行（MedHyperTrace 在等）；
-   - (b) 把 mdagents、clinical_agent、cmas 迁移到 StructuredFMWrapper（解决问题 A）；
-   - (c) 用真实模型做小规模成本试跑。
-3. **注入频率**：方案 A（全部只注入一次；我们和 MedHyperTrace 都倾向这个）还是方案 B。新框架默认都是 A，注入目标可以按 phase/round 指定。
-4. **试点 backbone**：建议 deepseek-flash + qwen3.8-flash；MAM 的音频用 mimo-v2.6-flash。
-5. 用户本地还有哪些 normal 轨迹。
-6. ~~TriageAgent 接入方案~~：用户已确认，第 3 轮完成。
+**用户已决定（2026-10-20，v9 第 5 轮）**：
+- **backbone**：纯文本（含传感器特征）用 aihubmix 的 `mercury-2.5-preview`；多模态（图像/视频）用蚂蚁百灵的 `Ling-3.0-flash-VL`（`https://api.ant-ling.com/v1/`）；音频用 `mimo-v2.6-flash`。框架对应的模态写在 `configs/framework_registry.yaml` 里。密钥见 Project 的「api端点」文档第 2、6、7 节。
+- **旧 ClinicalAgent 注入数据：重跑**。需要先把 clinical_agent 迁移到 StructuredFMWrapper，并拿到 `trial_success.csv`（见 HANDOFF_RESOURCES）。
+- **注入频率**：由两个项目在 issue 里商定。我方在 v9 第 5 轮提议：方案 A（每个目标只注入一次）为默认，方案 B 作为可选的鲁棒性子集。等 MedHyperTrace 回复。
+- 下一步先做导出器和 K 次重复运行：**已完成**。
+
+**待办（按顺序）**：
+1. **(b) 迁移旧 wrapper**：mdagents、clinical_agent、cmas 迁移到 StructuredFMWrapper；dylan、llm_debate、agentverse 加上"只注入一次"的开关。这是 ClinicalAgent 重跑和统一用 A 的前提。
+2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。
+3. **待 MedHyperTrace 确认**：`framework_family` 分组（debate 家族 = llm_debate + 4 个 consensus 基线）；注入频率；backbone 和模态完全重合的问题（spec §5 建议 ≥2 个 backbone 交叉）。
+4. **待用户提供**：本地还有哪些 normal 轨迹；`trial_success.csv`；MedXpertQA 的图片。
 
 ## 5. MedHyperTrace 的需求（尚未完成的部分）
 
@@ -102,13 +104,13 @@
 | 项 | 优先级 | 状态 |
 |---|---|---|
 | 干净的 `input_messages` | P0 | 新框架 ✅；旧的三个 wrapper ❌（MedHyperTrace 已离线修复旧数据） |
-| `labels` 与 `steps` 物理分离 | P0 | ❌ 放在 schema v1 导出器里做 |
-| 跨阶段稳定的 `agent_id` | P0 | MAM ✅；medagents_mc（q_expert_i / o_expert_j …）和 consensus 系列（modality:<name> …）放在导出器里做 |
-| `structured`（answer / vote / confidence） | P0 | MAM ✅；其他框架放在导出器里做 |
-| `framework_family` | P0 | ❌ 初步分组：辩论类 = llm_debate + consensus_debate/reconcile/mad/cmd，需要和 MedHyperTrace 确认 |
-| `question_id` / `run_index`，同一题跑 K 次 | P0 | ❌ `main.py` 还不支持 |
+| `labels` 与 `steps` 物理分离 | P0 | ✅ `scripts/export_schema_v1.py`（step 字段走白名单） |
+| 跨阶段稳定的 `agent_id` | P0 | ✅ 所有结构化框架都在方法侧记录（v9 第 5 轮补齐 medagents_mc 和 consensus 系列）；旧版框架由导出器生成 `<role>_<idx>` |
+| `structured`（answer / vote / confidence） | P0 | ✅ 所有结构化框架（medagents_mc 的投票带 on_report_step；Advisor 带 responds_to_vote_step） |
+| `framework_family` | P0 | ✅ 写在 `configs/framework_registry.yaml`；debate 家族的分组待 MedHyperTrace 确认 |
+| `question_id` / `run_index`，同一题跑 K 次 | P0 | ✅ `main.py --num_runs K [--run_index_start N]` |
 | `sources` 及 `how` | P1 | 新框架 ✅（未标注的视为 verbatim）；medagents_mc 的 Classifier 应标 structured_field，Synthesizer 应标 excerpt，尚未补 |
-| `task.observations[]` | P1 | MAM 的音频已用 `observations` 标记；传感器特征放在导出器里做 |
+| `task.observations[]` | P1 | ✅ ConSensus 系列的特征块和 MAM 的音频，由导出器转成 `task:obs:<id>` 引用 |
 | 锚点任务：100 道 MCQ，所有能跑 MCQ 的框架都跑 | 建议 | ❌。注意 ConSensus 系列跑不了 MCQ，MCQ 框架家族目前只有 5 个 |
 
 ## 6. 已知坑
@@ -146,3 +148,4 @@
   - `scripts/recompute_trial_success_verdicts.py`
 - mock 样例：`docs/requests/samples/*_mock_{clean,inject}.jsonl`（共 8 个框架；triage_agent 另有 `_mock_inject_multi`，含 3 个篡改目标）。
 - 讨论记录：`docs/discussion_log_v1..v9.md`。
+- 框架注册表：`configs/framework_registry.yaml`。导出器：`scripts/export_schema_v1.py`。schema v1 样例：`docs/requests/samples/schema_v1_mock_export.jsonl`。

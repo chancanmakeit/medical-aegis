@@ -307,6 +307,10 @@ class StructuredFMWrapper(SystemWrapper):
             "execution_error": execution_error,
             "round_settings": self._round_settings,
         }
+        # Shared task observations a method registered (ConSensus feature blocks,
+        # MAM audio); steps reference them via `observations: [<id>]`.
+        if getattr(self.mas, "task_observations", None):
+            log["task_observations"] = list(self.mas.task_observations)
         log.update(self.extra_log(final_output))
         out = {"response": final_output.get("response", "")} if isinstance(final_output, dict) \
             else {"response": str(final_output)}

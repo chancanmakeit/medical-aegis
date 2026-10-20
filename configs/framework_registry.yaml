@@ -1,0 +1,171 @@
+# Framework metadata for the schema v1 exporter (scripts/export_schema_v1.py).
+#
+# family      : leave-one-out evaluation holds out a whole FAMILY (MedHyperTrace
+#               spec v1.1), so near-duplicate topologies share one. The debate
+#               grouping is a proposal pending MedHyperTrace's confirmation
+#               (issue #1). clinical_agent and the older dataset name
+#               clinical_agent5 are one family.
+# description : 2-5 sentences on roles, who reads whose output, rounds and how
+#               the answer is aggregated. Faithful-but-odd upstream behaviour
+#               and stubs are stated here so they are not mistaken for
+#               injected faults.
+# modality    : text | image | audio | sensor (decides the backbone, user
+#               decision 2026-10-20: text -> mercury-2.5-preview, image/video ->
+#               Ling-3.0-flash-VL, audio -> mimo-v2.6-flash; sensor features are
+#               serialised text -> text backbone).
+
+frameworks:
+  dylan:
+    family: dylan
+    modality: text
+    description: >-
+      DyLAN: 4 role-played agents (Physician, Pharmacologist, Pathologist,
+      Medical Researcher) answer in up to 3 rounds, each agent reading the
+      previous round's replies; a round stops early once more than 2/3 of the
+      activated agents agree. From round 3 an LLM listwise ranker picks the top
+      agents and only they are activated. Without early consensus the answer is
+      the most frequent answer of the last round.
+
+  llm_debate:
+    family: debate
+    modality: text
+    description: >-
+      Multi-agent debate (Du et al.): 3 identical agents answer independently,
+      then for 2 rounds each agent reads the other agents' latest answers and
+      updates its own. An aggregator reads the final answers and states the
+      overall answer.
+
+  agentverse:
+    family: agentverse
+    modality: text
+    description: >-
+      AgentVerse: a role assigner recruits 3 experts for the question; the
+      experts solve it in a vertical scheme (a solver drafts, critics review
+      and the solver revises, up to 3 criticizing rounds); an evaluator scores
+      the solution and, if it is rejected, its feedback is passed back to the
+      role assigner for another turn (up to 3 turns).
+
+  mdagents:
+    family: mdagents
+    modality: image
+    description: >-
+      MDAgents (intermediate setting, debate_rounds 1): a recruiter names a
+      panel of 5 specialists; each specialist answers the question independently
+      (no specialist reads another's answer in this configuration); an
+      aggregator reads all panel answers and gives the final answer. MedXpertQA-MM
+      items attach the question images to the expert calls.
+
+  clinical_agent:
+    family: clinical_agent
+    modality: text
+    aliases: [clinicalagent, clinical_agent5]
+    description: >-
+      ClinicalAgent (5 agents, the original paper's version): a Planner splits
+      the trial-outcome question into safety, efficacy and enrollment
+      sub-problems; three lane agents each analyse one sub-problem and output a
+      score; a Reasoner reads the three lane analyses and outputs the trial
+      failure probability in a <final_result> tag (thresholded at 0.5).
+      External tools of the original system are placeholders here.
+
+  cmas:
+    family: cmas
+    modality: text
+    description: >-
+      CMAS for zero-shot NER: a TRF extractor identifies type-related features
+      of the sentence; a demonstration discriminator rates how helpful each
+      retrieved self-annotated demonstration is; an overall predictor reads
+      both and outputs the entity list. The self-annotator that builds the
+      demonstration pool runs offline and is not part of the trajectory.
+
+  medagents_mc:
+    family: medagents
+    modality: text
+    description: >-
+      MedAgents: two classifiers pick question domains and option domains;
+      one expert per domain analyses the question (option experts also read
+      the question analyses); a synthesizer merges the analyses into a report;
+      every expert votes YES/NO on the report, NO-voters give advice and a
+      reviser rewrites the report (up to 3 vote rounds); a decider reads the
+      final report and picks the option. Faithful upstream quirks kept: the
+      option block is concatenated twice in some prompts and the report's Key
+      Knowledge section is dropped by its cleansing step.
+
+  consensus:
+    family: consensus_fusion
+    modality: sensor
+    description: >-
+      ConSensus: one agent per sensor modality reads only its own modality's
+      features (plus labelled few-shot examples) and answers; a semantic
+      fusion agent reads all modality answers; a statistical fusion agent
+      reads them plus the majority vote and sides with the majority; a hybrid
+      fusion agent reads the modality, semantic and statistical answers and
+      gives the final answer. A sample aborts if an agent's JSON cannot be
+      parsed after one retry.
+
+  consensus_debate:
+    family: debate
+    modality: sensor
+    description: >-
+      Debate baseline from the ConSensus repo: per-modality agents answer from
+      their own features (plus few-shot examples); then 2 debate rounds in which
+      every agent reads all OTHER agents' previous-round responses (one snapshot
+      per round) and answers again. There is no aggregator: the answer is the
+      majority vote of the last round.
+
+  consensus_mad:
+    family: debate
+    modality: sensor
+    description: >-
+      MAD baseline of the ConSensus repo (moderated debate, fixed schedule):
+      per-modality agents answer from their own features; a judge reads all
+      modality responses and answers; then twice: every modality agent reads the
+      other agents' last responses plus the judge's, and answers again, followed
+      by the judge reading all responses. The third judge answer is the final
+      answer.
+
+  consensus_reconcile:
+    family: debate
+    modality: sensor
+    description: >-
+      ReConcile-style baseline (ConSensus repo adaptation): per-modality agents
+      answer with a confidence in [0,1]; in each discussion round every agent
+      reads the other agents' previous answers, explanations and confidences
+      (one snapshot per round) and answers again with a confidence. The answer
+      is a confidence-weighted vote.
+
+  consensus_cmd:
+    family: debate
+    modality: sensor
+    description: >-
+      CMD baseline of the ConSensus repo: per-modality agents answer from their
+      own features; in each of 2 debate rounds the agents are randomly split
+      into 2 groups, and every agent reads the full responses of its own group's
+      other members plus only an answer-count summary of the other group, then
+      answers again. The answer is the majority of the last round; a secretary
+      reads all last responses and decides only when that vote is tied.
+
+  mam:
+    family: mam
+    modality: audio
+    description: >-
+      MAM: a type classifier listens to the audio; a general practitioner
+      writes up to 3 specialist roles; specialists discuss (each listens to
+      the audio and never sees the others' text), a moderator quality-checks
+      each discussion and summarizes all of them, and specialists vote on the
+      summary (up to 3 rounds); a diagnostician gives the final answer from
+      the meeting record and a reviewer checks it (logged only). The web
+      search step is a stub that returns nothing (upstream's failure path).
+
+  triage_agent:
+    family: triage_agent
+    modality: text
+    aliases: [triageagent]
+    description: >-
+      TriageAgent (ESI 1-5 emergency triage): ESI Handbook excerpts are
+      retrieved once and shared; Doctor A classifies acuity HIGH/LOW, Doctor B
+      refines it to a level within that group, Doctor C classifies directly; a
+      summarizer merges the three reports; doctors then discuss for up to 5
+      rounds, each reading the summary and the other active doctors' current
+      level, confidence and rationale (agents exit after repeating a
+      high-confidence answer); a coordinator reads the final positions and
+      decides the level.

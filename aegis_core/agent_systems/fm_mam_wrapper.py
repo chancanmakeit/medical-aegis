@@ -41,7 +41,8 @@ class FMMAMWrapper(StructuredFMWrapper):
             audio = os.path.abspath(audio)
         if not os.path.exists(audio):
             raise FileNotFoundError(f"audio file not found: {audio} (run from the repo root or rebuild the dataset)")
-        return {"query": task.query, "audio_path": audio}
+        return {"query": task.query, "audio_path": audio,
+                "audio_path_rel": (raw.get("audio") or {}).get("path")}
 
     def before_run(self, task: Any, sample: Dict[str, Any]) -> None:
         raw = (getattr(task, "metadata", None) or {}).get("raw_sample") or {}

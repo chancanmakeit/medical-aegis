@@ -33,8 +33,11 @@ def reserve_unprocessed_queries(output_path, test_dataset):
     # the query alone silently skips every sample that shares a query with an
     # already-processed one (e.g. ConSensus samples all share the task text,
     # and repeated runs of the same question share everything but the id).
+    # With K repeated runs (main.py --num_runs) the key also carries run_index
+    # (records written before run_index existed count as run 0).
     def _key(sample):
-        return ("id", sample["id"]) if sample.get("id") is not None else ("query", sample.get("query"))
+        rk = sample.get("run_index", 0) or 0
+        return ("id", sample["id"], rk) if sample.get("id") is not None else ("query", sample.get("query"), rk)
 
     processed = set()
     if os.path.exists(output_path):

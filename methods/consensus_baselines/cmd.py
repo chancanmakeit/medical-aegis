@@ -177,7 +177,7 @@ class SensingCMD_Main(SensingMASBase):
         # ---- 1. interpretation (AgentPool.run_parallel_interpretation) ------- #
         results = {}
         for modality, a in agents.items():
-            feature_info = gen_feature_info(modality, test, examples)
+            feature_info = self._observe(modality, gen_feature_info(modality, test, examples))
             content = (
                 f"You have received sensor features from {modality} modality:\n"
                 f"{feature_info}\n\n"
@@ -191,7 +191,7 @@ class SensingCMD_Main(SensingMASBase):
                 f'  "ANSWER": "<Answer among {classes_info}>",\n'
                 "}\n\n"
                 "Do not include any additional text outside the JSON.")
-            results[modality] = a.run_json_turn(content, sources=[])
+            results[modality] = a.run_json_turn(content, sources=[], observations=[modality])
         if any(r is None for r in results.values()):
             return self._abort("interpretation")
         for a in agents.values():

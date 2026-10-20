@@ -120,3 +120,60 @@ Triage 缺、我们有（对 HGFM 是关键）：
 - **试点**：在正式批量生成之前，先用真实 API 小规模跑一次。目的是估算成本、检查格式是否可解析、看截断率和准确率，跑完后停下来请用户确认。
 - **为什么要用户决定**：backbone 会影响轨迹的错误分布、clean 运行的准确率（关系到 normal 和 error 两类样本的比例）、是否有单独的 reasoning 文本、成本，以及 HGFM 是否会学到"模型风格"而非"故障结构"这一混杂因素。
 - 候选（来自 Project 的「api端点」文档）：deepseek-flash、qwen3.8-flash、glm-5.3-flash、mimo-v2.6-flash（MAM 的音频只能用它）、gpt-5.6-sol-disc（可取 logprobs）、claude-opus-5（贵）。此前建议：deepseek-flash + qwen3.8-flash，音频用 mimo。
+
+---
+
+## 第 5 轮（2026-10-20）：用户拍板 4 项；完成 schema v1 导出器和 K 次重复运行
+
+**用户的决定**：
+1. 下一步按推荐来：先做 schema v1 导出器和 K 次重复运行。
+2. **backbone**：
+   - 纯文本数据集与框架：aihubmix 的 `mercury-2.5-preview`；
+   - 多模态（文本/图像/视频）：蚂蚁百灵的 `Ling-3.0-flash-VL`，端点 `https://api.ant-ling.com/v1/`；
+   - 音频：`mimo-v2.6-flash`。
+   - 新密钥只写进了沙箱本地的 `.mht_api.env` 和 Project 的「api端点」文档，没有进仓库。
+3. **旧数据重跑**。这里指旧的 ClinicalAgent 注入数据：它的注入本身无效（从没跨过 0.5 阈值，而且用的是 MCQ 指令）。这和 MedHyperTrace 已经修好的"干净输入"是两回事。重跑排在 clinical_agent 迁移到 StructuredFMWrapper 之后。
+4. **注入频率**：交给两个项目在 issue 里商定。本轮已在 issue 里提议 A 为默认、B 为可选子集。
+
+### 交付 1：`main.py` 的 K 次重复运行
+- 参数：`--num_runs K`、`--run_index_start N`。
+- 每条记录写入 `run_index`、`question_id`（`<dataset>/<id>`）、`framework`、`dataset`、`model`（name/temperature/max_tokens）。
+- 断点续跑按 `(id, run_index)`（`utils/utils.py`）；旧记录视为 run 0。`--limit` 按题目计数，同一道题的 K 次运行一起保留。
+- K>1 且温度为 0 时打印警告。
+- 实测：重复执行同一命令会跳过已完成的运行，`--limit` 选的是接下来的 N 道题（语义和以前一样）；`--run_index_start 2` 能给已有的题追加第 2、3 次运行。
+
+### 交付 2：`scripts/export_schema_v1.py`（输出 mas-traj/1）
+- step 字段走白名单，标签字段全部进 `labels.injection[]`。
+- `labels.paired_normal_run_ids` 跨文件配对。
+- `task.observations` 加 `task:obs:<id>` 引用。
+- `final.answer` / `source_step_ids`。
+- `provenance` 记录 wrapper 契约、输入是否干净、是否记录了 sources。
+- 内置检查，`--strict` 时有问题直接失败。
+- **`reasoning` 默认不导出**：被 prompt 注入的步骤，其推理文本几乎一定会提到注入指令，等于泄漏标签。`--reasoning keep` 时，注入步的 reasoning 移到 labels。
+- `configs/framework_registry.yaml`：14 个框架的 family / modality / description。
+  - **描述是对照代码核实后写的。**我先凭论文印象写了一版，核对后改正了 4 处。最重要的一处：按我们的配置（`debate_rounds: 1`），mdagents 的专家之间互相看不到答案。
+
+### 方法侧补齐 v1.1 的 P0 项
+- **medagents_mc**：
+  - `agent_id`：q_expert_i / o_expert_j / question_classifier / option_classifier / synthesizer / reviser / decider；Voter 和 Advisor 沿用对应专家的 id。
+  - `structured`：vote(YES/NO) + on_report_step；Advisor 带 responds_to_vote_step；Decider 带 answer；两个分类器带 domains。
+  - `source_how` 标注完整。
+- **ConSensus 系列**（`SensingMASBase`）：
+  - `agent_id`：`modality:<name>` 或 snake_case 角色名。
+  - `structured`：answer / confidence / parse_ok。
+  - 特征块注册为 task observation；模态 agent 的 step 带 `observations`，后续轮次通过记忆继承。
+- **MAM**：音频注册为 task observation。
+- **StructuredFMWrapper**：把方法的 `task_observations` 写进日志。
+
+### 验证（mock，零 API 费用）
+- 8 个结构化框架 × clean/inject × 2 题 × K=2，共 64 条运行，**导出 0 个检查问题**。注入文本泄漏进 steps 的次数为 0。
+- 读集检查全部 not_found=0、unlisted=0。medagents_mc 的 derived_unverifiable 从 0 变成 88，原因是这些引用现在显式标了 excerpt/structured_field，不再靠检查脚本里的特判。
+- 旧版 llm_debate 的记录也能导出，会被标为 legacy。
+- 新样例 `docs/requests/samples/schema_v1_mock_export.jsonl`（24 条）；原始 mock 样例已全部换成 K=2 版本。
+
+### 我提出的问题：backbone 和模态完全重合
+MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的分配，在文本类框架内部不存在模型和框架纠缠；但三组框架（文本/传感器、图像、音频）各自只见过一种模型，跨组做留一评测时，"换框架"和"换模型"分不开。已报告给用户，也已在 issue 里请 MedHyperTrace 评估。
+
+### 下一步
+1. **(b) 迁移旧 wrapper**：mdagents、clinical_agent、cmas，外加 dylan、llm_debate、agentverse 的注入开关。这是 ClinicalAgent 重跑和统一用方案 A 的前提。
+2. **(c) 真实模型试跑**：用 mercury-2.5-preview 等模型小规模估算成本，**跑之前停下来请用户确认**。

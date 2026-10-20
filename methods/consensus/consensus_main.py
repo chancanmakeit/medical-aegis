@@ -174,23 +174,29 @@ class _Agent:
         self.long_term.append({"role": "system", "content": content})
 
     def invoke(self, content: str, sources: List[str], round_=None, event_ids=None,
-               source_how: Optional[Dict[str, str]] = None) -> str:
+               source_how: Optional[Dict[str, str]] = None,
+               observations: Optional[List[str]] = None) -> str:
         messages = self.long_term + self.short_term + [{"role": "user", "content": content}]
         # Read set = this agent's own earlier AI turns (still in `messages`)
         # + everything those earlier turns read (their prompts are still in
         # `messages` too) + the outputs inserted into the new prompt.
         own = self.long_term_steps + self.short_term_steps
         prior = {h["step_id"]: h for h in self.mas.conversation_history}
-        inherited, how = [], {}
+        inherited, how, obs = [], {}, []
         for st in own:
             inherited += prior[st].get("sources", [])
             how.update(prior[st].get("source_how", {}))
+            obs += prior[st].get("observations", [])
+        # Shared task observations (sensor features) stay in this agent's
+        # memory, so every later turn of the agent reads them too.
+        obs = list(dict.fromkeys(obs + list(observations or [])))
         how.update(source_how or {})
         all_sources = list(dict.fromkeys(own + inherited + list(sources)))
         resp, sid = self.mas._ask(self.role, self.role_index, self.phase, self.name,
                                   messages, sources=all_sources,
                                   round_=round_, event_ids=event_ids,
-                                  source_how={k: v for k, v in how.items() if k in all_sources})
+                                  source_how={k: v for k, v in how.items() if k in all_sources},
+                                  observations=obs)
         self._last_round, self._last_events = round_, event_ids
         self.short_term += [{"role": "user", "content": content},
                             {"role": "assistant", "content": resp}]
@@ -220,9 +226,10 @@ class _Agent:
         return None
 
     def run_json_turn(self, content: str, sources: List[str], round_=None, event_ids=None,
-                      fields=("REASON", "ANSWER"), source_how: Optional[Dict[str, str]] = None):
+                      fields=("REASON", "ANSWER"), source_how: Optional[Dict[str, str]] = None,
+                      observations: Optional[List[str]] = None):
         parsed = safe_parse_json(self.invoke(content, sources, round_=round_, event_ids=event_ids,
-                                             source_how=source_how))
+                                             source_how=source_how, observations=observations))
         return self.validate_response(parsed, list(fields))
 
 
@@ -248,9 +255,39 @@ class SensingMASBase(MAS):
 
     def _reset(self):
         self.conversation_history, self._step_counter = [], 0
+        # Shared task observations (MedHyperTrace spec v1.1 `task.observations`):
+        # one entry per modality's feature block (current sample + few-shot
+        # examples), referenced from steps by `observations: [<modality>]`.
+        self.task_observations: List[Dict[str, Any]] = []
+
+    def _observe(self, modality: str, feature_info: str) -> str:
+        """Register a modality's feature block as a task observation; returns it unchanged."""
+        if not any(o["id"] == modality for o in getattr(self, "task_observations", [])):
+            self.task_observations.append({"id": modality, "type": "sensor_features",
+                                           "modality": modality, "text": feature_info})
+        return feature_info
+
+    @staticmethod
+    def agent_id_for(role: str, agent_label: str) -> str:
+        """Stable agent id: ModalityAgent -> "modality:<name>" (its interpretation
+        and every debate turn), other roles -> snake_case role name."""
+        if role == "ModalityAgent":
+            return f"modality:{agent_label}"
+        return re.sub(r"(?<!^)(?=[A-Z])", "_", role).lower()
+
+    @staticmethod
+    def structured_of(resp: str) -> Dict[str, Any]:
+        """ANSWER / CONFIDENCE of a JSON reply (parse failure -> parse_ok False)."""
+        obj = safe_parse_json(resp)
+        if not isinstance(obj, dict):
+            return {"answer": None, "parse_ok": False}
+        out = {"answer": obj.get("ANSWER"), "parse_ok": "ANSWER" in obj}
+        if "CONFIDENCE" in obj:
+            out["confidence"] = obj.get("CONFIDENCE")
+        return out
 
     def _ask(self, role, role_index, phase, agent_label, messages, sources,
-             round_=None, event_ids=None, source_how=None) -> Tuple[str, str]:
+             round_=None, event_ids=None, source_how=None, observations=None) -> Tuple[str, str]:
         """One LLM call = one history entry.
 
         `source_how` maps a source step_id to how its output entered the prompt
@@ -266,6 +303,9 @@ class SensingMASBase(MAS):
             "step_id": sid, "role": role, "role_index": role_index, "phase": phase,
             "agent_label": agent_label, "round": round_, "event_ids": list(event_ids or []),
             "sources": list(sources), "content": resp,
+            "agent_id": self.agent_id_for(role, agent_label),
+            "observations": list(observations or []),
+            "structured": self.structured_of(resp),
         }
         if source_how:
             entry["source_how"] = dict(source_how)
@@ -310,7 +350,7 @@ class ConSensus_Main(SensingMASBase):
 
         results = {}
         for modality, a in agents.items():
-            feature_info = self._gen_feature_info(modality, test, examples)
+            feature_info = self._observe(modality, self._gen_feature_info(modality, test, examples))
             content = (
                 f"You have received sensor features from {modality} modality:\n"
                 f"{feature_info}\n\n"
@@ -324,7 +364,7 @@ class ConSensus_Main(SensingMASBase):
                 f'  "ANSWER": "<Answer among {classes_info}>",\n'
                 "}\n\n"
                 "Do not include any additional text outside the JSON.")
-            results[modality] = a.run_json_turn(content, sources=[])
+            results[modality] = a.run_json_turn(content, sources=[], observations=[modality])
         if any(r is None for r in results.values()):
             return self._abort("interpretation")
         for a in agents.values():
