@@ -35,9 +35,33 @@ def _text(content):
     return content or ""
 
 
+def _load_plugin_rules():
+    """Framework-specific rules in scripts/mock_rules/<name>.py, each with
+    reply(user, system, messages) -> str | None (checked before the built-ins)."""
+    import importlib.util
+    import os
+    rules = []
+    d = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mock_rules")
+    for fn in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+        if fn.endswith(".py") and not fn.startswith("_"):
+            spec = importlib.util.spec_from_file_location(f"mock_rules_{fn[:-3]}", os.path.join(d, fn))
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            if hasattr(mod, "reply"):
+                rules.append(mod.reply)
+    return rules
+
+
+PLUGIN_RULES = _load_plugin_rules()
+
+
 def reply_for(messages):
     user = _text(messages[-1].get("content")) if messages else ""
     system = " ".join(_text(m.get("content")) for m in messages if m.get("role") == "system")
+    for rule in PLUGIN_RULES:
+        out = rule(user, system, messages)
+        if out is not None:
+            return out
     # --- MedAgents ---------------------------------------------------------
     if "classify the question into five different subfields" in user:
         return "Medical Field: Cardiology | Neurology | Pharmacology | Pathology | Radiology"

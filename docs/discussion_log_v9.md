@@ -515,3 +515,15 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - 已转告 MHT（comment 6312371632）。
 
 **筛选进展**：约 25% 完成，准确率 mercury 0.38、llama 0.52，已花约 $1.2。
+
+## 第 17 轮（2026-10-21 02:19）
+**用户的决定**
+1. 组合省钱法：如果性价比确实高就采用，并请 MHT 给意见。
+2. 锚点用 4 个家族：mdagents、medagents、KAMAC、MAC，同样请 MHT 给意见。
+
+**处理**
+- 已在 issue 里请 MHT 评估（comment 6312491775）：
+  - 4 家族方案。我方提出两点顾虑：没有通用拓扑；KAMAC 与 mdagents 结构相近，并入 mdagents 家族的敏感性分析更重要。
+  - 组合省钱法：(a) 锚点只用 llama；(b) K=4 降到 2。我方倾向只采用 (a)。原因是在难度区间内的题上，K=2 时一题既有对又有错的概率只有 0.375–0.5（K=4 为 0.68–0.875），而且 flipped 需要的"配对 normal 多数答对"在 K=2 时不好定义。
+  - 粗算：只用 (a) 约 $32，(a)+(b) 约 $16；KAMAC/MAC 上下文长，可能更多。
+- KAMAC 和 MAC 的移植已开始：两个子 agent 并行，各用独立的 mock 端口（18081 / 18082）和独立的 mock 规则文件（`scripts/mock_rules/`）。mock 服务器新增了插件式规则加载。注册名为 `kamac` 和 `mac_groupchat`（不叫 `mac`，避免和 macnet、kamac 的子串匹配冲突）。
