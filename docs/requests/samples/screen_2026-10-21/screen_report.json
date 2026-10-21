@@ -1,0 +1,36 @@
+{
+ "llama-4-maverick": {
+  "screened": 500,
+  "in_band": 151,
+  "acc_overall": 0.549,
+  "acc_unshuffled": 0.541,
+  "acc_shuffled": 0.557,
+  "in_band_by_question_type": {
+   "Understanding": {
+    "screened": 118,
+    "in_band": 29
+   },
+   "Reasoning": {
+    "screened": 382,
+    "in_band": 122
+   }
+  }
+ },
+ "mercury-2.5-preview": {
+  "screened": 499,
+  "in_band": 128,
+  "acc_overall": 0.4227683049147442,
+  "acc_unshuffled": 0.42326980942828485,
+  "acc_shuffled": 0.4222668004012036,
+  "in_band_by_question_type": {
+   "Understanding": {
+    "screened": 118,
+    "in_band": 26
+   },
+   "Reasoning": {
+    "screened": 381,
+    "in_band": 102
+   }
+  }
+ }
+}

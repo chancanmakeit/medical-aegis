@@ -527,3 +527,26 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 组合省钱法：(a) 锚点只用 llama；(b) K=4 降到 2。我方倾向只采用 (a)。原因是在难度区间内的题上，K=2 时一题既有对又有错的概率只有 0.375–0.5（K=4 为 0.68–0.875），而且 flipped 需要的"配对 normal 多数答对"在 K=2 时不好定义。
   - 粗算：只用 (a) 约 $32，(a)+(b) 约 $16；KAMAC/MAC 上下文长，可能更多。
 - KAMAC 和 MAC 的移植已开始：两个子 agent 并行，各用独立的 mock 端口（18081 / 18082）和独立的 mock 规则文件（`scripts/mock_rules/`）。mock 服务器新增了插件式规则加载。注册名为 `kamac` 和 `mac_groupchat`（不叫 `mac`，避免和 macnet、kamac 的子串匹配冲突）。
+
+## 第 17 轮（续）：难度筛选结果（2026-10-21 02:33）
+- MedXpertQA-Text 共筛 500 题，每题 K=4，其中 k≥2 的两次打乱选项。实际花费 **$4.58**（mercury $3.63，llama $0.95），预估约 $4.5。
+- 准确率：
+
+  | 模型 | 整体 | 打乱前 | 打乱后 |
+  |---|---|---|---|
+  | llama | 0.549 | 0.541 | 0.557 |
+  | mercury | 0.423 | 0.423 | 0.422 |
+
+  打乱前后没有差别，**没有背答案字母的迹象**。20 题探测时的 0.65–0.70 是小样本造成的。
+- 落在 [0.25, 0.75] 区间的题数：
+
+  | 模型 | 区间内 | Reasoning | Understanding |
+  |---|---|---|---|
+  | llama | 151 | 122/382 | 29/118 |
+  | mercury | 128 | 102/381 | 26/118 |
+
+  任一模型在区间内的有 217 题（`datasets/data/medxpertqa_text_band.json`，带 `screen_distractors` 和 `screen_accuracy`），两个模型都在区间内的有 62 题。
+- 每题 4 次全对或全错的情况：llama 195 / 154，mercury 150 / 220。
+- 解析失败：llama 6 次，mercury 1 次；截断 1 次。
+- 锚点 100 题草案 `datasets/data/anchor_medxpertqa100.json`：从 llama 的区间内题目中按 question_type 分层抽取（Reasoning 81 / Understanding 19；Diagnosis 41 / Treatment 31 / Basic Science 28），99 题带干扰项分布。前提是锚点只用 llama；如果 MHT 认为两个 backbone 都要用，就改为从并集里抽。
+- 原始数据和报告：`docs/requests/samples/screen_2026-10-21/`。
