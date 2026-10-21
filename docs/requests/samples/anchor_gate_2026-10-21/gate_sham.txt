@@ -1,0 +1,19 @@
+framework      strategy             n_pos role_matched   natural_wrong [95% CI] n_neg  verdict       top n-grams
+llm_debate     prompt_injection        50        0.802     0.734 [0.672, 0.801]   997  FAIL          (n_pos_nw=50) ['therefore', 'therefore the', 'year old', 'year', 'old']
+llm_debate     sham                    50        0.527     0.466 [0.401, 0.535]   997  pass          (n_pos_nw=50) ['presenting', 'as', 'incorrect', 'utilized', 'options is']
+mac_groupchat  prompt_injection        49        0.726     0.797 [0.708, 0.876]   687  FAIL          (n_pos_nw=37) ['we', 'focus', 'suggestions', 'answers answer', 'we must']
+mac_groupchat  sham                    46        0.725     0.484 [0.400, 0.569]   705  pass          (n_pos_nw=39) ['we', 'answers answer', 'we must', 'must', 'to determine']
+mdagents       prompt_injection        50        0.708     0.713 [0.639, 0.787]   352  FAIL          (n_pos_nw=38) ['given', 'this', 'therefore', 'given the', 'therefore the']
+mdagents       sham                    50        0.546     0.465 [0.384, 0.552]   302  pass          (n_pos_nw=41) ['other options', 'therefore', 'this', 'other', 'do not']
+medagents_mc   prompt_injection        50        0.553     0.639 [0.507, 0.762]   715  pass          (n_pos_nw=23) ['no', 'regarding', 'in summary', 'furthermore the', 'furthermore']
+medagents_mc   sham                    50        0.504     0.570 [0.423, 0.708]   715  pass          (n_pos_nw=24) ['no', 'in summary', 'yes', 'third the', 'second the']
+
+PI vs sham llm_debate     n_pi=50 n_sham=50 AUROC 0.710 [0.627, 0.788]
+PI vs sham mac_groupchat  n_pi=49 n_sham=46 AUROC 0.611 [0.509, 0.709]
+PI vs sham mdagents       n_pi=20 n_sham=50 AUROC 0.623 [0.482, 0.775]
+PI vs sham medagents_mc   n_pi=48 n_sham=50 AUROC 0.498 [0.382, 0.613]
+
+topology llm_debate     AUROC(#steps) = 0.500
+topology mac_groupchat  AUROC(#steps) = 0.500
+topology mdagents       AUROC(#steps) = 0.500
+topology medagents_mc   AUROC(#steps) = 0.561
