@@ -152,6 +152,14 @@
   - 家族名：MAC 为 `groupchat`，KAMAC 为 `kamac`。
 - 锚点（两个项目一致的方案，等用户确认）：10 个家族，即 mdagents、medagents、dylan、debate、agentverse、mav、macnet（重新移植）、MA-RAG（`retrieval_debate`）、KAMAC、MAC；MDTeamGPT 可选。
 
+**v9 第 15–17 轮（2026-10-21）**：
+- 用户决定：锚点用 4 个家族（mdagents、medagents、KAMAC、MAC），不用 MA-RAG；省钱方案"性价比高就用"，等 MHT 意见（我方倾向只用 llama、K=4）。
+- 难度筛选完成（$4.58）：没有背题迹象；区间内的题共 217 道，见 `datasets/data/medxpertqa_text_band.json`；锚点 100 题草案为 `datasets/data/anchor_medxpertqa100.json`（取自 llama 的区间内题目）。
+- KAMAC（`--method_name kamac`）和 MAC（`--method_name mac_groupchat`）已移植并通过 mock 测试，配置在 `experiments/fm_injection/anchor/` 和 `formal/`。待用户决定：KAMAC 的初始专家数（上游默认 1）和消息投递方式（upstream / inbox）。
+- 下一步：小规模真实试跑，估算 4 个锚点家族在 llama 上的单价，**先问用户**。
+- 远端残留一个 `wip-kamac-mac` 分支：代理不允许删除，内容已全部合并进 main，可以在 GitHub 网页上手动删掉。
+- mock 服务器：`scripts/mock_openai_server.py` 会加载 `scripts/mock_rules/*.py` 里的插件规则。不要用 `pkill -f mock_openai_server`，它会把当前 shell 也杀掉。
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。
