@@ -2,6 +2,8 @@
 # llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
 # question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
 # prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): rounds_num 2 (upstream default).
+# 2026-10-21 PI fix: FM-3.3 only on verifying roles; injected replies length-matched to a
+# clean reference reply (re-sampled up to 3 times into [0.6, 1.5] x its length).
 run_mode: inject
 injection_method: direct_prepend
 system_under_test:
@@ -73,5 +75,11 @@ injection_plan:
     injection_strategy: prompt_injection
   - fm_error_type: FM-3.3
     injection_strategy: prompt_injection
+    roles:
+    - Aggregator
   - fm_error_type: FM-2.6
     injection_strategy: response_corruption
+pi_length_match:
+  min_ratio: 0.6
+  max_ratio: 1.5
+  max_tries: 3

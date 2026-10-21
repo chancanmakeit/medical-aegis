@@ -263,12 +263,58 @@ class StructuredFMWrapper(SystemWrapper):
                 "current_round": round_,
                 "target_index": ti,
             }
-            if malicious_agent.injection_strategy == InjectionStrategy.PROMPT_INJECTION:
+            def _pi_call(ref_text):
+                """Prompt-injected call. With exp_config `pi_length_match`
+                ({min_ratio, max_ratio, max_tries}) and a clean reference reply,
+                the injected reply is re-sampled until its length is within
+                [min_ratio, max_ratio] x the reference (else the closest try
+                is kept): injected replies were ~half as long as normal ones,
+                a length signature (anchor gate, 2026-10-21). Only the kept
+                try stays in the trajectory; the others are dropped from the
+                capture and recorded in the labels."""
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
                     args, kwargs,
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
-                resp = _call(turn_idx, f"{where}_inject", *new_args, **new_kwargs)
-                meta["prompt_modified"] = (mod_txt != orig_txt)
+                cfg = self.exp_config.get("pi_length_match") or {}
+                tries = int(cfg.get("max_tries", 3)) if (cfg and ref_text) else 1
+                lo, hi = float(cfg.get("min_ratio", 0.6)), float(cfg.get("max_ratio", 1.5))
+                attempts = []
+                for t in range(tries):
+                    cap_i = len(llm_capture)
+                    r = _call(turn_idx, f"{where}_inject" + (f"_try{t}" if t else ""), *new_args, **new_kwargs)
+                    ratio = (len(r or "") / max(1, len(ref_text))) if ref_text else None
+                    attempts.append({"resp": r, "meta": llm_meta_by_call.get(turn_idx),
+                                     "cap": cap_i, "ratio": ratio})
+                    if ratio is None or lo <= ratio <= hi:
+                        break
+                import math
+                chosen = attempts[-1]
+                if attempts[-1]["ratio"] is not None and not (lo <= attempts[-1]["ratio"] <= hi):
+                    chosen = min(attempts, key=lambda a: abs(math.log(max(a["ratio"], 1e-6))))
+                for a in sorted((a for a in attempts if a is not chosen), key=lambda a: -a["cap"]):
+                    if a["cap"] < len(llm_capture):
+                        del llm_capture[a["cap"]]
+                llm_meta_by_call[turn_idx] = chosen["meta"]
+                info = {"prompt_modified": (mod_txt != orig_txt)}
+                if ref_text is not None and cfg:
+                    info["pi_length_match"] = {
+                        "ref_len": len(ref_text), "ratios": [a["ratio"] for a in attempts],
+                        "kept_try": attempts.index(chosen), "in_range": lo <= chosen["ratio"] <= hi,
+                        "discarded_llm_meta": [a["meta"] for a in attempts if a is not chosen]}
+                return chosen["resp"], info
+
+            if malicious_agent.injection_strategy == InjectionStrategy.PROMPT_INJECTION:
+                ref = None
+                if self.exp_config.get("pi_length_match"):
+                    # clean reference reply for the length match (not a step)
+                    n_cap = len(llm_capture)
+                    ref = _call(turn_idx, f"{where}_length_ref", *args, **kwargs)
+                    ref_meta = llm_meta_by_call.get(turn_idx)
+                    if len(llm_capture) > n_cap:
+                        del llm_capture[n_cap]
+                    meta["length_ref_llm_meta"] = ref_meta
+                resp, info = _pi_call(ref)
+                meta.update(info)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
             elif malicious_agent.injection_strategy == InjectionStrategy.RESPONSE_CORRUPTION:
                 n_cap = len(llm_capture)
@@ -283,19 +329,16 @@ class StructuredFMWrapper(SystemWrapper):
                 # redone as a prompt injection instead of appending a template.
                 if (self.fm_factory.last_injection_meta.get("inplace_applicable") is False
                         and self.exp_config.get("rc_fallback", "append") == "pi"):
-                    new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
-                        args, kwargs,
-                        lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
                     discarded_meta = llm_meta_by_call.get(turn_idx)
-                    resp = _call(turn_idx, f"{where}_inject_rc_fallback", *new_args, **new_kwargs)
-                    # keep the call <-> history alignment: the discarded clean call
-                    # is not a step (its tokens are kept in the labels)
-                    if len(llm_capture) > n_cap + 1:
+                    # the clean reply is the length reference; drop its capture
+                    # first so the PI tries are the only captures of this turn
+                    if len(llm_capture) > n_cap:
                         del llm_capture[n_cap]
+                    resp, info = _pi_call(clean)
                     meta["discarded_llm_meta"] = discarded_meta
                     meta["rc_fallback_to_pi"] = True
                     meta["injection_strategy"] = InjectionStrategy.PROMPT_INJECTION.value
-                    meta["prompt_modified"] = (mod_txt != orig_txt)
+                    meta.update(info)
                     meta["discarded_clean_response"] = meta.pop("clean_response_before_corruption")
                     meta.pop("response_corrupted", None)
                     meta["injection_process"] = dict(self.fm_factory.last_injection_meta,

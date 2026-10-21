@@ -204,6 +204,8 @@ def convert(rec, reg, alias, reasoning_mode):
             inj["planned_strategy"] = ("response_corruption" if h.get("rc_fallback_to_pi")
                                        else h.get("injection_strategy"))
             inj["effective_strategy"] = h.get("injection_strategy")
+            if h.get("pi_length_match"):
+                inj["pi_length_match"] = h.get("pi_length_match")
             if h.get("rc_fallback_to_pi"):
                 inj["rc_fallback_to_pi"] = True
                 inj["discarded_clean_output"] = h.get("discarded_clean_response")
@@ -322,7 +324,8 @@ LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
               "injected_input_messages", "clean_response_before_corruption",
               "response_corrupted", "injection_process", "injection_description",
               "target_index", "current_role", "current_role_index",
-              "discarded_clean_response", "discarded_llm_meta", "rc_fallback_to_pi"}
+              "discarded_clean_response", "discarded_llm_meta", "rc_fallback_to_pi",
+              "pi_length_match", "length_ref_llm_meta"}
 
 
 def check(rec):

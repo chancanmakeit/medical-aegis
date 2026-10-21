@@ -160,11 +160,14 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
     t = dict(rng.choice(pool))
     if 'attack_spec' not in t:
         allowed = [want] if want else t.get('strategies')
+        # an attack may be limited to some roles (`roles: [...]`), e.g. incorrect
+        # verification (FM-3.3) only for roles that verify / judge / aggregate
         attacks = [a for a in plan.get('attack_pool', [])
-                   if not allowed or a.get('injection_strategy') in allowed]
+                   if (not allowed or a.get('injection_strategy') in allowed)
+                   and (not a.get('roles') or t.get('role') in a['roles'])]
         if not attacks:
             raise ValueError(f"no attack in attack_pool fits target {t}")
-        t['attack_spec'] = dict(rng.choice(attacks))
+        t['attack_spec'] = {k: v for k, v in rng.choice(attacks).items() if k != 'roles'}
     t.pop('strategies', None)
     return t
 
