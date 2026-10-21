@@ -1,15 +1,17 @@
+# Round caps: user decision 2026-10-21 -- every loop with a round count is capped at 2
+# (cost); upstream values are noted where changed.
 # KAMAC method configuration (methods/kamac/kamac_main.py).
 # Loaded when kamac_config_name == "config_kamac". Upstream defaults in brackets
 # (main_kamac.py parse_args / SimpleNamespace, README run command).
 
 num_agents: 1            # initial experts the recruiter proposes [1; README: --num-agents 1]
-num_turns: 3             # debate turns per round before the cap [3]
+num_turns: 2             # debate turns per round before the cap [3]
 num_rounds: 1            # debate rounds [1]
 auto_recruit: true       # knowledge-gap question + dynamic recruitment [README runs --auto_recruit]
 
 # Safety caps (not in upstream, where both are unbounded):
 max_recruits: 4          # experts recruited in total per case; further proposals are ignored
-max_turn_extensions: 3   # how often a skip / last-turn recruitment may grow the turn cap
+max_turn_extensions: 0   # how often a skip / last-turn recruitment may grow the turn cap
 
 # Knowledge-gap prompt wording: auto = upstream's choice by model name (free-form
 # wording for gpt models, "Answer: yes/no / Reason:" structure otherwise);

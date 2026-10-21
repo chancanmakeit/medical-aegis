@@ -1,6 +1,8 @@
+# Round caps: user decision 2026-10-21 -- every loop with a round count is capped at 2
+# (cost); upstream values are noted where changed.
 cnt_agents: 3
-max_turn: 3
-max_criticizing_rounds: 3
+max_turn: 2
+max_criticizing_rounds: 2
 
 # Steer the RoleAssigner toward a medical expert panel. AgentVerse assigns roles
 # dynamically (the LLM names them), so this advice biases it to recruit clinically

@@ -1,3 +1,5 @@
+# Round caps: user decision 2026-10-21 -- every loop with a round count is capped at 2
+# (cost); upstream values are noted where changed.
 # DyLAN Method Configuration - MEDICAL roles
 # Loaded by DyLAN_Main / DyLAN_MMLU when method_config_name == "config_medical".
 # The role names here MUST exist in dylan_main.py:_get_role_map() and
@@ -7,7 +9,7 @@ random_seed: 0
 debug: false
 
 num_agents: 4
-num_rounds: 3
+num_rounds: 2
 activation: "listwise"
 type: "open-ended"
 

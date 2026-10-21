@@ -1,0 +1,25 @@
+# ANCHOR task candidate (user 2026-10-21: price mdagents before deciding KAMAC vs mdagents).
+# mdagents intermediate mode: recruiter -> 5 experts answer independently -> aggregator
+# (debate_rounds 1, already under the 2-round cap). llama only; normal K=3 (--num_runs 3
+# --no_inject) + 2 injected runs per question (run 0 RC in place, run 1 PI). Expert
+# phases carry the specialty name, so expert targets match on role + index only.
+run_mode: clean
+injection_method: direct_prepend
+system_under_test:
+  name: mdagents
+  wrapper_class_path: aegis_core.agent_systems.fm_mdagents_structured_wrapper.FMMDAgentsStructuredWrapper
+  method_config_path: methods/mdagents/configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.7
+benchmark_name: medxpertqa-text
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+mdagents_config_name: config_medical

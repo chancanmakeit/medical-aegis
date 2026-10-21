@@ -1,3 +1,5 @@
+# Round caps: user decision 2026-10-21 -- every loop with a round count is capped at 2
+# (cost); upstream values are noted where changed.
 # Configuration for medical MCQ datasets (MedQA, MedMCQA, PubMedQA, MMLU-medical).
 # Used as method_config for DyLAN-style frameworks. AgentVerse/LLM-Debate read
 # their own configs under methods/<framework>/configs/.
@@ -6,7 +8,7 @@ random_seed: 0
 
 # Agent settings
 num_agents: 4
-num_rounds: 3
+num_rounds: 2
 activation: "listwise"
 type: "single_choice"   # MCQ. Use "open" for MEDEC; numeric handled by verifier for MedCalc.
 

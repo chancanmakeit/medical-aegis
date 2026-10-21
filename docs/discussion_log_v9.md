@@ -603,3 +603,40 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 
   合计（KAMAC 用 3 名专家）：**K=4 方案约 $17，K=3 方案约 $14**。价格按 llama 的第三方列表价估算。
 - **发现：KAMAC 在 llama 上会退化。** 1 名专家时 15 次运行全部是 5 步：没有讨论，也没有招募。改成 3 名专家时，即使专家答案不一致（例如 B/H/J），参与讨论的提问 15 次全部回答 "No"，所以仍然没有定向消息，也没有招募。提示词和上游一致，属于模型行为。也就是说，KAMAC 在锚点上的特色结构基本不会出现，实际上变成了"招募者 + 3 名独立专家 + 主持人投票"。
+
+## 第 19 轮（2026-10-21 06:24）
+**用户的决定**
+1. 主数据中的框架也把轮次上限压到 2。
+2. mdagents 也做一次试跑，拿到单价后再决定 KAMAC 要不要换回 mdagents。
+3. 全量方案采用"正常 3 次 + 注入 2 次"。
+
+**用户的两个疑问**
+1. 旧数据每题都用多个 YAML 注入了很多种故障组合，为什么新方案每题只注入 2 次？
+2. nature-sub-record 仓库里的 MedAgentAudit 数据是否已经分好训练集和评估集？如果分好了，能否通知相应项目用它训练？
+
+**处理**
+- **轮次上限 2（改在方法配置的默认值上，主数据全部生效；改动前的上游值写在注释里）**：
+  - medagents：max_attempt_vote 3 → 2
+  - triage：max_discuss_rounds 5 → 2
+  - MAM：max_rounds 3 → 2
+  - KAMAC：num_turns 3 → 2，max_turn_extensions 3 → 0
+  - dylan：num_rounds 3 → 2（`methods/dylan/configs/config_medical.yaml` 和 `configs/config_medical.yaml`）
+  - agentverse：max_turn 和 max_criticizing_rounds 都 3 → 2
+  - 不需要改的：llm_debate 本来就是 2 轮；mdagents（intermediate）是 1 轮；ConSensus 的 debate/reconcile 是 2 轮，MAD、CMD 只有 2 个辩论轮；MAC 保持 8（解释同第 18 轮）。
+  - 14 个框架的 mock 回归通过。
+- **mdagents 试跑**（llama，5 题；新增 anchor YAML，专家目标只按 role 和 index 匹配）：每次 7 次调用，每次运行约 $0.0021。按"正常 3 次 + 注入 2 次"，**100 题约 $1.05**，是四个候选里最便宜的。MHT 说它"十几轮"不准确，intermediate 模式只有 7 次调用。
+- **已开跑**：medagents、MAC、llm_debate 三个框架的锚点 normal（100 题 × K=3，llama）。注入运行先用小批过一次质量门槛，自然答错的负例来自这批 normal，然后再跑全量。
+- **疑问 1 的核查**：旧版模拟故障数据确实是多目标、多配置的。
+  - mdagents：1003 条 / 49 题，每次运行注入 1–6 个 agent，53 种配置。
+  - dylan：1062 条 / 66 题，每次注入 2 个 agent，每题 5–62 条。
+  - clinical_agent5：1052 条 / 192 题，每次注入 2–3 个 agent。
+  - clinical_agent：402 条 / 133 题。
+  - 新方案是每次运行只有一个注入点（方案 A，已和 MHT 商定），故障类型和目标的多样性分布在不同题目上，每题不再展开所有组合。
+  - "每题 2 次注入"只适用于锚点（为了控制成本）；主数据可以每题注入更多次，也可以另做一个多目标子集。
+- **疑问 2 的核查**：解压 `MedAgentAudit-datasets_and_logs-9.2`。
+  - 规模：6 个 MAS（colacare、healthcareagent、mac、mdagents、medagent、reconcile）× 6 个数据集（MedQA、MedXpertQA-text、PubMedQA、PathVQA、SLAKE、VQA-RAD）× 4 个 LLM，有效 MAS 轨迹 14,370 条。
+  - 标注：每条轨迹带 LLM 审计员按 agent × 步骤给出的 10 种故障的二值标注；另有人工评估 400 例（10 种故障 × 20 正例 / 20 负例，每例 3 名标注者），以及开放编码日志。
+  - 数据集按 audit 和 open_coding 两个各 100 题的子集划分，**没有面向训练归因模型的 train/eval 划分**。
+  - arXiv 2510.10185 v1 没有给出代码或数据链接。
+  - 建议：14,370 条作为真实故障、弱标签的训练和评测数据，400 条人工标注作为金标准评估集，并按 MAS 留出做跨框架评测。
+  - 4.23-observation 是 rar 格式，还没有解开。

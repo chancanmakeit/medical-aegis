@@ -1,6 +1,6 @@
 # MedAgents (Tang et al., ACL'24 Findings) — upstream `syn_verif` method.
 # Maximum number of consultation (vote -> advise -> revise) rounds. Upstream default: 3.
-max_attempt_vote: 3
+max_attempt_vote: 2   # user 2026-10-21: rounds capped at 2 (upstream 3)
 # Upstream per-stage max_tokens (vote=30, domain=50, analysis=300, advice=500, report/decision=2500).
 # These truncate reasoning models, so they are OFF by default (global model_max_tokens is used).
 use_original_max_tokens: false
