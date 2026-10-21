@@ -139,9 +139,16 @@ def main():
     for (fw, strat), pos in sorted(groups.items()):
         texts, y, g = [], [], []
         texts_w, y_w, g_w = [], [], []
+        # natural_wrong compares only positives of agent/phase slots that can be
+        # naturally wrong (have a parsable answer that is sometimes wrong in
+        # normal runs); otherwise e.g. injected yes/no votes would be compared
+        # with other roles' answers and separate by role, not by injection.
+        wrong_slots = {k for k, v in normal_steps.items() if any(w for _, _, w in v)}
+        n_pos_w = 0
         for s, qid in pos:
-            for T, Y, G in ((texts, y, g), (texts_w, y_w, g_w)):
-                T.append(s.get("output") or ""); Y.append(1); G.append(qid)
+            texts.append(s.get("output") or ""); y.append(1); g.append(qid)
+            if (fw, s.get("agent_id"), s.get("phase")) in wrong_slots:
+                texts_w.append(s.get("output") or ""); y_w.append(1); g_w.append(qid); n_pos_w += 1
         keys = {(fw, s.get("agent_id"), s.get("phase")) for s, _ in pos}
         n_wrong = 0
         for k in keys:
@@ -154,7 +161,7 @@ def main():
         auc_nw, lo, hi = nw if nw else (None, None, None)
         if auc_nw is not None and lo is not None and lo > 0.75:
             verdict = "FAIL"; failed = True      # clearly separable even with few negatives
-        elif auc_nw is None or n_wrong < a.min_neg or len(pos) < a.min_pos or lo is None:
+        elif auc_nw is None or n_wrong < a.min_neg or n_pos_w < a.min_pos or lo is None:
             verdict = "insufficient"; insufficient = True
         elif hi <= 0.75 or (auc_nw <= 0.7 and lo < 0.6):
             verdict = "pass"
@@ -163,7 +170,7 @@ def main():
         f = lambda v: "  n/a" if v is None else f"{v:5.3f}"
         nw_txt = f"{f(auc_nw)} [{f(lo)}, {f(hi)}]"
         print(f"{fw:14s} {str(strat):20s} {len(pos):5d} {f(auc_rm):>12s} {nw_txt:>24s} "
-              f"{n_wrong:5d}  {verdict:12s}  {feats}")
+              f"{n_wrong:5d}  {verdict:12s}  (n_pos_nw={n_pos_w}) {feats}")
     print()
     for fw, d in sorted(n_steps.items()):
         if d["normal"] and d["inject"]:

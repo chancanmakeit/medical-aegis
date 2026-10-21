@@ -1,0 +1,14 @@
+framework      strategy             n_pos role_matched   natural_wrong [95% CI] n_neg  verdict       top n-grams
+llm_debate     prompt_injection        30        0.946     0.849 [0.757, 0.934]   997  FAIL          (n_pos_nw=30) ['confidence', 'confidence 85', '85', 'score', 'confidence 95']
+llm_debate     response_corruption/screen_distractor    21        0.631     0.512 [0.384, 0.655]   997  pass          (n_pos_nw=21) ['dose', 'by the', 'full', 'stage', 'l5']
+llm_debate     response_corruption/uniform     9        0.524     0.480 [0.320, 0.682]   997  pass          (n_pos_nw=9) ['the spinal', 'spinal', 'sac', 'flexible', 'hernias']
+mac_groupchat  prompt_injection        29        0.694     0.749 [0.613, 0.878]   665  FAIL          (n_pos_nw=21) ['confidence', 'plausible', 'first plausible', 'the options', 'looking at']
+mac_groupchat  response_corruption/screen_distractor    22        0.486     0.544 [0.403, 0.676]   665  pass          (n_pos_nw=22) ['fracture', 'dose', 'stress', 'architecture', 'shoulder']
+mac_groupchat  response_corruption/uniform     6        0.253     0.223 [0.065, 0.393]   665  insufficient  (n_pos_nw=6) ['angioedema', 'receptor', 'dactinomycin', 'is characterized', 'provided answer']
+medagents_mc   prompt_injection        35        0.742     0.904 [0.785, 0.986]   715  FAIL          (n_pos_nw=19) ['score', 'no', 'confidence', 'confidence score', '85']
+medagents_mc   response_corruption/screen_distractor    19        0.511     0.519 [0.385, 0.656]   584  pass          (n_pos_nw=19) ['the s2', 'states that', 'corresponds to', 'injuries', 'option option']
+medagents_mc   response_corruption/uniform     6        0.510     0.354 [0.138, 0.610]   305  insufficient  (n_pos_nw=6) ['dactinomycin', 'risk factor', 'nonunion', 'valgus', 'hernias']
+
+topology llm_debate     AUROC(#steps) = 0.500
+topology mac_groupchat  AUROC(#steps) = 0.541
+topology medagents_mc   AUROC(#steps) = 0.593
