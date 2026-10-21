@@ -673,3 +673,22 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   1. FM-3.3 的 MCQ 指令写死了 "Issue 'Score: 1'"，而且被用在了非验证角色上。69% / 36% / 54% 的 FM-3.3 输出出现了 "score" / "is correct"，normal 中只有 2–4%。
   2. 去掉 FM-3.3 后仍然 FAIL（0.71–0.85），主要信号是**长度**：PI 输出的中位长度只有正常输出的一半左右（llm_debate agent 941 对 1808 字符，MAC doctor 1626 对 1912，medagents decider 138 对 671）。
 - 待办：给出 PI 的修正方案（例如按干净输出的长度做重采样，或者把指令改放到 system 消息里），先在小批上验证，需征得用户同意。
+
+## 第 20 轮（2026-10-21 08:59–09:20）
+**用户的决定**：第 4 个锚点家族用 mdagents；KAMAC 用 mercury 测一下（"测吧"）。
+
+**结果**
+- **KAMAC + mercury**（5 题）：
+  - 1 名专家：participate 5/5 都是 No，gap 都是 No，没有招募，每次 5 步；
+  - 3 名专家：participate 15 次里只有 1 次 Yes（产生 1 条消息），gap 15/15 都是 No，没有招募。
+  - 按 MHT 第 32 轮的规则（mercury 下招募率仍为 0% 就放弃），**KAMAC 整体放弃**。
+  - 花费约 $0.10。
+- **mdagents 锚点和 PI 验证小批**：运行到一半时 aihubmix 返回 `403 insufficient_user_quota`（账户余额不足），大部分运行失败：
+  - mdagents normal 只成功 14/300，RC 17/100；
+  - PI 验证 4 个框架合计只成功 17/200，门槛结果全部 insufficient。
+  - 失败的记录已删掉，之后可以续跑。成功部分约花 $0.37。
+- **⚠️ 发现：aihubmix 用另一个模型响应 "llama-4-maverick" 请求。** 余额报错之后，我们请求 llama-4-maverick，响应里的 model 字段是 `google/gemma-4-31B-it-turbo`，模型自述也是 "trained by Google"。mercury 请求返回的是 `inception/mercury-2.5`。
+  - 之前的 `llm_meta.model` 记录的是**请求的模型名**，不是实际响应的模型，所以**之前所有标为 llama-4-maverick 的数据（试点、筛题、锚点），实际由哪个模型响应目前无法确认**。
+  - 已修改：`mas_base._extract_call_meta` 新增 `served_model`（取自响应的 model 字段），导出器也会带上它。
+  - 待用户核实：在 aihubmix 控制台查看历史调用实际计费或路由到了哪个模型；之后再决定是否换 provider。
+- 暂停所有真实 API 运行。

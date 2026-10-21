@@ -183,7 +183,7 @@ def convert(rec, reg, alias, reasoning_mode):
         step["output_tokens_est"] = count_tokens(step["output"]) if not is_tool else None
         if lm:
             llm_meta_labels[sid] = {k: lm.get(k) for k in
-                                    ("model", "max_tokens", "prompt_tokens",
+                                    ("model", "served_model", "max_tokens", "prompt_tokens",
                                      "completion_tokens", "reasoning_tokens")}
         if is_tool and h.get("stub"):
             step["tool_stub"] = True

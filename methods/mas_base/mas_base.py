@@ -136,6 +136,12 @@ def _extract_call_meta(completion, model_name, request_dict) -> dict:
     OpenRouter); None when the model has no separate reasoning channel.
     """
     meta = {"model": model_name, "max_tokens": request_dict.get("max_tokens")}
+    # The model the provider says actually served the call. Aggregators may
+    # route a model name to another model (2026-10-21: aihubmix answered
+    # "llama-4-maverick" requests with google/gemma-4-31B-it-turbo), so the
+    # requested name alone does not identify the backbone.
+    served = getattr(completion, "model", None)
+    meta["served_model"] = served if isinstance(served, str) else None
     try:
         choice = completion.choices[0]
         msg = choice.message
