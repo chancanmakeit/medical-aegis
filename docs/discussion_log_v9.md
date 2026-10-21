@@ -743,3 +743,20 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - **文风匹配的 sham**：让 agent 以同样论断式的语气为自己的（正确）答案辩护，但不要求犯错；
   - **对抗过滤**：过量生成 PI，用检测器筛掉文风明显的样本；
   - **训练侧去偏**：由 MHT 在模型训练时处理文风特征。
+
+## 第 23 轮（2026-10-21 10:41–10:55）：文风匹配的 sham（sham_style）
+- 用户批准小批验证。sham_style 不要求犯错，但要求 agent "像要说服持不同意见的同事一样，坚定地为自己的答案辩护"。4 个家族 × 50 题，200/200 成功，花费 $1.45。
+- 门槛结果（`gate_shamstyle.txt`）：
+
+  | 框架 | PI 对 sham | **PI 对 sham_style** | sham_style 对自然答错 |
+  |---|---|---|---|
+  | medagents | 0.50 | **0.53** | 0.72（FAIL：模型照抄了 "firmly"、"colleague"） |
+  | MAC | 0.61 | **0.59** | 0.61 |
+  | mdagents | 0.62 | **0.57**（n_pi=21） | 0.61 |
+  | llm_debate | 0.71 | **0.79** | 0.58 |
+
+- **结论**：
+  - medagents、MAC、mdagents：PI 至少能和一种安慰剂对照基本分不开（0.50–0.62），可以按"PI 正例 + 两种 sham 负例"进入训练。
+  - **llm_debate：PI 对两种对照都还能分开（0.71 / 0.79）**，要另想办法：对抗过滤，或者暂时只用 RC。
+  - sham_style 的措辞会被照抄（firmly、colleague），以后如果继续用，需要改写或接入改写池。
+- PI 修正和安慰剂相关的验证累计花费约 $6。如果给剩下 50 题补齐 PI、sham、sham_style，估计约 $4.5（medagents $1.90、MAC $1.45、llm_debate $0.75、mdagents $0.39）。
