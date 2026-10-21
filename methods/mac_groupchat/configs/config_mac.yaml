@@ -1,0 +1,29 @@
+# MAC (Multi-Agent Conversation for disease diagnosis, Chen et al.), port of
+# geteff1/Multi-agent-conversation-for-disease-diagnosis (main.py / main_ws.py).
+num_doctors: 4                 # upstream argparse default 3; scripts/train.sh (the paper runs) uses 4
+# GroupChat max_round: the initial message counts as round 1, so a run has at
+# most n_round - 1 speaker turns. Upstream default 13, train.sh 10; capped at 8
+# here to bound cost (each turn = >= 2 calls whose prompts carry the whole transcript).
+n_round: 8
+# null = upstream formula n_round // (1 + num_doctors) (main.py:146): 1 retry at 8 rounds / 4 doctors.
+max_retries_for_selecting_speaker: null
+# false = main.py (Doctor0..N-1). true = main_ws.py: a Senior Medical Consultant
+# first picks num_doctors specialists, who become the doctors' names.
+use_specialist: false
+# Upstream bug in utils/prompts.py:84: the use_specialist branches are swapped,
+# so main.py's supervisor prompt says "(the list of specialists is None)" and
+# main_ws.py's carries literal "{{" "}}" around its JSON template.
+#   keep -> reproduce upstream exactly (default: that is what the paper ran)
+#   fix  -> un-swap: plain MAC gets the "doctors" wording (braces formatted),
+#           MAC-WS gets the "specialists" wording with the real specialist list
+supervisor_prompt_bug: keep
+# Role of the speaker-selection prompt and of its retry prompts. AutoGen 0.2.32
+# default is "system" (GroupChat.role_for_select_speaker_messages); set "user"
+# for backends whose chat template rejects a system message after position 0.
+select_speaker_role: system
+# AutoGen passes who-said-what only in each message's "name" field. Backends
+# whose chat template drops "name" leave agents unable to tell speakers apart;
+# true additionally prefixes every transcript message with "<name>: ".
+speaker_name_in_content: false
+# Upstream MAC-WS runs the consultant on a separate model at temperature 0.
+consultant_temperature: 0.0

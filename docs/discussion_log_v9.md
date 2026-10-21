@@ -550,3 +550,22 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - 解析失败：llama 6 次，mercury 1 次；截断 1 次。
 - 锚点 100 题草案 `datasets/data/anchor_medxpertqa100.json`：从 llama 的区间内题目中按 question_type 分层抽取（Reasoning 81 / Understanding 19；Diagnosis 41 / Treatment 31 / Basic Science 28），99 题带干扰项分布。前提是锚点只用 llama；如果 MHT 认为两个 backbone 都要用，就改为从并集里抽。
 - 原始数据和报告：`docs/requests/samples/screen_2026-10-21/`。
+
+## 第 17 轮（续）：KAMAC 和 MAC 移植完成（2026-10-21）
+两个子 agent 并行完成移植，我方用 mock 独立复核：在锚点题上 normal 和 inject 各 3 题 × K=2，读取集 not_found=0、unlisted=0，导出 24 条，问题 0。14 个框架的 mock 回归也通过，agentverse 注入的 20 个 not_found 是已知情况，MAM 缺音频，没跑。
+
+- **KAMAC**（`kamac`，家族 `kamac`）
+  - 流程：recruiter（带 `recruits`）→ `expert_i` 初答（以 control 指向 recruiter）→ 每一轮：participate、选接收者、每个接收者一条定向消息（`to`）、gap 判断 → 有 gap 时由 assistant 去重，recruiter 招募 `recruit_<k>`（control）→ 有人发过言时全员重答 → moderator 多数投票。
+  - 提示词是自己改写的，没有拷贝 GPL 代码。
+  - 每题调用次数：默认 1 名专家时最少 5 次，mock 上 10–21 次；3 名专家时 28–59 次。
+  - 保留的上游行为：第 1 轮的定向消息送不到接收者（mock 上 78 条只有 17 条被读到）；`message_delivery: inbox` 可改为送达。"yes" 采用宽松匹配。
+  - 偏离：缓存关闭；使用本次运行的温度和模型；招募上限 4 人，轮次最多延长 3 次；moderator 用每个 agent 最新的答案；修掉了两处会导致崩溃的问题。
+  - **待决定**：初始专家数（上游默认 1）；消息投递方式（上游原样还是 inbox）。
+- **MAC**（`mac_groupchat`，家族 `groupchat`）
+  - 流程：每次选发言者都是一步（Selector，带 `next_speaker`），被选中的人以 control 指向这一步，并完整读取此前所有人的发言；Supervisor 带 `terminate`、`answer` 和 JSON 总结。
+  - 选发言者的提示词取自 pyautogen 0.2.32，已和 wheel 里的源码逐字核对。
+  - 默认 4 名医生，`n_round` 设为 8（上游是 10–13）。每题 2–21 次调用，mock 上 9–17 次。
+  - 上游 supervisor 提示词的 bug 默认保留（`supervisor_prompt_bug: keep`）。
+  - 改成选择题的同时调整了措辞；supervisor 没有输出 JSON 时，用医生的多数答案作为最终答案。
+  - 未完成：注入目标暂时只能写成固定角色，"第 k 次发言的人"这种形式还不支持。
+- 真实运行的单价要先做小规模试跑来估算，按规定需要先征得用户同意。

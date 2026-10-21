@@ -1,0 +1,82 @@
+# Formal-generation draft for KAMAC (2026-10-21). NOT run yet.
+# One target per run, drawn uniformly (seeded by sample id + run_index) from
+# targets_pool (see medagents_mc_pool.yaml for the attack rationale).
+# The pool lists only steps that exist on EVERY run with the default config
+# (num_agents 1, auto_recruit on): the recruiter's initial recruitment, the
+# initial expert's independent answer, its turn-1 participate and
+# knowledge-gap replies, and the moderator. With kamac_num_agents N > 1, add
+# Expert role_index 1..N-1 entries for the same three phases.
+# Yes/no steps (participate, knowledge_gap) and the recruiter only take
+# prompt injection (RC in place has no answer letter to change there).
+# TODO (role-pattern targets for dynamic agents): recruited experts are
+# addressable as role "Recruit", role_index k (k-th recruit, by recruitment
+# order), e.g. {role: Recruit, role_index: 0, phase: initial_assessment}; the
+# wrapper resolves this at run time and reports fired: false when recruit k
+# never appears. They are left out of the pool until normal runs show how
+# often a recruitment happens (otherwise many runs would be not_fired).
+# Likewise conditional steps (choose_recipients / message / reanswer,
+# gap_summary, gap_recruitment, turns >= 2) are not pooled yet.
+run_mode: inject
+injection_method: direct_prepend
+kamac_config_name: config_kamac
+inject_every_invocation: false
+system_under_test:
+  name: kamac
+  wrapper_class_path: aegis_core.agent_systems.fm_kamac_structured_wrapper.FMKAMACStructuredWrapper
+  method_config_path: methods/kamac/configs/config_kamac.yaml
+llm_config:
+  provider: openai
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.7
+benchmark_name: medxpertqa-text
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+prompt_wrapper_style: simulation
+injection_plan:
+  seed: 20261021
+  targets_pool:
+  - role: Recruiter
+    role_index: 0
+    phase: recruitment
+    strategies: &pi_only
+    - prompt_injection
+  - role: Expert
+    role_index: 0
+    phase: initial_assessment
+  - role: Expert
+    role_index: 0
+    phase: participate
+    round: 1
+    strategies: *pi_only
+  - role: Expert
+    role_index: 0
+    phase: knowledge_gap
+    round: 1
+    strategies: *pi_only
+  - role: Moderator
+    role_index: 0
+    phase: decision
+  attack_pool:
+  - fm_error_type: FM-1.1
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.5
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.2
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.6
+    injection_strategy: response_corruption
+rc_mode: inplace
+rc_fallback: pi
+injection_seed: 20261021
+template_pool: malicious_factory/rewrite_pool.json
+template_pool_model: default

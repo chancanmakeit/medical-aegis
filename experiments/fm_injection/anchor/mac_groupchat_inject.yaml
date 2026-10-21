@@ -1,0 +1,56 @@
+# MAC (Multi-Agent Conversation) INJECTION config -> ERROR trajectories
+# (anchor framework, MedXpertQA-Text). One fixed target: Doctor0's first turn.
+# Run: python main.py --method_name mac_groupchat \
+#        --experiment_config experiments/fm_injection/anchor/mac_groupchat_inject.yaml \
+#        --dataset_file ./datasets/data/medxpertqa_text.json --test_dataset_name medxpertqa_text \
+#        --model_name <model> --model_temperature 0.7
+run_mode: "inject"
+injection_method: "direct_prepend"
+mac_config_name: "config_mac"
+
+# A Doctor speaks as often as the selector picks it; an injection fires only on
+# the FIRST matching call. Doctor0 may never be selected in a run, in which
+# case the log records `fired: false` for the target.
+inject_every_invocation: false
+
+system_under_test:
+  name: "mac_groupchat"
+  wrapper_class_path: "aegis_core.agent_systems.fm_mac_structured_wrapper.FMMACStructuredWrapper"
+  method_config_path: "methods/mac_groupchat/configs/config_mac.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.7
+
+benchmark_name: "medxpertqa-text"
+
+use_llm_judge: true
+judge_mode: "regex_first"
+
+# Structural injection sites (see fm_mac_structured_wrapper.py):
+#   Selector(0) [select_speaker]  Doctor(0..N-1) [discussion]  Supervisor(0) [supervision]
+#   (optionally pin `round` = speaker turn 1..n_round-1)
+injection_plan:
+  targets:
+    - role: "Doctor"
+      role_index: 0
+      phase: "discussion"
+      attack_spec:
+        fm_error_type: "FM-2.6"
+        injection_strategy: "response_corruption"
+
+# FM-2.6 in place: only the answer letter changes; a reply with no answer to
+# change is redone as a prompt injection (recorded in the labels).
+rc_mode: "inplace"
+rc_fallback: "pi"
+
+experiment_settings:
+  max_workers: 4
+
+generate_injection_descriptions: false
+
+task_type: "mcq"
+prompt_wrapper_style: "simulation"
