@@ -662,3 +662,14 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - **PI 重跑**（30 题，只跑 run 1，$0.75）：llm_debate 0.682 [0.568, 0.790]，MAC 0.570 [0.422, 0.727]，medagents 0.684 [0.525, 0.825]，**全部 pass**。拓扑 AUROC 0.50–0.59。
 - 旧 PI 运行另存为 `*_inject_pi_oldnote.jsonl`，不进入锚点数据。合并"v1 的 RC + 重跑的 PI"后，用续跑跑完其余 70 题（进行中，预计约 $3.7）。
 - llm_debate normal 检查出 5 个 unlisted，核对后都是假阳性：各 agent 输出的开头措辞高度雷同（"we analyze the clinical findings…"），探针撞上了；读取集本身是对的。
+
+## 第 19 轮（续 2）：3 个锚点家族数据跑完，PI 在全量数据上仍不过门槛（08:35）
+- 3 个家族各有 100 题 × (K=3 normal + 2 次注入)，共 1500 条运行，全部成功，严格导出问题 0。打包为 `docs/requests/samples/anchor_2026-10-21/anchor_export_3fw.jsonl.gz`。
+- 花费：normal $7.90，注入 $6.31（含被丢弃的旧 PI 和重跑）。
+- **门槛（全量 100 题）**：
+  - RC inplace 全部 pass：llm_debate 0.55 / 0.46，MAC 0.47 / 0.44，medagents 0.55 / 0.46（干扰项加权 / 均匀）。
+  - **PI 全部 FAIL**：llm_debate 0.823 [0.778, 0.869]，MAC 0.704 [0.635, 0.768]，medagents 0.781 [0.716, 0.844]。30 题的小批之所以通过，是因为置信区间太宽、样本太少。
+- **原因分析**：
+  1. FM-3.3 的 MCQ 指令写死了 "Issue 'Score: 1'"，而且被用在了非验证角色上。69% / 36% / 54% 的 FM-3.3 输出出现了 "score" / "is correct"，normal 中只有 2–4%。
+  2. 去掉 FM-3.3 后仍然 FAIL（0.71–0.85），主要信号是**长度**：PI 输出的中位长度只有正常输出的一半左右（llm_debate agent 941 对 1808 字符，MAC doctor 1626 对 1912，medagents decider 138 对 671）。
+- 待办：给出 PI 的修正方案（例如按干净输出的长度做重采样，或者把指令改放到 system 消息里），先在小批上验证，需征得用户同意。
