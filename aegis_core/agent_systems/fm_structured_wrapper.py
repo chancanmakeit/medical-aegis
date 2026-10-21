@@ -272,10 +272,13 @@ class StructuredFMWrapper(SystemWrapper):
                 a length signature (anchor gate, 2026-10-21). Only the kept
                 try stays in the trajectory; the others are dropped from the
                 capture and recorded in the labels."""
+                cfg = self.exp_config.get("pi_length_match") or {}
+                self.fm_factory.target_words = (len(ref_text.split()) if (ref_text and cfg.get("state_length"))
+                                                else None)
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
                     args, kwargs,
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
-                cfg = self.exp_config.get("pi_length_match") or {}
+                self.fm_factory.target_words = None
                 tries = int(cfg.get("max_tries", 3)) if (cfg and ref_text) else 1
                 lo, hi = float(cfg.get("min_ratio", 0.6)), float(cfg.get("max_ratio", 1.5))
                 attempts = []
