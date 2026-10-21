@@ -142,6 +142,16 @@
 - MAM：文本模型用 Ling-3.0-flash（Ant Ling 端点），音频模型用 mimo-v2.6-flash。model_api_config 里要有这两个模型。容器里缺 `datasets/audio/`，需要从 HF UUUooUUU/Heartbeat 等仓库重新下载。
 - 外部仓库（只读）：`/home/claude/ext_repos/{MA-RAG,MDTeamGPT,KAMAC,tao,Multi-agent-conversation-for-disease-diagnosis}`。KAMAC 是 GPL-3.0，必须自己重写，不能拷贝代码。
 
+**v9 第 14 轮（MHT 第 29 轮）**：
+- 门槛 CI、`effective_strategy`、干扰项加权抽取、打乱选项的污染检查都已实现。
+- **KAMAC / MAC 移植时的契约要求**（MHT 第 29 轮第 4 节）：
+  - 被选中、路由或招募的步骤，在 sources 里把决策步标为 `how: "control"`；
+  - MAC：选择发言者的调用记成 step，带 `structured.next_speaker`；supervisor 的步骤带 `structured.terminate`；
+  - KAMAC：招募步带 `structured.recruits=[{agent_id, specialty}]` 和 `knowledge_gap`；定向消息每条一个 step，带 `structured.to=[...]`，只有真正的接收者在后续步骤里把它列为来源；
+  - 新招募的 agent 的 id 为 `recruit_<k>`；注入目标池要支持角色模式（例如"第 k 个被招募专家的第一次作答"），解析不到就是 not_fired；
+  - 家族名：MAC 为 `groupchat`，KAMAC 为 `kamac`。
+- 锚点（两个项目一致的方案，等用户确认）：10 个家族，即 mdagents、medagents、dylan、debate、agentverse、mav、macnet（重新移植）、MA-RAG（`retrieval_debate`）、KAMAC、MAC；MDTeamGPT 可选。
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。

@@ -199,6 +199,11 @@ def convert(rec, reg, alias, reasoning_mode):
                 "clean_output": h.get("clean_response_before_corruption"),
                 "injection_process": h.get("injection_process"),
             }
+            # the strategy that actually produced this step: an RC step with no
+            # answer to change is redone as PI (rc_fallback "pi") and counts as PI
+            inj["planned_strategy"] = ("response_corruption" if h.get("rc_fallback_to_pi")
+                                       else h.get("injection_strategy"))
+            inj["effective_strategy"] = h.get("injection_strategy")
             if h.get("rc_fallback_to_pi"):
                 inj["rc_fallback_to_pi"] = True
                 inj["discarded_clean_output"] = h.get("discarded_clean_response")
@@ -341,7 +346,7 @@ def check(rec):
                 probs.append(f"{s['step_id']}: unknown source {sid}")
             elif ids[sid] >= s["order"]:
                 probs.append(f"{s['step_id']}: source {sid} is not earlier")
-            if src["how"] not in ("verbatim", "excerpt", "structured_field", "summary"):
+            if src["how"] not in ("verbatim", "excerpt", "structured_field", "summary", "control"):
                 probs.append(f"{s['step_id']}: bad how {src['how']}")
     for inj in rec["labels"]["injection"]:
         if inj["step_id"] not in ids:

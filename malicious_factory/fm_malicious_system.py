@@ -156,6 +156,11 @@ class FMMaliciousFactory:
         # corrupted answer is never accidentally the correct one; it never
         # enters the trajectory.
         self.gold_answer: Optional[str] = None
+        # Per-question counts of the wrong options chosen in difficulty-screening
+        # runs ({letter: n}); set by the wrapper from the sample's
+        # `screen_distractors`. Wrong MCQ answers are drawn in proportion to them
+        # (natural error distribution, MedHyperTrace r29), else uniformly.
+        self.distractor_counts: Optional[Dict[str, int]] = None
         self._pool: Dict[str, List[str]] = {}
         self._pool_name: Optional[str] = None
         if template_pool:
@@ -890,6 +895,20 @@ class FMMaliciousFactory:
             "adjacent" if ca in low and all(l.isdigit() for l in labels) else "uniform")
         return orig_labels[labels.index(wrong)]
 
+    def _draw_wrong_letter(self, pool, fm_error_type, text: str) -> str:
+        """Uniform over `pool`, or weighted by screening distractor counts when
+        some option in `pool` was chosen by a wrong screening run."""
+        rng = self._rng(fm_error_type, text, "wrong")
+        counts = {k: v for k, v in (self.distractor_counts or {}).items() if k in pool and v > 0}
+        if counts:
+            keys = sorted(counts)
+            wrong = rng.choices(keys, weights=[counts[k] for k in keys], k=1)[0]
+            self.last_injection_meta["wrong_answer_source"] = "screen_distractor"
+        else:
+            wrong = rng.choice(pool)
+            self.last_injection_meta["wrong_answer_source"] = "uniform"
+        return wrong
+
     _OPTION_LINE_RE = re.compile(r"(?m)^\s*\(?([A-J])[\).:]\s")
 
     def _mcq_wrong_letter(self, response: str, fm_error_type) -> str:
@@ -902,7 +921,7 @@ class FMMaliciousFactory:
         except Exception:
             clean = None
         pool = self._not_gold([l for l in letters if l != clean] or letters)
-        wrong = self._rng(fm_error_type, response, "wrong").choice(pool)
+        wrong = self._draw_wrong_letter(pool, fm_error_type, response)
         self.last_injection_meta.update(clean_answer=clean, corrupted_answer=wrong,
                                         option_letters="".join(letters))
         return wrong
@@ -944,7 +963,7 @@ class FMMaliciousFactory:
             return None
         letters = sorted(opts) or list("ABCD")
         pool = self._not_gold([l for l in letters if l != endorsed] or letters)
-        wrong = self._rng(fm_error_type, text, "wrong").choice(pool)
+        wrong = self._draw_wrong_letter(pool, fm_error_type, text)
         n_sites = 0
         out = text
         if clean is not None:

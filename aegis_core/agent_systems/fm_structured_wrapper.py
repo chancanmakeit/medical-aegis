@@ -196,6 +196,8 @@ class StructuredFMWrapper(SystemWrapper):
         if isinstance(gt, dict):
             gt = gt.get("correct_answer")
         self.fm_factory.gold_answer = gt if isinstance(gt, (str, int)) else None
+        raw = (getattr(task, "metadata", None) or {}).get("raw_sample") or {}
+        self.fm_factory.distractor_counts = raw.get("screen_distractors")
         self.before_run(task, sample)
         _attach_task_images(self.mas, getattr(task, "image_paths", None))
         llm_capture = self._start_llm_capture(self.mas)     # what the model RECEIVED

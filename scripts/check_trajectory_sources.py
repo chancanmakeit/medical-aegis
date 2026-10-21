@@ -13,7 +13,9 @@ Heuristic matching per source output (any one is enough):
     vote that only enters as a count) it is counted as derived_unverifiable;
   - source_how "excerpt": any non-trivial line of the source output (XML-style
     tags stripped), or the value after a leading "Label:" on such a line;
-  - tool steps (is_tool): checked against their tool_calls arguments.
+  - tool steps (is_tool): checked against their tool_calls arguments;
+  - source_how "control" (the step exists because that step selected / routed /
+    recruited it, MedHyperTrace r29) carries no text: counted as derived.
 Short outputs (< 25 chars, e.g. "YES") are skipped by the unlisted-read check.
 Unlisted-read check: an earlier output counts as read only if a probe from its
 BODY (chars 60-140) is in the input, and not when a listed source's own output
@@ -61,6 +63,11 @@ def main(path):
             for src in s.get("sources", []):
                 checked += 1
                 pr = probes(by_id[src])
+                if how.get(src) == "control":
+                    # selected / routed / recruited by that step (MAC speaker
+                    # selection, KAMAC recruitment): no text need be passed on
+                    derived += 1
+                    continue
                 if how.get(src) == "structured_field":
                     # only a derived field enters the prompt: an ANSWER (count line)
                     # if the source has one; otherwise (e.g. vote counts) unverifiable

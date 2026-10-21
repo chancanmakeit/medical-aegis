@@ -470,3 +470,23 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - MAC 推荐（LLM 选发言者的群聊 + supervisor 决定结束）；
   - TAO 不推荐（数据流是断的，绑定 Gemini）。
 - 14 个框架 mock 回归通过。MAM 缺音频文件，跑不了，与改动无关。
+
+## 第 14 轮（2026-10-21 01:05）：MHT 第 29 轮（comment 6311062674）
+**MHT 的意见**
+- 复核 `quality_gate.py` 通过。补充两点：门槛要报告 bootstrap 95% CI，负例数设下限 `min_neg=50`，判定改为"CI 上界 ≤ 0.75，或点估计 ≤ 0.7 且 CI 下界 < 0.6"；分组按实际生效的策略。
+- 原地改答案时，错误选项不要均匀抽取（均匀抽取容易抽到荒谬的选项，形成语义签名），改为按难度筛选中自然答错的干扰项频率加权，并记录 `wrong_answer_source`。
+- 20 题探测的准确率偏高，可疑（公开榜单上前沿模型在 52–72%），建议做污染检查：K=4 中有 2 次打乱选项顺序并重新编号，报告整体、打乱前、打乱后的准确率，以及按 question_type 统计的区间内题数。
+- KAMAC 和 MAC 都推荐纳入，对建图有三项要求：
+  - 新增 `how: "control"` 来源（被选中、路由或招募）；
+  - 把决策本身记成 step，带结构化字段（`next_speaker`、`recruits`、`knowledge_gap`、`to`、`terminate`）；
+  - 动态出现的 agent 用稳定 id（`recruit_<k>`），注入目标按角色模式定义、运行时解析。
+- 家族：MAC 单列为 `groupchat`，KAMAC 单列为 `kamac`（另做并入 mdagents 的敏感性分析）。锚点共 10 个家族：现有 5 个 + mav + macnet + MA-RAG + KAMAC + MAC，MDTeamGPT 作为可选的第 11 个。
+- 训练只用 outcome 为 flipped / repaired 的运行。
+
+**本轮完成（未调用 API）**
+- 门槛：加了 bootstrap CI（按题重采样）、`--min_neg 50`，判定分 pass / FAIL / insufficient；CI 下界 > 0.75 时直接判 FAIL。分组按 `effective_strategy`，RC 再按 `wrong_answer_source` 细分。试点配置判为 FAIL，符合预期。
+- 导出器：`labels.injection[]` 增加 `planned_strategy` 和 `effective_strategy`。
+- 工厂：`distractor_counts`（由 wrapper 从样本的 `screen_distractors` 读入），错误字母按权重抽取，没有可用的干扰项时退回均匀抽取，并记录 `wrong_answer_source`。已验证抽样比例与权重一致（3:1 → 230:70）。
+- 筛选脚本：k ≥ 2 的运行打乱选项（按种子），答案映射回原标签再计分；选题报告包括整体、打乱前、打乱后的准确率和按 question_type 的区间内题数；保留下来的题写入 `screen_distractors`。
+- 检查脚本和导出器都支持 `how: "control"`。
+- KAMAC 和 MAC 移植时的契约要求已写进 HANDOFF。
