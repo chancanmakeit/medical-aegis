@@ -167,14 +167,26 @@ class StructuredFMWrapper(SystemWrapper):
         targets = list(zip(malicious_agents, injection_targets))
         fired_targets = set()  # indices into `targets`
 
+        # role_index "*" matches any agent of that role; "nth": k fires on the
+        # k-th matching call (1-based), e.g. {role: Doctor, role_index: "*",
+        # phase: discussion, nth: 2} = the second doctor turn, whoever speaks
+        # (MAC's selector decides who speaks, so fixed roles often never fire).
+        match_counts: Dict[int, int] = {}
+
         def _match(role, role_index, phase, round_):
             for ti, (_a, t) in enumerate(targets):
-                if t["role"] != role or t.get("role_index", 0) != role_index:
+                if t["role"] != role:
+                    continue
+                if t.get("role_index", 0) != "*" and t.get("role_index", 0) != role_index:
                     continue
                 if t.get("phase") is not None and t["phase"] != phase:
                     continue
                 if t.get("round") is not None and t["round"] != round_:
                     continue
+                if t.get("nth") is not None:
+                    match_counts[ti] = match_counts.get(ti, 0) + 1
+                    if match_counts[ti] != int(t["nth"]):
+                        continue
                 if self._inject_every or ti not in fired_targets:
                     return ti
             return None

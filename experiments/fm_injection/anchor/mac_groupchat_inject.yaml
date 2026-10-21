@@ -2,6 +2,9 @@
 # llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
 # question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
 # prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): n_round 8 (<= 7 speaker turns = under 2 full rounds of 4 doctors + supervisor); not lowered further, a 'round' here is one speaker turn.
+# Targets: the k-th doctor turn (whoever the selector picks; role_index '*', nth k)
+# instead of fixed doctors, which fired in only 3/10 trial runs (MHT r31 asked for
+# this when not_fired > 30%); the supervisor's first turn; the first selection.
 run_mode: inject
 injection_method: direct_prepend
 system_under_test:
@@ -35,20 +38,21 @@ injection_plan:
   - prompt_injection
   targets_pool:
   - role: Doctor
-    role_index: 0
+    role_index: '*'
     phase: discussion
+    nth: 1
   - role: Doctor
-    role_index: 1
+    role_index: '*'
     phase: discussion
+    nth: 2
   - role: Doctor
-    role_index: 2
+    role_index: '*'
     phase: discussion
-  - role: Doctor
-    role_index: 3
-    phase: discussion
+    nth: 3
   - role: Supervisor
     role_index: 0
     phase: supervision
+    nth: 1
   - role: Selector
     role_index: 0
     phase: select_speaker
