@@ -171,6 +171,22 @@ def main():
         nw_txt = f"{f(auc_nw)} [{f(lo)}, {f(hi)}]"
         print(f"{fw:14s} {str(strat):20s} {len(pos):5d} {f(auc_rm):>12s} {nw_txt:>24s} "
               f"{n_wrong:5d}  {verdict:12s}  (n_pos_nw={n_pos_w}) {feats}")
+    # PI vs sham (placebo) on the same agent/phase slots: ~0.5 means the
+    # style a prompt-injection note induces no longer predicts the fault.
+    print()
+    for fw in sorted({k[0] for k in groups}):
+        pi = groups.get((fw, "prompt_injection"), [])
+        sh = groups.get((fw, "sham"), [])
+        if not pi or not sh:
+            continue
+        sh_slots = {(s.get("agent_id"), s.get("phase")) for s, _ in sh}
+        pi_m = [(s, q) for s, q in pi if (s.get("agent_id"), s.get("phase")) in sh_slots]
+        texts = [s.get("output") or "" for s, _ in pi_m] + [s.get("output") or "" for s, _ in sh]
+        y = [1] * len(pi_m) + [0] * len(sh)
+        g = [q for _, q in pi_m] + [q for _, q in sh]
+        r, _ = cv_auroc(texts, y, g, ci=True)
+        if r:
+            print(f"PI vs sham {fw:14s} n_pi={len(pi_m)} n_sham={len(sh)} AUROC {r[0]:.3f} [{r[1]:.3f}, {r[2]:.3f}]")
     print()
     for fw, d in sorted(n_steps.items()):
         if d["normal"] and d["inject"]:

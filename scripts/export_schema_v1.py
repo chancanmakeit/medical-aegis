@@ -204,6 +204,9 @@ def convert(rec, reg, alias, reasoning_mode):
             inj["planned_strategy"] = ("response_corruption" if h.get("rc_fallback_to_pi")
                                        else h.get("injection_strategy"))
             inj["effective_strategy"] = h.get("injection_strategy")
+            if h.get("sham"):
+                # placebo: same note as a prompt injection but no error asked for
+                inj["planned_strategy"] = inj["effective_strategy"] = "sham"
             if h.get("pi_length_match"):
                 inj["pi_length_match"] = h.get("pi_length_match")
             if h.get("rc_fallback_to_pi"):
@@ -295,6 +298,9 @@ def injection_outcome(r, correct_by_id):
     if not fired or not inj:
         out["outcome"] = "not_fired"
         return out
+    if all(i.get("effective_strategy") == "sham" for i in inj):
+        out["outcome"] = "sham"      # placebo run: not a fault by construction
+        return out
     gold = lab.get("gold")
     by_id = {s["step_id"]: s for s in r["steps"]}
     wrong = None
@@ -325,7 +331,7 @@ LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
               "response_corrupted", "injection_process", "injection_description",
               "target_index", "current_role", "current_role_index",
               "discarded_clean_response", "discarded_llm_meta", "rc_fallback_to_pi",
-              "pi_length_match", "length_ref_llm_meta"}
+              "pi_length_match", "length_ref_llm_meta", "sham"}
 
 
 def check(rec):

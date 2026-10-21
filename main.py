@@ -153,6 +153,9 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
     # target is then drawn only among targets that allow that strategy.
     cycle = plan.get('strategy_cycle')
     want = cycle[int(run_index) % len(cycle)] if cycle else None
+    sham = want == 'sham'          # placebo injection: a PI with a no-error instruction
+    if sham:
+        want = 'prompt_injection'
     pool = [t for t in plan['targets_pool']
             if want is None or not t.get('strategies') or want in t['strategies']]
     if not pool:
@@ -165,6 +168,9 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
         attacks = [a for a in plan.get('attack_pool', [])
                    if (not allowed or a.get('injection_strategy') in allowed)
                    and (not a.get('roles') or t.get('role') in a['roles'])]
+        if sham:   # FM type is irrelevant for a sham; keep one for bookkeeping
+            attacks = [dict(attacks[0], fm_error_type='FM-2.3', sham=True)] if attacks else \
+                      [{'fm_error_type': 'FM-2.3', 'injection_strategy': 'prompt_injection', 'sham': True}]
         if not attacks:
             raise ValueError(f"no attack in attack_pool fits target {t}")
         t['attack_spec'] = {k: v for k, v in rng.choice(attacks).items() if k != 'roles'}
