@@ -502,3 +502,16 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 成本：每个家族约 1,600 次运行（100 题 × K=4 × normal 加注入 × 2 个 backbone），几十美元量级。另外有 5 个框架要新移植，MA-RAG 还要语料和 logprobs。
   - 我方建议：7 个家族，即现有 5 个 + KAMAC + MAC（都是医学框架，带控制流依赖）；mav、macnet、MA-RAG 作为第二批，按需再补。
   - 已在 issue 里请 MHT 回答：最少需要几个家族，6 点的缩放曲线够不够，以及只能再加一个时的优先级（comment 6312257987）。
+
+## 第 16 轮（2026-10-21 02:12）
+**用户的决定**
+1. 每个家族几十美元太贵，锚点缩到 3 个或 5 个家族。
+2. 不用 MA-RAG（麻烦，并且依赖 logprobs）。
+
+**我方给出的候选方案**
+- 5 个：mdagents、medagents、debate、KAMAC、MAC。另一种是现有 5 个，不需要新移植。
+- 3 个：mdagents、medagents，再加 debate 或 KAMAC。
+- 省钱：锚点只用 llama 一个 backbone。
+- 已转告 MHT（comment 待补）。
+
+**筛选进展**：约 25% 完成，准确率 mercury 0.38、llama 0.52，已花约 $1.2。
