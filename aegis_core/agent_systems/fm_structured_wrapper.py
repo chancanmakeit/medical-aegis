@@ -275,7 +275,8 @@ class StructuredFMWrapper(SystemWrapper):
                 cfg = self.exp_config.get("pi_length_match") or {}
                 self.fm_factory.target_words = (len(ref_text.split()) if (ref_text and cfg.get("state_length"))
                                                 else None)
-                self.fm_factory.sham_mode = bool((targets[ti][1].get("attack_spec") or {}).get("sham"))
+                _sh = (targets[ti][1].get("attack_spec") or {}).get("sham")
+                self.fm_factory.sham_mode = "style" if _sh == "style" else bool(_sh)
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
                     args, kwargs,
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
@@ -322,7 +323,7 @@ class StructuredFMWrapper(SystemWrapper):
                 meta.update(info)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
                 if meta["injection_process"].get("sham"):
-                    meta["sham"] = True
+                    meta["sham"] = meta["injection_process"]["sham"]
             elif malicious_agent.injection_strategy == InjectionStrategy.RESPONSE_CORRUPTION:
                 n_cap = len(llm_capture)
                 clean = _call(turn_idx, f"{where}_clean_for_corruption", *args, **kwargs)

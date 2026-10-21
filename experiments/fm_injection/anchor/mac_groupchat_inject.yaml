@@ -9,6 +9,7 @@
 # clean reference reply (re-sampled up to 3 times into [0.6, 1.5] x its length).
 # 2026-10-21 PI fix v2: state the reference reply's word count in the note; range [0.8, 1.25], 4 tries.
 # 2026-10-21: run 2 = sham (placebo) injection: same note as PI, no error asked for.
+# 2026-10-21: run 3 = style-matched sham (no error, firm persuasive justification).
 run_mode: inject
 injection_method: direct_prepend
 system_under_test:
@@ -41,6 +42,7 @@ injection_plan:
   - response_corruption
   - prompt_injection
   - sham
+  - sham_style
   targets_pool:
   - role: Doctor
     role_index: '*'

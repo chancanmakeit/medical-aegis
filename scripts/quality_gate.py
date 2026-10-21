@@ -174,9 +174,9 @@ def main():
     # PI vs sham (placebo) on the same agent/phase slots: ~0.5 means the
     # style a prompt-injection note induces no longer predicts the fault.
     print()
-    for fw in sorted({k[0] for k in groups}):
+    for fw, shk in sorted({(k[0], k[1]) for k in groups if str(k[1]).startswith("sham")}):
         pi = groups.get((fw, "prompt_injection"), [])
-        sh = groups.get((fw, "sham"), [])
+        sh = groups.get((fw, shk), [])
         if not pi or not sh:
             continue
         sh_slots = {(s.get("agent_id"), s.get("phase")) for s, _ in sh}
@@ -186,7 +186,7 @@ def main():
         g = [q for _, q in pi_m] + [q for _, q in sh]
         r, _ = cv_auroc(texts, y, g, ci=True)
         if r:
-            print(f"PI vs sham {fw:14s} n_pi={len(pi_m)} n_sham={len(sh)} AUROC {r[0]:.3f} [{r[1]:.3f}, {r[2]:.3f}]")
+            print(f"PI vs {shk:10s} {fw:14s} n_pi={len(pi_m)} n_sham={len(sh)} AUROC {r[0]:.3f} [{r[1]:.3f}, {r[2]:.3f}]")
     print()
     for fw, d in sorted(n_steps.items()):
         if d["normal"] and d["inject"]:

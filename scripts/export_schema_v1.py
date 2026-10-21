@@ -206,7 +206,8 @@ def convert(rec, reg, alias, reasoning_mode):
             inj["effective_strategy"] = h.get("injection_strategy")
             if h.get("sham"):
                 # placebo: same note as a prompt injection but no error asked for
-                inj["planned_strategy"] = inj["effective_strategy"] = "sham"
+                inj["planned_strategy"] = inj["effective_strategy"] = (
+                    "sham_style" if h.get("sham") == "style" else "sham")
             if h.get("pi_length_match"):
                 inj["pi_length_match"] = h.get("pi_length_match")
             if h.get("rc_fallback_to_pi"):
@@ -298,7 +299,7 @@ def injection_outcome(r, correct_by_id):
     if not fired or not inj:
         out["outcome"] = "not_fired"
         return out
-    if all(i.get("effective_strategy") == "sham" for i in inj):
+    if all(str(i.get("effective_strategy")).startswith("sham") for i in inj):
         out["outcome"] = "sham"      # placebo run: not a fault by construction
         return out
     gold = lab.get("gold")
