@@ -60,6 +60,30 @@ frameworks:
       aggregator reads all panel answers and gives the final answer. MedXpertQA-MM
       items attach the question images to the expert calls.
 
+  kamac:
+    family: kamac
+    modality: text
+    description: >-
+      KAMAC (reuses MDAgents' intermediate flow, plus knowledge-gap-driven
+      recruitment): a recruiter names the initial expert(s) (1 by default);
+      each expert answers independently. In each debate turn (up to 3) every
+      expert, which keeps its own chat history, says whether it wants to talk
+      (turn 1 shows all current answers, or only "specialty: letter" when they
+      agree), if so picks recipients and writes one directed message per
+      recipient, then says whether a missing specialty is needed. On a gap an
+      assistant de-duplicates the gap statements and the recruiter either
+      recruits new experts (recruit_<k>; each answers with the current answers
+      as context, then joins the debate) or skips; if anyone talked, all
+      experts re-answer. Stops when nobody talks, or at the turn cap (grown by
+      a skip or a last-turn recruitment, at most 3 times); a moderator takes a
+      majority vote over the experts' latest full answers. Faithful upstream
+      quirks: a directed message reaches its recipient only from turn 2 on and
+      only if the sender spoke earlier in that turn (turn-1 messages are read
+      by nobody but the sender); on a skip the recruiter's reply replaces every
+      expert's own gap answer in its history; the hierarchy is parsed but unused.
+      Deviations: the moderator reads the latest answers (upstream can pass
+      start-of-turn answers), recruits are capped at 4, no response cache.
+
   clinical_agent:
     family: clinical_agent
     modality: text
@@ -177,3 +201,21 @@ frameworks:
       level, confidence and rationale (agents exit after repeating a
       high-confidence answer); a coordinator reads the final positions and
       decides the level.
+
+  mac_groupchat:
+    family: groupchat
+    modality: text
+    description: >-
+      MAC (multi-agent conversation, an AutoGen 0.2.32 GroupChat re-implemented
+      without AutoGen): 4 doctors and a supervisor share one transcript that
+      every speaker reads in full; before each turn an LLM speaker selector
+      reads the transcript and names the next speaker (repeats allowed; a
+      reply naming zero or several agents is re-asked once, then the next agent
+      in list order speaks). Doctors give an option letter; each supervisor
+      turn critiques the doctors and writes a JSON summary with the current
+      consensus letter, and says TERMINATE when all agree. The chat ends on
+      TERMINATE in any message or after 7 speaker turns (n_round 8, upstream
+      10-13); the answer is the last supervisor JSON (doctor majority if the
+      supervisor never wrote one). Faithful upstream quirk kept: the
+      supervisor prompt says "the list of specialists is None". Prompts adapted
+      from open-ended diagnosis to MCQ.

@@ -13,6 +13,7 @@ from .mapcoder import MapCoder_HumanEval, MapCoder_MBPP
 from .self_consistency import SelfConsistency
 from .mav import MAV_GPQA, MAV_HumanEval, MAV_Main, MAV_MATH, MAV_MMLU
 from .mdagents import MDAgents_Main
+from .kamac import KAMAC_Main
 from .medagents_mc import MedAgentsMC_Main
 from .consensus import ConSensus_Main
 from .mam import MAM_Main
@@ -20,6 +21,7 @@ from .triage_agent import TriageAgent_Main
 from .consensus_baselines import SensingDebate_Main, SensingMAD_Main, SensingReconcile_Main, SensingCMD_Main
 from .clinical_agent import ClinicalAgent_Main
 from .cmas import CMAS_Main
+from .mac_groupchat import MAC_Main
 
 method2class = {
     "vanilla": MAS,
@@ -49,6 +51,7 @@ method2class = {
     "mav_math": MAV_MATH,
     "mav_mmlu": MAV_MMLU,
     "mdagents": MDAgents_Main,
+    "kamac": KAMAC_Main,
     "medagents_mc": MedAgentsMC_Main,
     "consensus": ConSensus_Main,
     "mam": MAM_Main,
@@ -60,7 +63,8 @@ method2class = {
     "consensus_cmd": SensingCMD_Main,
     "clinical_agent": ClinicalAgent_Main,
     "clinicalagent": ClinicalAgent_Main,
-    "cmas": CMAS_Main
+    "cmas": CMAS_Main,
+    "mac_groupchat": MAC_Main,
 }
 
 def get_method_class(method_name, dataset_name=None):
