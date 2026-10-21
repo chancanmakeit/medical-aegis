@@ -721,5 +721,5 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - sham 使用与 PI 相同的说明、字数要求和插入位置，但不要求犯错；
   - `strategy_cycle` 加入 sham（每题 run 2）；导出 `effective_strategy` 和 `outcome` 都是 "sham"；
   - 门槛脚本新增"PI 对 sham"的 AUROC。
-- 已开跑 4 个家族 × 50 题的 sham 小批；已在 issue 里请 MHT 确认训练侧怎么使用 sham 负例（comment 待补）。
+- 已开跑 4 个家族 × 50 题的 sham 小批；已在 issue 里请 MHT 确认训练侧怎么使用 sham 负例（comment 6322229213）。
 - 局限：sham 只能消除文风捷径，PI 错误和真实故障的分布差异仍然要靠真实故障评测来检验。
