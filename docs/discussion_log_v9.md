@@ -692,3 +692,7 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 已修改：`mas_base._extract_call_meta` 新增 `served_model`（取自响应的 model 字段），导出器也会带上它。
   - 待用户核实：在 aihubmix 控制台查看历史调用实际计费或路由到了哪个模型；之后再决定是否换 provider。
 - 暂停所有真实 API 运行。
+
+## 第 21 轮（2026-10-21 09:23）
+- 用户已给 aihubmix 充值，并说明：**llama-4-maverick 就是 llama-4-maverick，不用怀疑，无需验证**。我们据此把这批数据的 backbone 视为 llama-4-maverick。`served_model` 字段照常记录，只作为调用元数据保存。
+- 已续跑 mdagents 锚点（normal K=3 + RC）和 PI 长度匹配验证小批（4 个框架 × 50 题）。
