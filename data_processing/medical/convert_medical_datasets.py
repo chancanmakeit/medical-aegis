@@ -30,6 +30,7 @@ import argparse
 import json
 import os
 import hashlib
+import re
 from typing import List, Dict, Any
 
 
@@ -301,6 +302,33 @@ def build_medxpertqa(subset: str, split: str,
                     f"agent should consult the image(s) for diagnosis.]"
                 )
         out.append(sample)
+    return out
+
+
+def medxpertqa_lines_layout(rows) -> List[Dict[str, Any]]:
+    """MedXpertQA Text rows (HF jsonl) -> samples in the common MCQ layout
+    "<stem>\n\nOptions:\nA. ..\n...\n\nAnswer with ...", i.e. the layout the
+    frameworks' option parsers expect (medagents_mc.parse_mcq_query, the
+    factory's option-letter reader). The inline "Answer Choices: (A) .. (B) .."
+    block of the raw question is removed and rebuilt from `options`.
+    Added 2026-10-21 (user: MDAgents can use MedXpertQA-Text)."""
+    out = []
+    for row in rows:
+        stem = re.split(r"\n?Answer Choices:", row["question"])[0].strip()
+        opts = row.get("options") or {}
+        letters = sorted(opts)
+        # option texts are put on one line each (a few contain newlines)
+        query = _format_mcq_query(stem, [" ".join(str(opts[k]).split()) for k in letters])
+        gold = (row.get("label") or "").strip()
+        out.append({
+            "id": f"medxpertqa_text_{row.get('id', '').replace('Text-', '')}",
+            "query": query,
+            "answer": gold,
+            "ground_truth": {"correct_answer": gold, "answer_text": opts.get(gold, "")},
+            "medical_task": row.get("medical_task"),
+            "body_system": row.get("body_system"),
+            "question_type": row.get("question_type"),
+        })
     return out
 
 

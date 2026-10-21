@@ -427,3 +427,46 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - MAM 上游的文本模型（Medichat-Llama3-8B）和音频模型（Qwen-Audio）是两个不同的模型，保真的关键是两者不同，而不是文本模型能不能处理多模态。文本也用 mimo 就等于不启用。
   - gemini-2.5-flash-lite-nothink 目前在 aihubmix 上不可用，gemini-2.5-flash-lite 可用。
   - mdagents 上游所有 agent 用同一个模型，所以建议不单独设文本模型，全程用同一个多模态 backbone。
+
+## 第 13 轮（2026-10-21 00:20）
+**用户的要求与建议**
+1. 先看 MedHyperTrace 有没有在 issue 里回复。
+2. 如果 MA-RAG 和 MDTeamGPT 不太合适，能否纳入 MAC、KAMAC、TAO。
+3. MDAgents 可以用纯文本的 MedXpertQA-Text。
+4. MAM 的文本模态用 Ling-3.0-flash。
+5. 继续推进。
+
+**MHT 第 28 轮（comment 6305484990）的要点**
+- 420 条审核全部通过。
+- 三种捷径都很强：
+  - 内容：RC 的 AUROC 为 1.0，PI 为 0.92–0.95，即使负例换成"自然答错"的步骤仍有 0.95；
+  - 拓扑：medagents 0.95；
+  - 角色先验：注入目标固定，猜角色就能 50/50 命中。
+- 建议：
+  - 按难度筛题，保留 normal 准确率 0.25–0.75 的题（最关键）；
+  - 注入目标在 agent_id × phase 上均匀随机；
+  - 标签侧给出 outcome ∈ {flipped, repaired, benign}；
+  - medagents 的专家、Synthesizer、Reviser 补 `structured.answer`；
+  - RC 改为原地改答案，自述式错误交给 PI，改写池转到 PI 指令侧；
+  - 加数据质量门槛（"注入步 vs 自然答错步"的 AUROC 应约为 0.5–0.7）。
+- 锚点组合：现有 5 个 + mav + macnet + MA-RAG（单列为 retrieval_debate），MDTeamGPT 可选，不用 camel。
+- MAM 和 mdagents 的文本模型：同意我方意见。
+
+**本轮完成（未调用 API 的除外处已注明）**
+- `rc_mode: inplace`：
+  - MCQ 只改所承诺的字母和结论段里的选项原文；字段式答案只改值、不加 Note；
+  - 认不出答案时用 `rc_fallback: pi` 重做成 PI（标签侧记录）；
+  - 离线门槛：AUROC 0.45–0.63。
+- `methods/answer_parsing.mcq_leaning`；medagents 的 q/o 专家、Synthesizer、Reviser 都有了 `structured.answer`。
+- `injection_plan.targets_pool` + `attack_pool`：每次运行按种子抽一个 target。正式配置草案在 `experiments/fm_injection/formal/`。
+- 导出器加了 `labels.outcome`、`injected_step_wrong`、`paired_normal_accuracy`；新增 `scripts/quality_gate.py`，在本地复现了 MHT 的数字。
+- PI：simulation 包装要求报告真实置信度、不夸大；指令里的 "confident-sounding" 改为 "plausible"。
+- PI 指令改写池：98 个模板 × 20 条，mercury 生成，花 $0.19，保存在 `malicious_factory/rewrite_pool.json`。RC 的改写池不再全量生成（省下约 $0.3）。
+- MedXpertQA-Text 已转换为 `datasets/data/medxpertqa_text.json`（2450 题），mdagents 在 mock 上跑通。
+- 难度筛选脚本 `scripts/screen_difficulty.py`：20 题探测花约 $0.05。全量计划为 500 题 × K=4 × 2 个 backbone，约 $4.5，**待批准**。
+- MAM 的文本模型设为 Ling-3.0-flash，ping 测试可用，但该端点偶尔断连，需要依靠重试。
+- 子 agent 评估了 MAC、KAMAC、TAO（只读代码）：
+  - KAMAC 推荐（定向消息 + 运行中招募）；
+  - MAC 推荐（LLM 选发言者的群聊 + supervisor 决定结束）；
+  - TAO 不推荐（数据流是断的，绑定 Gemini）。
+- 14 个框架 mock 回归通过。MAM 缺音频文件，跑不了，与改动无关。

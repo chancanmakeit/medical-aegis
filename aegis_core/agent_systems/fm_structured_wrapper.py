@@ -101,6 +101,7 @@ class StructuredFMWrapper(SystemWrapper):
             template_pool=exp_config.get("template_pool"),
             template_pool_model=exp_config.get("template_pool_model") or llm_config.get("model_name"),
             seed=exp_config.get("injection_seed", 0),
+            rc_mode=exp_config.get("rc_mode", "append"),
         )
         print(f"{type(self).__name__} initialized (framework={self.FRAMEWORK}, "
               f"inject_every_invocation={self._inject_every}).")
@@ -256,12 +257,35 @@ class StructuredFMWrapper(SystemWrapper):
                 meta["prompt_modified"] = (mod_txt != orig_txt)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
             elif malicious_agent.injection_strategy == InjectionStrategy.RESPONSE_CORRUPTION:
+                n_cap = len(llm_capture)
                 clean = _call(turn_idx, f"{where}_clean_for_corruption", *args, **kwargs)
                 resp = self.fm_factory.corrupt_response(
                     clean, malicious_agent.fm_error_type, agent_context)
                 meta["clean_response_before_corruption"] = clean
                 meta["response_corrupted"] = (resp != clean)
                 meta["injection_process"] = dict(self.fm_factory.last_injection_meta)
+                # rc_mode "inplace" found no answer to change in this reply (e.g. an
+                # analysis that names no option): with rc_fallback "pi" the step is
+                # redone as a prompt injection instead of appending a template.
+                if (self.fm_factory.last_injection_meta.get("inplace_applicable") is False
+                        and self.exp_config.get("rc_fallback", "append") == "pi"):
+                    new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
+                        args, kwargs,
+                        lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
+                    discarded_meta = llm_meta_by_call.get(turn_idx)
+                    resp = _call(turn_idx, f"{where}_inject_rc_fallback", *new_args, **new_kwargs)
+                    # keep the call <-> history alignment: the discarded clean call
+                    # is not a step (its tokens are kept in the labels)
+                    if len(llm_capture) > n_cap + 1:
+                        del llm_capture[n_cap]
+                    meta["discarded_llm_meta"] = discarded_meta
+                    meta["rc_fallback_to_pi"] = True
+                    meta["injection_strategy"] = InjectionStrategy.PROMPT_INJECTION.value
+                    meta["prompt_modified"] = (mod_txt != orig_txt)
+                    meta["discarded_clean_response"] = meta.pop("clean_response_before_corruption")
+                    meta.pop("response_corrupted", None)
+                    meta["injection_process"] = dict(self.fm_factory.last_injection_meta,
+                                                     rc_fallback_to_pi=True)
             else:
                 resp = _call(turn_idx, f"{where}_unknown_strategy", *args, **kwargs)
             injection_meta_by_call[turn_idx] = meta

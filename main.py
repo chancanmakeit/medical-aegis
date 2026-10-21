@@ -130,6 +130,35 @@ def _resolve_sample_image_paths(sample: dict, args, exp_config: dict):
 
     return None
 
+def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
+    """Pick the injection target of one run from `injection_plan.targets_pool`.
+
+    plan:
+      targets_pool: [{role, role_index, phase?, round?, strategies?: [..],
+                      attack_spec?: {...}}, ...]
+      attack_pool:  [{fm_error_type, injection_strategy}, ...]   (optional)
+      seed:         int (default 0)
+    The target is uniform over the pool; its attack is its own attack_spec,
+    else uniform over the attack_pool entries whose strategy the target allows
+    (`strategies`, default: all). Reproducible: the draw depends only on
+    (seed, sample id, run_index).
+    """
+    import hashlib
+    import random as _random
+    h = hashlib.sha256(f"{plan.get('seed', 0)}|{sample_id}|{run_index}".encode()).hexdigest()
+    rng = _random.Random(int(h[:16], 16))
+    t = dict(rng.choice(plan['targets_pool']))
+    if 'attack_spec' not in t:
+        allowed = t.get('strategies')
+        attacks = [a for a in plan.get('attack_pool', [])
+                   if not allowed or a.get('injection_strategy') in allowed]
+        if not attacks:
+            raise ValueError(f"no attack in attack_pool fits target {t}")
+        t['attack_spec'] = dict(rng.choice(attacks))
+    t.pop('strategies', None)
+    return t
+
+
 async def process_sample(args, sample: dict, lock: threading.Lock, output_path: str, exp_config: dict = None):
     """
     This function contains the core logic of our FM Malicious Injection framework.
@@ -244,6 +273,13 @@ async def process_sample(args, sample: dict, lock: threading.Lock, output_path: 
                     target = target.copy()
                     target['attack_spec'] = attack_spec
                 injection_targets = [target]
+            elif 'targets_pool' in injection_plan:
+                # One target per run, drawn uniformly (seeded) from the pool, so
+                # injected roles/phases are not fixed (MedHyperTrace r28: removes
+                # the role prior). See sample_injection_target().
+                injection_targets = [sample_injection_target(
+                    injection_plan, sample.get('id'), sample.get('run_index', 0))]
+                save_data['sampled_target'] = injection_targets[0]
             else:
                 injection_targets = injection_plan['targets']
 
@@ -535,6 +571,12 @@ async def main(args):
             agent_identifier = f"{target_role.lower()}_idx{target_index}"
             
         multi_agent_suffix = ""
+    elif 'targets_pool' in injection_plan:
+        # one target per run, sampled from the pool (sample_injection_target)
+        agent_identifier = f"pool{len(injection_plan['targets_pool'])}"
+        fm_error_type = "sampled"
+        injection_strategy = "sampled"
+        multi_agent_suffix = ""
     else:
         # Multi-target format
         injection_targets = injection_plan['targets']
@@ -596,6 +638,9 @@ async def main(args):
         print(f"--- CLEAN run (no injection) for normal trajectories ---")
     elif 'target' in injection_plan:
         print(f"--- FM Injection: {target_role} {target_index+1}, Type: {fm_error_type}, Strategy: {injection_strategy} ---")
+    elif 'targets_pool' in injection_plan:
+        print(f"--- FM Injection: one target per run sampled from a pool of "
+              f"{len(injection_plan['targets_pool'])} (seed {injection_plan.get('seed', 0)}) ---")
     else:
         print(f"--- Multi-Agent FM Injection ({len(injection_targets)} targets): ---")
         for i, target in enumerate(injection_targets):

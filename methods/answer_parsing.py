@@ -32,3 +32,39 @@ def mcq_answer(text: str) -> Optional[str]:
     if _HEDGE.search(t[last.end():]):
         return None
     return last.group(1).upper()
+
+
+def _plain(t: str) -> str:
+    return re.sub(r"[*_`]", "", t or "").lower()
+
+
+def concluding_paragraph(text: str) -> str:
+    """The last paragraph of a reply (the last two when the last is short)."""
+    paras = [p for p in re.split(r"\n\s*\n", text or "") if p.strip()]
+    if not paras:
+        return ""
+    concl = paras[-1]
+    if len(concl) < 80 and len(paras) > 1:
+        concl = paras[-2] + "\n\n" + concl
+    return concl
+
+
+def mcq_leaning(text: str, options: dict) -> Optional[str]:
+    """The option a reply favours: its committed letter (mcq_answer), else the
+    option whose text its concluding paragraph names last (analyses and
+    reports often name the option by content, e.g. "*Streptococcus
+    pneumoniae* is the most likely organism"). None when neither is found.
+    Used for `structured.answer` of analysis steps and by the factory's
+    in-place corruption, so both agree on what a step's answer is."""
+    a = mcq_answer(text)
+    if a is not None or not options:
+        return a
+    low = _plain(concluding_paragraph(text))
+    best, pos = None, -1
+    for k, v in options.items():
+        nv = _plain(str(v))
+        if len(nv) >= 4:
+            i = low.rfind(nv)
+            if i > pos:
+                best, pos = k, i
+    return best

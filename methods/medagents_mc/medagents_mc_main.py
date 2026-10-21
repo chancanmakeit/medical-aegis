@@ -70,6 +70,7 @@ from string import punctuation
 from typing import Any, Dict, List, Optional, Tuple
 
 from methods.mas_base import MAS
+from methods.answer_parsing import mcq_leaning
 
 
 NUM_QD = 5
@@ -405,6 +406,9 @@ class MedAgentsMC_Main(MAS):
                                "question_analysis", p, sys_p, sources=[s_qd],
                                agent_id=f"q_expert_{i}", source_how={s_qd: SF})
             tmp_q.append(r); q_steps.append(sid)
+            # the option an analysis favours, if it names one (MHT r28: lets
+            # the first divergent step be located at the expert level)
+            self._set_structured(answer=mcq_leaning(r or "", opt_dict))
         question_analyses = cleansing_analysis(tmp_q, question_domains, "question")
         # Steps whose analysis survived dict de-duplication (last writer wins).
         q_kept = {dom: q_steps[i] for i, dom in enumerate(question_domains)}
@@ -418,6 +422,7 @@ class MedAgentsMC_Main(MAS):
                                agent_id=f"o_expert_{i}",
                                source_how={s_od: SF, **{q: EX for q in q_kept.values()}})
             tmp_o.append(r); o_steps.append(sid)
+            self._set_structured(answer=mcq_leaning(r or "", opt_dict))
         option_analyses = cleansing_analysis(tmp_o, options_domains, "option")
         o_kept = {dom: o_steps[i] for i, dom in enumerate(options_domains)}
 
@@ -429,6 +434,7 @@ class MedAgentsMC_Main(MAS):
                                    sources=list(q_kept.values()) + list(o_kept.values()),
                                    agent_id="synthesizer",
                                    source_how={x: EX for x in list(q_kept.values()) + list(o_kept.values())})
+        self._set_structured(answer=mcq_leaning(raw_syn or "", opt_dict))
         syn_report = cleansing_syn_report(question, options, raw_syn)
         report_step = s_syn  # step whose output currently IS the report
 
@@ -485,6 +491,7 @@ class MedAgentsMC_Main(MAS):
                                            round_=num_try, event_ids=[vote_event],
                                            agent_id="reviser",
                                            source_how={report_step: EX, **{a: VB for a in advice_steps}})
+                self._set_structured(answer=mcq_leaning(revised or "", opt_dict))
                 syn_report = cleansing_syn_report(question, options, revised)
                 report_step = s_rev
                 revision_history.append(revision_advice)

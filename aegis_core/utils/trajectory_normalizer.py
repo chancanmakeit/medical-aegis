@@ -81,6 +81,7 @@ def _normalize_entry(framework: str, e: Dict[str, Any], step: int,
               "original_input_messages", "injected_input_messages",
               "prompt_modified",
               "clean_response_before_corruption", "response_corrupted",
+              "rc_fallback_to_pi", "discarded_clean_response", "discarded_llm_meta",
               "injection_error", "injection_process",
               "is_input", "is_aggregator"):
         if k in e:

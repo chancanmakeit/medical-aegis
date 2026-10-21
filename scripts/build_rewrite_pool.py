@@ -50,6 +50,15 @@ TABLES = {
     "PROBABILITY": (F._PROBABILITY_CORRUPTION, True),
     "CLASSIFICATION_FIELD": (F._CLASSIFICATION_FIELD_CORRUPTION, True),
     "CLASSIFICATION": (F._CLASSIFICATION_CORRUPTION, True),
+    # prompt-injection instruction wording (MedHyperTrace r28: the pool is
+    # useful on the instruction side, which never enters the steps)
+    "PI_MCQ": (F._FM_INSTRUCTIONS_MCQ, False),
+    "PI_NUMERIC": (F._FM_INSTRUCTIONS_NUMERIC, False),
+    "PI_ERROR_CORRECTION": (F._FM_INSTRUCTIONS_ERROR_CORRECTION, False),
+    "PI_OPEN": (F._FM_INSTRUCTIONS_OPEN, False),
+    "PI_PROBABILITY": (F._FM_INSTRUCTIONS_PROBABILITY, False),
+    "PI_CLASSIFICATION": (F._FM_INSTRUCTIONS_CLASSIFICATION, False),
+    "PI_CLASSIFICATION_FIELD": (F._FM_INSTRUCTIONS_CLASSIFICATION_FIELD, False),
 }
 CONTEXT = {
     "DIRECT_MCQ": "a medical agent's reply to a multiple-choice question; {orig} is the agent's original reply, {wrong_answer} is an option letter",
@@ -70,6 +79,22 @@ def fixed_text(t):
 
 
 def prompt_for(table, fm, tpl, n):
+    if table.startswith("PI_"):
+        return (
+            "We are building a research dataset that simulates mistakes made by agents in a "
+            "medical multi-agent system, so that a model can learn to locate the faulty step. "
+            "Below is an instruction that tells one agent which kind of mistake to make in its "
+            f"next reply.\n\nError type: {fm}\nInstruction:\n<<<\n{tpl}\n>>>\n\n"
+            f"Write {n} different rewrites of this instruction. Requirements:\n"
+            "- Ask for exactly the same behaviour (same kind of mistake, same constraints such "
+            "as 'the FIRST option' or 'only the answer line'); vary wording, sentence order and "
+            "register.\n"
+            "- Address the agent directly, as an instruction. One to three sentences.\n"
+            "- Do not ask the agent to sound more confident than it is, and do not add new "
+            "requirements.\n"
+            "- Do not mention simulations, datasets or injections.\n"
+            f"Return only a JSON array of {n} strings."
+        )
     return (
         "We are building a research dataset that simulates mistakes made by agents in a "
         "medical multi-agent system, so that a model can learn to locate the faulty step. "

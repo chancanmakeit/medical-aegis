@@ -8,7 +8,11 @@
 run_mode: "clean"
 mam_config_name: "config_audio"
 # mam_audio_model_name: "mimo-v2.6-flash"   # default: --model_name
-# mam_text_model_name:  "mimo-v2.6-flash"   # default: --model_name
+# Text roles (GP / moderator / summaries) on a DIFFERENT model than the audio roles,
+# as upstream (Medichat-Llama3-8B text vs Qwen-Audio-Chat audio). User decision
+# 2026-10-21: text = Ling-3.0-flash (Ant Ling endpoint), audio = mimo-v2.6-flash.
+# The model_api_config JSON must have an entry for both names.
+mam_text_model_name: "Ling-3.0-flash"
 # mam_web_search: "fail"                    # fail (upstream failure path) | skip
 
 system_under_test:

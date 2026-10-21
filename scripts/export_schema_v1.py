@@ -199,6 +199,9 @@ def convert(rec, reg, alias, reasoning_mode):
                 "clean_output": h.get("clean_response_before_corruption"),
                 "injection_process": h.get("injection_process"),
             }
+            if h.get("rc_fallback_to_pi"):
+                inj["rc_fallback_to_pi"] = True
+                inj["discarded_clean_output"] = h.get("discarded_clean_response")
             if reasoning_mode == "keep":
                 inj["reasoning"] = lm.get("reasoning")
             injections.append(inj)
@@ -247,13 +250,74 @@ def convert(rec, reg, alias, reasoning_mode):
     return out
 
 
+# ---------------------------------------------------------------------- outcome
+STEP_ANSWER_KEYS = ("answer", "esi_level", "final_answer")
+
+
+def _step_answer(step):
+    st = step.get("structured") or {}
+    for k in STEP_ANSWER_KEYS:
+        if st.get(k) is not None:
+            return st[k]
+    return None
+
+
+def injection_outcome(r, correct_by_id):
+    """labels.outcome of an injected run (MedHyperTrace r28, MAFA's two layers:
+    the injected step is the defect layer, the final result the responsibility
+    layer).
+
+      not_fired      the target never ran (e.g. a sampled target the run did not reach)
+      flipped        paired normal runs are mostly correct, this run is wrong
+      repaired       the injected step's answer is wrong, the run is still correct
+      benign         the injected step's answer is not wrong, the run is correct
+      baseline_wrong this run is wrong, but so are most paired normal runs (or
+                     there are none): the failure cannot be credited to the injection
+      unresolved     the run is correct and the injected step states no parsable answer
+
+    Also: labels.injected_step_wrong (True / False / None) and
+    labels.paired_normal_accuracy.
+    """
+    lab = r["labels"]
+    fired = [t for t in lab.get("injection_targets") or [] if t.get("fired", True)]
+    inj = lab.get("injection") or []
+    paired = [correct_by_id.get(x) for x in lab.get("paired_normal_run_ids") or []]
+    paired = [bool(x) for x in paired if x is not None]
+    acc = sum(paired) / len(paired) if paired else None
+    out = {"paired_normal_accuracy": acc, "injected_step_wrong": None}
+    if not fired or not inj:
+        out["outcome"] = "not_fired"
+        return out
+    gold = lab.get("gold")
+    by_id = {s["step_id"]: s for s in r["steps"]}
+    wrong = None
+    for i in inj:
+        a = _step_answer(by_id.get(i["step_id"], {}))
+        if a is not None and gold is not None:
+            acc_set = {str(x).strip().lower() for x in (lab.get("acceptable_answers") or [gold])}
+            w = str(a).strip().lower() not in acc_set
+            wrong = w if wrong is None else (wrong or w)
+    out["injected_step_wrong"] = wrong
+    correct = lab.get("is_correct")
+    if not correct:
+        out["outcome"] = "flipped" if (acc is not None and acc >= 0.5) else "baseline_wrong"
+    elif wrong is True:
+        out["outcome"] = "repaired"
+    elif wrong is False:
+        out["outcome"] = "benign"
+    else:
+        out["outcome"] = "unresolved"
+    return out
+
+
 # ---------------------------------------------------------------------- checks
 INJECTION_MARKERS = ("[UPDATED INSTRUCTION", "SUPERSEDES ALL EARLIER INSTRUCTIONS")
 LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
               "injection_applied", "fm_error_type", "injection_strategy", "prompt_modified",
               "injected_input_messages", "clean_response_before_corruption",
               "response_corrupted", "injection_process", "injection_description",
-              "target_index", "current_role", "current_role_index"}
+              "target_index", "current_role", "current_role_index",
+              "discarded_clean_response", "discarded_llm_meta", "rc_fallback_to_pi"}
 
 
 def check(rec):
@@ -318,10 +382,12 @@ def main():
     for r in records:
         if r["run_mode"] == "normal":
             normals[(r["framework"], r["question_id"], r["model"].get("name"))].append(r["run_id"])
+    correct_by_id = {r["run_id"]: r["labels"].get("is_correct") for r in records}
     for r in records:
         if r["run_mode"] == "inject":
             r["labels"]["paired_normal_run_ids"] = sorted(
                 normals.get((r["framework"], r["question_id"], r["model"].get("name")), []))
+            r["labels"].update(injection_outcome(r, correct_by_id))
 
     seen, n_bad = set(), 0
     for r in records:

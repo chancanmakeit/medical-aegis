@@ -1,0 +1,126 @@
+# Formal-generation draft (2026-10-21, after MedHyperTrace r28). NOT run yet.
+# One target per run, drawn uniformly (seeded by sample id + run_index) from
+# targets_pool, so injected roles/phases are spread over the whole system
+# (removes the role prior). Attacks:
+#   prompt_injection  (simulation wrapper; instruction wording from the rewrite
+#                      pool) with FM-1.1 / 2.3 / 2.5 / 3.2 / 3.3 -- FM types whose
+#                      instructions ask for a reasoning error, not for an odd
+#                      output form (FIRST option, one letter, hedging), which
+#                      would itself be a signature;
+#   response_corruption FM-2.6 in place (only the answer changes, rc_mode
+#                      inplace); a reply with no answer to change is redone as a
+#                      prompt injection (rc_fallback pi), recorded in labels.
+# Targets that exist only on some runs (Advisor / Reviser / later rounds) are
+# not in the pool; they can be added once difficulty-filtered questions make
+# revision rounds common in normal runs too.
+run_mode: inject
+injection_method: direct_prepend
+medagents_config_name: config_medical
+inject_every_invocation: false
+system_under_test:
+  name: medagents_mc
+  wrapper_class_path: aegis_core.agent_systems.fm_medagents_mc_wrapper.FMMedAgentsMCWrapper
+  method_config_path: configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.7
+benchmark_name: medconceptsqa
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+prompt_wrapper_style: simulation
+injection_plan:
+  seed: 20261021
+  targets_pool:
+  - role: QuestionAnalyst
+    role_index: 0
+    phase: question_analysis
+    strategies: &id001
+    - prompt_injection
+  - role: QuestionAnalyst
+    role_index: 1
+    phase: question_analysis
+    strategies: *id001
+  - role: QuestionAnalyst
+    role_index: 2
+    phase: question_analysis
+    strategies: *id001
+  - role: QuestionAnalyst
+    role_index: 3
+    phase: question_analysis
+    strategies: *id001
+  - role: QuestionAnalyst
+    role_index: 4
+    phase: question_analysis
+    strategies: *id001
+  - role: OptionAnalyst
+    role_index: 0
+    phase: option_analysis
+  - role: OptionAnalyst
+    role_index: 1
+    phase: option_analysis
+  - role: Synthesizer
+    role_index: 0
+    phase: synthesis
+  - role: Voter
+    role_index: 0
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 1
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 2
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 3
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 4
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 5
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Voter
+    role_index: 6
+    phase: consensus_vote
+    round: 1
+    strategies: *id001
+  - role: Decider
+    role_index: 0
+    phase: decision
+  attack_pool:
+  - fm_error_type: FM-1.1
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.5
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.2
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.6
+    injection_strategy: response_corruption
+rc_mode: inplace
+rc_fallback: pi
+injection_seed: 20261021
+template_pool: malicious_factory/rewrite_pool.json
+template_pool_model: default

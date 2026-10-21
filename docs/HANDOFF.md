@@ -133,6 +133,15 @@
 - SLAKE 不在 HF 账户 UUUooUUU 的 datasets 里，也没有可见的 collection，需要用户给链接。
 - 可用性：aihubmix 的 gemini-2.5-flash-lite-nothink 目前返回 no_available_channel；gemini-2.5-flash-lite 可用。
 
+**v9 第 13 轮（2026-10-21）**：见 discussion_log_v9 第 13 轮。下一会话的重点：
+- **待用户批准**：MedXpertQA-Text 难度筛选（500 题 × K=4 × 2 个 backbone，约 $4.5）。批准后运行：
+  `python3 scripts/screen_difficulty.py --dataset datasets/data/medxpertqa_text.json --model <m> --base_url https://aihubmix.com/v1 --api_key_env AIHUBMIX_API_KEY --n_questions 500 --k 4 --out <scratch>/screen_<m>.jsonl`
+  然后用 `--select` 选出难度区间内的题。
+- **待用户决定**：是否纳入 KAMAC 和 MAC（我方推荐两个都纳入，TAO 不要），以及锚点组合（现有 5 个 + mav + macnet + MA-RAG + KAMAC + MAC，MDTeamGPT 可选）。
+- 正式生成的配置：`experiments/fm_injection/formal/*_pool.yaml`，包含 targets_pool、simulation 包装、`rc_mode: inplace`、`rc_fallback: pi` 和 PI 改写池。**每种配置先跑一小批，过 `scripts/quality_gate.py`（自然答错 AUROC ≤ 0.7）。**
+- MAM：文本模型用 Ling-3.0-flash（Ant Ling 端点），音频模型用 mimo-v2.6-flash。model_api_config 里要有这两个模型。容器里缺 `datasets/audio/`，需要从 HF UUUooUUU/Heartbeat 等仓库重新下载。
+- 外部仓库（只读）：`/home/claude/ext_repos/{MA-RAG,MDTeamGPT,KAMAC,tao,Multi-agent-conversation-for-disease-diagnosis}`。KAMAC 是 GPL-3.0，必须自己重写，不能拷贝代码。
+
 **待办（按顺序）**：
 1. ~~(b) 迁移旧 wrapper~~：v9 第 6 轮完成（6 个框架，全部 mock 通过）。
 2. **(c) 真实模型试跑**：先小规模估算成本，**停下来请用户确认**。注意推理模型的 max_tokens 要留足。
