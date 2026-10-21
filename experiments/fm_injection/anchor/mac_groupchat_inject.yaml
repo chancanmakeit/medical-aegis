@@ -1,56 +1,70 @@
-# MAC (Multi-Agent Conversation) INJECTION config -> ERROR trajectories
-# (anchor framework, MedXpertQA-Text). One fixed target: Doctor0's first turn.
-# Run: python main.py --method_name mac_groupchat \
-#        --experiment_config experiments/fm_injection/anchor/mac_groupchat_inject.yaml \
-#        --dataset_file ./datasets/data/medxpertqa_text.json --test_dataset_name medxpertqa_text \
-#        --model_name <model> --model_temperature 0.7
-run_mode: "inject"
-injection_method: "direct_prepend"
-mac_config_name: "config_mac"
-
-# A Doctor speaks as often as the selector picks it; an injection fires only on
-# the FIRST matching call. Doctor0 may never be selected in a run, in which
-# case the log records `fired: false` for the target.
-inject_every_invocation: false
-
+# ANCHOR task (user decision 2026-10-21): mac_groupchat on datasets/data/anchor_medxpertqa100.json,
+# llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
+# question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
+# prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): n_round 8 (<= 7 speaker turns = under 2 full rounds of 4 doctors + supervisor); not lowered further, a 'round' here is one speaker turn.
+run_mode: inject
+injection_method: direct_prepend
 system_under_test:
-  name: "mac_groupchat"
-  wrapper_class_path: "aegis_core.agent_systems.fm_mac_structured_wrapper.FMMACStructuredWrapper"
-  method_config_path: "methods/mac_groupchat/configs/config_mac.yaml"
-
+  name: mac_groupchat
+  wrapper_class_path: aegis_core.agent_systems.fm_mac_structured_wrapper.FMMACStructuredWrapper
+  method_config_path: methods/mac_groupchat/configs/config_mac.yaml
 llm_config:
-  provider: "openai"
-  model_name: "YOUR_MODEL"
-  model_url: "YOUR_BASE_URL"
-  api_key: "YOUR_API_KEY"
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
   temperature: 0.7
-
-benchmark_name: "medxpertqa-text"
-
+benchmark_name: medxpertqa-text
 use_llm_judge: true
-judge_mode: "regex_first"
-
-# Structural injection sites (see fm_mac_structured_wrapper.py):
-#   Selector(0) [select_speaker]  Doctor(0..N-1) [discussion]  Supervisor(0) [supervision]
-#   (optionally pin `round` = speaker turn 1..n_round-1)
-injection_plan:
-  targets:
-    - role: "Doctor"
-      role_index: 0
-      phase: "discussion"
-      attack_spec:
-        fm_error_type: "FM-2.6"
-        injection_strategy: "response_corruption"
-
-# FM-2.6 in place: only the answer letter changes; a reply with no answer to
-# change is redone as a prompt injection (recorded in the labels).
-rc_mode: "inplace"
-rc_fallback: "pi"
-
+judge_mode: regex_first
 experiment_settings:
   max_workers: 4
-
 generate_injection_descriptions: false
-
-task_type: "mcq"
-prompt_wrapper_style: "simulation"
+task_type: mcq
+prompt_wrapper_style: simulation
+rc_mode: inplace
+rc_fallback: pi
+injection_seed: 20261021
+template_pool: malicious_factory/rewrite_pool.json
+template_pool_model: default
+mac_config_name: config_mac
+injection_plan:
+  seed: 20261021
+  strategy_cycle:
+  - response_corruption
+  - prompt_injection
+  targets_pool:
+  - role: Doctor
+    role_index: 0
+    phase: discussion
+  - role: Doctor
+    role_index: 1
+    phase: discussion
+  - role: Doctor
+    role_index: 2
+    phase: discussion
+  - role: Doctor
+    role_index: 3
+    phase: discussion
+  - role: Supervisor
+    role_index: 0
+    phase: supervision
+  - role: Selector
+    role_index: 0
+    phase: select_speaker
+    round: 1
+    strategies:
+    - prompt_injection
+  attack_pool:
+  - fm_error_type: FM-1.1
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.5
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.2
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.6
+    injection_strategy: response_corruption

@@ -1,36 +1,24 @@
-# MAC (Multi-Agent Conversation, AutoGen GroupChat) CLEAN config -> NORMAL
-# trajectories (anchor framework, MedXpertQA-Text).
-# Run: python main.py --method_name mac_groupchat \
-#        --experiment_config experiments/fm_injection/anchor/mac_groupchat_normal.yaml \
-#        --dataset_file ./datasets/data/medxpertqa_text.json --test_dataset_name medxpertqa_text \
-#        --model_name <model> --model_temperature 0.7 --num_runs 4 --no_inject
-run_mode: "clean"
-
-mac_config_name: "config_mac"
-# Optional overrides of methods/mac_groupchat/configs/config_mac.yaml:
-# mac_num_doctors: 4                 # train.sh value (argparse default 3)
-# mac_n_round: 8                     # upstream 13 / train.sh 10; <= n_round-1 speaker turns
-# mac_use_specialist: false          # true = main_ws.py (consultant picks specialists)
-# mac_supervisor_prompt_bug: "keep"  # "fix" un-swaps upstream's use_specialist branches
-# mac_select_speaker_role: "system"  # "user" for backends rejecting a mid-chat system message
-# mac_speaker_name_in_content: false # true if the backend drops the message "name" field
-
+# ANCHOR task (normal runs) (user decision 2026-10-21): mac_groupchat on datasets/data/anchor_medxpertqa100.json,
+# llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
+# question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
+# prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): n_round 8 (<= 7 speaker turns = under 2 full rounds of 4 doctors + supervisor); not lowered further, a 'round' here is one speaker turn.
+run_mode: clean
+injection_method: direct_prepend
 system_under_test:
-  name: "mac_groupchat"
-  wrapper_class_path: "aegis_core.agent_systems.fm_mac_structured_wrapper.FMMACStructuredWrapper"
-  method_config_path: "methods/mac_groupchat/configs/config_mac.yaml"
-
+  name: mac_groupchat
+  wrapper_class_path: aegis_core.agent_systems.fm_mac_structured_wrapper.FMMACStructuredWrapper
+  method_config_path: methods/mac_groupchat/configs/config_mac.yaml
 llm_config:
-  provider: "openai"
-  model_name: "YOUR_MODEL"
-  model_url: "YOUR_BASE_URL"
-  api_key: "YOUR_API_KEY"
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
   temperature: 0.7
-
-benchmark_name: "medxpertqa-text"
-
+benchmark_name: medxpertqa-text
 use_llm_judge: true
-judge_mode: "regex_first"
-
+judge_mode: regex_first
 experiment_settings:
   max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+mac_config_name: config_mac

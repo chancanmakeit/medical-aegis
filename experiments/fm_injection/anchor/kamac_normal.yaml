@@ -1,33 +1,26 @@
-# KAMAC CLEAN config -> NORMAL trajectories (anchor framework, MedXpertQA-Text).
-# Run: python main.py --method_name kamac \
-#        --experiment_config experiments/fm_injection/anchor/kamac_normal.yaml \
-#        --dataset_file ./datasets/data/medxpertqa_text.json --test_dataset_name medxpertqa_text \
-#        --model_name <model> --model_temperature 0.7 --num_runs 4 --no_inject
-run_mode: "clean"
-
-kamac_config_name: "config_kamac"
-# Optional overrides of methods/kamac/configs/config_kamac.yaml:
-# kamac_num_agents: 1          # initial experts (upstream default 1)
-# kamac_num_turns: 3
-# kamac_max_recruits: 4
-# kamac_message_delivery: "upstream"   # or "inbox"
-
+# ANCHOR task (normal runs) (user decision 2026-10-21): kamac on datasets/data/anchor_medxpertqa100.json,
+# llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
+# question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
+# prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): debate turns: num_turns 3 -> 2, turn-cap extensions 3 -> 0; directed-message steps not targeted (turn-1 messages never reach anyone, MHT r31).
+run_mode: clean
+injection_method: direct_prepend
 system_under_test:
-  name: "kamac"
-  wrapper_class_path: "aegis_core.agent_systems.fm_kamac_structured_wrapper.FMKAMACStructuredWrapper"
-  method_config_path: "methods/kamac/configs/config_kamac.yaml"
-
+  name: kamac
+  wrapper_class_path: aegis_core.agent_systems.fm_kamac_structured_wrapper.FMKAMACStructuredWrapper
+  method_config_path: methods/kamac/configs/config_kamac.yaml
 llm_config:
-  provider: "openai"
-  model_name: "YOUR_MODEL"
-  model_url: "YOUR_BASE_URL"
-  api_key: "YOUR_API_KEY"
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
   temperature: 0.7
-
-benchmark_name: "medxpertqa-text"
-
+benchmark_name: medxpertqa-text
 use_llm_judge: true
-judge_mode: "regex_first"
-
+judge_mode: regex_first
 experiment_settings:
   max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+kamac_config_name: config_kamac
+kamac_num_turns: 2
+kamac_max_turn_extensions: 0

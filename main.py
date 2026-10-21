@@ -137,6 +137,7 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
       targets_pool: [{role, role_index, phase?, round?, strategies?: [..],
                       attack_spec?: {...}}, ...]
       attack_pool:  [{fm_error_type, injection_strategy}, ...]   (optional)
+      strategy_cycle: [strategy, ...]  (optional) strategy of run k = cycle[k % len]
       seed:         int (default 0)
     The target is uniform over the pool; its attack is its own attack_spec,
     else uniform over the attack_pool entries whose strategy the target allows
@@ -147,9 +148,18 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
     import random as _random
     h = hashlib.sha256(f"{plan.get('seed', 0)}|{sample_id}|{run_index}".encode()).hexdigest()
     rng = _random.Random(int(h[:16], 16))
-    t = dict(rng.choice(plan['targets_pool']))
+    # strategy_cycle: [response_corruption, prompt_injection] -> run_index 0 is RC,
+    # 1 is PI, ... (MedHyperTrace r30: per question one RC and one PI run); the
+    # target is then drawn only among targets that allow that strategy.
+    cycle = plan.get('strategy_cycle')
+    want = cycle[int(run_index) % len(cycle)] if cycle else None
+    pool = [t for t in plan['targets_pool']
+            if want is None or not t.get('strategies') or want in t['strategies']]
+    if not pool:
+        raise ValueError(f"no target in targets_pool allows strategy {want}")
+    t = dict(rng.choice(pool))
     if 'attack_spec' not in t:
-        allowed = t.get('strategies')
+        allowed = [want] if want else t.get('strategies')
         attacks = [a for a in plan.get('attack_pool', [])
                    if not allowed or a.get('injection_strategy') in allowed]
         if not attacks:

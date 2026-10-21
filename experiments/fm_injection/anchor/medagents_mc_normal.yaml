@@ -1,0 +1,25 @@
+# ANCHOR task (normal runs) (user decision 2026-10-21): medagents_mc on datasets/data/anchor_medxpertqa100.json,
+# llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
+# question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
+# prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): votes: max_attempt_vote 3 -> 2.
+run_mode: clean
+injection_method: direct_prepend
+system_under_test:
+  name: medagents_mc
+  wrapper_class_path: aegis_core.agent_systems.fm_medagents_mc_wrapper.FMMedAgentsMCWrapper
+  method_config_path: configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.7
+benchmark_name: medxpertqa-text
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+medagents_config_name: config_medical
+medagents_max_attempt_vote: 2
