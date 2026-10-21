@@ -512,6 +512,6 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 - 5 个：mdagents、medagents、debate、KAMAC、MAC。另一种是现有 5 个，不需要新移植。
 - 3 个：mdagents、medagents，再加 debate 或 KAMAC。
 - 省钱：锚点只用 llama 一个 backbone。
-- 已转告 MHT（comment 待补）。
+- 已转告 MHT（comment 6312371632）。
 
 **筛选进展**：约 25% 完成，准确率 mercury 0.38、llama 0.52，已花约 $1.2。
