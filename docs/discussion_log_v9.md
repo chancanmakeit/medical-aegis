@@ -696,3 +696,21 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
 ## 第 21 轮（2026-10-21 09:23）
 - 用户已给 aihubmix 充值，并说明：**llama-4-maverick 就是 llama-4-maverick，不用怀疑，无需验证**。我们据此把这批数据的 backbone 视为 llama-4-maverick。`served_model` 字段照常记录，只作为调用元数据保存。
 - 已续跑 mdagents 锚点（normal K=3 + RC）和 PI 长度匹配验证小批（4 个框架 × 50 题）。
+
+## 第 21 轮（续）：mdagents 锚点完成；PI 两轮修正后仍有 3/4 框架不过门槛（09:55）
+- **mdagents 锚点**：normal 300/300、RC 100/100，全部成功。锚点 4 个家族的 normal 和 RC 数据都已齐全。打包为 `anchor_2026-10-21/anchor_export_4fw.jsonl.gz`，共 1900 条运行。这个包里的 PI 仍是旧版：3 个家族各 100 条，mdagents 没有 PI。
+- **PI 修正 v1**（长度匹配 0.6–1.5 倍，3 次尝试，约 50 题 × 4）：
+
+  | 框架 | 自然答错 AUROC | 结果 | 只看长度的 AUROC |
+  |---|---|---|---|
+  | MAC | 0.58 | pass | 0.76 |
+  | medagents | 0.58 | pass | 0.60 |
+  | mdagents | 0.72 | FAIL | 0.90 |
+  | llm_debate | 0.78 | FAIL | 0.88 |
+
+- **PI 修正 v2**（在说明里写明参考回复的字数，范围收紧到 0.8–1.25 倍，4 次尝试）：
+  - 长度信号明显下降，只看长度的 AUROC 降到 0.51–0.70；
+  - 但门槛结果是 llm_debate 0.73、MAC 0.80、mdagents 0.71 **FAIL**，只有 medagents 0.64 pass。
+  - 权重最高的特征变成了文风连接词：therefore、we must、given the、in summary、furthermore。被要求"犯错"的模型会换一种更论断式的语气。
+- **判断**：PI 留下的痕迹是行为层面的，逐个修补措辞很难根除。下一步怎么做，需要用户和 MHT 一起决定。
+- 充值后的花费（v1、v2 验证批和 mdagents 锚点）约 $4.14。
