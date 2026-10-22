@@ -1,0 +1,67 @@
+== how values (normal runs) ==
+llm_debate {'verbatim': 3600}
+mac_groupchat {'control': 1562, 'verbatim': 8563}
+mdagents {'structured_field': 1500, 'verbatim': 1500}
+medagents_mc {'structured_field': 4506, 'excerpt': 7834, 'verbatim': 117}
+
+== read-set predictability per (framework, phase), normal runs ==
+framework      phase                   steps patterns mode_share choice_steps
+llm_debate     aggregation               300        1       1.00          300
+llm_debate     discussion               1800        2       0.50          600
+mac_groupchat  discussion               1229       40       0.24          929
+mac_groupchat  select_speaker           1883      100       0.16          321
+mac_groupchat  supervision               333       39       0.26          333
+mdagents       aggregation               300        1       1.00            0
+mdagents       expert_answer            1500        1       1.00            0
+mdagents       recruitment               300        1       1.00            0
+medagents_mc   consensus_vote           2261        4       0.66         2261
+medagents_mc   decision                  300        3       0.92            5
+medagents_mc   expert_gathering          600        1       1.00            0
+medagents_mc   option_analysis           600        1       1.00          600
+medagents_mc   question_analysis        1500        1       1.00         1500
+medagents_mc   revision                   28       22       0.11           23
+medagents_mc   revision_advice           145        4       0.59          145
+medagents_mc   synthesis                 300        1       1.00            0
+
+== injection vs paired normal (run 0), steps present in both ==
+llm_debate     prompt_injection       common_steps=   350 same_sources=1.000
+llm_debate     response_corruption    common_steps=   700 same_sources=1.000
+llm_debate     sham                   common_steps=   350 same_sources=1.000
+llm_debate     sham_style             common_steps=   350 same_sources=1.000
+mac_groupchat  prompt_injection       common_steps=   377 same_sources=0.844
+mac_groupchat  response_corruption    common_steps=   817 same_sources=0.842
+mac_groupchat  sham                   common_steps=   362 same_sources=0.843
+mac_groupchat  sham_style             common_steps=   353 same_sources=0.864
+mac_groupchat  None                   common_steps=    94 same_sources=0.989
+mdagents       prompt_injection       common_steps=   350 same_sources=1.000
+mdagents       response_corruption    common_steps=   700 same_sources=1.000
+mdagents       sham                   common_steps=   350 same_sources=1.000
+mdagents       sham_style             common_steps=   350 same_sources=1.000
+medagents_mc   prompt_injection       common_steps=   918 same_sources=0.981
+medagents_mc   response_corruption    common_steps=  1644 same_sources=0.988
+medagents_mc   sham                   common_steps=   920 same_sources=0.992
+medagents_mc   sham_style             common_steps=   911 same_sources=0.991
+
+== share of steps whose read set equals the most common one for their slot (agent, phase, round) ==
+llm_debate     aggregation            steps=  300 slot_determined=1.00
+llm_debate     discussion             steps= 1800 slot_determined=1.00
+mac_groupchat  discussion             steps= 1229 slot_determined=0.86
+mac_groupchat  select_speaker         steps= 1883 slot_determined=0.70
+mac_groupchat  supervision            steps=  333 slot_determined=0.53
+mdagents       aggregation            steps=  300 slot_determined=1.00
+mdagents       expert_answer          steps= 1500 slot_determined=1.00
+mdagents       recruitment            steps=  300 slot_determined=1.00
+medagents_mc   consensus_vote         steps= 2261 slot_determined=1.00
+medagents_mc   decision               steps=  300 slot_determined=0.92
+medagents_mc   expert_gathering       steps=  600 slot_determined=1.00
+medagents_mc   option_analysis        steps=  600 slot_determined=1.00
+medagents_mc   question_analysis      steps= 1500 slot_determined=1.00
+medagents_mc   revision               steps=   28 slot_determined=0.18
+medagents_mc   revision_advice        steps=  145 slot_determined=1.00
+medagents_mc   synthesis              steps=  300 slot_determined=1.00
+
+== normal run 0 vs normal run 1 (same question), baseline for the comparison above ==
+llm_debate     common_steps=   700 same_sources=1.000
+mac_groupchat  common_steps=   818 same_sources=0.836
+mdagents       common_steps=   700 same_sources=1.000
+medagents_mc   common_steps=  1838 same_sources=0.993

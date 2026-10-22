@@ -1,0 +1,36 @@
+features: tfidf
+framework      strategy             n_pos role_matched   natural_wrong [95% CI] n_neg  verdict       top n-grams
+llm_debate     prompt_injection        50        0.802     0.734 [0.672, 0.801]   997  FAIL          (n_pos_nw=50) ['therefore', 'therefore the', 'year old', 'year', 'old']
+llm_debate     response_corruption/screen_distractor    79        0.540     0.554 [0.489, 0.612]   997  pass          (n_pos_nw=79) ['no', 'they', 'analysis of', 'of options', 'movement into']
+llm_debate     response_corruption/uniform    21        0.585     0.464 [0.345, 0.581]   997  pass          (n_pos_nw=21) ['convexity', 'deformity', 'does', 'mi', 'does not']
+llm_debate     sham                    50        0.527     0.466 [0.401, 0.535]   997  pass          (n_pos_nw=50) ['presenting', 'as', 'incorrect', 'utilized', 'options is']
+llm_debate     sham_style              50        0.643     0.579 [0.515, 0.643]   997  pass          (n_pos_nw=50) ['therefore', 'therefore the', 'critical', 'contrast', 'simultaneously']
+mac_groupchat  prompt_injection        49        0.726     0.797 [0.708, 0.876]   687  FAIL          (n_pos_nw=37) ['we', 'focus', 'suggestions', 'answers answer', 'we must']
+mac_groupchat  response_corruption/screen_distractor    77        0.483     0.471 [0.405, 0.536]   705  pass          (n_pos_nw=77) ['is highly', 'none the', 'shoulder', 'but the', 'several']
+mac_groupchat  response_corruption/uniform    19        0.488     0.435 [0.320, 0.543]   687  pass          (n_pos_nw=19) ['significant', 'receptor', 'hypertension', 'the thorax', 'cad']
+mac_groupchat  sham                    46        0.725     0.484 [0.400, 0.569]   705  pass          (n_pos_nw=39) ['we', 'answers answer', 'we must', 'must', 'to determine']
+mac_groupchat  sham_style              46        0.701     0.614 [0.525, 0.711]   665  pass          (n_pos_nw=35) ['similarly', 'here', 'evidence', 'of this', 'we']
+mdagents       prompt_injection        50        0.729     0.635 [0.565, 0.706]   936  pass          (n_pos_nw=44) ['given', 'this', 'given the', 'therefore', 'the broad']
+mdagents       response_corruption/screen_distractor    82        0.522     0.501 [0.447, 0.554]   936  pass          (n_pos_nw=82) ['force', 'and the', 'specifically', 'findings specifically', 'leads']
+mdagents       response_corruption/uniform    18        0.672     0.490 [0.387, 0.607]   936  pass          (n_pos_nw=18) ['renal', 'severe', 'can be', 'the renal', 'induced lupus']
+mdagents       sham                    50        0.486     0.393 [0.326, 0.463]   936  pass          (n_pos_nw=44) ['other options', 'do', 'while several', 'do not', 'hypertrophy and']
+mdagents       sham_style              50        0.577     0.508 [0.433, 0.579]   936  pass          (n_pos_nw=45) ['therefore', 'this patient', 'is the', 'this', 'the most']
+medagents_mc   prompt_injection        50        0.553     0.639 [0.507, 0.762]   715  pass          (n_pos_nw=23) ['no', 'regarding', 'in summary', 'furthermore the', 'furthermore']
+medagents_mc   response_corruption/screen_distractor    70        0.549     0.553 [0.491, 0.608]   584  pass          (n_pos_nw=70) ['option', 'inability', 'provided analysis', 'flexion', 'dysfunction in']
+medagents_mc   response_corruption/uniform    17        0.682     0.458 [0.330, 0.610]   584  pass          (n_pos_nw=17) ['not the', 'risk factor', 'factor', 'risk', 'vein']
+medagents_mc   sham                    50        0.504     0.570 [0.423, 0.708]   715  pass          (n_pos_nw=24) ['no', 'in summary', 'yes', 'third the', 'second the']
+medagents_mc   sham_style              50        0.617     0.716 [0.610, 0.810]   687  FAIL          (n_pos_nw=30) ['no', 'firmly', 'colleague', 'furthermore the', 'in summary']
+
+PI vs sham       llm_debate     n_pi=50 n_sham=50 AUROC 0.710 [0.627, 0.788]
+PI vs sham_style llm_debate     n_pi=50 n_sham=50 AUROC 0.790 [0.714, 0.864]
+PI vs sham       mac_groupchat  n_pi=49 n_sham=46 AUROC 0.611 [0.509, 0.709]
+PI vs sham_style mac_groupchat  n_pi=45 n_sham=46 AUROC 0.586 [0.467, 0.702]
+PI vs sham       mdagents       n_pi=50 n_sham=50 AUROC 0.576 [0.485, 0.676]
+PI vs sham_style mdagents       n_pi=50 n_sham=50 AUROC 0.593 [0.486, 0.700]
+PI vs sham       medagents_mc   n_pi=48 n_sham=50 AUROC 0.498 [0.382, 0.613]
+PI vs sham_style medagents_mc   n_pi=49 n_sham=50 AUROC 0.526 [0.428, 0.621]
+
+topology llm_debate     AUROC(#steps) = 0.500
+topology mac_groupchat  AUROC(#steps) = 0.512
+topology mdagents       AUROC(#steps) = 0.500
+topology medagents_mc   AUROC(#steps) = 0.548

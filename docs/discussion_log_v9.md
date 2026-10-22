@@ -760,3 +760,34 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - **llm_debate：PI 对两种对照都还能分开（0.71 / 0.79）**，要另想办法：对抗过滤，或者暂时只用 RC。
   - sham_style 的措辞会被照抄（firmly、colleague），以后如果继续用，需要改写或接入改写池。
 - PI 修正和安慰剂相关的验证累计花费约 $6。如果给剩下 50 题补齐 PI、sham、sham_style，估计约 $4.5（medagents $1.90、MAC $1.45、llm_debate $0.75、mdagents $0.39）。
+
+## 第 24 轮（2026-10-21 19:40–20:20）：回复 MHT 第 41、42 轮（MiniLM 门槛、sources 来源、mdagents n_pi）
+- 用户："MedHyperTrace 那边貌似在 issue 给回复了"。MHT 第 41 轮要点：配对负例可行，但 sham_style 措辞要改并加 `sham_variant`；门槛加 MiniLM 版本，以 CI 判读；解释 mdagents n_pi=20；llm_debate 的 PI 不进训练，只作压力测试；不做对抗过滤。另问超边填充自监督的三个来源问题（第 2 问"注入会不会改变 sources"最关键）。第 42 轮：MedAgentAudit 上 C5 预训练无增益，怀疑原因是来源全是推断的。
+- 代码（commit `46e5a66`）：
+  - mdagents 的专家阶段统一为 `expert_answer` / `expert_revise`（专科只放在 agent_label），导出器加 `_norm_phase` 兼容旧数据。
+  - run_id 签名区分 PI 修正版本和 sham 类型。
+  - sham_style 改为 6 种措辞，按种子轮换，标签侧记 `sham_variant`（新措辞尚未跑）。
+  - `quality_gate.py --features minilm`：all-MiniLM-L6-v2 句向量 + LR，协议与 TF-IDF 相同。
+- **mdagents n_pi=20 的原因**：50 次 PI 全部生效。旧的阶段名里带专科（`expert_answer/<专科>`），"自然答错"负例要求同 agent、同阶段，很多专科在 normal 里没有答错的步骤，于是被剔除。统一阶段名后 n_pos_nw=44/50，PI 对 sham 的 n_pi=50。
+- **门槛（gate7，前 50 题的 PI/sham/sham_style + 100 题 RC）**，对自然答错的 AUROC [95% CI]：
+
+  | 框架 | 策略 | TF-IDF | MiniLM |
+  |---|---|---|---|
+  | llm_debate | PI | 0.734 [0.672, 0.801] FAIL | 0.752 [0.695, 0.809] FAIL |
+  | MAC | PI | 0.797 [0.708, 0.876] FAIL | 0.680 [0.583, 0.773] pass |
+  | mdagents | PI | 0.635 [0.565, 0.706] pass | 0.623 [0.557, 0.692] pass |
+  | medagents | PI | 0.639 [0.507, 0.762] pass | 0.471 [0.361, 0.596] pass |
+  | medagents | sham_style（旧措辞） | 0.716 [0.610, 0.810] FAIL | 0.660 [0.563, 0.751] pass |
+
+  - RC（两种错误答案来源）和 sham 在两种特征下全部 pass，拓扑 AUROC 0.50–0.55。
+  - PI 对 sham / sham_style（MiniLM）：llm_debate 0.573 / 0.604（TF-IDF 是 0.710 / 0.790）；MAC 0.547 / 0.425；mdagents 0.546 / 0.558；medagents 0.479 / 0.524。
+  - 结论：MiniLM 比 TF-IDF 更难分开 PI 和对照，llm_debate 的 PI 风格主要是词汇层面的（therefore、yeah 一类）。但 llm_debate 的 PI 对自然答错两种特征都 FAIL，按 MHT 决定不进训练。
+- **sources 分析**（`scripts/sources_provenance_analysis.py`，结果 `anchor_gate_2026-10-21/sources_analysis.txt`）：
+  - 锚点导出里所有 `how` 都是生成时代码记录的（verbatim / excerpt / structured_field / control），**没有推断出来的来源**。
+  - 注入不改变 sources：注入运行与同题 normal run 0 的一致率（MAC 0.84–0.86、medagents 0.98–0.99、其余 1.00）和两次 normal 之间的一致率（MAC 0.836、medagents 0.993）相同。被注入步的输入里不含注入说明（导出的是干净输入）。
+  - 但"记录的"不等于"有选择余地"：给定（agent、阶段、轮次）后，读取集被唯一确定的比例，llm_debate、mdagents 全部为 1.00，medagents 除 decision（0.92）和 revision（0.18，仅 28 步）外都是 1.00；只有 MAC 有实际变化（discussion 0.86、select_speaker 0.70、supervision 0.53）。
+- 导出数据压缩后提交为 `anchor_gate_2026-10-21/gate7_export.jsonl.gz`（17 MB），供 MHT 自己跑。
+- **待用户批准的补齐预算**（单价来自前 50 题的批次）：
+  - 剩下 50 题的 PI + sham + sham_style（新措辞）：约 $4.5（medagents $1.90、MAC $1.45、llm_debate $0.75、mdagents $0.39）；
+  - 前 50 题的 sham_style 用新措辞重跑：约 $1.5；
+  - 合计约 $6.0。llm_debate 的 PI 只作压力测试，如果不补可省约 $0.25。
