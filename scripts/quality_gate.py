@@ -68,7 +68,25 @@ def bootstrap_ci(y, scores, groups, n_boot=1000, seed=0):
     return float(np.percentile(vals, 2.5)), float(np.percentile(vals, 97.5))
 
 
+_EMB = {"model": None, "cache": {}}
+
+
+def embed(texts):
+    """all-MiniLM-L6-v2 sentence embeddings (MedHyperTrace's node encoder), cached."""
+    if _EMB["model"] is None:
+        from sentence_transformers import SentenceTransformer
+        _EMB["model"] = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device="cpu")
+    todo = [t for t in dict.fromkeys(texts) if t not in _EMB["cache"]]
+    if todo:
+        for t, v in zip(todo, _EMB["model"].encode(todo, batch_size=64, show_progress_bar=False,
+                                                   normalize_embeddings=True)):
+            _EMB["cache"][t] = v
+    return np.stack([_EMB["cache"][t] for t in texts])
+
+
 def cv_auroc(texts, y, groups, top=0, ci=False):
+    if _EMB.get("on"):
+        return cv_auroc_emb(texts, y, groups, ci=ci)
     y = np.array(y)
     if y.sum() < 2 or (1 - y).sum() < 2:
         return None, []
@@ -100,12 +118,40 @@ def cv_auroc(texts, y, groups, top=0, ci=False):
     return auc, feats
 
 
+def cv_auroc_emb(texts, y, groups, ci=False):
+    """Same protocol as cv_auroc, on MiniLM embeddings + logistic regression."""
+    y = np.array(y)
+    if y.sum() < 2 or (1 - y).sum() < 2:
+        return None, []
+    n_splits = min(5, len(set(groups)))
+    if n_splits < 2:
+        return None, []
+    X = embed(texts)
+    scores = np.zeros(len(y))
+    for tr, te in GroupKFold(n_splits=n_splits).split(X, y, groups):
+        if len(set(y[tr])) < 2:
+            scores[te] = 0.5
+            continue
+        clf = LogisticRegression(max_iter=3000, C=1.0).fit(X[tr], y[tr])
+        scores[te] = clf.predict_proba(X[te])[:, 1]
+    auc = roc_auc_score(y, scores)
+    if ci:
+        lo, hi = bootstrap_ci(y, scores, groups)
+        return (auc, lo, hi), []
+    return auc, []
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("export")
     ap.add_argument("--min_pos", type=int, default=8)
     ap.add_argument("--min_neg", type=int, default=50)
+    ap.add_argument("--features", choices=["tfidf", "minilm"], default="tfidf",
+                    help="tfidf: word 1-2-gram TF-IDF + LR; minilm: all-MiniLM-L6-v2 embeddings + LR "
+                         "(MedHyperTrace's node features, r41)")
     a = ap.parse_args()
+    _EMB["on"] = a.features == "minilm"
+    print(f"features: {a.features}")
     runs = [json.loads(l) for l in open(a.export)]
     normal_steps = defaultdict(list)       # (fw, agent_id, phase) -> [(text, qid, wrong)]
     n_steps = defaultdict(lambda: {"normal": [], "inject": []})

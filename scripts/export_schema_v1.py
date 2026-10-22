@@ -88,6 +88,17 @@ def _slug(s):
     return re.sub(r"[^a-z0-9]+", "_", str(s or "agent").lower()).strip("_")
 
 
+def _norm_phase(phase):
+    """mdagents results written before 2026-10-21 put the expert's specialty
+    (and the revision round) into the phase ("expert_answer/Cardiologist",
+    "expert_revise_r1/..."), which split one slot into many; the specialty is
+    already the step's agent_label and the round its `round`."""
+    if isinstance(phase, str) and "/" in phase and phase.split("/")[0].startswith("expert_"):
+        base = phase.split("/")[0]
+        return "expert_revise" if base.startswith("expert_revise") else base
+    return phase
+
+
 def _inject_signature(targets, history=None):
     key = [{k: t.get(k) for k in ("injected_role", "injected_role_index", "injected_phase",
                                   "injected_round", "fm_error_type", "injection_strategy")}
@@ -103,6 +114,11 @@ def _inject_signature(targets, history=None):
             extra.add(f"wrapper={ip['prompt_wrapper_style']}")
         if ip.get("template_pool"):
             extra.add(f"pool={ip['template_pool']}")
+        if h.get("pi_length_match"):          # PI fix versions (2026-10-21)
+            stated = any("words long" in str(m.get("content", "")) for m in (h.get("injected_input_messages") or []))
+            extra.add("lenmatch+stated" if stated else "lenmatch")
+        if h.get("sham"):
+            extra.add(f"sham={h.get('sham')}")
     if extra:
         key.append(sorted(extra))
     return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]
@@ -171,7 +187,7 @@ def convert(rec, reg, alias, reasoning_mode):
             "step_id": sid, "order": order, "kind": "tool" if is_tool else "llm",
             "agent_id": h.get("agent_id") or f"{_slug(role)}_{h.get('role_index', 0)}",
             "agent_role": role, "agent_label": h.get("agent_label"),
-            "phase": h.get("phase"), "round": h.get("round"),
+            "phase": _norm_phase(h.get("phase")), "round": h.get("round"),
             "event_ids": list(h.get("event_ids") or []),
             "input_messages": None if is_tool else clean_in,
             "sources": sources,
@@ -208,6 +224,10 @@ def convert(rec, reg, alias, reasoning_mode):
                 # placebo: same note as a prompt injection but no error asked for
                 inj["planned_strategy"] = inj["effective_strategy"] = (
                     "sham_style" if h.get("sham") == "style" else "sham")
+                ip = h.get("injection_process") or {}
+                # wording variant; runs before the v2 wordings have none recorded
+                inj["sham_variant"] = ip.get("sham_variant") or (
+                    "style_v1" if h.get("sham") == "style" else "plain_v1")
             if h.get("pi_length_match"):
                 inj["pi_length_match"] = h.get("pi_length_match")
             if h.get("rc_fallback_to_pi"):

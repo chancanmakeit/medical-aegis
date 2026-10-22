@@ -284,7 +284,7 @@ class MDAgents_Main(MAS):
             # The specialty / description come from the Recruiter's output only
             # when they were parsed from it (fallback generalists are fixed text).
             src = [s_rec] if idx < n_parsed else []
-            ans = self._ask("Expert", idx, f"expert_answer/{sp}",
+            ans = self._ask("Expert", idx, "expert_answer",
                             expert_prompt, system_prompt=expert_system,
                             agent_id=f"expert_{idx}", agent_label=sp,
                             sources=src, source_how={s_rec: "structured_field"}) or ""
@@ -306,7 +306,7 @@ class MDAgents_Main(MAS):
                     f"Question:\n{question}\n\n"
                     f"Your updated answer (conclude with 'Final answer: <letter>'):"
                 )
-                rev = self._ask("Expert", idx, f"expert_revise_r{r}/{sp}",
+                rev = self._ask("Expert", idx, "expert_revise",
                                 rev_prompt, system_prompt=rev_system,
                                 agent_id=f"expert_{idx}", agent_label=sp, round_=r,
                                 sources=list(snapshot) + ([s_rec] if idx < n_parsed else []),
