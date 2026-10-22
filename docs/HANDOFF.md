@@ -1,10 +1,13 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-22（会话 v10 讨论第 8 轮，issue 我方第 36 轮；MAFA issue #1）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
+> 最后更新：2026-10-22（会话 v10 讨论第 9 轮，issue 我方第 37 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
 ## 当前状态（v10 讨论第 1 轮，2026-10-21 晚）
 
-**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。**v10 第 2 轮**：用户让先问 MHT 意见，已发我方第 31 轮（comment 6332128581），列方案 A $6.0 / B $5.75 / C $4.25 / D $3.0，等 MHT 回复；下一条我方编号为第 32 轮。**v10 第 3 轮**：MHT 第 43 轮（comment 6332274175）发现带说明的注入（PI、sham、sham_style）会抑制 markdown，TF-IDF 门槛看不到；我方已复算确认，RC 无此差异。MHT 建议补齐 A–D 都先不批，先修生成端，再做小样本验证，我方同意。我方第 30 轮的“MAC 约 3400 步”有误，实际是总步数，可填充的只有几百步。待用户决定：是否先改生成端（零费用），以及验证小样本跑 sham（约 $0.3）还是 sham+PI（约 $0.6）。**v10 第 8 轮**：MAFA 回复（§70），核实后全部成立。**拒答不是伪迹**：拒答来自 FM-1.2 和 FM-1.5 模板，是被注入的故障本身。只有严格口径的指令泄漏（`instruction_strict`）可以按步骤剔除；mdagents 的泄漏全部来自 llm_rewrite，dylan 主要来自 FM-2.6。已在 MAFA issue 回复；已给 MHT 发第 36 轮更正，因为他们第 50 轮按我们第 35 轮的错误建议，打算剔除拒答和结构丢失步骤后重算 v1。第 7 轮的待决事项不变：(1) mdagents sham 补跑第 21–50 题，约 $0.08；(2) llm_debate 结构签名修复和 10 题验证，约 $0.05–0.10；(3) 中训练第 1–3 问。
+**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。**v10 第 2 轮**：用户让先问 MHT 意见，已发我方第 31 轮（comment 6332128581），列方案 A $6.0 / B $5.75 / C $4.25 / D $3.0，等 MHT 回复；下一条我方编号为第 32 轮。**v10 第 3 轮**：MHT 第 43 轮（comment 6332274175）发现带说明的注入（PI、sham、sham_style）会抑制 markdown，TF-IDF 门槛看不到；我方已复算确认，RC 无此差异。MHT 建议补齐 A–D 都先不批，先修生成端，再做小样本验证，我方同意。我方第 30 轮的“MAC 约 3400 步”有误，实际是总步数，可填充的只有几百步。待用户决定：是否先改生成端（零费用），以及验证小样本跑 sham（约 $0.3）还是 sham+PI（约 $0.6）。**v10 第 9 轮**：用户批准补跑和修复，中训练第 1–3 问交给 MHT。
+- mdagents sham fmt_v1 补到 50 题：清洗后 punct 0.55 通过，char 0.65 不通过。原因是 8–10% 的回复以"As a <role>, I have analyzed"开头；拟加入格式签名、靠重采样筛掉，验证约 $0.14，待决定。
+- llm_debate fmt_v1_1（逐项分析选项的结构，只在 llm_debate 上开启；commit `10f0875`）10 题：sham 结构对齐（0.20/0.20），清洗后 0.59/0.58 通过，但和 fmt_v1 的差别在噪声内；PI 升到 0.87/0.93，原因未明。是否扩到 20 题（约 $0.09）待决定。
+- 已发 issue 第 37 轮，下一条为第 38 轮。MHT 第 51 轮已接受拒答更正。
 
 **锚点数据（只用 llama-4-maverick；用户说明它就是 llama，不用再核实，`served_model` 只作元数据）**
 - 4 个锚点家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents。MA-RAG、KAMAC 已放弃，TAO 不推荐。
