@@ -17,6 +17,14 @@ For every (framework, strategy) group this reports the AUROC of TF-IDF (word
   topology       AUROC of the run's step count alone (inject vs normal runs).
 It also prints the strongest n-grams for the positive class.
 
+same_slot (MedHyperTrace r43): positives are injected steps, negatives are the
+normal-run steps of the SAME question, agent_id, phase, round and k-th
+occurrence, so target-slot choice cannot explain a difference. Reported with
+the injected vs same-slot markdown ratio ('###' or '**' in the output).
+--features tfidf drops '#' and '*' (sklearn's default token pattern), so it is
+blind to formatting; tfidf_punct (whitespace tokens) and char (char 2-5-grams)
+keep them. Groups are split by note version (e.g. '@fmt_v1').
+
 Decision per group (MedHyperTrace r29), on the natural_wrong AUROC with a
 bootstrap 95% CI (resampling questions):
   insufficient  fewer than --min_neg (50) naturally wrong negatives or
@@ -69,6 +77,31 @@ def bootstrap_ci(y, scores, groups, n_boot=1000, seed=0):
 
 
 _EMB = {"model": None, "cache": {}}
+_VEC = {"kind": "tfidf"}
+
+
+def make_vec():
+    if _VEC["kind"] == "tfidf_punct":
+        return TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True,
+                               token_pattern=r"(?u)\S+", lowercase=False)
+    if _VEC["kind"] == "char":
+        return TfidfVectorizer(analyzer="char", ngram_range=(2, 5), min_df=2,
+                               sublinear_tf=True, lowercase=False, max_features=200000)
+    return TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True)
+
+
+def has_md(t):
+    return "###" in (t or "") or "**" in (t or "")
+
+
+def slot_keys(r):
+    """step_id -> (agent_id, phase, round, k-th occurrence of that triple)."""
+    occ, out = defaultdict(int), {}
+    for s in r["steps"]:
+        b = (s.get("agent_id"), s.get("phase"), s.get("round"))
+        out[s["step_id"]] = b + (occ[b],)
+        occ[b] += 1
+    return out
 
 
 def embed(texts):
@@ -98,7 +131,7 @@ def cv_auroc(texts, y, groups, top=0, ci=False):
         if len(set(y[tr])) < 2:
             scores[te] = 0.5
             continue
-        vec = TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True)
+        vec = make_vec()
         Xtr = vec.fit_transform([texts[i] for i in tr])
         clf = LogisticRegression(max_iter=2000, C=1.0).fit(Xtr, y[tr])
         scores[te] = clf.predict_proba(vec.transform([texts[i] for i in te]))[:, 1]
@@ -110,7 +143,7 @@ def cv_auroc(texts, y, groups, top=0, ci=False):
         return (auc, lo, hi), []
     feats = []
     if top:
-        vec = TfidfVectorizer(ngram_range=(1, 2), min_df=2, sublinear_tf=True)
+        vec = make_vec()
         X = vec.fit_transform(texts)
         clf = LogisticRegression(max_iter=2000).fit(X, y)
         names = np.array(vec.get_feature_names_out())
@@ -146,19 +179,25 @@ def main():
     ap.add_argument("export")
     ap.add_argument("--min_pos", type=int, default=8)
     ap.add_argument("--min_neg", type=int, default=50)
-    ap.add_argument("--features", choices=["tfidf", "minilm"], default="tfidf",
+    ap.add_argument("--features", choices=["tfidf", "tfidf_punct", "char", "minilm"], default="tfidf",
                     help="tfidf: word 1-2-gram TF-IDF + LR; minilm: all-MiniLM-L6-v2 embeddings + LR "
                          "(MedHyperTrace's node features, r41)")
     a = ap.parse_args()
     _EMB["on"] = a.features == "minilm"
+    _VEC["kind"] = a.features
     print(f"features: {a.features}")
     runs = [json.loads(l) for l in open(a.export)]
     normal_steps = defaultdict(list)       # (fw, agent_id, phase) -> [(text, qid, wrong)]
     n_steps = defaultdict(lambda: {"normal": [], "inject": []})
+    same_slot = defaultdict(list)          # (fw, qid, agent, phase, round, k) -> [text]
     for r in runs:
         n_steps[r["framework"]][r["run_mode"]].append(len(r["steps"]))
         if r["run_mode"] != "normal":
             continue
+        sk = slot_keys(r)
+        for s in r["steps"]:
+            if s.get("kind") == "llm":
+                same_slot[(r["framework"], r["question_id"]) + sk[s["step_id"]]].append(s.get("output") or "")
         gold = str(r["labels"].get("gold")).strip().lower()
         for s in r["steps"]:
             if s.get("kind") != "llm":
@@ -171,6 +210,7 @@ def main():
         if r["run_mode"] != "inject":
             continue
         by_id = {s["step_id"]: s for s in r["steps"]}
+        sk = slot_keys(r)
         for inj in r["labels"].get("injection") or []:
             s = by_id.get(inj["step_id"])
             if s is not None:
@@ -178,6 +218,9 @@ def main():
                 src = (inj.get("injection_process") or {}).get("wrong_answer_source")
                 if strat == "response_corruption" and src:
                     strat = f"{strat}/{src}"      # screen_distractor vs uniform (r29)
+                if inj.get("note_version"):
+                    strat = f"{strat}@{inj['note_version']}"   # new note kept apart
+                s = dict(s, _slot=(r["framework"], r["question_id"]) + sk[s["step_id"]])
                 groups[(r["framework"], strat)].append((s, r["question_id"]))
     failed = insufficient = False
     print(f"{'framework':14s} {'strategy':20s} {'n_pos':>5s} {'role_matched':>12s} "
@@ -221,7 +264,8 @@ def main():
     # style a prompt-injection note induces no longer predicts the fault.
     print()
     for fw, shk in sorted({(k[0], k[1]) for k in groups if str(k[1]).startswith("sham")}):
-        pi = groups.get((fw, "prompt_injection"), [])
+        ver = shk.split("@", 1)[1] if "@" in shk else None   # pair PI and sham of one note version
+        pi = groups.get((fw, "prompt_injection" + (f"@{ver}" if ver else "")), [])
         sh = groups.get((fw, shk), [])
         if not pi or not sh:
             continue
@@ -233,6 +277,27 @@ def main():
         r, _ = cv_auroc(texts, y, g, ci=True)
         if r:
             print(f"PI vs {shk:10s} {fw:14s} n_pi={len(pi_m)} n_sham={len(sh)} AUROC {r[0]:.3f} [{r[1]:.3f}, {r[2]:.3f}]")
+    # same-slot comparison (r43)
+    print()
+    print(f"{'same_slot':14s} {'strategy':26s} {'n_pos':>5s} {'n_neg':>5s} {'AUROC [95% CI]':>24s}  md_inj  md_same_slot")
+    for (fw, strat), pos in sorted(groups.items()):
+        texts, y, g = [], [], []
+        md_i, md_n = [], []
+        for s, qid in pos:
+            neg = same_slot.get(s["_slot"], [])
+            if not neg:
+                continue
+            texts.append(s.get("output") or ""); y.append(1); g.append(qid)
+            md_i.append(has_md(s.get("output")))
+            md_n.append(np.mean([has_md(t) for t in neg]))
+            for t in neg:
+                texts.append(t); y.append(0); g.append(qid)
+        if not md_i:
+            continue
+        r, _ = cv_auroc(texts, y, g, ci=True)
+        txt = "  n/a" if not r else f"{r[0]:.3f} [{r[1]:.3f}, {r[2]:.3f}]"
+        print(f"{fw:14s} {str(strat):26s} {sum(y):5d} {len(y) - sum(y):5d} {txt:>24s}  "
+              f"{np.mean(md_i):5.2f}  {np.mean(md_n):5.2f}")
     print()
     for fw, d in sorted(n_steps.items()):
         if d["normal"] and d["inject"]:

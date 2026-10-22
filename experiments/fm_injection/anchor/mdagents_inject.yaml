@@ -80,3 +80,6 @@ pi_length_match:
   max_ratio: 1.25
   max_tries: 4
   state_length: true
+  # format-matched note + markdown-aware try selection (fmt_v1, MedHyperTrace r43)
+  state_format: true
+  match_format: true

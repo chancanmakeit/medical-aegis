@@ -121,6 +121,10 @@ def _inject_signature(targets, history=None):
             extra.add(f"sham={h.get('sham')}")
             if str(ip.get("sham_variant") or "").startswith("style_v2"):
                 extra.add("sham_v2")         # reworded sham_style vs the old single wording
+        if ip.get("note_version"):            # format-matched note (fmt_v1, MHT r43)
+            extra.add(f"note={ip['note_version']}")
+        if ((h.get("pi_length_match") or {}).get("format") or {}).get("match_format"):
+            extra.add("fmtsel")              # tries also selected on markdown match
     if extra:
         key.append(sorted(extra))
     return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]
@@ -232,6 +236,8 @@ def convert(rec, reg, alias, reasoning_mode):
                     "style_v1" if h.get("sham") == "style" else "plain_v1")
             if h.get("pi_length_match"):
                 inj["pi_length_match"] = h.get("pi_length_match")
+            if (h.get("injection_process") or {}).get("note_version"):
+                inj["note_version"] = h["injection_process"]["note_version"]
             if h.get("rc_fallback_to_pi"):
                 inj["rc_fallback_to_pi"] = True
                 inj["discarded_clean_output"] = h.get("discarded_clean_response")

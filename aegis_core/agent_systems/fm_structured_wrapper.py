@@ -275,28 +275,48 @@ class StructuredFMWrapper(SystemWrapper):
                 cfg = self.exp_config.get("pi_length_match") or {}
                 self.fm_factory.target_words = (len(ref_text.split()) if (ref_text and cfg.get("state_length"))
                                                 else None)
+                # format of the clean reference (state_format, fmt_v1): injected
+                # notes otherwise suppressed markdown (MedHyperTrace r43)
+                ref_fmt = (FMMaliciousFactory.ref_format_features(ref_text)
+                           if (ref_text and cfg.get("state_format")) else None)
+                self.fm_factory.ref_format = ref_fmt
                 _sh = (targets[ti][1].get("attack_spec") or {}).get("sham")
                 self.fm_factory.sham_mode = "style" if _sh == "style" else bool(_sh)
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
                     args, kwargs,
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
                 self.fm_factory.target_words = None
+                self.fm_factory.ref_format = None
                 self.fm_factory.sham_mode = False
                 tries = int(cfg.get("max_tries", 3)) if (cfg and ref_text) else 1
                 lo, hi = float(cfg.get("min_ratio", 0.6)), float(cfg.get("max_ratio", 1.5))
+                # match_format: a try is accepted only if it also has markdown
+                # exactly when the reference does (same '###'/'**' test as r43)
+                ref_md = FMMaliciousFactory.has_markdown(ref_text) if ref_text else None
+                ref_sig = FMMaliciousFactory.format_signature(ref_text) if ref_text else None
+                want_fmt = bool(cfg.get("match_format")) and ref_text is not None
                 attempts = []
+
+                def _ok(a):
+                    len_ok = a["ratio"] is None or lo <= a["ratio"] <= hi
+                    return len_ok and (not want_fmt or a["sig"] == ref_sig)
                 for t in range(tries):
                     cap_i = len(llm_capture)
                     r = _call(turn_idx, f"{where}_inject" + (f"_try{t}" if t else ""), *new_args, **new_kwargs)
                     ratio = (len(r or "") / max(1, len(ref_text))) if ref_text else None
                     attempts.append({"resp": r, "meta": llm_meta_by_call.get(turn_idx),
-                                     "cap": cap_i, "ratio": ratio})
-                    if ratio is None or lo <= ratio <= hi:
+                                     "cap": cap_i, "ratio": ratio,
+                                     "md": FMMaliciousFactory.has_markdown(r),
+                                     "sig": FMMaliciousFactory.format_signature(r)})
+                    if _ok(attempts[-1]):
                         break
                 import math
                 chosen = attempts[-1]
-                if attempts[-1]["ratio"] is not None and not (lo <= attempts[-1]["ratio"] <= hi):
-                    chosen = min(attempts, key=lambda a: abs(math.log(max(a["ratio"], 1e-6))))
+                if not _ok(chosen):
+                    # no try passed: prefer a format match, then the closest length
+                    chosen = min(attempts, key=lambda a: (
+                        (want_fmt and a["sig"] != ref_sig),
+                        abs(math.log(max(a["ratio"], 1e-6))) if a["ratio"] is not None else 0.0))
                 for a in sorted((a for a in attempts if a is not chosen), key=lambda a: -a["cap"]):
                     if a["cap"] < len(llm_capture):
                         del llm_capture[a["cap"]]
@@ -307,6 +327,11 @@ class StructuredFMWrapper(SystemWrapper):
                         "ref_len": len(ref_text), "ratios": [a["ratio"] for a in attempts],
                         "kept_try": attempts.index(chosen), "in_range": lo <= chosen["ratio"] <= hi,
                         "discarded_llm_meta": [a["meta"] for a in attempts if a is not chosen]}
+                    if ref_fmt is not None or want_fmt:
+                        info["pi_length_match"]["format"] = {
+                            "ref_md": ref_md, "ref_features": ref_fmt,
+                            "md": [a["md"] for a in attempts], "ref_sig": list(ref_sig or ()),
+                            "sig": [list(a["sig"]) for a in attempts], "match_format": want_fmt}
                 return chosen["resp"], info
 
             if malicious_agent.injection_strategy == InjectionStrategy.PROMPT_INJECTION:
