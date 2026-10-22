@@ -215,3 +215,10 @@ medagents 投票的方括号：0.05/0.50 → 0.50/0.50。
   - **框架要求的输出结构丢失**：mdagents 的 `Justification:` 0.09/0.25、`Answer:` 0.07/0.19；dylan 的 `Justification:` 0.39/0.65。
   - "argue"一类措辞只占 0–3%，不是主要来源。
 - 结论：AEGIS 的 PI 子集也带可检测的伪迹，作为"真实子集"的参照比 MAFA 接口文档第 5 点说的要弱。泄漏和拒答可以用规则筛掉；结构丢失和清洗后仍有的 0.76–0.91，要有 sham 对照才能区分是伪迹还是错误内容。
+- 已在 MAFA 仓库开 issue #1（chancanmakeit/MAFA-human-ai-annotation#1）。
+- **更正（发出后自查）**：issue 里"mdagents 10% 的 PI 步直接提到注入指令"用的是宽口径正则，它把"the prompt …"也算了进去。在我们的锚点数据里，llama 常用"the prompt"指代题目，normal 步命中率就有 3.5%，所以宽口径不能等同于泄漏。
+  - 改用严格口径（只认"instruction / comply with / as instructed"等明确说法）后，AEGIS PI 注入步：mdagents 0.024，dylan 0.025，clinical_agent5 0.017，clinical_agent 0.002，clean 全部为 0。
+  - mdagents 宽口径多出的约 7% 仍然只出现在注入步里（clean 为 0），算一个签名，但不能确定是泄漏。
+  - 脚本已拆成 `instruction_strict` 和 `prompt_or_instruction_loose` 两列。已在 MAFA issue 里发更正。
+- **我们的锚点数据**（gate7 加 fmt_val，约 1290 个注入步，包括 PI、sham、sham_style、RC）：严格口径的泄漏为 0，拒答为 0。normal 步里两项各只有约 4 条。
+- MHT 已发第 48 轮（同意先补跑 mdagents sham；fmt_v1 成为主数据默认之前，要先处理 llm_debate 的结构签名：格式句只描述参考回复实际用到的结构，先在 llm_debate 上用 10 题验证）和第 49 轮（征求中训练意见，4 个问题）。第 49 轮第 4 问已在我方第 35 轮回答，其余待用户决定。
