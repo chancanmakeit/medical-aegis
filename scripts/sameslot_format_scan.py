@@ -7,7 +7,12 @@ F={"md(###|**)":lambda t:"###" in t or "**" in t,
    "list line":lambda t:bool(re.search(r"(?m)^\s*(?:[-*+]|\d+[.)])\s+\S",t)),
    "colon-label":lambda t:bool(re.search(r"(?m)^[A-Z][A-Za-z ]{2,30}:",t)),
    "blank lines>=3":lambda t:t.count("\n\n")>=3,
-   "ends with .":lambda t:t.rstrip().endswith(".")}
+   "ends with .":lambda t:t.rstrip().endswith("."),
+   # markdown dialect (fmt_v1 overshoot, v10 round 5): bullet marker, bold labels, first person
+   "star bullet":lambda t:bool(re.search(r"(?m)^[ \t]*\*[ \t]+\S",t)),
+   "dash bullet":lambda t:bool(re.search(r"(?m)^[ \t]*-[ \t]+\S",t)),
+   "bold label":lambda t:bool(re.search(r"\*\*[^*\n]{2,40}:\*\*|\*\*[^*\n]{2,40}\*\*:",t)),
+   "first person":lambda t:bool(re.search(r"\bI (have|believe|think|would)\b",t))}
 runs=[json.loads(l) for l in open(sys.argv[1])]
 def sk(r):
     occ=collections.Counter();o={}
