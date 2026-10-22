@@ -9,7 +9,8 @@
 | `<fw>__inject_pi4.jsonl.gz` | run 1 = 长度匹配版 PI（前 50 题） |
 | `<fw>__inject_sham.jsonl.gz` | run 2 = sham（前 50 题） |
 | `<fw>__inject_shamstyle.jsonl.gz` | run 3 = sham_style **旧措辞**（前 50 题，导出后 `sham_variant = style_v1`） |
-| `<fw>__inject_pi5.jsonl.gz` / `<fw>__inject_sham5.jsonl.gz` | run 1 = PI / run 2 = sham，**fmt_v1 格式匹配说明**（v10 第 4 轮，验证批 20 题，已完成；导出 run_id 带 `note=fmt_v1`，门槛分组 `@fmt_v1`） |
+| `<fw>__inject_pi5.jsonl.gz` / `<fw>__inject_sham5.jsonl.gz` | run 1 = PI / run 2 = sham，**fmt_v1 格式匹配说明**（v10 第 4 轮，验证批 20 题，已完成；mdagents 的 `_sham5` 已补到 50 题；导出 run_id 带 `note=fmt_v1`，门槛分组 `@fmt_v1`） |
+| `llm_debate__inject_pi6.jsonl.gz` / `llm_debate__inject_sham6.jsonl.gz` | run 1 = PI / run 2 = sham，**fmt_v1_1**（逐项分析选项的结构，v10 第 9 轮），前 10 题；导出 `note_version = fmt_v1_1` |
 
 fw ∈ medagents_mc、mac_groupchat、llm_debate、mdagents。mac_groupchat 的 RC 少几条（少数运行没能生效，或被记成 not_fired）。
 
