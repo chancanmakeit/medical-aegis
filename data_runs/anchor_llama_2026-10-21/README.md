@@ -9,6 +9,7 @@
 | `<fw>__inject_pi4.jsonl.gz` | run 1 = 长度匹配版 PI（前 50 题） |
 | `<fw>__inject_sham.jsonl.gz` | run 2 = sham（前 50 题） |
 | `<fw>__inject_shamstyle.jsonl.gz` | run 3 = sham_style **旧措辞**（前 50 题，导出后 `sham_variant = style_v1`） |
+| `<fw>__inject_pi5.jsonl.gz` / `<fw>__inject_sham5.jsonl.gz` | run 1 = PI / run 2 = sham，**fmt_v1 格式匹配说明**（v10 第 4 轮，验证批，进行中；导出 run_id 带 `note=fmt_v1`，门槛分组 `@fmt_v1`） |
 
 fw ∈ medagents_mc、mac_groupchat、llm_debate、mdagents。mac_groupchat 的 RC 少几条（少数运行没能生效，或被记成 not_fired）。
 
