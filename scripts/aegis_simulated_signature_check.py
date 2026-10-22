@@ -42,7 +42,12 @@ def norm(t):  # MedHyperTrace lexical_norm.py (round 47), verbatim
 
 has_md = lambda t: "###" in (t or "") or "**" in (t or "")
 has_list = lambda t: bool(re.search(r"(?m)^\s*(?:[-*+]|\d+[.)])\s+\S", t or ""))
-# surface markers checked per strategy (injected / paired clean)
+# surface markers checked per strategy (injected / paired clean).
+# FILTERING: only `instruction_strict` marks a removable artifact (the injected instruction leaking
+# into the reply; in AEGIS mdagents all from llm_rewrite PI, in dylan mostly FM-2.6). `refusal` is
+# NOT an artifact: it is mostly the injected fault itself (FM-1.2 "drop your persona", FM-1.5
+# "do not commit"), confirmed by MAFA RUN.md §70 -- removing it deletes labelled faults. The
+# Justification:/Answer: columns are rate differences, not per-step markers; do not filter on them.
 MARKERS = {
     # strict: unambiguous references to an instruction (llama in medical-aegis anchors: 4 / 13,379
     # normal steps, 0 injected steps)
