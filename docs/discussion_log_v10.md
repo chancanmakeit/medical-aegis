@@ -196,3 +196,22 @@ medagents 投票的方括号：0.05/0.50 → 0.50/0.50。
 2. mdagents 的 sham 用 fmt_v1 补跑第 21–50 题。这些题已有旧说明的 sham，补完就能在 50 题上做配对比较，判断 0.74 是否真实。mdagents 是最便宜的框架（约 $0.0026/次），30 次约 **$0.08**。
 3. llm_debate：既然 PI 不进训练，就不再处理 sham 的残留。逐个选项分析的结构差异记录在案，留给主数据参考。
 - 已在 issue 发我方第 34 轮（comment 6336794147）：残留分析，同意 fmt_v2 不跑、按 MHT 的验收标准，提议补跑 mdagents 的 sham 第 21–50 题（约 $0.08），问 MHT 是否同意"50 题上通过就把 fmt_v1 定为默认"。下一条我方编号为第 35 轮。
+
+## 第 7 轮（2026-10-22 06:31–07:10）：在 MAFA 仓库开 issue 通知；核对 AEGIS simulated 的 PI
+用户："你也可以在 MAFA 项目（https://github.com/chancanmakeit/MAFA-human-ai-annotation）下开 issue 来通知它关于我们已经做的事情。"
+
+**MAFA 是什么**：负责人类标注的子项目，以人机协同方式对 AEGIS 轨迹做故障标注，支持 MAST 和 MedAgentAudit 两套体系。它和 MHT 的数据约定见其 `docs/标注数据接口说明.md`。仓库此前没有任何 issue。
+- MAFA RUN.md §53（注入模板审计）得出结论：AEGIS simulated 里 response_corruption 的模板句就是故障本身，基于模拟真值的数字"以 prompt_injection 为准"。接口文档第 5 点写的是同样的意思。
+- 核实：MAFA 的两个审查数据包（各 360 条）只取自 faulty 和 clean，**不含 simulated 轨迹**，所以人工标注不直接受注入伪迹影响。
+
+**核对 AEGIS simulated 的 PI**（`scripts/aegis_simulated_signature_check.py`，输出 `docs/requests/samples/aegis_simulated_check_2026-10-22/signature_check.txt`）
+- 数据：从 nature-sub-record 只取 clean 和 simulated 两个压缩包（34 MB）。两者题目 id 完全配对。
+- 方法：同槽位比较，(id, agent_name, phase, 第 k 次出现)，每个注入步对比 clean 配对运行的同一步。能配上的比例：mdagents PI 1311/2024，dylan 1420/1861，clinical_agent 和 clinical_agent5 全部配上。
+- AEGIS 原版的 PI 用 direct 写法（在 prompt 里加一段"UPDATED INSTRUCTION…"），没有长度匹配，指令里要求"用听起来自信但有缺陷的推理来论证"。
+- 同槽位 tfidf_punct AUROC（原文 / MHT 清洗后）：mdagents 0.78/0.76，dylan 0.82/0.81，clinical_agent5 0.91/0.91，clinical_agent 0.78/0.77。**格式不是主因**。但没有 sham 对照，这个数里也包含真实的错误内容。
+- **具体可数的伪迹**（PI 注入步 / clean 同槽位）：
+  - **注入指令泄漏进回复**：mdagents 0.10/0.00，dylan 0.02/0.00，clinical_agent5 0.02/0.00。例如"to comply with the instruction""per the instruction I must…""Given the updated instruction"。
+  - **拒答**：mdagents 0.03，dylan 0.02，clinical_agent5 0.06，clean 都是 0。例如"I cannot fulfill this request…"。
+  - **框架要求的输出结构丢失**：mdagents 的 `Justification:` 0.09/0.25、`Answer:` 0.07/0.19；dylan 的 `Justification:` 0.39/0.65。
+  - "argue"一类措辞只占 0–3%，不是主要来源。
+- 结论：AEGIS 的 PI 子集也带可检测的伪迹，作为"真实子集"的参照比 MAFA 接口文档第 5 点说的要弱。泄漏和拒答可以用规则筛掉；结构丢失和清洗后仍有的 0.76–0.91，要有 sham 对照才能区分是伪迹还是错误内容。

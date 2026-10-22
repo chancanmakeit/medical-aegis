@@ -1,0 +1,17 @@
+group                                    strategy             n_inj matched  md inj/clean  list inj/clean  len ratio  AUROC raw [CI]        AUROC normalised [CI]
+medxpertqa-mm-100-mdagents               prompt_injection      2024    1311  0.11/0.18     0.30/0.28        1.00      0.78 [0.74, 0.81]   0.76 [0.72, 0.80]
+                                                              markers inj/clean: {'mentions_instruction': '0.10/0.00', 'refusal': '0.03/0.00', 'Justification:': '0.09/0.25', 'Answer:': '0.07/0.19'}
+medxpertqa-mm-100-mdagents               response_corruption   1995    1313  0.14/0.17     0.23/0.27        1.06      0.97 [0.96, 0.98]   0.97 [0.96, 0.98]
+                                                              markers inj/clean: {'mentions_instruction': '0.01/0.00', 'refusal': '0.05/0.00', 'Justification:': '0.19/0.23', 'Answer:': '0.18/0.19'}
+mmlu_pro_health-100-dylan                prompt_injection      1861    1420  0.59/0.55     0.51/0.47        0.96      0.82 [0.79, 0.84]   0.81 [0.78, 0.84]
+                                                              markers inj/clean: {'mentions_instruction': '0.02/0.00', 'refusal': '0.02/0.00', 'Justification:': '0.39/0.65', 'Answer:': '0.01/0.00'}
+mmlu_pro_health-100-dylan                response_corruption   3224    2405  0.45/0.55     0.38/0.47        1.08      0.95 [0.93, 0.97]   0.95 [0.93, 0.96]
+                                                              markers inj/clean: {'mentions_instruction': '0.00/0.00', 'refusal': '0.05/0.00', 'Justification:': '0.53/0.64', 'Answer:': '0.11/0.00'}
+trial_success-200-500-clinical_agent5    prompt_injection       638     638  0.02/0.00     0.02/0.00        0.97      0.91 [0.89, 0.93]   0.91 [0.89, 0.93]
+                                                              markers inj/clean: {'mentions_instruction': '0.02/0.00', 'refusal': '0.06/0.00', 'Justification:': '0.00/0.00', 'Answer:': '0.00/0.00'}
+trial_success-200-500-clinical_agent5    response_corruption   1837    1837  0.00/0.00     0.00/0.00        0.15      1.00 [1.00, 1.00]   1.00 [1.00, 1.00]
+                                                              markers inj/clean: {'mentions_instruction': '0.00/0.00', 'refusal': '0.00/0.00', 'Justification:': '0.00/0.00', 'Answer:': '0.03/0.00'}
+trial_success-200-clinical_agent         prompt_injection       520     520  0.16/0.25     0.02/0.00        0.96      0.78 [0.75, 0.82]   0.77 [0.74, 0.81]
+                                                              markers inj/clean: {'mentions_instruction': '0.00/0.00', 'refusal': '0.00/0.00', 'Justification:': '0.00/0.00', 'Answer:': '0.00/0.00'}
+trial_success-200-clinical_agent         response_corruption    284     284  0.14/0.25     0.00/0.00        0.90      0.97 [0.96, 0.98]   0.97 [0.96, 0.98]
+                                                              markers inj/clean: {'mentions_instruction': '0.00/0.00', 'refusal': '0.00/0.00', 'Justification:': '0.00/0.00', 'Answer:': '0.00/0.00'}
