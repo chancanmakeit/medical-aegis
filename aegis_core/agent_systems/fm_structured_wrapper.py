@@ -277,7 +277,8 @@ class StructuredFMWrapper(SystemWrapper):
                                                 else None)
                 # format of the clean reference (state_format, fmt_v1): injected
                 # notes otherwise suppressed markdown (MedHyperTrace r43)
-                ref_fmt = (FMMaliciousFactory.ref_format_features(ref_text)
+                struct = bool(cfg.get("state_structure"))   # fmt_v1_1 (MHT r48)
+                ref_fmt = (FMMaliciousFactory.ref_format_features(ref_text, struct)
                            if (ref_text and cfg.get("state_format")) else None)
                 self.fm_factory.ref_format = ref_fmt
                 _sh = (targets[ti][1].get("attack_spec") or {}).get("sham")
@@ -293,7 +294,7 @@ class StructuredFMWrapper(SystemWrapper):
                 # match_format: a try is accepted only if it also has markdown
                 # exactly when the reference does (same '###'/'**' test as r43)
                 ref_md = FMMaliciousFactory.has_markdown(ref_text) if ref_text else None
-                ref_sig = FMMaliciousFactory.format_signature(ref_text) if ref_text else None
+                ref_sig = FMMaliciousFactory.format_signature(ref_text, struct) if ref_text else None
                 want_fmt = bool(cfg.get("match_format")) and ref_text is not None
                 attempts = []
 
@@ -307,7 +308,7 @@ class StructuredFMWrapper(SystemWrapper):
                     attempts.append({"resp": r, "meta": llm_meta_by_call.get(turn_idx),
                                      "cap": cap_i, "ratio": ratio,
                                      "md": FMMaliciousFactory.has_markdown(r),
-                                     "sig": FMMaliciousFactory.format_signature(r)})
+                                     "sig": FMMaliciousFactory.format_signature(r, struct)})
                     if _ok(attempts[-1]):
                         break
                 import math

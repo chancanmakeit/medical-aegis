@@ -1,0 +1,14 @@
+
+=== mdagents sham@fmt_v1  n_pos=50 n_neg=150  phases={'expert_answer': 36, 'recruitment': 6, 'aggregation': 8}
+  top + (injected): ['have', 'I have', 'for this', 'this', 'same', 'the same', 'increasing', 'contribute', 'contribute to', 'This', 'specialists', 'most', 'involves', 'mechanical obstruction', 'mechanism.']
+  top - (normal)  : ['on', 'not', 'for the', 'increases', 'pelvic', 'compared', 'compared to', 'as', 'action', 'but']
+  note words (inj/same-slot): {'research': '0.02/0.01', 'usual': '0.06/0.01', 'normally': '0.00/0.01', 'format': '0.08/0.06', 'mistake': '0.00/0.01'}
+  first person: 0.22/0.15  assertive: 0.46/0.36  hedge: 0.26/0.24
+  single-feature AUROC (>0.5 = larger in injected): length=0.45, n_sentences=0.53, mean_sent_len=0.35, first_person_n=0.53
+
+=== mdagents sham@old  n_pos=50 n_neg=150  phases={'expert_answer': 36, 'recruitment': 6, 'aggregation': 8}
+  top + (injected): ['Therefore,', 'Other', 'findings', 'While several', 'points', 'agent', 'syndrome.', 'several', 'restrictions', 'process', 'This', 'left', 'visceral', 'to maintain', 'the necessary']
+  top - (normal)  : ['be', 'standard', 'stress', 'more', 'pain,', 'which is', 'G', 'Among', 'Among the', 'the options,']
+  note words (inj/same-slot): {'research': '0.00/0.01', 'usual': '0.00/0.01', 'normally': '0.02/0.01', 'format': '0.06/0.06', 'mistake': '0.00/0.01'}
+  first person: 0.14/0.15  assertive: 0.36/0.36  hedge: 0.22/0.24
+  single-feature AUROC (>0.5 = larger in injected): length=0.43, n_sentences=0.51, mean_sent_len=0.35, first_person_n=0.49

@@ -1,0 +1,7 @@
+/home/claude/mht_ref/lexical_norm.py:3: SyntaxWarning: invalid escape sequence '\S'
+  (question, agent_id, phase, round, k-th) of the same question. LR on tfidf_punct (\S+ tokens, case kept)
+framework      kind  note    feat   raw AUROC [CI]            normalised AUROC [CI]
+mdagents       sham  old     punct  0.56 [0.52, 0.61]   ->   0.56 [0.51, 0.60]   n_pos=50
+mdagents       sham  old     char   0.58 [0.53, 0.63]   ->   0.54 [0.50, 0.60]   n_pos=50
+mdagents       sham  fmt_v1  punct  0.59 [0.52, 0.66]   ->   0.55 [0.48, 0.61]   n_pos=50
+mdagents       sham  fmt_v1  char   0.73 [0.68, 0.78]   ->   0.65 [0.61, 0.71]   n_pos=50

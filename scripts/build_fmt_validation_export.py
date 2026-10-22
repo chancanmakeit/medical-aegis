@@ -22,7 +22,7 @@ def kind(r):
         return None                      # not fired
     i = injs[0]
     st = i.get("effective_strategy") or i.get("strategy")
-    ver = "fmt_v1" if i.get("note_version") == "fmt_v1" else "old"
+    ver = i.get("note_version") or "old"            # fmt_v1, fmt_v1_1, ...
     if st == "prompt_injection" and i.get("pi_length_match"):
         return ("pi", ver)
     if st == "sham" and i.get("sham_variant", "plain_v1") == "plain_v1":
@@ -34,7 +34,7 @@ def main():
     src, dst = sys.argv[1], sys.argv[2]
     runs = [json.loads(l) for l in open(src)]
     qs = {r["question_id"] for r in runs
-          if any(i.get("note_version") == "fmt_v1" for i in r["labels"].get("injection") or [])}
+          if any(i.get("note_version") for i in r["labels"].get("injection") or [])}
     keep, counts = [], {}
     for r in runs:
         if r["question_id"] not in qs:

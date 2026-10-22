@@ -92,3 +92,5 @@ pi_length_match:
   # format-matched note + markdown-aware try selection (fmt_v1, MedHyperTrace r43)
   state_format: true
   match_format: true
+  # fmt_v1_1 (MedHyperTrace r48): also state / match the option walk-through structure
+  state_structure: true
