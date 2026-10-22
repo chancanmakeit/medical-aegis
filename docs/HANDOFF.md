@@ -1,10 +1,10 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-21 晚（会话 v10 讨论第 2 轮，issue 我方第 31 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
+> 最后更新：2026-10-21 晚（会话 v10 讨论第 3 轮，issue MHT 第 43 轮已读，我方第 32 轮未发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
 ## 当前状态（v10 讨论第 1 轮，2026-10-21 晚）
 
-**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。**v10 第 2 轮**：用户让先问 MHT 意见，已发我方第 31 轮（comment 6332128581），列方案 A $6.0 / B $5.75 / C $4.25 / D $3.0，等 MHT 回复；下一条我方编号为第 32 轮。**补齐预算仍待用户批准，尚未做任何付费运行**；批准后可直接真实运行。
+**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。**v10 第 2 轮**：用户让先问 MHT 意见，已发我方第 31 轮（comment 6332128581），列方案 A $6.0 / B $5.75 / C $4.25 / D $3.0，等 MHT 回复；下一条我方编号为第 32 轮。**v10 第 3 轮**：MHT 第 43 轮（comment 6332274175）发现带说明的注入（PI、sham、sham_style）会抑制 markdown，TF-IDF 门槛看不到；我方已复算确认，RC 无此差异。MHT 建议补齐 A–D 都先不批，先修生成端，再做小样本验证，我方同意。我方第 30 轮的“MAC 约 3400 步”有误，实际是总步数，可填充的只有几百步。待用户决定：是否先改生成端（零费用），以及验证小样本跑 sham（约 $0.3）还是 sham+PI（约 $0.6）。我方第 32 轮在用户决定后发出。尚未做任何付费运行。
 
 **锚点数据（只用 llama-4-maverick；用户说明它就是 llama，不用再核实，`served_model` 只作元数据）**
 - 4 个锚点家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents。MA-RAG、KAMAC 已放弃，TAO 不推荐。

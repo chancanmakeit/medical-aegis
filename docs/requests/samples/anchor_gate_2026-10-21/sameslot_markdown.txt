@@ -1,0 +1,16 @@
+llm_debate      prompt_injection       n=  50  inj_md=0.24  sameslot_normal_md=0.99
+llm_debate      response_corruption    n= 100  inj_md=1.00  sameslot_normal_md=1.00
+llm_debate      sham                   n=  50  inj_md=0.56  sameslot_normal_md=1.00
+llm_debate      sham_style             n=  50  inj_md=0.60  sameslot_normal_md=0.99
+mac_groupchat   prompt_injection       n=  44  inj_md=0.45  sameslot_normal_md=0.73
+mac_groupchat   response_corruption    n=  86  inj_md=0.99  sameslot_normal_md=0.98
+mac_groupchat   sham                   n=  44  inj_md=0.57  sameslot_normal_md=0.84
+mac_groupchat   sham_style             n=  42  inj_md=0.29  sameslot_normal_md=0.74
+mdagents        prompt_injection       n=  50  inj_md=0.00  sameslot_normal_md=0.30
+mdagents        response_corruption    n= 100  inj_md=0.38  sameslot_normal_md=0.37
+mdagents        sham                   n=  50  inj_md=0.00  sameslot_normal_md=0.35
+mdagents        sham_style             n=  50  inj_md=0.04  sameslot_normal_md=0.36
+medagents_mc    prompt_injection       n=  50  inj_md=0.14  sameslot_normal_md=0.39
+medagents_mc    response_corruption    n=  87  inj_md=0.74  sameslot_normal_md=0.77
+medagents_mc    sham                   n=  50  inj_md=0.22  sameslot_normal_md=0.39
+medagents_mc    sham_style             n=  50  inj_md=0.40  sameslot_normal_md=0.55
