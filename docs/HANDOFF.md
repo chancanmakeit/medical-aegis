@@ -1,10 +1,10 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-21 晚（会话 v10 讨论第 1 轮，issue 仍停在我方第 30 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
+> 最后更新：2026-10-21 晚（会话 v10 讨论第 2 轮，issue 我方第 31 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
 ## 当前状态（v10 讨论第 1 轮，2026-10-21 晚）
 
-**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。MHT 在我方第 30 轮后没有新回复。**补齐预算仍待用户批准，尚未做任何付费运行**；批准后可直接真实运行。
+**v10 第 1 轮新增**：`_shamstyle2` 的 mock 冒烟测试已通过（4 框架 × 3 题：`sham_variant = style_v2_<i>`，导出后 run_id 全部唯一，`--new_sham_style_only` 正确剔除 `style_v1`），细节见 discussion_log_v10 第 1 轮。**v10 第 2 轮**：用户让先问 MHT 意见，已发我方第 31 轮（comment 6332128581），列方案 A $6.0 / B $5.75 / C $4.25 / D $3.0，等 MHT 回复；下一条我方编号为第 32 轮。**补齐预算仍待用户批准，尚未做任何付费运行**；批准后可直接真实运行。
 
 **锚点数据（只用 llama-4-maverick；用户说明它就是 llama，不用再核实，`served_model` 只作元数据）**
 - 4 个锚点家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents。MA-RAG、KAMAC 已放弃，TAO 不推荐。
@@ -35,7 +35,7 @@
    - 小提示：两个门槛不要同时跑到同一个输出文件；`pgrep -f` 会匹配到等待循环自身。
    - mock 冒烟测试已完成（v10 第 1 轮），批准后不必再做。
 2. 补齐后重新导出，用 `build_anchor_gate_export.py --new_sham_style_only` 筛选，跑两种门槛（TF-IDF + MiniLM），把结果和导出提交到 `docs/requests/samples/`，在 issue 里通知 MHT。
-   - issue 最新：我方 v9 第 30 轮（comment 6331769814），回复了 MHT 第 41、42 轮。下一个我方编号是第 31 轮。
+   - issue 最新：我方第 31 轮（comment 6332128581，v10 第 2 轮），就补齐预算征求 MHT 意见。下一个我方编号是第 32 轮。
 3. 主数据（其他框架、正式配置 `experiments/fm_injection/formal/`）的生成方案还没开始，等锚点定稿。
 
 ---
