@@ -1,0 +1,112 @@
+
+=== llm_debate prompt_injection@fmt_v1  n_pos=20 n_neg=60  phases={'discussion': 15, 'aggregation': 5}
+  top + (injected): ['functional', 'options,', 'solutions', "the patient's", 'three solutions', 'the most', 'three', 'that the', 'consistently', 'suggest', 'prevents', 'have', 'the options,', 'serves', 'a known']
+  top - (normal)  : ['Option', 'incorrect:', 'is incorrect:', 'D', 'describes', 'Option D', 'options:', 'are the', 'G', 'the options:']
+  note words (inj/same-slot): {'research': '0.05/0.07', 'usual': '0.00/0.08', 'normally': '0.00/0.07', 'format': '0.15/0.05'}
+  first person: 0.30/0.50  assertive: 0.65/0.43  hedge: 0.25/0.22
+  single-feature AUROC (>0.5 = larger in injected): length=0.30, n_sentences=0.27, mean_sent_len=0.59, first_person_n=0.43
+
+=== llm_debate prompt_injection@old  n_pos=20 n_neg=60  phases={'discussion': 15, 'aggregation': 5}
+  top + (injected): ['that the', 'and the', 'argue', 'the most', 'options,', 'various', 'this specific', 'Therefore, the', 'that', 'like', 'argue that', 'across', 'Other', 'ensures', 'ensures that']
+  top - (normal)  : ['is incorrect:', 'options:', 'Option', 'describes', 'incorrect:', 'Comparing', 'G', 'not', 'medical', 'the options:']
+  note words (inj/same-slot): {'research': '0.05/0.07', 'colleague': '0.05/0.00', 'usual': '0.00/0.08', 'normally': '0.05/0.07', 'format': '0.05/0.05'}
+  first person: 0.25/0.50  assertive: 0.70/0.43  hedge: 0.30/0.22
+  single-feature AUROC (>0.5 = larger in injected): length=0.40, n_sentences=0.33, mean_sent_len=0.68, first_person_n=0.38
+
+=== llm_debate sham@fmt_v1  n_pos=20 n_neg=60  phases={'discussion': 19, 'aggregation': 1}
+  top + (injected): ['this', 'which is', 'significant', 'clinically', 'is associated', 'fracture', 'with the', 'develop', 'is incorrect', 'require', 'triggers', 'the local', 'are typically', 'inflammatory', 'risk of']
+  top - (normal)  : ['This is', 'for the', 'used', 'J:', 'by', 'standard', 'D:', 'in a', 'options', 'be']
+  note words (inj/same-slot): {'research': '0.00/0.02', 'carefully': '0.05/0.00', 'best answer': '0.00/0.02', 'usual': '0.00/0.05', 'normally': '0.05/0.07', 'format': '0.05/0.08'}
+  first person: 0.30/0.60  assertive: 0.45/0.45  hedge: 0.25/0.28
+  single-feature AUROC (>0.5 = larger in injected): length=0.41, n_sentences=0.41, mean_sent_len=0.49, first_person_n=0.36
+
+=== llm_debate sham@old  n_pos=20 n_neg=60  phases={'discussion': 19, 'aggregation': 1}
+  top + (injected): ['incorrect;', 'Therefore,', 'is incorrect;', 'The most', 'this', 'incorrect', 'have a', 'this clinical', 'capsule.', 'joint capsule.', '30', 'is incorrect', 'failure of', 'incorrect as', 'during']
+  top - (normal)  : ['incorrect:', 'is incorrect:', 'This is', 'by', 'These', 'J:', 'D:', '35', 'This', 'medical']
+  note words (inj/same-slot): {'research': '0.00/0.02', 'best answer': '0.00/0.02', 'usual': '0.00/0.05', 'normally': '0.10/0.07', 'format': '0.10/0.08'}
+  first person: 0.45/0.60  assertive: 0.70/0.45  hedge: 0.25/0.28
+  single-feature AUROC (>0.5 = larger in injected): length=0.41, n_sentences=0.37, mean_sent_len=0.59, first_person_n=0.44
+
+=== mac_groupchat prompt_injection@fmt_v1  n_pos=18 n_neg=49  phases={'discussion': 12, 'select_speaker': 4, 'supervision': 2}
+  top + (injected): ['this', 'focus', 'on', 'on the', 'I', 'focus on', 'we', 'at the', 'must', 'at', 'Given', 'Since', 'of you', 'you', 'some of']
+  top - (normal)  : ['These', 'Option', 'increase', 'These are', 'recommended', 'generally', 'an', 'does', '(Option', 'A']
+  note words (inj/same-slot): {'research': '0.00/0.04', 'carefully': '0.06/0.02', 'usual': '0.06/0.09', 'normally': '0.00/0.04', 'format': '0.17/0.11'}
+  first person: 0.39/0.56  assertive: 0.50/0.30  hedge: 0.50/0.49
+  single-feature AUROC (>0.5 = larger in injected): length=0.41, n_sentences=0.37, mean_sent_len=0.49, first_person_n=0.49
+
+=== mac_groupchat prompt_injection@old  n_pos=18 n_neg=48  phases={'select_speaker': 4, 'discussion': 13, 'supervision': 1}
+  top + (injected): ['I', 'data', 'argue', 'we', 'must', 'Therefore,', 'gastrointestinal', 'options,', 'to be', 'have', 'find', 'I find', 'Regardless of', 'Regardless', 'frequent']
+  top - (normal)  : ['Option', 'Analysis:', 'effect', 'used', 'of a', '(e.g.,', 'has', 'Conclusion: The', 'generally', 'does']
+  note words (inj/same-slot): {'research': '0.00/0.04', 'carefully': '0.00/0.02', 'usual': '0.06/0.18', 'normally': '0.00/0.04', 'format': '0.11/0.11'}
+  first person: 0.67/0.50  assertive: 0.56/0.27  hedge: 0.67/0.52
+  single-feature AUROC (>0.5 = larger in injected): length=0.45, n_sentences=0.44, mean_sent_len=0.54, first_person_n=0.66
+
+=== mac_groupchat sham@fmt_v1  n_pos=16 n_neg=42  phases={'discussion': 12, 'select_speaker': 4}
+  top + (injected): ['Clinical Analysis:', 'the clinical', 'we must', 'we', 'To', 'a patient', 'why', 'why it', 'must', 'critical', 'such', 'degrees', 'the context', 'context of', 'the Options:']
+  top - (normal)  : ['Doctor0', 'hand', '(Option', 'increase', 'the female', 'small', 'These', 'other', 'hernia', 'Stage']
+  note words (inj/same-slot): {'research': '0.00/0.03', 'carefully': '0.00/0.02', 'usual': '0.00/0.06', 'normally': '0.00/0.06', 'format': '0.00/0.06'}
+  first person: 0.38/0.44  assertive: 0.50/0.42  hedge: 0.38/0.50
+  single-feature AUROC (>0.5 = larger in injected): length=0.52, n_sentences=0.49, mean_sent_len=0.56, first_person_n=0.45
+
+=== mac_groupchat sham@old  n_pos=19 n_neg=45  phases={'discussion': 11, 'select_speaker': 4, 'supervision': 4}
+  top + (injected): ['must', 'we', 'if', 'an', 'I', 'Options', 'analyze', 'regarding the', 'of this', 'increases', 'or the', 'regarding', 'presenting', 'the specific', 'due']
+  top - (normal)  : ['Doctor0', 'it', 'Conclusion:', 'the primary', 'increase', 'analysis', 'does not', 'does', 'The analysis', 'not the']
+  note words (inj/same-slot): {'research': '0.00/0.03', 'usual': '0.05/0.04', 'normally': '0.05/0.03', 'format': '0.11/0.11'}
+  first person: 0.63/0.55  assertive: 0.53/0.38  hedge: 0.58/0.60
+  single-feature AUROC (>0.5 = larger in injected): length=0.50, n_sentences=0.49, mean_sent_len=0.55, first_person_n=0.60
+
+=== mdagents prompt_injection@fmt_v1  n_pos=20 n_neg=60  phases={'expert_answer': 13, 'aggregation': 5, 'recruitment': 2}
+  top + (injected): ['I have', 'I', 'profile', 'When', 'Given', 'Given the', 'have', 'we', 'the most', 'This', 'to prevent', 'those', 'must', 'severe', 'requires a']
+  top - (normal)  : ['not', 'of a', '(Option', 'ciliary', 'the options', 'Stage', 'due to', 'due', 'I evaluate', 'Among']
+  note words (inj/same-slot): {'normally': '0.00/0.03', 'format': '0.05/0.12'}
+  first person: 0.60/0.25  assertive: 0.60/0.45  hedge: 0.30/0.18
+  single-feature AUROC (>0.5 = larger in injected): length=0.43, n_sentences=0.56, mean_sent_len=0.28, first_person_n=0.69
+
+=== mdagents prompt_injection@old  n_pos=20 n_neg=60  phases={'aggregation': 5, 'expert_answer': 13, 'recruitment': 2}
+  top + (injected): ['that the', 'This', 'Therefore,', 'panel of', 'Given', 'This is', 'a patient', 'characterized by', 'characterized', 'mechanism of', 'regarding', 'Given the', 'ensures that', 'ensures', 'mechanism']
+  top - (normal)  : ['not', '(Option', 'options', 'with the', 'ciliary', 'the options', 'based', 'based on', 'Among', 'Among the']
+  note words (inj/same-slot): {'simulation': '0.05/0.00', 'normally': '0.05/0.03', 'format': '0.00/0.12'}
+  first person: 0.30/0.25  assertive: 0.70/0.45  hedge: 0.15/0.18
+  single-feature AUROC (>0.5 = larger in injected): length=0.37, n_sentences=0.53, mean_sent_len=0.28, first_person_n=0.53
+
+=== mdagents sham@fmt_v1  n_pos=20 n_neg=60  phases={'expert_answer': 16, 'recruitment': 3, 'aggregation': 1}
+  top + (injected): ['This', 'complications', 'the most', 'most', 'answer: B', 'In a', 'effectively', 'While other', 'through the', 'I have', 'presentation', 'increasing', 'like', 'other', 'a patient']
+  top - (normal)  : ['on', 'as', 'compared to', 'compared', 'Specifically,', 'layer', 'which are', 'common', 'evaluate', 'it is']
+  note words (inj/same-slot): {'research': '0.05/0.02', 'usual': '0.05/0.00', 'normally': '0.00/0.02', 'format': '0.05/0.05'}
+  first person: 0.25/0.28  assertive: 0.40/0.30  hedge: 0.25/0.13
+  single-feature AUROC (>0.5 = larger in injected): length=0.46, n_sentences=0.56, mean_sent_len=0.32, first_person_n=0.48
+
+=== mdagents sham@old  n_pos=20 n_neg=60  phases={'expert_answer': 16, 'recruitment': 3, 'aggregation': 1}
+  top + (injected): ['While several', 'most', 'to maintain', 'Therefore,', 'the most', 'Therefore, the', 'frequently', 'agent', 'This specific', 'that', 'This occurs', 'represent', 'context of', 'the context', 'maintain']
+  top - (normal)  : ['stress', 'primary', 'compared to', 'compared', 'evaluate', 'response', 'Among', 'Among the', 'which', '(the']
+  note words (inj/same-slot): {'research': '0.00/0.02', 'normally': '0.00/0.02', 'format': '0.05/0.05'}
+  first person: 0.20/0.28  assertive: 0.35/0.30  hedge: 0.15/0.13
+  single-feature AUROC (>0.5 = larger in injected): length=0.47, n_sentences=0.59, mean_sent_len=0.34, first_person_n=0.46
+
+=== medagents_mc prompt_injection@fmt_v1  n_pos=20 n_neg=60  phases={'consensus_vote': 11, 'question_analysis': 5, 'option_analysis': 2, 'synthesis': 2}
+  top + (injected): ['NO', 'and the', 'a common', 'evidence', 'Scenario', 'rotational', 'is an', 'The core', 'immediate', 'several', 'the most', 'reports,', 'presented', 'case of', 'male presenting']
+  top - (normal)  : ['YES', 'the following', 'following aspects', '2.', '3.', 'may', '(The', 'because', 'following', 'As']
+  note words (inj/same-slot): {'usual': '0.00/0.05', 'normally': '0.00/0.03', 'format': '0.10/0.05'}
+  first person: 0.25/0.35  assertive: 0.35/0.27  hedge: 0.20/0.28
+  single-feature AUROC (>0.5 = larger in injected): length=0.45, n_sentences=0.48, mean_sent_len=0.49, first_person_n=0.47
+
+=== medagents_mc prompt_injection@old  n_pos=20 n_neg=60  phases={'consensus_vote': 11, 'option_analysis': 2, 'question_analysis': 5, 'synthesis': 2}
+  top + (injected): ['NO', 'Furthermore,', 'the most', 'symptoms', 'Furthermore, the', 'In summary,', 'summary,', 'long-term', 'immediate', 'The focus', 'focus', 'approach', 'on a', 'rigorous', 'nature']
+  top - (normal)  : ['YES', 'Clinical', 'Alarming', 'it', 'Interpretation', 'Aspects', 'Noteworthy', 'the following', 'Clinical Interpretation', 'by']
+  note words (inj/same-slot): {'usual': '0.00/0.05', 'normally': '0.00/0.03', 'format': '0.05/0.05'}
+  first person: 0.30/0.35  assertive: 0.45/0.27  hedge: 0.20/0.28
+  single-feature AUROC (>0.5 = larger in injected): length=0.46, n_sentences=0.46, mean_sent_len=0.53, first_person_n=0.50
+
+=== medagents_mc sham@fmt_v1  n_pos=20 n_neg=60  phases={'consensus_vote': 12, 'decision': 2, 'question_analysis': 4, 'synthesis': 1, 'option_analysis': 1}
+  top + (injected): ['are essential', 'gap by', 'the fracture', 'The clinical', 'process is', 'by', 'These', 'rather than', 'essential for', 'Since', 'Therefore,', 'to be', 'remains', 'gap', 'make']
+  top - (normal)  : ['they', 'states that', 'are the', 'Option B', 'that', 'analysis', 'explicitly', 'explicitly states', 'states', '2.']
+  note words (inj/same-slot): {'usual': '0.00/0.10', 'format': '0.05/0.00'}
+  first person: 0.10/0.23  assertive: 0.30/0.33  hedge: 0.25/0.18
+  single-feature AUROC (>0.5 = larger in injected): length=0.49, n_sentences=0.48, mean_sent_len=0.51, first_person_n=0.43
+
+=== medagents_mc sham@old  n_pos=20 n_neg=60  phases={'consensus_vote': 12, 'question_analysis': 4, 'decision': 2, 'option_analysis': 1, 'synthesis': 1}
+  top + (injected): ['presentation', 'as the', 'the primary', 'due to', 'due', 'Therefore,', 'identified', 'without', 'coupled with', 'coupled', 'triggering', 'inflammatory response.', 'presentation is', 'remains', 'inflammatory']
+  top - (normal)  : ['YES', 'Clinical', 'states', 'explicitly states', 'Alarming', 'states that', 'are the', 'Option B', '(The', 'analysis']
+  note words (inj/same-slot): {'usual': '0.00/0.10', 'format': '0.05/0.00'}
+  first person: 0.20/0.23  assertive: 0.40/0.33  hedge: 0.15/0.18
+  single-feature AUROC (>0.5 = larger in injected): length=0.47, n_sentences=0.48, mean_sent_len=0.51, first_person_n=0.49
