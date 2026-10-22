@@ -119,6 +119,8 @@ def _inject_signature(targets, history=None):
             extra.add("lenmatch+stated" if stated else "lenmatch")
         if h.get("sham"):
             extra.add(f"sham={h.get('sham')}")
+            if str(ip.get("sham_variant") or "").startswith("style_v2"):
+                extra.add("sham_v2")         # reworded sham_style vs the old single wording
     if extra:
         key.append(sorted(extra))
     return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]

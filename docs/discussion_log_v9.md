@@ -791,3 +791,12 @@ MedHyperTrace 的 spec §5 建议"至少两种 backbone 交叉"。按现在的�
   - 剩下 50 题的 PI + sham + sham_style（新措辞）：约 $4.5（medagents $1.90、MAC $1.45、llm_debate $0.75、mdagents $0.39）；
   - 前 50 题的 sham_style 用新措辞重跑：约 $1.5；
   - 合计约 $6.0。llm_debate 的 PI 只作压力测试，如果不补可省约 $0.25。
+
+## 第 24 轮（续，20:17）：issue 已通知；为新会话做交接
+- 用户问是否已在 issue 通知 MHT：已发（我方 v9 第 30 轮，comment 6331769814）。之后改正了两处：门槛导出是 2192 条运行，不是 2000；旧措辞的 `sham_variant` 是 `style_v1`，不是空。
+- 用户要新开会话。为此：
+  - 原始运行结果压缩入库：`data_runs/anchor_llama_2026-10-21/`（40 MB，含 README：恢复、续跑、导出、门槛的命令）；
+  - 运行器入库：`scripts/runners/anchor_run.sh`（不含密钥）；
+  - 门槛数据筛选脚本：`scripts/build_anchor_gate_export.py`（能复现 gate7 的 2192 条）；
+  - HANDOFF 的"当前状态"一节改为指向入库的数据和脚本，Project 文档「medical-aegis_新会话入口」同步更新。
+- 补齐预算（约 $6.0）仍待用户批准。

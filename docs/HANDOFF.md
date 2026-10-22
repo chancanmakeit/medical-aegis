@@ -9,22 +9,30 @@
 - 题目：`datasets/data/anchor_medxpertqa100.json`（100 题，取自 MedXpertQA-Text 难度区间）。所有框架的轮次上限为 2（主数据也一样）。
 - 已完成：normal 100 题 × K=3（4 个框架）；注入 run 0 = RC inplace（100 题）；run 1 = PI（长度匹配版）、run 2 = sham、run 3 = sham_style，**各只做了前 50 题**。
 - 配置：`experiments/fm_injection/anchor/<fw>_{normal,inject}.yaml`（`strategy_cycle: [response_corruption, prompt_injection, sham, sham_style]`）。
-- 原始结果和导出在 scratch（会话重置会丢）：`$S/anchor_full/`，合并导出为 `anchor_all.jsonl`（2500 条），门槛用 `gate7_export.jsonl`。样本和门槛结果已复制到 `docs/requests/samples/anchor_gate_2026-10-21/`。
-- 运行器：`$S/anchor_full2.sh`（环境变量 SUFFIX / EXTRA），`$S` 为 scratchpad。密钥在 `/home/claude/.mht_api.env`。
+- **原始结果已入库**：`data_runs/anchor_llama_2026-10-21/*.jsonl.gz`（40 MB）。恢复、续跑、导出、门槛的完整命令见该目录的 `README.md`。
+  - 门槛用的导出（2192 条运行）：`docs/requests/samples/anchor_gate_2026-10-21/gate7_export.jsonl.gz`，由 `scripts/build_anchor_gate_export.py` 从全量导出（2500 条）中筛出。
+- 运行器：`scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`（环境变量 OUT / SUFFIX / EXTRA）。它从 `/home/claude/.mht_api.env` 读密钥，生成的 api config 和 YAML 都在 OUT 目录，权限 600，**不要提交**。
+- 密钥文件 `/home/claude/.mht_api.env` 在新会话里需要重建：从 Project 文档「api端点」读取，至少要有 `AIHUBMIX_API_KEY`。
 
 **质量门槛**（`scripts/quality_gate.py`，`--features tfidf|minilm`，以 CI 判读）
 - RC inplace 全部 pass；sham 全部 pass；sham_style 在 medagents 上 FAIL（旧措辞里的 firmly、colleague 被照抄），已改为 6 种措辞轮换，并记录 `sham_variant`（尚未重跑）。
 - PI 对自然答错：llm_debate、MAC 仍 FAIL；mdagents、medagents pass。PI 对 sham：medagents、mdagents、MAC 的 CI 覆盖 0.5；llm_debate 分得开。
 - MHT 决定：llm_debate 的 PI 不进训练，只作压力测试子集；不做对抗过滤；PI 只作训练信号，评测只用自然失败和 RC 的 flipped。
 
-**来源（sources）分析**（`$S/sources_analysis.py`，结果在 `docs/requests/samples/anchor_gate_2026-10-21/sources_analysis.txt`）
+**来源（sources）分析**（`scripts/sources_provenance_analysis.py`，结果在 `docs/requests/samples/anchor_gate_2026-10-21/sources_analysis.txt`）
 - 锚点数据的 sources 都是生成时由代码记录的，没有任何推断出来的来源。
 - 注入不改变 sources：注入运行与 normal 的一致率和两次 normal 之间的一致率相同。
 - 读取集有变化的只有 MAC（发言者由 LLM 选择）和 medagents 的 revision/decision；llm_debate、mdagents 的读取集完全由协议决定。
 
 **待办**
-1. **待用户批准**：补齐剩下 50 题的 PI + sham + sham_style（新措辞），并用新措辞重跑前 50 题的 sham_style。预算见 discussion_log_v9 第 24 轮。
-2. 补齐后重新导出（`scripts/export_schema_v1.py`），跑两种门槛，提交样本到 `docs/requests/samples/`，在 issue 里通知 MHT。
+1. **待用户批准（约 $6.0）**：
+   - 补齐剩下 50 题的 PI 和 sham（4 个框架，约 $3.0）；
+   - sham_style 用新措辞跑全部 100 题，写到新文件 `_shamstyle2`（约 $3.0）。
+   - llm_debate 的 PI 只作压力测试，不补可省约 $0.25。
+   - 明细见 discussion_log_v9 第 24 轮。
+   - 小提示：两个门槛不要同时跑到同一个输出文件；`pgrep -f` 会匹配到等待循环自身。
+2. 补齐后重新导出，用 `build_anchor_gate_export.py --new_sham_style_only` 筛选，跑两种门槛（TF-IDF + MiniLM），把结果和导出提交到 `docs/requests/samples/`，在 issue 里通知 MHT。
+   - issue 最新：我方 v9 第 30 轮（comment 6331769814），回复了 MHT 第 41、42 轮。下一个我方编号是第 31 轮。
 3. 主数据（其他框架、正式配置 `experiments/fm_injection/formal/`）的生成方案还没开始，等锚点定稿。
 
 ---
