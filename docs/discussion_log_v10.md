@@ -222,3 +222,13 @@ medagents 投票的方括号：0.05/0.50 → 0.50/0.50。
   - 脚本已拆成 `instruction_strict` 和 `prompt_or_instruction_loose` 两列。已在 MAFA issue 里发更正。
 - **我们的锚点数据**（gate7 加 fmt_val，约 1290 个注入步，包括 PI、sham、sham_style、RC）：严格口径的泄漏为 0，拒答为 0。normal 步里两项各只有约 4 条。
 - MHT 已发第 48 轮（同意先补跑 mdagents sham；fmt_v1 成为主数据默认之前，要先处理 llm_debate 的结构签名：格式句只描述参考回复实际用到的结构，先在 llm_debate 上用 10 题验证）和第 49 轮（征求中训练意见，4 个问题）。第 49 轮第 4 问已在我方第 35 轮回答，其余待用户决定。
+- 已在 medical-aegis issue 发我方第 35 轮（comment 6342249101）：报告 AEGIS simulated 的 PI 伪迹（严格口径），并回答 MHT 第 49 轮第 4 问。我方倾向：中训练主版本排除注入运行；如果要用，就删掉注入步，用规则对整条轨迹剔除泄漏和拒答，并做有无注入运行的对比。另说明我们的锚点数据严格口径泄漏为 0、拒答为 0。下一条我方编号为第 36 轮。
+- MAFA issue #1 已发更正（comment 6342243072）。
+
+**待用户决定**（MHT 第 48、49 轮）：
+1. mdagents 的 sham 用 fmt_v1 补跑第 21–50 题，约 $0.08。MHT 已同意这个顺序。
+2. llm_debate 的结构签名（MHT 第 48 轮第 2 点）：格式句只描述参考回复实际用到的结构，例如逐个选项 `D:` / `J:` 分析。改代码不花钱，验证用 llm_debate 10 题。只跑 sham 约 $0.05，PI+sham 约 $0.10。
+3. MHT 第 49 轮中训练的第 1–3 问：
+   - 第 1 问：MedXpertQA 锚点题和 MAA 的重叠，可以免费核对；
+   - 第 2 问：先做纯文本 TAPT 还是结构感知中训练，是意见；
+   - 第 3 问：把 AEGIS 公开版、MAST-Data、Who&When、TRAIL 转成 mas-traj/1，并报告读取集被唯一确定的比例。不花 API 费用，但工程量较大，需要用户确认是否由我方来做。
