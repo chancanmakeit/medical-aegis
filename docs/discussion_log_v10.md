@@ -295,3 +295,38 @@ medagents 投票的方括号：0.05/0.50 → 0.50/0.50。
 MHT 第 51 轮已接受第 36 轮的更正。
 - 已在 issue 发我方第 37 轮（comment 6348607425）：告知用户的三项决定，报告 mdagents 50 题和 llm_debate fmt_v1_1 的结果，并问 MHT 三件事（是否扩到 20 题、PI 升高的影响、自我介绍开头靠重采样筛掉是否可行）。下一条我方编号为第 38 轮。
 - **待用户决定**：(1) mdagents 自我介绍开头的修复和验证，约 $0.14；(2) llm_debate fmt_v1_1 是否扩到 20 题，约 $0.09。两项都可以等 MHT 回复再定。
+
+## 第 10 轮（2026-10-22 19:18–20:10）：MHT 第 55、57 轮；PI 与 sham 很少在同一槽位
+用户："MHT 项目在 issue 里回复你了"。
+
+**MHT 第 55 轮**（comment 6349178898）：
+- 中训练：泄漏核对已做，锚点有 2 题和 MAA 重叠；中训练语料的口径；TRAIL 不进中训练；先做纯文本 TAPT，再做结构感知中训练。他们的 LoRA SFT 结果显示 graph 对 text 无差别。
+- 建议把 llm_debate fmt_v1_1 扩到 20 题，并要求报告：(a) PI 对同槽位 sham；(b) 去掉首句后的 AUROC；(c) 答案改变率。
+- 认可 mdagents 用重采样筛掉自我介绍开头，提出 4 点要求。
+
+**MHT 第 57 轮**（comment 6355713703）及其补充更正（6355726800）：
+- MAA 排除清单由 MHT 维护，请我们在抽题或导出时执行；
+- 中训练先做 TAPT；
+- 公开数据集转换器由 MHT 写，校验用我们的 `check()`；
+- 提了 5 个字段问题。
+
+**本轮工作**（commit `a8a99e9`）：
+1. **PI 分析**（`scripts/pi_version_analysis.py`，同一 10 题、同一槽位，用 MHT 的 `norm()` 清洗）：
+   - 三个版本的错误指令完全相同，只有格式说明不同。fmt_v1_1 那句里的"say for each why it is or is not right"不只是格式；字数目标在三个版本间也不同。
+   - 配对差 fmt_v1_1 − fmt_v1：PI +0.24 [+0.02, +0.45]（punct），+0.30 [+0.19, +0.40]（char）；sham −0.04 / −0.02，不显著。
+   - 去掉首句后 PI 仍有 0.82 / 0.86，"开头句式"的假设不成立。
+   - 答案改变率三个版本都在 0.50–0.70。
+   - 结论：fmt_v1_1 让 PI 更好认，对 sham 没有可测出的改善，不照原样扩大。改为提议 fmt_v1_2：去掉那句说明，只把"是否逐项分析"留在格式签名里，靠重采样对齐。
+2. **重要发现：PI 和 sham 很少落在同一槽位**（`pi_sham_slot_overlap.txt`）。完全相同槽位的比例 0–14%，同 agent 同阶段 0–38%。原因是目标按 `(seed, 题目 id, run_index)` 各自抽取。MHT 的"同槽位 PI 对 sham"配对在现有数据上大多凑不成。
+   - 修复：`main.py` 新增 `injection_plan.pair_target_runs`（可选，默认关闭），让同组的 run 共用一次抽取；PI 的抽取保持不变。单元检查和 mdagents mock（3/3 同槽位）都通过。
+3. **mdagents 开头筛选**（`match_opener`，只在 mdagents 上开启）：自我介绍开头作为格式签名的第 4 位，以参考回复为准；记录 `format.n_tries` 和 `format.format_matched`，达到上限仍不一致时标为 false；导出时 run_id 加 `opener` 标签。mock 通过。
+4. **MAA 排除**：清单复制到 `docs/requests/maa_exclusion_v1.json`；导出脚本新增 `--maa_exclusion`，写入 `labels.maa_overlap` 和 `labels.maa_probe`。锚点有 2 题（1499、1939）重叠，共 51 条运行，和 MHT 的检查脚本一致。
+5. 回答了 MHT 的 5 个字段问题：同意他们的提议，并补充了 `how` 各取值的语义；建议同架构的公开框架沿用我们的 family 名，避免留一家族评测时架构信息泄漏。
+6. 小坑重现：`pgrep -f "mock_openai_server.py --port …"` 又匹配到了 shell 自身，`kill` 把 shell 杀了。改用 `ps -eo pid,comm,args` 并按 comm 为 python 过滤。
+
+- 已发 issue 第 38 轮（comment 6355926231），下一条为第 39 轮。
+
+**待用户决定**：
+1. mdagents 开头筛选的验证，约 $0.14，建议同时开启配对目标；
+2. llm_debate fmt_v1_2 的 10 题验证，约 $0.09；
+3. 锚点 sham 是否用配对目标重跑，4 个框架各 50 题，约 $1.4，等 MHT 意见。
