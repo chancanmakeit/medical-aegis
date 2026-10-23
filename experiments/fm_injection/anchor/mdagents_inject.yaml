@@ -83,3 +83,5 @@ pi_length_match:
   # format-matched note + markdown-aware try selection (fmt_v1, MedHyperTrace r43)
   state_format: true
   match_format: true
+  # role-introduction opener matched to the reference by resampling (v10 round 10, MHT r55)
+  match_opener: true

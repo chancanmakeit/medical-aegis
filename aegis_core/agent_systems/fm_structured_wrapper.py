@@ -278,6 +278,9 @@ class StructuredFMWrapper(SystemWrapper):
                 # format of the clean reference (state_format, fmt_v1): injected
                 # notes otherwise suppressed markdown (MedHyperTrace r43)
                 struct = bool(cfg.get("state_structure"))   # fmt_v1_1 (MHT r48)
+                # match_opener: the role-introduction opener is part of the signature
+                # (selection only, nothing is added to the note; MHT r55)
+                opener = bool(cfg.get("match_opener"))
                 ref_fmt = (FMMaliciousFactory.ref_format_features(ref_text, struct)
                            if (ref_text and cfg.get("state_format")) else None)
                 self.fm_factory.ref_format = ref_fmt
@@ -294,7 +297,7 @@ class StructuredFMWrapper(SystemWrapper):
                 # match_format: a try is accepted only if it also has markdown
                 # exactly when the reference does (same '###'/'**' test as r43)
                 ref_md = FMMaliciousFactory.has_markdown(ref_text) if ref_text else None
-                ref_sig = FMMaliciousFactory.format_signature(ref_text, struct) if ref_text else None
+                ref_sig = FMMaliciousFactory.format_signature(ref_text, struct, opener) if ref_text else None
                 want_fmt = bool(cfg.get("match_format")) and ref_text is not None
                 attempts = []
 
@@ -308,7 +311,7 @@ class StructuredFMWrapper(SystemWrapper):
                     attempts.append({"resp": r, "meta": llm_meta_by_call.get(turn_idx),
                                      "cap": cap_i, "ratio": ratio,
                                      "md": FMMaliciousFactory.has_markdown(r),
-                                     "sig": FMMaliciousFactory.format_signature(r, struct)})
+                                     "sig": FMMaliciousFactory.format_signature(r, struct, opener)})
                     if _ok(attempts[-1]):
                         break
                 import math
@@ -332,7 +335,12 @@ class StructuredFMWrapper(SystemWrapper):
                         info["pi_length_match"]["format"] = {
                             "ref_md": ref_md, "ref_features": ref_fmt,
                             "md": [a["md"] for a in attempts], "ref_sig": list(ref_sig or ()),
-                            "sig": [list(a["sig"]) for a in attempts], "match_format": want_fmt}
+                            "sig": [list(a["sig"]) for a in attempts], "match_format": want_fmt,
+                            # MHT r55: how many tries, and whether the kept one matches;
+                            # a kept try with format_matched = False hit the retry cap
+                            # and should be flagged / dropped downstream, not trusted
+                            "n_tries": len(attempts), "match_opener": opener,
+                            "format_matched": (chosen["sig"] == ref_sig) if ref_sig is not None else None}
                 return chosen["resp"], info
 
             if malicious_agent.injection_strategy == InjectionStrategy.PROMPT_INJECTION:

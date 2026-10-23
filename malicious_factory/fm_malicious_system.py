@@ -1021,14 +1021,26 @@ class FMMaliciousFactory:
             f["walkthrough_style"] = w["style"] if f["walkthrough"] else None
         return f
 
+    # "As a Clinical Pharmacologist ..., I have analyzed ..." -- a role introduction
+    # that fmt_v1 induced in 8-10% of mdagents sham replies (0.1% of normal ones);
+    # MAC / medagents normal replies open this way often, so it is matched to the
+    # reference, never forced to 0 (v10 round 9, MedHyperTrace r55)
+    _ROLE_INTRO_RE = re.compile(r"^\W*As (a|an|the)\b[^.\n]{0,120}?,\s*I (have|will|would|am|believe|'ve)\b")
+
     @classmethod
-    def format_signature(cls, text: Optional[str], structure: bool = False):
+    def role_intro(cls, text: Optional[str]) -> bool:
+        return bool(cls._ROLE_INTRO_RE.search((text or "").strip()))
+
+    @classmethod
+    def format_signature(cls, text: Optional[str], structure: bool = False, opener: bool = False):
         """What match_format compares: markdown ('###'/'**', the r43 test),
         list lines, a short bracketed answer; with structure=True also whether
-        the options are walked through one per line (fmt_v1_1)."""
+        the options are walked through one per line (fmt_v1_1); with opener=True
+        also whether the reply opens with a role introduction (match_opener)."""
         f = cls.ref_format_features(text, structure)
         sig = (cls.has_markdown(text), f["lists"], f["bracketed"])
-        return sig + ((f["walkthrough"],) if structure else ())
+        sig += (f["walkthrough"],) if structure else ()
+        return sig + ((cls.role_intro(text),) if opener else ())
 
     @staticmethod
     def has_markdown(text: Optional[str]) -> bool:

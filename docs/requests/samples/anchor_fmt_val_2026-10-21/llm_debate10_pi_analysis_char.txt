@@ -1,0 +1,29 @@
+features: char (normalised text)
+
+llm_debate @fmt_v1
+  pi_vs_normal             0.63 [0.52, 0.77]
+  pi_vs_normal_drop1       0.58 [0.42, 0.74]
+  pi_answer_change         0.50 (n=10)
+  sham_vs_normal           0.60 [0.44, 0.74]
+  sham_vs_normal_drop1     0.68 [0.49, 0.85]
+  sham_answer_change       0.40 (n=10)
+
+llm_debate @fmt_v1_1
+  pi_vs_normal             0.93 [0.84, 1.00]
+  pi_vs_normal_drop1       0.86 [0.75, 0.99]
+  pi_answer_change         0.60 (n=10)
+  sham_vs_normal           0.58 [0.39, 0.76]
+  sham_vs_normal_drop1     0.62 [0.42, 0.82]
+  sham_answer_change       0.30 (n=10)
+
+llm_debate @old
+  pi_vs_normal             0.82 [0.67, 0.96]
+  pi_vs_normal_drop1       0.81 [0.65, 0.95]
+  pi_answer_change         0.70 (n=10)
+  sham_vs_normal           0.39 [0.23, 0.52]
+  sham_vs_normal_drop1     0.39 [0.25, 0.50]
+  sham_answer_change       0.50 (n=10)
+
+paired difference fmt_v1_1 - fmt_v1 (bootstrap over questions, same resamples)
+  llm_debate   pi    +0.30 [+0.19, +0.40]  (questions=10)
+  llm_debate   sham  -0.02 [-0.24, +0.18]  (questions=10)

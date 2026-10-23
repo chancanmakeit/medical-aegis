@@ -36,7 +36,8 @@ OUT=$OUT SUFFIX=_shamstyle2 EXTRA="--num_runs 1 --run_index_start 3" bash script
 MiniLM 门槛需要先安装：`pip install --break-system-packages sentence-transformers`（约 2 分钟，会装 CPU 版 torch）。
 
 ```bash
-python3 scripts/export_schema_v1.py $OUT/*__normal.jsonl $OUT/*__inject*.jsonl --out $OUT/anchor_all.jsonl
+python3 scripts/export_schema_v1.py $OUT/*__normal.jsonl $OUT/*__inject*.jsonl --out $OUT/anchor_all.jsonl \
+    --maa_exclusion docs/requests/maa_exclusion_v1.json   # labels.maa_overlap (MHT r57): 2 anchor questions overlap MAA
 python3 scripts/build_anchor_gate_export.py $OUT/anchor_all.jsonl $OUT/gate_export.jsonl [--new_sham_style_only]
 python3 scripts/quality_gate.py $OUT/gate_export.jsonl                     # TF-IDF，约 5 分钟
 python3 scripts/quality_gate.py $OUT/gate_export.jsonl --features minilm  # MiniLM，2 核 CPU 上约 8 分钟，放后台跑

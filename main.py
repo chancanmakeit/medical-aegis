@@ -146,12 +146,24 @@ def sample_injection_target(plan: dict, sample_id, run_index) -> dict:
     """
     import hashlib
     import random as _random
-    h = hashlib.sha256(f"{plan.get('seed', 0)}|{sample_id}|{run_index}".encode()).hexdigest()
+    cycle = plan.get('strategy_cycle')
+    # pair_target_runs: [[1, 2, 3]] -> runs 1, 2 and 3 of a question (mod the cycle
+    # length) draw their target with the first index of the group, so the PI and
+    # its sham placebos hit the same (role, role_index, phase, round) slot and can
+    # be compared as matched pairs (v10 round 10: without it, PI and sham share a
+    # slot in only 0-14% of questions). Off by default: existing runs keep their
+    # draws. Only runs whose strategies allow the same target pool are paired.
+    draw_index = run_index
+    k = int(run_index) % len(cycle) if cycle else int(run_index)
+    for grp in plan.get('pair_target_runs') or []:
+        if k in grp:
+            draw_index = int(run_index) - k + min(grp)
+            break
+    h = hashlib.sha256(f"{plan.get('seed', 0)}|{sample_id}|{draw_index}".encode()).hexdigest()
     rng = _random.Random(int(h[:16], 16))
     # strategy_cycle: [response_corruption, prompt_injection] -> run_index 0 is RC,
     # 1 is PI, ... (MedHyperTrace r30: per question one RC and one PI run); the
     # target is then drawn only among targets that allow that strategy.
-    cycle = plan.get('strategy_cycle')
     want = cycle[int(run_index) % len(cycle)] if cycle else None
     # placebo injections: a PI with a no-error instruction ('sham'), or one
     # that also asks for the assertive register PIs induce ('sham_style')

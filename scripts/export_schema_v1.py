@@ -125,6 +125,8 @@ def _inject_signature(targets, history=None):
             extra.add(f"note={ip['note_version']}")
         if ((h.get("pi_length_match") or {}).get("format") or {}).get("match_format"):
             extra.add("fmtsel")              # tries also selected on markdown match
+        if ((h.get("pi_length_match") or {}).get("format") or {}).get("match_opener"):
+            extra.add("opener")              # role-intro opener in the signature (v10 r10)
     if extra:
         key.append(sorted(extra))
     return hashlib.md5(json.dumps(key, sort_keys=True).encode()).hexdigest()[:8]
@@ -395,6 +397,46 @@ def check(rec):
     return probs
 
 
+# ---- MedAgentAudit (MAA) exclusion (MedHyperTrace round 57) -------------------------------
+# MAA is MHT's zero-shot evaluation set; none of its questions may enter training data.
+# The list is maintained by MHT (MedHyperTrace-v2/docs/interfaces/maa_exclusion_v1.json, a
+# copy in docs/requests/). norm_stem and the probe rule are copied verbatim from
+# MedHyperTrace-v2/data_tools/maa_exclusion.py so both sides decide overlap the same way.
+_MAA_OPT = re.compile(r"\n\s*Options:|\nAnswer Choices|\n\s*\(?A[\).:]\s")
+
+
+def maa_norm_stem(q):
+    q = _MAA_OPT.split(q or "")[0]
+    return re.sub(r"[^a-z0-9]+", " ", q.lower()).strip()
+
+
+def load_maa_exclusion(path):
+    doc = json.load(open(path, encoding="utf-8"))
+    by_stem = defaultdict(list)
+    for e in doc["entries"]:
+        by_stem[e["norm_stem"]].append(e)
+    long = [e for e in doc["entries"] if len(e["norm_stem"]) >= 200]
+    return {"version": doc.get("version"), "by_stem": by_stem, "long": long,
+            "blob": "\n".join(e["norm_stem"] for e in long)}
+
+
+def maa_overlap(rec, ex):
+    """(exact question ids, probe-candidate question ids) for one exported record."""
+    task = rec.get("task") or {}
+    s = maa_norm_stem(task.get("query") or "")
+    ims = set(task.get("images") or [])
+    exact = sorted({e["question_id"] for e in ex["by_stem"].get(s, [])
+                    if not e["images"] or ims & set(e["images"])})
+    probe = []
+    if len(s) >= 200:
+        w = s[100:160]
+        if w in ex["blob"]:
+            probe = [e["question_id"] for e in ex["long"] if w in e["norm_stem"]]
+        else:
+            probe = [e["question_id"] for e in ex["long"] if e["norm_stem"][100:160] in s]
+    return exact, sorted(set(probe) - set(exact))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("inputs", nargs="+")
@@ -402,6 +444,9 @@ def main():
     ap.add_argument("--reasoning", choices=("omit", "keep"), default="omit")
     ap.add_argument("--registry", default=DEFAULT_REGISTRY)
     ap.add_argument("--strict", action="store_true", help="exit 1 if any record fails the checks")
+    ap.add_argument("--maa_exclusion", default=None,
+                    help="MAA exclusion list (docs/requests/maa_exclusion_v1.json): exact overlaps go to "
+                         "labels.maa_overlap, probe candidates to labels.maa_probe (manual review)")
     a = ap.parse_args()
 
     reg, alias = load_registry(a.registry)
@@ -431,6 +476,22 @@ def main():
             r["labels"]["paired_normal_run_ids"] = sorted(
                 normals.get((r["framework"], r["question_id"], r["model"].get("name")), []))
             r["labels"].update(injection_outcome(r, correct_by_id))
+
+    if a.maa_exclusion:
+        ex = load_maa_exclusion(a.maa_exclusion)
+        n_ex = n_pr = 0
+        qs_ex = set()
+        for r in records:
+            exact, probe = maa_overlap(r, ex)
+            r["labels"]["maa_overlap"] = exact          # [] = checked, no overlap
+            if probe:
+                r["labels"]["maa_probe"] = probe
+            r["provenance"]["maa_exclusion_version"] = ex["version"]
+            n_ex += bool(exact); n_pr += bool(probe)
+            if exact:
+                qs_ex.add(r["question_id"])
+        print(f"MAA exclusion ({ex['version']}): {n_ex} runs on {len(qs_ex)} overlapping questions "
+              f"{sorted(qs_ex)}; {n_pr} runs with probe candidates", file=sys.stderr)
 
     seen, n_bad = set(), 0
     for r in records:

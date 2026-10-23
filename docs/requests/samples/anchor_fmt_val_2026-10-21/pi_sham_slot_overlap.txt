@@ -1,0 +1,10 @@
+PI vs sham injection slot overlap per question (same note version; anchor data, v10 round 10)
+slot = (agent_id, phase, round, k-th occurrence)
+llm_debate     old     questions= 50  exact slot 0.14  same agent+phase 0.34
+llm_debate     fmt_v1  questions= 20  exact slot 0.00  same agent+phase 0.20
+mac_groupchat  old     questions= 45  exact slot 0.07  same agent+phase 0.38
+mac_groupchat  fmt_v1  questions= 19  exact slot 0.00  same agent+phase 0.37
+mdagents       old     questions= 50  exact slot 0.14  same agent+phase 0.14
+mdagents       fmt_v1  questions= 20  exact slot 0.00  same agent+phase 0.00
+medagents_mc   old     questions= 50  exact slot 0.12  same agent+phase 0.12
+medagents_mc   fmt_v1  questions= 20  exact slot 0.10  same agent+phase 0.10
