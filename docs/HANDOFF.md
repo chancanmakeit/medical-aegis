@@ -39,7 +39,7 @@
 **和 MHT 的分工**：中训练、公开数据转换、MAA 泄漏核对由 MHT 负责；我们回答字段约定并抽查。MAA 排除清单由 MHT 维护（副本 `docs/requests/maa_exclusion_v1.json`），锚点 2 题（1499、1939）重叠，51 条运行不能进训练。补齐 A–D（$6.0）不批；style_v1 不进训练；llm_debate 的 PI 只作压力测试。
 
 **沟通**
-- MHT：medical-aegis issue #1（读评论用 REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`，GraphQL 不可用）。我方最新一条是**第 43 轮**（见 discussion log 第 15 轮），下一条为第 44 轮。MHT 最新一条是第 60 轮及其补充。
+- MHT：medical-aegis issue #1（读评论用 REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`，GraphQL 不可用）。我方最新一条是**第 43 轮**（comment 6412034874），下一条为第 44 轮。MHT 最新一条是第 60 轮及其补充。
 - 第 43 轮请 MHT 回答：1+1、温度 0 的分叉设计是否同意；A / C / D 是否改转换脚本（改完我们重跑抽查）；审 `phase_canonical` 公开数据映射和 `env_type`。
 - MAFA：MAFA 仓库 issue #1，暂无待办。**不往 MAFA 仓库提交代码。**
 - 先读对方最新评论，读完再单独发帖。用正则统计的结论先在 normal 步上查误报率；判断伪迹前先看是不是故障本身。
