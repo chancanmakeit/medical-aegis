@@ -14,7 +14,6 @@
 - 成本：每百万条轨迹输出 token 约 $1.5–3.5；试点（llm_debate 和 mdagents 各 20 条）上限约 $2–3.5，**尚未批准**。
 - 第 59 轮的两项付费验证（fmt_v1_2 约 $0.09、mdagents 开头筛选约 $0.14）用户暂时按住。
 
-逐轮细节见 `docs/discussion_log_v10.md`（第 1–10 轮）。
 
 **锚点数据**（只用 llama-4-maverick；用户说明它就是 llama，不用再核实，`served_model` 只作元数据）
 - 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents。题目：`datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
