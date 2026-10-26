@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""Replay server: answers /v1/chat/completions from RECORDED runs (branching / counterfactual replay,
+v10 round 15). No network, no API cost.
+
+A request whose messages hash (sha1 of [(role, content)], the key of check_replay_cache_keys.py) equals the
+recorded `input_messages` of a step of the selected runs gets that step's recorded reply. Every other
+request is a MISS: it is answered by the offline mock (mock_openai_server.reply_for) so the framework can
+finish, and the miss is logged with a diagnosis -- the recorded step with the longest common message
+prefix, the first differing message and the first differing character.
+
+With --overrides the reply of chosen steps is replaced (a simulated branch at step t, no API): every
+later request that does not embed the new reply is still served from the record, so the misses count
+exactly the downstream calls a real branch would have to pay for.
+
+  python scripts/replay_openai_server.py --port 18090 --run_index 0 \
+      --results /home/claude/anchor_runs/mdagents__normal.jsonl --log /tmp/replay_calls.jsonl
+
+Identical keys inside the selected runs are served first-in-first-out.
+"""
+import argparse
+import hashlib
+import json
+import os
+import sys
+import threading
+import time
+from collections import defaultdict, deque
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from mock_openai_server import reply_for  # noqa: E402
+
+LOCK = threading.Lock()
+
+
+def norm_msgs(msgs):
+    return [(m.get("role"), m.get("content")) for m in msgs]
+
+
+def key(msgs):
+    return hashlib.sha1(json.dumps(norm_msgs(msgs), ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+
+
+class Cache:
+    def __init__(self, files, run_index, ids=None, overrides=None):
+        self.q = defaultdict(deque)           # key -> deque of (reply, meta)
+        self.steps = []                       # (qid, step_id, agent, phase, msgs) for miss diagnosis
+        self.n_steps = 0
+        for f in files:
+            for line in open(f, encoding="utf-8"):
+                r = json.loads(line)
+                if int(r.get("run_index", 0)) != run_index or (ids and r["id"] not in ids):
+                    continue
+                for s in r["injection_log"]["conversation_history"]:
+                    msgs = s.get("input_messages")
+                    if not isinstance(msgs, list):
+                        continue
+                    reply = s.get("response") if s.get("response") is not None else s.get("content")
+                    meta = {"qid": r["id"], "step_id": s.get("step_id"), "agent": s.get("agent_name"), "phase": s.get("phase")}
+                    if overrides and (r["id"], s.get("step_id")) in overrides:   # branch point: serve a different reply
+                        reply = overrides[(r["id"], s.get("step_id"))]
+                        meta["override"] = True
+                    self.q[key(msgs)].append((reply, meta))
+                    self.steps.append((meta, norm_msgs(msgs)))
+                    self.n_steps += 1
+
+    def take(self, msgs):
+        k = key(msgs)
+        with LOCK:
+            d = self.q.get(k)
+            if d:
+                return d.popleft()
+        return None
+
+    def diagnose(self, msgs):
+        req = norm_msgs(msgs)
+        best = None
+        for meta, rec in self.steps:
+            n = 0
+            for a, b in zip(req, rec):
+                if a != b:
+                    break
+                n += 1
+            # tie-break on how far the first differing message agrees
+            cpos = 0
+            if n < min(len(req), len(rec)):
+                a, b = str(req[n][1]), str(rec[n][1])
+                while cpos < min(len(a), len(b)) and a[cpos] == b[cpos]:
+                    cpos += 1
+            score = (n, cpos)
+            if best is None or score > best[0]:
+                best = (score, meta, rec)
+        if best is None:
+            return {"nearest": None}
+        (n, cpos), meta, rec = best
+        out = {"nearest": meta, "req_msgs": len(req), "rec_msgs": len(rec), "common_prefix_msgs": n}
+        if n < min(len(req), len(rec)):
+            a, b = str(req[n][1]), str(rec[n][1])
+            out.update(first_diff_msg=n, role=req[n][0], diff_char=cpos,
+                       req_snip=a[max(0, cpos - 60):cpos + 120], rec_snip=b[max(0, cpos - 60):cpos + 120],
+                       req_len=len(a), rec_len=len(b))
+        elif len(req) != len(rec):
+            out.update(first_diff_msg=n, note="one is a prefix of the other")
+        else:
+            out.update(note="identical messages but recorded reply already consumed (more identical calls than recorded)")
+        return out
+
+
+def make_handler(cache, log_path):
+    class H(BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def do_POST(self):
+            body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
+            msgs = body.get("messages", [])
+            got = cache.take(msgs)
+            if got is not None:
+                text, meta = got
+                rec = {"hit": True, "key": key(msgs), **meta}
+            else:
+                text = reply_for(msgs) or "OK."
+                rec = {"hit": False, "key": key(msgs), "diag": cache.diagnose(msgs)}
+            rec["t"] = time.time()
+            with LOCK, open(log_path, "a", encoding="utf-8") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            resp = {"id": "replay", "object": "chat.completion", "created": int(time.time()), "model": body.get("model", "replay"),
+                    "choices": [{"index": 0, "message": {"role": "assistant", "content": text}, "finish_reason": "stop"}],
+                    "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}}
+            data = json.dumps(resp).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+
+    return H
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--port", type=int, default=18090)
+    ap.add_argument("--results", nargs="+", required=True)
+    ap.add_argument("--run_index", type=int, default=0)
+    ap.add_argument("--ids", default=None, help="comma-separated question ids to load (default all)")
+    ap.add_argument("--log", required=True)
+    ap.add_argument("--overrides", default=None,
+                    help="JSONL of {qid, step_id, text}: serve `text` instead of the recorded reply at that step "
+                         "(simulated branch; later requests that embed it then miss)")
+    a = ap.parse_args()
+    ov = None
+    if a.overrides:
+        ov = {(o["qid"], o["step_id"]): o["text"] for o in map(json.loads, open(a.overrides)) }
+    cache = Cache(a.results, a.run_index, set(a.ids.split(",")) if a.ids else None, ov)
+    print(f"replay cache: {cache.n_steps} recorded steps, {len(cache.q)} distinct keys", flush=True)
+    ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(cache, a.log)).serve_forever()
+
+
+if __name__ == "__main__":
+    main()

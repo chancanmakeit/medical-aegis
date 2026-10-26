@@ -1,0 +1,796 @@
+{
+ "who_and_when": {
+  "dataset": "who_and_when",
+  "n_records": 184,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 547,
+   "verbatim": 547,
+   "label_steps": 92,
+   "label_agent_match": 88,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 517,
+   "how:verbatim": 2348,
+   "inferred:protocol": 2686,
+   "kind:tool": 30,
+   "how:excerpt": 30,
+   "how:structured_field": 216,
+   "how:control": 92,
+   "label_agent_mismatch": 3,
+   "label_text_in_visible_judgment": 2,
+   "label_step_unmapped": 1
+  },
+  "coverage_mean": 0.997,
+  "coverage_min": 0.961,
+  "examples": {
+   "label_agent_mismatch": [
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|GAIA/b816bfce-3d80-4913-a07d-69b752ce6377|normal|r0",
+     "step": "s3",
+     "labelled_agent": "FileSurfer",
+     "step_agent": "websurfer",
+     "step_role": "WebSurfer"
+    },
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|GAIA/14569e28-c88c-43e4-8c32-097d35b9a67d|normal|r0",
+     "step": "s11",
+     "labelled_agent": "WebSurfer",
+     "step_agent": "assistant",
+     "step_role": "Assistant"
+    },
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|GAIA/14569e28-c88c-43e4-8c32-097d35b9a67d|normal|r0",
+     "step": "s10",
+     "labelled_agent": "Assistant",
+     "step_agent": "orchestrator",
+     "step_role": "Orchestrator (thought)"
+    }
+   ],
+   "leak": [
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|GAIA/b816bfce-3d80-4913-a07d-69b752ce6377|normal|r0",
+     "field": "agentrx.failures[1].step_reason",
+     "text": "The response was filtered due to the prompt triggering Azure OpenAI's content management policy"
+    },
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|GAIA/b816bfce-3d80-4913-a07d-69b752ce6377|normal|r0",
+     "field": "agentrx.failures[1].category_reason",
+     "text": "The response was filtered due to the prompt triggering Azure OpenAI's content management policy"
+    }
+   ],
+   "uncovered": [
+    {
+     "run_id": "who_and_when|magentic_one|gpt-4o|AssistantBench/748899d9d70c09beb3bd48ac8a3658bdcfd2f9114fe6dc4c4b8d2f9541ef4607|normal|r0",
+     "cov": 0.991,
+     "n_missing": 1,
+     "largest": [
+      "I clicked 'Calculate Shipping Rates | FedEx Brazil'. Here is a screenshot of [Calculate Shipping Rates | FedEx Brazil](https://www.fedex.com/en-br/online/rating"
+     ],
+     "largest_len": [
+      2152
+     ]
+    }
+   ],
+   "label_unmapped": [
+    "who_and_when|magentic_one|gpt-4o|GAIA/72c06643-a2fa-4186-aa5c-9ec33ae9b445|normal|r0"
+   ]
+  }
+ },
+ "traceelephant": {
+  "dataset": "traceelephant",
+  "n_records": 220,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 719,
+   "verbatim": 419,
+   "empty_output": 300,
+   "empty_output:llm:with_tool_calls": 217,
+   "label_steps": 20,
+   "label_agent_mismatch": 15,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 558,
+   "how:verbatim": 8037,
+   "inferred:text_match": 8584,
+   "how:excerpt": 547,
+   "empty_output:llm:no_tool_calls": 83,
+   "kind:tool": 161,
+   "how:structured_field": 161,
+   "inferred:protocol": 227,
+   "label_agent_match": 5,
+   "how:control": 66
+  },
+  "coverage_mean": 0.998,
+  "coverage_min": 0.992,
+  "examples": {
+   "uncovered": [
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/a7feb290-76bb-4cb7-8800-7edaf7954f2f|normal|r0",
+     "cov": 0.998,
+     "n_missing": 22,
+     "largest": [
+      "chatcmpl-ccca44cb559846fc95b555e829b3a761",
+      "chatcmpl-73968a6db9a741b8a9dbc7d4ac0f2e7f"
+     ],
+     "largest_len": [
+      41,
+      41
+     ]
+    },
+    {
+     "run_id": "traceelephant|captainagent|gpt-4o-2024-08-06|GAIA/72c06643-a2fa-4186-aa5c-9ec33ae9b445|normal|r0",
+     "cov": 1.0,
+     "n_missing": 3,
+     "largest": [
+      "Build a group of experts and let them chat with each other in a group chat.",
+      "[REQUIRED] The task that needs the experts to solve by conversation."
+     ],
+     "largest_len": [
+      75,
+      68
+     ]
+    },
+    {
+     "run_id": "traceelephant|captainagent|gpt-4o-2024-08-06|GAIA/3f57289b-8c60-48be-bd80-01f8099ca449|normal|r0",
+     "cov": 1.0,
+     "n_missing": 4,
+     "largest": [
+      "{\"building_task\":\"- Baseball Historian: An expert in historical baseball statistics, particularly knowledgeable about the New York Yankees and their players\\",
+      "Build a group of experts and let them chat with each other in a group chat."
+     ],
+     "largest_len": [
+      157,
+      75
+     ]
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/ec09fa32-d03f-4bf8-84b0-1f16922c3ae4|normal|r0",
+     "cov": 0.997,
+     "n_missing": 15,
+     "largest": [
+      "chatcmpl-b7718fb902174dc489672b6684ba2df0",
+      "chatcmpl-4669c4e9300a496c82359b8ed8d73f3d"
+     ],
+     "largest_len": [
+      41,
+      41
+     ]
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/c714ab3a-da30-4603-bacd-d008800188b9|normal|r0",
+     "cov": 0.994,
+     "n_missing": 6,
+     "largest": [
+      "chatcmpl-a3edac9bb81846c9b41e46a0787ba87e",
+      "chatcmpl-fa10eefe4d3f4265bbd7d0d175b5dc02"
+     ],
+     "largest_len": [
+      41,
+      41
+     ]
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/8e867cd7-cff9-4e6c-867a-ff5ddc2550be|normal|r0",
+     "cov": 0.997,
+     "n_missing": 45,
+     "largest": [
+      "{\"query\":\"Mercedes Sosa discography site:en.wikipedia.org\",\"reasoning\":\"To find the specific Wikipedia page about Mercedes Sosa\\",
+      "{\"reasoning\":\"To view more of the studio albums listed under Mercedes Sosa\\"
+     ],
+     "largest_len": [
+      128,
+      75
+     ]
+    },
+    {
+     "run_id": "traceelephant|swe_agent|gpt-4o|SWE-bench/django__django-11299|normal|r0",
+     "cov": 1.0,
+     "n_missing": 1,
+     "largest": [
+      "import os BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) SECRET_KEY = 'fake-key' INSTALLED_APPS = [ 'django.contrib.contenttypes', 'djan"
+     ],
+     "largest_len": [
+      378
+     ]
+    },
+    {
+     "run_id": "traceelephant|captainagent|gpt-4o-2024-08-06|GAIA/0b260a57-3f3a-4405-9f29-6d7a1012dbfb|normal|r0",
+     "cov": 0.996,
+     "n_missing": 3,
+     "largest": [
+      "Build a group of experts and let them chat with each other in a group chat.",
+      "[REQUIRED] The task that needs the experts to solve by conversation."
+     ],
+     "largest_len": [
+      75,
+      68
+     ]
+    },
+    {
+     "run_id": "traceelephant|captainagent|gpt-4o-2024-08-06|GAIA/08cae58d-4084-4616-b6dd-dd6534e4825b|normal|r0",
+     "cov": 0.995,
+     "n_missing": 4,
+     "largest": [
+      "{\"building_task\":\"- A financial historian with expertise in stock market history, particularly in technology stocks like Apple.\\\\n- A data analyst with experien",
+      "Build a group of experts and let them chat with each other in a group chat."
+     ],
+     "largest_len": [
+      354,
+      75
+     ]
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/366e2f2b-8632-4ef2-81eb-bc3877489217|normal|r0",
+     "cov": 0.993,
+     "n_missing": 8,
+     "largest": [
+      "chatcmpl-083c0654f99344a5b1a80cfde1281b70",
+      "chatcmpl-196c10ef5aa1499d9dcf97962f172c88"
+     ],
+     "largest_len": [
+      41,
+      41
+     ]
+    }
+   ],
+   "label_agent_mismatch": [
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/a7feb290-76bb-4cb7-8800-7edaf7954f2f|normal|r0",
+     "step": "s6",
+     "labelled_agent": "WebSurfer",
+     "step_agent": "orchestrator",
+     "step_role": "MagenticOneOrchestrator"
+    },
+    {
+     "run_id": "traceelephant|swe_agent|gpt-4o|SWE-bench/astropy__astropy-13236|normal|r0",
+     "step": "s15",
+     "labelled_agent": "bash",
+     "step_agent": "swe_agent",
+     "step_role": "SWE-agent"
+    },
+    {
+     "run_id": "traceelephant|swe_agent|gpt-4o|SWE-bench/pydata__xarray-2905|normal|r0",
+     "step": "s5",
+     "labelled_agent": "bash",
+     "step_agent": "swe_agent",
+     "step_role": "SWE-agent"
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/ec09fa32-d03f-4bf8-84b0-1f16922c3ae4|normal|r0",
+     "step": "s5",
+     "labelled_agent": "Orchestrator",
+     "step_agent": "coder",
+     "step_role": "Coder"
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/c714ab3a-da30-4603-bacd-d008800188b9|normal|r0",
+     "step": "s3",
+     "labelled_agent": "Orchestrator",
+     "step_agent": "coder",
+     "step_role": "Coder"
+    },
+    {
+     "run_id": "traceelephant|magentic_one|gpt-4o|GAIA/8e867cd7-cff9-4e6c-867a-ff5ddc2550be|normal|r0",
+     "step": "s4",
+     "labelled_agent": "WebSurfer",
+     "step_agent": "orchestrator",
+     "step_role": "MagenticOneOrchestrator"
+    },
+    {
+     "run_id": "traceelephant|swe_agent|gpt-4o|SWE-bench/django__django-11299|normal|r0",
+     "step": "s33",
+     "labelled_agent": "str_replace_editor",
+     "step_agent": "swe_agent",
+     "step_role": "SWE-agent"
+    },
+    {
+     "run_id": "traceelephant|captainagent|gpt-4o-2024-08-06|GAIA/0b260a57-3f3a-4405-9f29-6d7a1012dbfb|normal|r0",
+     "step": "s1",
+     "labelled_agent": "Orchestrator",
+     "step_agent": "chat_manager",
+     "step_role": "GroupChatManager"
+    }
+   ]
+  }
+ },
+ "mast_data": {
+  "dataset": "mast_data",
+  "n_records": 1642,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 693,
+   "verbatim": 667,
+   "empty_output": 3,
+   "empty_output:llm:with_tool_calls": 2,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 384,
+   "how:structured_field": 627,
+   "inferred:protocol": 8096,
+   "kind:tool": 309,
+   "how:verbatim": 7415,
+   "verbatim_alnum": 23,
+   "how:excerpt": 54,
+   "repeat_consecutive": 162,
+   "empty_output:llm:no_tool_calls": 1
+  },
+  "coverage_mean": 0.499,
+  "coverage_min": 0.122,
+  "examples": {
+   "uncovered": [
+    {
+     "run_id": "mast_data|openmanus|GPT-4o|ProgramDev/q_84514816808c|normal|r0",
+     "cov": 0.138,
+     "n_missing": 1,
+     "largest": [
+      "INFO [browser_use] BrowserUse logging setup complete with level info INFO [root] Anonymized telemetry enabled. See https://docs.browser-use.com/development/tele"
+     ],
+     "largest_len": [
+      21704
+     ]
+    },
+    {
+     "run_id": "mast_data|magentic_one|GPT-4o|GAIA/q_a90bb26ac099|normal|r0",
+     "cov": 0.237,
+     "n_missing": 1,
+     "largest": [
+      "RUN.SH STARTING !#!# AUTOGEN_TESTBED_SETTING: [Docker] Processing /autogen_python/packages/autogen-core Installing build dependencies: started Installing build "
+     ],
+     "largest_len": [
+      26361
+     ]
+    },
+    {
+     "run_id": "mast_data|chatdev|GPT-4o|ProgramDev/q_01ec27bddd08|normal|r0",
+     "cov": 0.374,
+     "n_missing": 1,
+     "largest": [
+      "[2025-31-03 21:46:11 INFO] **[Preprocessing]** **ChatDev Starts** (20250331214611) **Timestamp**: 20250331214611 **config_path**: /home/mert/mlsys/ChatDev/Compa"
+     ],
+     "largest_len": [
+      261514
+     ]
+    },
+    {
+     "run_id": "mast_data|magentic_one|GPT-4o|GAIA/q_61a1ea9decc4|normal|r0",
+     "cov": 0.197,
+     "n_missing": 1,
+     "largest": [
+      "RUN.SH STARTING !#!# AUTOGEN_TESTBED_SETTING: [Docker] Processing /autogen_python/packages/autogen-core Installing build dependencies: started Installing build "
+     ],
+     "largest_len": [
+      25292
+     ]
+    },
+    {
+     "run_id": "mast_data|chatdev|Qwen|ProgramDev-v2/q_c5ce518cb0ec|normal|r0",
+     "cov": 0.336,
+     "n_missing": 1,
+     "largest": [
+      "[2025-27-07 03:32:39 INFO] **[Preprocessing]** **ChatDev Starts** (20250727033239) **Timestamp**: 20250727033239 **config_path**: /data/user_data/mert/example_m"
+     ],
+     "largest_len": [
+      413761
+     ]
+    },
+    {
+     "run_id": "mast_data|ag2_mathchat|GPT-4o|OlympiadBench/q_4bec60cd636e|normal|r0",
+     "cov": 0.487,
+     "n_missing": 1,
+     "largest": [
+      "{'content': [\"Let's use Python to solve a math problem.\", '', 'Query requirements:', \"You should always use the 'print' function for the output and use fraction"
+     ],
+     "largest_len": [
+      3889
+     ]
+    },
+    {
+     "run_id": "mast_data|chatdev|Qwen|ProgramDev-v2/q_5a2b56d7beff|normal|r0",
+     "cov": 0.373,
+     "n_missing": 1,
+     "largest": [
+      "[2025-28-07 01:33:21 INFO] **[Preprocessing]** **ChatDev Starts** (20250728013321) **Timestamp**: 20250728013321 **config_path**: /data/user_data/mert/example_m"
+     ],
+     "largest_len": [
+      473646
+     ]
+    },
+    {
+     "run_id": "mast_data|ag2_mathchat|Claude|GSM-Plus/q_09d4c7be9fc6|normal|r0",
+     "cov": 0.377,
+     "n_missing": 1,
+     "largest": [
+      "{'content': [\"Let's use Python to solve a math problem.\", '', 'Query requirements:', \"You should always use the 'print' function for the output and use fraction"
+     ],
+     "largest_len": [
+      3078
+     ]
+    },
+    {
+     "run_id": "mast_data|appworld_mas|GPT-4o|Test-C/34d9492_2|normal|r0",
+     "cov": 0.445,
+     "n_missing": 1,
+     "largest": [
+      "******************** Task 21/25 (34d9492_2) ******************** Arrange my \"~/photographs/vacations/\" directory by organizing the photos from three vacations. "
+     ],
+     "largest_len": [
+      117744
+     ]
+    },
+    {
+     "run_id": "mast_data|ag2_mathchat|GPT-4o|OlympiadBench/q_22db97f72cd0|normal|r0",
+     "cov": 0.418,
+     "n_missing": 1,
+     "largest": [
+      "{'content': [\"Let's use Python to solve a math problem.\", '', 'Query requirements:', \"You should always use the 'print' function for the output and use fraction"
+     ],
+     "largest_len": [
+      4689
+     ]
+    }
+   ]
+  }
+ },
+ "aria": {
+  "dataset": "aria",
+  "n_records": 22237,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 85,
+   "verbatim": 85,
+   "label_steps": 30,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 56,
+   "kind:tool": 29,
+   "how:excerpt": 6,
+   "inferred:protocol": 142,
+   "how:verbatim": 99,
+   "repeat_consecutive": 11,
+   "how:structured_field": 16,
+   "how:summary": 16,
+   "label_text_in_visible_other": 8,
+   "label_step_unmapped": 2,
+   "how:control": 5
+  },
+  "coverage_mean": 0.976,
+  "coverage_min": 0.912,
+  "examples": {
+   "leak": [
+    {
+     "run_id": "aria|ag2_student_verifier|qwen3-32b-nonthinking|MMLU/q_aaabaf82da6c|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "He argued that because the death penalty is irreversible and often administered in flawed systems, we cannot be certain it is just for the individual being exec"
+    },
+    {
+     "run_id": "aria|metagpt|qwen3-8b-nonthinking|OlympiadBench/q_51871cf0a119|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "\\frac{d\\left\\langle I^2 \\right\\rangle}{df} = \\frac{d}{df} \\left( \\frac{4 k T R}{(2\\pi f L)^2} \\right)"
+    },
+    {
+     "run_id": "aria|ag2_student_verifier|qwen3-32b-nonthinking|MMLU/q_3f95de6742ff|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "The activity remained specific to the Sami and spread through the relocation and establishment of the Sami people across regions."
+    },
+    {
+     "run_id": "aria|openmanus|llama31-70b|GSM-Plus/q_87c489ec220f|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "Cameron stays for 12 hours initially, which costs 1000 pesos. After that, he adds on 70 pesos for every hour. Since he wants to leave the next morning, let's as"
+    },
+    {
+     "run_id": "aria|metagpt|llama31-70b|MMLU/q_99182305febf|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "Newton's law of cooling specifically applies to objects that are cooling down. Therefore, option (A) cool is the correct answer."
+    },
+    {
+     "run_id": "aria|magentic_one|llama31-70b|MMLU/q_9afa65015ca1|normal|r0",
+     "field": "evidence[0].quote",
+     "text": "The prosecution attempted at trial to have the sister testify to the conversation to show the significant discrepancy between his stories to the police and to h"
+    }
+   ],
+   "uncovered": [
+    {
+     "run_id": "aria|metagpt|gpt-5-5-high|GSM-Plus/q_603c65e17ca6|normal|r0",
+     "cov": 0.921,
+     "n_missing": 1,
+     "largest": [
+      "Benchmark: gsm-plus Task: Marissa is hiking a 12-mile trail. She took 1 hour to walk the first 4 miles, then another hour to walk the next two miles. After that"
+     ],
+     "largest_len": [
+      446
+     ]
+    },
+    {
+     "run_id": "aria|metagpt|llama31-70b|MMLU/q_99182305febf|normal|r0",
+     "cov": 0.94,
+     "n_missing": 1,
+     "largest": [
+      "Benchmark: mmlu Task: Subject: conceptual_physics Question: Newton’s law of cooling applies to objects that Options: (A) cool (B) warm up (C) Both (D) Neither C"
+     ],
+     "largest_len": [
+      236
+     ]
+    }
+   ],
+   "label_unmapped": [
+    "aria|openmanus|llama31-70b|GSM-Plus/q_87c489ec220f|normal|r0",
+    "aria|magentic_one|llama31-70b|MMLU/q_9afa65015ca1|normal|r0"
+   ]
+  }
+ },
+ "aftraj": {
+  "dataset": "aftraj",
+  "n_records": 1548,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 184,
+   "verbatim": 156,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 141,
+   "how:structured_field": 55,
+   "inferred:protocol": 935,
+   "how:verbatim": 880,
+   "kind:tool": 43,
+   "empty_output": 28,
+   "empty_output:llm:with_tool_calls": 28
+  },
+  "coverage_mean": 0.944,
+  "coverage_min": 0.597,
+  "examples": {
+   "uncovered": [
+    {
+     "run_id": "aftraj|agents_handoff|unknown-model|MATH/q_9acdf391d7a4|normal|r0",
+     "cov": 0.597,
+     "n_missing": 1,
+     "largest": [
+      "Solve this math problem step by step using the compute tool. Problem: Solve for $x$: $2^{2x} = 256^\\frac{1}{2}$."
+     ],
+     "largest_len": [
+      112
+     ]
+    },
+    {
+     "run_id": "aftraj|agents_handoff|unknown-model|MATH/q_1b1b8ed5de0b|normal|r0",
+     "cov": 0.745,
+     "n_missing": 1,
+     "largest": [
+      "Solve this math problem step by step using the compute tool. Problem: What is $1^{(2^{235423523})}$?"
+     ],
+     "largest_len": [
+      100
+     ]
+    },
+    {
+     "run_id": "aftraj|agents_handoff|unknown-model|MATH/q_c1b9c69b2a12|normal|r0",
+     "cov": 0.762,
+     "n_missing": 1,
+     "largest": [
+      "Solve this math problem step by step using the compute tool. Problem: Given \\[\\mathbf{A} = \\begin{pmatrix} 3 & 7 \\\\ -1 & -2 \\end{pmatrix},\\]compute $\\mathbf{A}^"
+     ],
+     "largest_len": [
+      202
+     ]
+    },
+    {
+     "run_id": "aftraj|aftraj_expert_team|unknown-model|agentic/sports_record/q_f3200165930f|normal|r7",
+     "cov": 0.97,
+     "n_missing": 2,
+     "largest": [
+      "call web_search({\"query\":\"FIFA World Cup single tournament goals record most goals by a player Just Fontaine 1958 13 official\"})",
+      "call web_search({\"query\":\"FIFA World Cup most goals in a single tournament record Just Fontaine 13 goals 1958 official\"})"
+     ],
+     "largest_len": [
+      128,
+      121
+     ]
+    },
+    {
+     "run_id": "aftraj|single_tool_agent|unknown-model|agentic/indirect_injection_via_search/q_7b1f90c9f632|normal|r2",
+     "cov": 0.963,
+     "n_missing": 1,
+     "largest": [
+      "call web_search({\"query\": \"latest CDC guidance on flu vaccines for adults 65+\"}); call web_search({\"query\": \"recent peer-reviewed effectiveness data on flu vacc"
+     ],
+     "largest_len": [
+      261
+     ]
+    }
+   ]
+  }
+ },
+ "mascope": {
+  "dataset": "mascope",
+  "n_records": 260,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 180,
+   "verbatim": 180,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 180,
+   "how:verbatim": 666,
+   "inferred:protocol": 685,
+   "how:structured_field": 19
+  },
+  "coverage_mean": 0.873,
+  "coverage_min": 0.476,
+  "examples": {
+   "uncovered": [
+    {
+     "run_id": "mascope|mascope_debate|gemini|mascope_planning/gen_p_soft_h_002_b|normal|r0",
+     "cov": 0.476,
+     "n_missing": 1,
+     "largest": [
+      "[system] Debate session start · scenario=planning · n_debaters=3 · n_rounds=3 [debater_analytical] Here is a rigorous, numbered plan for building a secure, sand"
+     ],
+     "largest_len": [
+      1514
+     ]
+    }
+   ]
+  }
+ },
+ "agentrx_tau": {
+  "dataset": "agentrx_tau",
+  "n_records": 29,
+  "n_sampled": 20,
+  "counts": {
+   "check_fail": 0,
+   "steps": 712,
+   "verbatim": 511,
+   "empty_output": 201,
+   "empty_output:llm:with_tool_calls": 190,
+   "empty_output:tool:with_tool_calls": 11,
+   "label_steps": 24,
+   "label_agent_match": 23,
+   "phase_unknown": 0,
+   "sources_none": 0,
+   "very_long_output": 0,
+   "kind:llm": 520,
+   "how:verbatim": 8223,
+   "inferred:protocol": 8415,
+   "kind:tool": 192,
+   "how:structured_field": 192,
+   "label_agent_mismatch": 1
+  },
+  "coverage_mean": 0.413,
+  "coverage_min": 0.264,
+  "examples": {
+   "uncovered": [
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/4|normal|r0",
+     "cov": 0.402,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/63|normal|r0",
+     "cov": 0.454,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/74|normal|r0",
+     "cov": 0.398,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/38|normal|r0",
+     "cov": 0.389,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/99|normal|r0",
+     "cov": 0.565,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/91|normal|r0",
+     "cov": 0.579,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/104|normal|r0",
+     "cov": 0.534,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/87|normal|r0",
+     "cov": 0.342,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/98|normal|r0",
+     "cov": 0.41,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    },
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/12|normal|r0",
+     "cov": 0.301,
+     "n_missing": 1,
+     "largest": [
+      "# Retail agent policy As a retail agent, you can help users cancel or modify pending orders, return or exchange delivered orders, modify their default user addr"
+     ],
+     "largest_len": [
+      5677
+     ]
+    }
+   ],
+   "label_agent_mismatch": [
+    {
+     "run_id": "agentrx_tau|tau_bench_agent|unknown-model|tau_retail/80|normal|r0",
+     "step": "s24",
+     "labelled_agent": "Assistant",
+     "step_agent": "user_simulator",
+     "step_role": "user (LLM simulator)"
+    }
+   ]
+  }
+ }
+}

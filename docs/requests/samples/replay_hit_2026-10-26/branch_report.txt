@@ -1,0 +1,11 @@
+Simulated branch at one random step t per run (run_index 0, 100 runs/framework); reply at t replaced, no API.
+llm_debate     prefix served from record 288/288 | downstream recorded steps still served (do not read step t) 87/312 = 0.28 | calls a full rerun would pay 700 -> paid after branch (misses, mock-continued) 225 = 0.32
+mac_groupchat  prefix served from record 534/534 | downstream recorded steps still served (do not read step t) 288/478 = 0.60 | calls a full rerun would pay 1112 -> paid after branch (misses, mock-continued) 389 = 0.35
+mdagents       prefix served from record 308/308 | downstream recorded steps still served (do not read step t) 216/292 = 0.74 | calls a full rerun would pay 700 -> paid after branch (misses, mock-continued) 76 = 0.11
+medagents_mc   prefix served from record 1036/1036 | downstream recorded steps still served (do not read step t) 368/771 = 0.48 | calls a full rerun would pay 1907 -> paid after branch (misses, mock-continued) 434 = 0.23
+
+Token-weighted cost (llama-4-maverick list price $0.27/$0.85 per 1M; recorded usage):
+llm_debate     full run $0.0046 | branch (new step t + dependent downstream) $0.0025 = 0.54 run | control (dependent downstream only) $0.0018 | 1 branch + 1 control per point $0.0043
+mac_groupchat  full run $0.0096 | branch (new step t + dependent downstream) $0.0027 = 0.28 run | control (dependent downstream only) $0.0018 | 1 branch + 1 control per point $0.0046
+mdagents       full run $0.0024 | branch (new step t + dependent downstream) $0.0008 = 0.35 run | control (dependent downstream only) $0.0005 | 1 branch + 1 control per point $0.0013
+medagents_mc   full run $0.0117 | branch (new step t + dependent downstream) $0.0030 = 0.26 run | control (dependent downstream only) $0.0023 | 1 branch + 1 control per point $0.0054

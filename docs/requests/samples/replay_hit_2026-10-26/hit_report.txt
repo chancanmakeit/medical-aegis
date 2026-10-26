@@ -1,0 +1,25 @@
+== llm_debate run_index=0: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== llm_debate run_index=1: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== llm_debate run_index=2: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mac_groupchat run_index=0: requests=1112 hits=1112 (1.000) misses=0 recorded_steps=1112 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mac_groupchat run_index=1: requests=1152 hits=1152 (1.000) misses=0 recorded_steps=1152 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mac_groupchat run_index=2: requests=1181 hits=1181 (1.000) misses=0 recorded_steps=1181 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mdagents run_index=0: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mdagents run_index=1: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== mdagents run_index=2: requests=700 hits=700 (1.000) misses=0 recorded_steps=700 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== medagents_mc run_index=0: requests=1907 hits=1907 (1.000) misses=0 recorded_steps=1907 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== medagents_mc run_index=1: requests=1887 hits=1887 (1.000) misses=0 recorded_steps=1887 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+== medagents_mc run_index=2: requests=1940 hits=1940 (1.000) misses=0 recorded_steps=1940 recorded_unused=0
+   runs=100 runs_with_miss=0 same_final_answer=100/100 identical_step_outputs=100/100
+TOTAL requests=13379 hits=13379 (1.0000)

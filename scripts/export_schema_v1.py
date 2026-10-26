@@ -365,12 +365,33 @@ LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
               "pi_length_match", "length_ref_llm_meta", "sham"}
 
 
+# kind "environment" (schema note docs/mas_traj_schema_notes.md, v10 round 15): text no agent wrote
+# (prompt templates, tool / web page dumps, scaffold messages). Never an attribution candidate; may be
+# truncated or compressed; may be cited in `sources`. llm steps are never rewritten or summarised.
+KINDS = {"llm", "tool", "environment"}
+ENV_TYPES = {"template", "tool_output", "web_page", "scaffold_prompt", "user_simulator"}
+PHASE_CANONICAL = {"plan", "route", "analyze", "answer", "discuss", "synthesize", "vote", "review", "revise",
+                   "decide", "act", "tool", "environment", "other"}   # DRAFT v0, configs/phase_canonical_v0.yaml
+
+
 def check(rec):
     """Schema invariants + leak checks; returns a list of problems."""
     probs = []
     ids = {s["step_id"]: s["order"] for s in rec["steps"]}
     obs = {o["id"] for o in rec["task"]["observations"]}
     for s in rec["steps"]:
+        kind = s.get("kind", "llm")
+        if kind not in KINDS:
+            probs.append(f"{s['step_id']}: bad kind {kind}")
+        if kind == "environment":
+            if s.get("env_type") not in ENV_TYPES:
+                probs.append(f"{s['step_id']}: environment step needs env_type in {sorted(ENV_TYPES)}")
+            if s.get("tool_calls"):
+                probs.append(f"{s['step_id']}: environment step with tool_calls")
+        elif "env_type" in s and s["env_type"] is not None:
+            probs.append(f"{s['step_id']}: env_type on a {kind} step")
+        if s.get("phase_canonical") is not None and s["phase_canonical"] not in PHASE_CANONICAL:
+            probs.append(f"{s['step_id']}: bad phase_canonical {s['phase_canonical']}")
         leaked = LABEL_KEYS & set(s)
         if leaked:
             probs.append(f"{s['step_id']}: label keys in step {sorted(leaked)}")

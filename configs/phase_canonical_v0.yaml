@@ -1,0 +1,96 @@
+# phase_canonical v0 (DRAFT, medical-aegis v10 round 15 / issue round 43) -- not adopted yet, to be
+# finalised with MedHyperTrace. A small fixed vocabulary for WHAT a step does, next to the framework's own
+# `phase` (which stays unchanged). Lookup order (scripts/phase_canonical.py):
+#   1. frameworks.<framework>.<phase>          (exact)
+#   2. frameworks.<framework>.<phase prefix>   (text before the first "/", e.g. expert_answer/Cardiologist)
+#   3. defaults.<phase>                        (framework-independent names)
+#   4. kind == tool -> tool ; kind == environment -> environment ; else "other"
+# Peer rule: a step mapped to `answer` or `discuss` becomes `discuss` if it reads (sources) a step of another
+# agent and `answer` if it does not (e.g. llm_debate round 1 vs round 2). Unknown sources keep the table value.
+version: phase_canonical/0
+vocab:
+  plan:        decide who takes part and how the work is split (recruit experts, assign roles, write a plan or ledger, replan)
+  route:       pick the next speaker and/or hand it an instruction (speaker selection, orchestrator -> agent instruction)
+  analyze:     independent analysis of the task or a sub-question, before seeing peers' answers, no final answer of its own
+  answer:      independent answer to the task without seeing peers' answers
+  discuss:     answer or argue after reading peers' answers (debate rounds, group chat turns)
+  synthesize:  merge several agents' outputs into one report WITHOUT making the final decision
+  vote:        agree / disagree or vote on a proposal
+  review:      critique, check or score another step's output (advice, quality check, ranking, progress check)
+  revise:      rewrite one's own or another's output after review
+  decide:      produce the run's final answer (aggregator, decider, supervisor, judge, final synthesis)
+  act:         produce a work product or act on an environment (write code, browse, edit files, call tools as the main move)
+  tool:        output of a tool / code executor (kind tool)
+  environment: scaffold or environment text that no agent wrote (kind environment; never an attribution candidate)
+  other:       none of the above / unknown
+
+frameworks:            # medical-aegis registry (configs/framework_registry.yaml); kamac not yet observed
+  llm_debate:     {discussion: discuss, aggregation: decide}
+  mac_groupchat:  {select_speaker: route, discussion: discuss, supervision: decide}
+  mdagents:       {recruitment: plan, expert_answer: answer, aggregation: decide}
+  medagents_mc:   {expert_gathering: plan, question_analysis: analyze, option_analysis: analyze, synthesis: synthesize,
+                   consensus_vote: vote, revision_advice: review, revision: revise, decision: decide}
+  dylan:          {answer: answer, ranking: review}            # later rounds -> discuss (peer rule)
+  agentverse:     {role_assignment: plan, solve: answer, criticism: review, revise: revise, evaluation: review}
+  clinical_agent: {decomposition_coordination: plan, safety_analysis: analyze, efficacy_analysis: analyze,
+                   enrollment_analysis: analyze, final_synthesis: decide,
+                   tool_drug_risk: tool, tool_disease_risk: tool, tool_drugbank: tool, tool_hetionet: tool, tool_enrollment: tool}
+  cmas:           {trf_extraction: analyze, helpfulness_scoring: review, final_prediction: decide}
+  consensus:      {interpretation: analyze, semantic_fusion: decide, statistical_fusion: decide, hybrid_fusion: decide}
+  consensus_cmd:       {interpretation: analyze, debate: discuss}
+  consensus_debate:    {interpretation: analyze, debate: discuss}
+  consensus_reconcile: {interpretation: analyze, debate: discuss}
+  consensus_mad:       {interpretation: analyze, debate: discuss, judge: decide}
+  mam:            {type_classification: plan, role_generation: plan, web_search: act, discussion: discuss, quality_check: review,
+                   summary: synthesize, vote: vote, diagnosis: decide, review: review}
+  triage_agent:   {retrieval: tool, classify: answer, summarize: synthesize, discuss: discuss, consensus: decide}
+
+  # ---- public datasets as converted by MHT (r57), PROPOSED -- MHT to confirm or correct ----
+  magentic_one:   {plan: plan, facts: plan, task_ledger: plan, update_facts: plan, replan: plan, replan_limit: plan,
+                   progress_ledger: route, next_speaker: route, speaker_selection: route, instruction: route,
+                   stalled: review, request_satisfied: review, termination: review,
+                   agent_response: act, browser_action: act, file_action: act, coder_response: act, summarize_page: act,
+                   final_answer: decide, code_execution: tool, workspace_artifact: environment}
+  captainagent:   {role_matching: plan, task_assignment: plan, captain: plan, speaker_selection: route,
+                   expert_turn: discuss, chat_summary: synthesize, code_execution: tool}
+  swe_agent:      {agent_step: act, tool_result: tool}
+  ag2_groupchat:  {agent_turn: discuss, groupchat_introduction: environment, code_execution: tool}
+  ag2_mathchat:   {assistant_turn: act, code_execution: tool}
+  ag2_student_verifier: {student_turn: answer, verifier_turn: review, review_request: environment, code_execution: tool,
+                         workspace_artifact: environment}
+  appworld_mas:   {agent_code: act, message_delivery: environment, reply_to_supervisor: environment, code_execution: tool, api_response: tool}
+  chatdev:        {DemandAnalysis: plan, LanguageChoose: plan, Coding: act, CodeComplete: act, CodeReviewComment: review,
+                   CodeReviewModification: revise, TestErrorSummary: review, TestModification: revise, EnvironmentDoc: act,
+                   Manual: act, Reflection: review}
+  hyperagent:     {planner: plan, inner_step: act, report_to_planner: synthesize}
+  metagpt:        {SimpleCoder: act, SimpleTester: act, SimpleReviewer: review,
+                   product_manager: plan, architect: plan, engineer: act, qa_engineer: review}
+  openmanus:      {plan: plan, think: act, tool_result: tool, run_summary: environment, workspace_artifact: environment}
+  aftraj_expert_team: {manager_turn: route, verification_expert_turn: review, tool_result: tool, code_execution: tool}
+  agents_handoff: {mathsolver_turn: act, codewriter_turn: act, codetester_turn: review, verifier_turn: review, tool_result: tool}
+  single_tool_agent: {tasksolver_turn: act, tool_result: tool}
+  smolagents:     {manager_turn: route, search_agent_turn: act, tool_result: tool}
+  tau_bench_agent: {agent_turn: act, user_turn: environment, tool_result: tool}   # user = LLM simulator, not an attribution candidate
+  langgraph_centralized: {hub: route, agent_turn: discuss}
+  langgraph_decentralized: {agent_turn: discuss}
+  langgraph_layered: {agent_turn: discuss}
+  langgraph_shared_pool: {agent_turn: discuss}
+  mascope_autogen: {manager: route, agent_turn: discuss}
+  mascope_crewai:  {leader_plan: plan, agent_turn: act}
+  mascope_debate:  {agent_turn: discuss}
+
+defaults:              # framework-independent phase names
+  tool_result: tool
+  code_execution: tool
+  api_response: tool
+  final_answer: decide
+  aggregation: decide
+  speaker_selection: route
+  select_speaker: route
+  discussion: discuss
+  debate: discuss
+  revision: revise
+  vote: vote
+  workspace_artifact: environment
+  run_summary: environment
+  # *_expert_turn (aftraj expert team) -> discuss, via the suffix rule in scripts/phase_canonical.py

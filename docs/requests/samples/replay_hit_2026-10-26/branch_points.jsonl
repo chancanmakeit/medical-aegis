@@ -1,0 +1,400 @@
+{"qid": "medxpertqa_text_2020", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2287", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1002", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_229", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_543", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_91", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1683", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2373", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_334", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2225", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1587", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_474", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_965", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_742", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2150", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1193", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_892", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_225", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_400", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2427", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2436", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2361", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1300", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1071", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_22", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1184", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2087", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1269", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1823", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_537", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_751", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1634", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_301", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1372", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_637", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1347", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_937", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1353", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_26", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1297", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_948", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1061", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_453", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_418", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1590", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_137", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1939", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_424", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1025", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_987", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2323", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_194", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1749", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2284", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_896", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_696", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_763", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1804", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_917", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1141", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1239", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2325", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1508", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2068", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_989", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_434", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2055", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_966", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1499", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2145", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1736", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1358", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1133", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1050", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_861", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1561", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1884", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1901", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2208", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1329", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2321", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_541", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1030", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_899", "step_id": "s5", "t": 5, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2248", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2276", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2162", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1055", "step_id": "s3", "t": 3, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1342", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_389", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_732", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1051", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_369", "step_id": "s4", "t": 4, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2448", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1465", "step_id": "s0", "t": 0, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_287", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_702", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_2305", "step_id": "s2", "t": 2, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_1973", "step_id": "s1", "t": 1, "n": 7, "agent": "Agent", "phase": "discussion", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_619", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "llm_debate"}
+{"qid": "medxpertqa_text_229", "step_id": "s2", "t": 2, "n": 4, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2287", "step_id": "s3", "t": 3, "n": 6, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2020", "step_id": "s7", "t": 7, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1002", "step_id": "s2", "t": 2, "n": 6, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_91", "step_id": "s7", "t": 7, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_543", "step_id": "s1", "t": 1, "n": 10, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2373", "step_id": "s4", "t": 4, "n": 10, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1683", "step_id": "s7", "t": 7, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_334", "step_id": "s2", "t": 2, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2225", "step_id": "s1", "t": 1, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1587", "step_id": "s10", "t": 10, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_474", "step_id": "s7", "t": 7, "n": 10, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_965", "step_id": "s6", "t": 6, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2150", "step_id": "s3", "t": 3, "n": 6, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_742", "step_id": "s0", "t": 0, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1193", "step_id": "s4", "t": 4, "n": 8, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_892", "step_id": "s1", "t": 1, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_400", "step_id": "s4", "t": 4, "n": 8, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_225", "step_id": "s1", "t": 1, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2361", "step_id": "s0", "t": 0, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2436", "step_id": "s7", "t": 7, "n": 14, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2427", "step_id": "s0", "t": 0, "n": 13, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1071", "step_id": "s4", "t": 4, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1300", "step_id": "s2", "t": 2, "n": 10, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_22", "step_id": "s7", "t": 7, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2087", "step_id": "s9", "t": 9, "n": 12, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1184", "step_id": "s7", "t": 7, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1823", "step_id": "s7", "t": 7, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1269", "step_id": "s0", "t": 0, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_537", "step_id": "s8", "t": 8, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_751", "step_id": "s0", "t": 0, "n": 13, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_301", "step_id": "s7", "t": 7, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1634", "step_id": "s1", "t": 1, "n": 9, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1372", "step_id": "s9", "t": 9, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1347", "step_id": "s3", "t": 3, "n": 6, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_637", "step_id": "s7", "t": 7, "n": 16, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1353", "step_id": "s7", "t": 7, "n": 8, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_26", "step_id": "s4", "t": 4, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_937", "step_id": "s10", "t": 10, "n": 11, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1297", "step_id": "s1", "t": 1, "n": 12, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_948", "step_id": "s4", "t": 4, "n": 7, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_418", "step_id": "s0", "t": 0, "n": 12, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1061", "step_id": "s0", "t": 0, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_453", "step_id": "s5", "t": 5, "n": 9, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1590", "step_id": "s12", "t": 12, "n": 13, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1939", "step_id": "s10", "t": 10, "n": 11, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_137", "step_id": "s12", "t": 12, "n": 16, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_424", "step_id": "s6", "t": 6, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_987", "step_id": "s5", "t": 5, "n": 8, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2323", "step_id": "s0", "t": 0, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1025", "step_id": "s9", "t": 9, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_194", "step_id": "s4", "t": 4, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1749", "step_id": "s9", "t": 9, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2284", "step_id": "s7", "t": 7, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_896", "step_id": "s4", "t": 4, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_696", "step_id": "s8", "t": 8, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_763", "step_id": "s0", "t": 0, "n": 17, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1141", "step_id": "s6", "t": 6, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1804", "step_id": "s13", "t": 13, "n": 14, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_917", "step_id": "s12", "t": 12, "n": 16, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2325", "step_id": "s0", "t": 0, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1239", "step_id": "s14", "t": 14, "n": 15, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_989", "step_id": "s5", "t": 5, "n": 10, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1508", "step_id": "s9", "t": 9, "n": 14, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2068", "step_id": "s6", "t": 6, "n": 14, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2055", "step_id": "s8", "t": 8, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_434", "step_id": "s0", "t": 0, "n": 4, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_966", "step_id": "s2", "t": 2, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2145", "step_id": "s4", "t": 4, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1499", "step_id": "s3", "t": 3, "n": 15, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1133", "step_id": "s3", "t": 3, "n": 6, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1050", "step_id": "s8", "t": 8, "n": 15, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_861", "step_id": "s5", "t": 5, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1561", "step_id": "s5", "t": 5, "n": 10, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1358", "step_id": "s7", "t": 7, "n": 18, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1901", "step_id": "s10", "t": 10, "n": 16, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1736", "step_id": "s15", "t": 15, "n": 17, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2208", "step_id": "s5", "t": 5, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1329", "step_id": "s0", "t": 0, "n": 9, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2321", "step_id": "s5", "t": 5, "n": 9, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1884", "step_id": "s7", "t": 7, "n": 16, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2276", "step_id": "s5", "t": 5, "n": 8, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_541", "step_id": "s0", "t": 0, "n": 10, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_899", "step_id": "s2", "t": 2, "n": 12, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1030", "step_id": "s10", "t": 10, "n": 11, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1342", "step_id": "s8", "t": 8, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2248", "step_id": "s1", "t": 1, "n": 9, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1055", "step_id": "s9", "t": 9, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2162", "step_id": "s6", "t": 6, "n": 11, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_389", "step_id": "s5", "t": 5, "n": 10, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1051", "step_id": "s2", "t": 2, "n": 10, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2448", "step_id": "s5", "t": 5, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_369", "step_id": "s1", "t": 1, "n": 11, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_732", "step_id": "s5", "t": 5, "n": 15, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_287", "step_id": "s5", "t": 5, "n": 12, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_2305", "step_id": "s7", "t": 7, "n": 8, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_702", "step_id": "s11", "t": 11, "n": 13, "agent": "Selector", "phase": "select_speaker", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1465", "step_id": "s17", "t": 17, "n": 18, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1973", "step_id": "s7", "t": 7, "n": 8, "agent": "Supervisor", "phase": "supervision", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_619", "step_id": "s9", "t": 9, "n": 12, "agent": "Doctor", "phase": "discussion", "framework": "mac_groupchat"}
+{"qid": "medxpertqa_text_1002", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2020", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Pathologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2287", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_91", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_543", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_334", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2373", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1683", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_229", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Psychopharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1587", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Internist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_474", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Immunologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2225", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Pathologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_742", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2150", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Osteopathic Physician (DO)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_965", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1193", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/General Surgeon", "framework": "mdagents"}
+{"qid": "medxpertqa_text_892", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Pathologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_400", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Dermatologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2427", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Anesthesiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_225", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Infectious Disease Specialist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2361", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2436", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Addiction Medicine Specialist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1300", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Physiatrist (PM&R)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1071", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Orthopedic Surgeon", "framework": "mdagents"}
+{"qid": "medxpertqa_text_22", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Neonatologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2087", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1184", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1269", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_537", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1823", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_751", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Hematologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1634", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Orthopedic Fellow (Arthroplasty/Joint Reconstruction)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_637", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Gastroenterologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1372", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1347", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Neurosurgeon", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1353", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_301", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Anatomist/Physician", "framework": "mdagents"}
+{"qid": "medxpertqa_text_937", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Internal Medicine Attending", "framework": "mdagents"}
+{"qid": "medxpertqa_text_948", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_26", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Reproductive Endocrinologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1297", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Neurologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1061", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_453", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_418", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_137", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1590", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Thoracic Surgeon", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1939", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_424", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Gynecologic Oncologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_987", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Osteopathic Physician (DO)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2323", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Cardiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1025", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_194", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Cardiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1749", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Medical Ethics Specialist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_696", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Psychiatrist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2284", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_896", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_763", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Neuroradiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1804", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Pediatric Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1141", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_917", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Obstetrician/Gynecologist (Attending)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2325", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_989", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1508", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Geneticist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1239", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Physiatrist (PM&R)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2068", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Osteopathic Physician (DO)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_966", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2055", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Internal Medicine Physician", "framework": "mdagents"}
+{"qid": "medxpertqa_text_434", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2145", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1358", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pathologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1499", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Internist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1050", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Pulmonologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1736", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Physiatrist (PM&R)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_861", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Physiatrist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1133", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Oncologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1561", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Surgical Oncologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1901", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1884", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2208", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2321", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Cardiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_541", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Biochemist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1329", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Pulmonologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1030", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Primary Care Physician", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2248", "step_id": "s5", "t": 5, "n": 7, "agent": "Expert", "phase": "expert_answer/Clinical Pharmacologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2276", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Osteopathic Physician (DO)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1055", "step_id": "s2", "t": 2, "n": 7, "agent": "Expert", "phase": "expert_answer/Medical Toxicologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1342", "step_id": "s6", "t": 6, "n": 7, "agent": "Aggregator", "phase": "aggregation", "framework": "mdagents"}
+{"qid": "medxpertqa_text_899", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Physical Therapist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2162", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Endocrinologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1465", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1051", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Cardiology", "framework": "mdagents"}
+{"qid": "medxpertqa_text_732", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Neurologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_369", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Medical Toxicologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_287", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Infectious Disease Specialist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_389", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Pediatrician/Internist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2305", "step_id": "s4", "t": 4, "n": 7, "agent": "Expert", "phase": "expert_answer/Pediatric Orthopedist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2448", "step_id": "s1", "t": 1, "n": 7, "agent": "Expert", "phase": "expert_answer/Orthopedic Surgeon", "framework": "mdagents"}
+{"qid": "medxpertqa_text_1973", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Pediatric Radiologist", "framework": "mdagents"}
+{"qid": "medxpertqa_text_619", "step_id": "s0", "t": 0, "n": 7, "agent": "Recruiter", "phase": "recruitment", "framework": "mdagents"}
+{"qid": "medxpertqa_text_702", "step_id": "s3", "t": 3, "n": 7, "agent": "Expert", "phase": "expert_answer/Osteopathic Physician (DO)", "framework": "mdagents"}
+{"qid": "medxpertqa_text_2287", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2020", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_229", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1002", "step_id": "s0", "t": 0, "n": 18, "agent": "QuestionClassifier", "phase": "expert_gathering", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_91", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_543", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1683", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2373", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_334", "step_id": "s1", "t": 1, "n": 18, "agent": "OptionClassifier", "phase": "expert_gathering", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2225", "step_id": "s0", "t": 0, "n": 18, "agent": "QuestionClassifier", "phase": "expert_gathering", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1587", "step_id": "s29", "t": 29, "n": 32, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_965", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_474", "step_id": "s1", "t": 1, "n": 33, "agent": "OptionClassifier", "phase": "expert_gathering", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_742", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2150", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1193", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_892", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_225", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_400", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2427", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2361", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2436", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1071", "step_id": "s3", "t": 3, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1300", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_22", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2087", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1184", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1269", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_537", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1823", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1634", "step_id": "s2", "t": 2, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1372", "step_id": "s6", "t": 6, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_751", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_637", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_301", "step_id": "s24", "t": 24, "n": 31, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1347", "step_id": "s17", "t": 17, "n": 18, "agent": "Decider", "phase": "decision", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1353", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_937", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_26", "step_id": "s3", "t": 3, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_948", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1297", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_418", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1061", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_453", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1590", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_137", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1939", "step_id": "s13", "t": 13, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_424", "step_id": "s3", "t": 3, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1025", "step_id": "s9", "t": 9, "n": 18, "agent": "Synthesizer", "phase": "synthesis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_987", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2323", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1749", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2284", "step_id": "s8", "t": 8, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_194", "step_id": "s9", "t": 9, "n": 18, "agent": "Synthesizer", "phase": "synthesis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_896", "step_id": "s4", "t": 4, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_696", "step_id": "s14", "t": 14, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_763", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1804", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_917", "step_id": "s4", "t": 4, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1141", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1239", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2325", "step_id": "s3", "t": 3, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_989", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1508", "step_id": "s6", "t": 6, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_966", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2068", "step_id": "s13", "t": 13, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2055", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2145", "step_id": "s9", "t": 9, "n": 18, "agent": "Synthesizer", "phase": "synthesis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1499", "step_id": "s13", "t": 13, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_434", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1358", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1736", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1050", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1133", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_861", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1901", "step_id": "s22", "t": 22, "n": 33, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1561", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1884", "step_id": "s12", "t": 12, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2208", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1329", "step_id": "s10", "t": 10, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2321", "step_id": "s3", "t": 3, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_541", "step_id": "s4", "t": 4, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1030", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2276", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_899", "step_id": "s30", "t": 30, "n": 31, "agent": "Decider", "phase": "decision", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1342", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2248", "step_id": "s2", "t": 2, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1055", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2162", "step_id": "s16", "t": 16, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_389", "step_id": "s9", "t": 9, "n": 18, "agent": "Synthesizer", "phase": "synthesis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1465", "step_id": "s8", "t": 8, "n": 28, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1051", "step_id": "s6", "t": 6, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2448", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_369", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_732", "step_id": "s16", "t": 16, "n": 33, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_287", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_2305", "step_id": "s5", "t": 5, "n": 18, "agent": "QuestionAnalyst", "phase": "question_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_619", "step_id": "s7", "t": 7, "n": 18, "agent": "OptionAnalyst", "phase": "option_analysis", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_702", "step_id": "s26", "t": 26, "n": 30, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}
+{"qid": "medxpertqa_text_1973", "step_id": "s15", "t": 15, "n": 18, "agent": "Voter", "phase": "consensus_vote", "framework": "medagents_mc"}

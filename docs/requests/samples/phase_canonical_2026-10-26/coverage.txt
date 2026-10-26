@@ -1,0 +1,39 @@
+aftraj_expert_team         steps=  1662 other=0.000  tool=463 route=436 review=382 answer=321 discuss=60
+ag2_groupchat              steps=   916 other=0.000  discuss=416 answer=169 environment=168 tool=163
+ag2_mathchat               steps=  1595 other=0.000  act=1012 tool=583
+ag2_student_verifier       steps= 12387 other=0.000  answer=3843 review=3541 environment=2603 tool=2400
+agents_handoff             steps= 11849 other=0.000  act=5037 tool=3527 review=3285
+agentverse                 steps=    56 other=0.000  review=33 revise=9 plan=7 answer=7
+appworld_mas               steps=  2888 other=0.000  environment=1227 act=1028 tool=633
+captainagent               steps=  2845 other=0.000  discuss=757 route=733 answer=658 plan=309 tool=303 synthesize=85
+chatdev                    steps= 12531 other=0.000  plan=8462 review=1857 revise=1176 act=1036
+clinical_agent             steps=    30 other=0.000  tool=15 analyze=9 plan=3 decide=3
+cmas                       steps=     9 other=0.000  analyze=3 review=3 decide=3
+consensus                  steps=    27 other=0.000  analyze=18 decide=9
+consensus_cmd              steps=    48 other=0.000  analyze=18 answer=15 discuss=15
+consensus_debate           steps=    48 other=0.000  analyze=18 answer=15 discuss=15
+consensus_mad              steps=    57 other=0.000  analyze=18 answer=15 discuss=15 decide=9
+consensus_reconcile        steps=    48 other=0.000  analyze=18 answer=15 discuss=15
+dylan                      steps=    33 other=0.000  discuss=18 answer=12 review=3
+hyperagent                 steps=  2800 other=0.000  act=1764 plan=555 synthesize=481
+langgraph_centralized      steps=   133 other=0.000  route=69 answer=64
+langgraph_decentralized    steps=   108 other=0.000  discuss=81 answer=27
+langgraph_layered          steps=   115 other=0.000  discuss=92 answer=23
+langgraph_shared_pool      steps=   300 other=0.000  discuss=275 answer=25
+llm_debate                 steps=  3871 other=0.000  answer=1659 discuss=1659 decide=553
+mac_groupchat              steps=  6367 other=0.000  route=3470 answer=2004 decide=598 discuss=295
+magentic_one               steps= 35987 other=0.000  route=18708 act=10222 plan=3788 decide=2502 tool=592 review=97 environment=78
+mam                        steps=    59 other=0.000  review=15 answer=13 vote=12 plan=6 act=6 synthesize=4 decide=3
+mascope_autogen            steps=   743 other=0.000  route=380 answer=261 discuss=102
+mascope_crewai             steps=   146 other=0.000  act=115 plan=31
+mascope_debate             steps=   846 other=0.000  discuss=564 answer=282
+mdagents                   steps=  3871 other=0.000  answer=2765 plan=553 decide=553
+medagents_mc               steps= 10619 other=0.000  vote=4256 analyze=3780 plan=1080 synthesize=540 decide=540 review=345 revise=78
+metagpt                    steps= 17613 other=0.000  plan=7618 act=5096 review=4666 environment=233
+openmanus                  steps= 55761 other=0.000  act=22000 tool=21589 environment=12145 plan=27
+single_tool_agent          steps=  1197 other=0.000  act=771 tool=426
+smolagents                 steps=  2915 other=0.000  route=1923 tool=534 act=458
+swe_agent                  steps=  2632 other=0.000  act=1551 tool=1081
+tau_bench_agent            steps=  1035 other=0.000  act=503 tool=284 environment=248
+triage_agent               steps=    36 other=0.000  discuss=18 answer=9 tool=3 synthesize=3 decide=3
+ALL steps=194183 other=0.0000 act=50599 tool=32596 route=25719 plan=22439 environment=16702 review=14227 answer=12202 decide=4776 discuss=4397 vote=4268 analyze=3882 revise=1263 synthesize=1113

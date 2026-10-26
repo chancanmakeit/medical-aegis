@@ -415,3 +415,18 @@ MHT 第 51 轮已接受第 36 轮的更正。
 1. 公开数据集抽查，每个 20 条，共 140 条；
 2. 真实运行的回放命中率；
 3. `phase_canonical` 映射表和 schema 说明更新（`kind: "environment"`）。
+
+## 第 15 轮（2026-10-26 01:15–02:40）：不采纳 8–16 次重放；做完欠 MHT 的三件事
+用户："MHT 提出的每个分叉点要重放 8–16 次方案肯定不能采纳，太贵了；其次，你把我方欠 MHT 的三件事做了吧"。本轮全部离线，没有调用付费 API。
+- **替代方案（发给 MHT 讨论）**：每个候选点 1 次分叉 + 1 次对照，下游用温度 0 生成，比较分叉与对照的结局（不和温度 0.7 的原轨迹比）；只为读到第 t 步的下游步骤付费。风险是服务商在温度 0 下不一定确定：试点里对部分点把对照跑两次测一致率；不够确定时只在翻转的点补一次对照。按记录的 token 用量，每个候选点 llm_debate 约 $0.0043（8+8 方案约 $0.04），mdagents 约 $0.0013；1000 条失败轨迹 × 3 个点，llm_debate 约 $13。
+- **回放命中率**（`scripts/replay_openai_server.py`、`scripts/replay_hit_analysis.py`、`scripts/runners/replay_run.sh`）：4 个框架 × 100 题 × 3 次真实 normal 运行全部重跑，13,379 次请求全部命中，1,200 条运行的最终答案和全部步骤输出都与记录一致。模拟分叉（`--overrides` 换掉随机一步的回复）：前缀全部命中；t 之后仍能从记录返回的步骤：llm_debate 28%、MAC 60%、mdagents 74%、medagents 48%；按 token 计，一次分叉约占一条完整运行的 26–54%。结果在 `docs/requests/samples/replay_hit_2026-10-26/`。
+- **公开数据抽查**（`scripts/public_conversion_spotcheck.py`，报告 `docs/requests/samples/public_spotcheck_2026-10-26/REPORT.md`）：从 HF 下载原始数据（AgentRx 是 gated 数据集，用 private-documents 里的 HF 令牌下载，令牌只放在 /home/claude/.hf_token，权限 600，不入库），原样运行 MHT 的转换脚本，条数一致（26,120），`check()` 0 问题。每个数据集 20 条共 140 条、3,120 步：所有非空输出都能在原始数据里逐字找到；没有标注文字泄漏。发现：
+  - A（bug）TraceElephant SWE-agent 344/1551 步的工具调用只在 `tool_logs`，转换后为空步；44 个标注出错步里 18 个为空；
+  - B `mistake_agent` 用数据集命名，与转换后 `agent_id` 在 118/218 条里不同（对齐本身正确，`step_agent_names` 已保留）；
+  - C AgentRx tau 的政策提示被丢掉，模拟用户是 llm 步；建议 `environment/scaffold_prompt` 和 `environment/user_simulator`；
+  - D ARIA 254 条标签落在题目事件上（已转成 task.query）；
+  - E ChatDev 99 个 CEO Reflection 步与前一步输出完全相同，请 MHT 确认是不是转发；
+  - 更正第 42 轮：公开数据的 phase 并非 unknown，而是 77 种取值、不少是角色名。
+- **phase_canonical 草案 v0**（`configs/phase_canonical_v0.yaml`、`scripts/phase_canonical.py`）：14 个取值，`plan_recruit` 改名 `plan`，新增 `act`、`environment`；`answer`/`discuss` 由 peer rule 决定（是否读了别的 agent 的作答）。覆盖我们 registry 的框架（kamac 无样本）和公开数据 23 个框架，194,183 步没有一步落到 `other`。公开数据部分请 MHT 审。导出器暂不默认写该字段。
+- **schema 说明**（`docs/mas_traj_schema_notes.md`）：`kind: "environment"` + `env_type`（template / tool_output / web_page / scaffold_prompt / user_simulator）及约定；`check()` 已加 kind、env_type、phase_canonical 的取值校验，现有导出和 MHT 的 26,120 条都照常通过。
+- 已发 issue 第 43 轮（见 HANDOFF）。下一条为第 44 轮。
