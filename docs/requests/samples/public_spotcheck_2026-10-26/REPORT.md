@@ -1,7 +1,7 @@
 # Spot-check of MHT's public mas-traj/1 conversions (MHT r57 converters), 2026-10-26
 
 Script: `scripts/public_conversion_spotcheck.py` (20 records per dataset, seed 0, 140 records; each compared
-with its RAW dataset row). Raw files from HuggingFace in the layouts the converters read; converters run
+with its RAW dataset row). Raw files from HuggingFace in the layouts the converters read (AgentRx: the user's private mirror `UUUooUUU/AgentRx` is byte-identical to the gated `microsoft/AgentRx`, sha256 checked for all 4 jsonl files); converters run
 unchanged (`python -m data_tools.public_to_mas_traj.<module>`). Numbers: `spotcheck_summary.txt`,
 `spotcheck.json`. Extra whole-dataset checks below were run ad hoc on the same files.
 

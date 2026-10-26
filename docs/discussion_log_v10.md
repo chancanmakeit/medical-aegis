@@ -430,3 +430,5 @@ MHT 第 51 轮已接受第 36 轮的更正。
 - **phase_canonical 草案 v0**（`configs/phase_canonical_v0.yaml`、`scripts/phase_canonical.py`）：14 个取值，`plan_recruit` 改名 `plan`，新增 `act`、`environment`；`answer`/`discuss` 由 peer rule 决定（是否读了别的 agent 的作答）。覆盖我们 registry 的框架（kamac 无样本）和公开数据 23 个框架，194,183 步没有一步落到 `other`。公开数据部分请 MHT 审。导出器暂不默认写该字段。
 - **schema 说明**（`docs/mas_traj_schema_notes.md`）：`kind: "environment"` + `env_type`（template / tool_output / web_page / scaffold_prompt / user_simulator）及约定；`check()` 已加 kind、env_type、phase_canonical 的取值校验，现有导出和 MHT 的 26,120 条都照常通过。
 - 已发 issue 第 43 轮（comment 6412034874）。下一条为第 44 轮。
+
+- 补充：用户把 AgentRx 放到了 HF 镜像 `UUUooUUU/AgentRx`（私有）。四个 jsonl 与 gated 的 `microsoft/AgentRx` sha256 完全一致，抽查结论不变；以后从镜像下载（仍需 HF 令牌）。
