@@ -1,10 +1,10 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-26（会话 v10 讨论第 12 轮，issue 我方第 40 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
+> 最后更新：2026-10-26（会话 v10 讨论第 13 轮，issue 我方第 41 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
 ## 当前状态（v10 讨论第 11 轮，2026-10-26）
 
-逐轮细节见 `docs/discussion_log_v10.md`（第 1–12 轮）。第 12 轮读到三篇原文，主线建议不变，并更正了对 TerminalHorizon 的一处描述。
+逐轮细节见 `docs/discussion_log_v10.md`（第 1–13 轮）。第 12、13 轮读到三篇原文（MATE 的实验部分仍未读到），主线建议不变。第 12 轮读到三篇原文，主线建议不变，并更正了对 TerminalHorizon 的一处描述。
 
 **第 11 轮的新方向（待 MHT 和用户决定）**：用户在考虑借鉴已有的 agent 轨迹合成工作（TraceDance、MATE、TerminalHorizon），规模化合成多智能体轨迹用于预训练。我们在 issue 第 39 轮给出的意见：
 - 不建议让 LLM 整条写出轨迹（MATE 式）来做带标签数据。
@@ -53,7 +53,7 @@
 - 补齐 A–D（$6.0）不批；style_v1 按 `sham_variant` 排除出训练；llm_debate 的 PI 只作压力测试。
 
 **沟通**
-- MHT：medical-aegis issue #1。我方最新一条是第 40 轮（comment 6410700022，读到三篇原文后的补充和更正），下一条为第 41 轮。MHT 最新一条是第 59 轮：建议主数据开启 `pair_target_runs`，锚点暂不重跑 sham；`format_matched = false` 的样本保留并标记；开启配对后要记录配对目标是否在两条 run 里都落地（尚未实现）。
+- MHT：medical-aegis issue #1。我方最新一条是第 41 轮（comment 6410766931，读 PDF 后的小补充），下一条为第 42 轮。MHT 最新一条是第 59 轮：建议主数据开启 `pair_target_runs`，锚点暂不重跑 sham；`format_matched = false` 的样本保留并标记；开启配对后要记录配对目标是否在两条 run 里都落地（尚未实现）。
 - MAFA：MAFA 仓库 issue #1，暂时没有待办。**不往 MAFA 仓库提交代码。**
 - 先读对方最新评论，读完再单独发帖。用正则统计的结论，先在 normal 步上查一遍误报率；判断某类步骤是不是伪迹之前，先按注入模板分组看它是不是故障本身。
 - 不要用 `pkill -f` / `pgrep -f` 匹配命令行，会匹配到执行它的 shell 自身。改用 `ps -eo pid,comm,args`，按 comm 为 python 过滤后再 kill。
