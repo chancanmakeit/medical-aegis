@@ -458,4 +458,5 @@ MHT 第 51 轮已接受第 36 轮的更正。
 - **mdagents 开头筛选**（$0.140）：sham 同槽位（MHT lexical_norm）punct 0.59 [0.53, 0.65]、char 0.58 [0.54, 0.63]，**两种都过门槛**（fmt_v1 char 0.65 不过）；配对差 char −0.07 [−0.16, +0.01]；format_matched=false 7/50；重试 1 次 39、4 次 10；配对目标与 `_pi5` 同槽位 20/20。建议正式配置保留 match_opener。
 - 超支原因：1 题试跑没有触发重采样，正式运行 10–50% 的注入步骤用到重试上限。以后估算按重试率修正。
 - `scripts/pi_version_analysis.py` 允许只有 sham 的版本；`.gitignore` 加 `__pycache__/`（停止跟踪 pyc）。
+- 发帖前读到 MHT 第 64 轮（comment 6434952854）：批准记录（以用户答复为准）；phase_canonical v1 他们零差异核对、已删本地覆盖；要 D(t) 大小分布和推断来源比例；aggregator 点不进主分析；SAMT v1（结构感知中训练，对齐阶段）已开跑，约 12:30 UTC 出结果。补算：|D(t)| 分布、来源全部为运行时记录、对照臂 29 次未命中全在 D(t) 内（无漏边）、去掉 aggregator 后翻转 5/39、7/40、对照复跑 0/28。
 - 已发 issue 第 45 轮（见 HANDOFF）。

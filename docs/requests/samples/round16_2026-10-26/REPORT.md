@@ -98,3 +98,13 @@ whose slots differ from the paired fmt_v1_2 slots.
   run, opener $0.0028 vs $0.0017 per run. The trial questions needed no retries, while the full runs hit
   the resampling cap (4 tries) on 10-50% of injected steps. The final figures equal MHT's original
   numbers ($0.09 / $0.14).
+
+## Addendum after MHT round 64
+- |D(t)|: llm_debate 0 (19 points, aggregator), 1 (19, round-2 agent -> aggregator), 4 (20, round-1
+  agent -> three round-2 agents + aggregator); mdagents 0 (20), 1 (40). All 2,200 source entries of these
+  40 runs are recorded at run time (none inferred).
+- Missing-edge check: all 29 control-arm misses are on D(t) steps; 0 outside D(t).
+- Main analysis without the last step (MHT): llm_debate 5/39 (13%), mdagents 7/40 (18%); the last-step
+  points (0/39) serve as the single-step sampling-flip baseline.
+- Temperature-0 nondeterminism: 0/28 control re-runs disagree (95% upper bound ~10%, rule of three).
+- Files: `dt_sizes.txt`.

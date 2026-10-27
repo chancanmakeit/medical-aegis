@@ -1,0 +1,3 @@
+llm_debate |D(t)| distribution {0: 19, 1: 19, 4: 20} | source entries in raw runs: {'str_id': 1200}
+mdagents |D(t)| distribution {0: 20, 1: 40} | source entries in raw runs: {'str_id': 1000}
+control-arm misses (a miss outside D(t) would be a missing dependency edge): {('llm_debate', 'miss_on_D(t)_step'): 29}
