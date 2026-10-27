@@ -41,7 +41,7 @@
 **其他约定**：`pair_target_runs` 主数据开启（MHT 第 59 轮）；AEGIS simulated 只有 `instruction_strict` 泄漏可剔除，拒答是故障本身；MAA 重叠 2 题（1499、1939）51 条运行不进训练；补齐 A–D（$6.0）不批；style_v1 不进训练。
 
 **沟通**
-- MHT：medical-aegis issue #1（REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新一条是**第 45 轮**（见 discussion log 第 17 轮），下一条为第 46 轮；MHT 最新一条是第 64 轮（comment 6434952854，SAMT v1 已开跑，约 12:30 UTC 出结果）。
+- MHT：medical-aegis issue #1（REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新一条是**第 45 轮**（comment 6434978710），下一条为第 46 轮；MHT 最新一条是第 64 轮（comment 6434952854，SAMT v1 已开跑，约 12:30 UTC 出结果）。
 - MHT 仓库按单文件用 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读，不 clone。
 - MAFA：MAFA 仓库 issue #1，暂无待办。**不往 MAFA 仓库提交代码。**
 - 先读对方最新评论，读完再单独发帖。正则统计先在 normal 步上查误报率。
