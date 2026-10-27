@@ -1,0 +1,7 @@
+records 26108 {'steps': 169299, 'no_pc': 0, 'kind:llm': 119577, 'kind:tool': 32933, 'kind:environment': 16789, 'env:template': 16139, 'env:tool_output': 402, 'env:user_simulator': 248}
+table {'phase_canonical_v1.yaml + MHT overrides magentic_one.instruction->plan': 26108}
+A/B TE: {('B_mistake_agent_id_matches_step', True): 218, ('swe_agent', 'empty_llm_no_calls'): 14, ('swe', 'labelled_ok'): 43, ('swe', 'labelled_empty'): 1}
+B W&W: {('id_match', True): 181, ('unmapped_flag', False): 181, ('id_match', False): 3, ('unmapped_flag', True): 3}
+C: {'user_env': 248, 'runs_label_on_env': 11, 'obs_policy': 29}
+D: {'first_bad_on_task': 254, 'unmapped_events': 394, 'label_on_env': 52}
+E: {('environment', 'template'): 99, ('llm', None): 633}

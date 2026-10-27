@@ -2,56 +2,61 @@
 
 > 最后更新：2026-10-26（会话 v10 讨论第 14 轮，issue 我方第 42 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
-## 当前状态（v10 讨论第 15 轮，2026-10-26）
+## 当前状态（v10 讨论第 16 轮，2026-10-26）
 
-逐轮细节见 `docs/discussion_log_v10.md`（第 1–15 轮）。
+逐轮细节见 `docs/discussion_log_v10.md`（第 1–16 轮）。
 
-**第 15 轮（本轮）**：用户不采纳 MHT 的"每个分叉点重放 8–16 次"（太贵），我方欠 MHT 的三件事已做完，全部离线、没有花 API 费用：
-- **替代方案（已发 MHT，待回复）**：每个候选点 1 次分叉 + 1 次对照，下游用温度 0 生成，比较分叉与对照的结局；只为读到第 t 步的下游步骤付费。每个候选点 llm_debate 约 $0.0043、mdagents 约 $0.0013（8+8 方案约 $0.04 / $0.02）。风险：温度 0 不一定确定，试点里对部分点把对照跑两次测一致率。
-- **回放命中率**：`scripts/replay_openai_server.py`（按请求哈希应答，未命中转 mock 并记录诊断；`--overrides` 模拟分叉）+ `scripts/replay_hit_analysis.py` + `scripts/runners/replay_run.sh`。1,200 条真实 normal 运行（4 框架 × 100 题 × 3）重跑，13,379 次请求 100% 命中，答案和步骤输出全部一致。模拟分叉：前缀全部命中；t 之后不依赖 t 的步骤 llm_debate 28%、MAC 60%、mdagents 74%、medagents 48%。结果：`docs/requests/samples/replay_hit_2026-10-26/`。真实分叉前还要给服务器加"未命中转发真实 API"的开关。
-- **公开数据抽查**：`scripts/public_conversion_spotcheck.py`，报告 `docs/requests/samples/public_spotcheck_2026-10-26/REPORT.md`。发现 A（bug：TraceElephant SWE-agent 的工具调用只在 `tool_logs`，344 步为空，18/44 个标注步为空）、B（标签 agent 命名）、C（tau 政策提示被丢、模拟用户是 llm 步）、D（ARIA 254 条标签落在题目上）、E（ChatDev 99 个 Reflection 步疑似转发）。原始数据在 `/home/claude/public_mas/raw`，MHT 转换脚本拼成的包在 `/home/claude/mht_pkg`，转换结果在 `/home/claude/public_mas/mas_traj`（都不入库，新会话需重下：HF 下载；AgentRx 用用户的镜像 `UUUooUUU/AgentRx`（私有，与 gated 的 `microsoft/AgentRx` 四个 jsonl 的 sha256 完全一致，已核对），下载仍需 HF 令牌，取自 private-documents 的 `huggingface/` 文件，只放 `/home/claude/.hf_token`，权限 600，不提交）。
-- **phase_canonical 草案 v0**：`configs/phase_canonical_v0.yaml` + `scripts/phase_canonical.py`；14 个取值（plan, route, analyze, answer, discuss, synthesize, vote, review, revise, decide, act, tool, environment, other），answer/discuss 用 peer rule；194,183 步无 `other`。公开数据部分待 MHT 审；导出器暂不默认写。
-- **schema 说明**：`docs/mas_traj_schema_notes.md`（`kind: "environment"` + `env_type`：template / tool_output / web_page / scaffold_prompt / user_simulator）；`check()` 已校验 kind、env_type、phase_canonical 取值。
-- 更正第 42 轮：公开数据的 phase 不是 unknown，是 77 种取值。
+**第 16 轮（本轮）：三项付费任务已准备好，等用户确认（合计约 $0.46）**
+1. **分叉试点**（约 $0.31；MHT 第 62 轮续：中训练试点已有结果，请我们启动）。
+   - 代码：`scripts/branch_replay_server.py`、`scripts/branch_pilot.py`。工作目录 `/home/claude/branch_pilot`，不入库，候选点文件 `{fw}_candidates.jsonl` 已生成并带 D(t)。
+   - 设计：1 分叉 + 1 对照。第 t 步：分叉臂按 0.7 请求真实 API，对照臂返回记录；D(t) 里的步骤两臂都按温度 0 生成；其余从记录返回。D(t) 用记录 sources 的传递闭包。同输入请求按到达顺序区分。没翻转 = 未判定，不当负例；翻转点全部补跑对照（`run --arm control --rep 1 --only <qids>`），未翻转点抽一部分补跑。
+   - 命令：每个框架 `run --arm branch|control --pass 0|1|2 --upstream real`，然后 `analyze`。
+   - 已花：2+2 点真实试跑 $0.015（结果在 runs/ 下，正式跑会覆盖）。
+   - 报告项（MHT 第 60、61 轮）：翻转 / 未判定比例、对照复跑不一致率、位置分布、第 t 步原文对其重采样的同槽位 AUROC、每次调用的 model（服务商不返回 `system_fingerprint`）、一个贪心续写导致一边倒的例子。第 3 个点基本都是 aggregation（D(t) 为空），要单独列。
+2. **fmt_v1_2 验证**（约 $0.06）：`CFGNAME=llm_debate_inject_fmt_v1_2 SUFFIX=_v12 EXTRA="--num_runs 2 --run_index_start 1" bash scripts/runners/anchor_run.sh llm_debate inject 10`。报告：fmt_v1_2 − fmt_v1（`_pi5` / `_sham5`）的配对差（PI 和 sham，按题 bootstrap）、去掉首句后的结果、重采样拒收率。配对后 sham 的槽位与 `_sham5` 不同，要说明。
+3. **mdagents 开头筛选**（约 $0.09）：`CFGNAME=mdagents_inject_opener_paired SUFFIX=_op EXTRA="--num_runs 1 --run_index_start 2" bash scripts/runners/anchor_run.sh mdagents inject 50`。报告：同槽位 AUROC（punct / char）、`format_matched = false` 比例、重试次数分布、配对目标在两条 run 里都落地的比例（PI 只有 `_pi5` 前 20 题）。
+- 两项验证的 1 题试跑在 `/home/claude/anchor_runs_trial/`（共 $0.007）。
 
-**合成轨迹的方向（第 11–14 轮）**：不让 LLM 整条写轨迹（MATE 式）；主线是"在真实轨迹上分叉"（回放前缀，在第 t 步做 (a) 自然重采样或 (b) 修正，分析器不给标准答案），注入只作补充。借鉴 MATE 的格式统一（规范阶段词表、`kind: environment`、各源对称处理），不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。MHT 第 60 轮：主评测是缺陷层，分叉只给责任层；先不为规模化花钱，先做他们的中训练试点；分叉试点排在其后。
+**第 16 轮做完的（不花钱）**
+- 核对 MHT r61 的 A–E 修复：全部和 MHT 说的一致（`docs/requests/samples/public_spotcheck_2026-10-26/r61_recheck/`）。第 15 轮的 C 有一半错了：政策提示在 `task.observations` 里，抽查脚本已改。
+- `phase_canonical` **v1 已采用**（用户决定，MHT 第 62 轮转达）：`configs/phase_canonical_v1.yaml`（magentic_one `instruction` → `plan`），导出器默认写入（`--phase_canonical none` 关闭）。MHT 的转换器直接 import 我们的 `scripts/phase_canonical.py`，**改接口要先通知 MHT**。
+- fmt_v1_2：`pi_length_match.match_structure`（结构只进签名，note_version `fmt_v1_2`）。
+- 服务商响应的 model 字段是 `google/gemma-4-31B-it-turbo`，与记录的 mdagents 运行相同；用户早已说明 backbone 就是 llama-4-maverick，不再核实。
 
-**锚点数据**（只用 llama-4-maverick；用户说明它就是 llama，不用再核实，`served_model` 只作元数据）
-- 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents。题目：`datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
-- 已有：normal 100 题 × K=3；run 0 = RC（100 题）；旧说明的 PI（`_pi4`）、sham（`_sham`）、sham_style（`_shamstyle`，不进训练）各前 50 题；fmt_v1 的 PI / sham（`_pi5` / `_sham5`）前 20 题 × 4 框架，mdagents sham 补到 50 题；fmt_v1_1（只 llm_debate）的 `_pi6` / `_sham6` 前 10 题。锚点里自然答错的有 575 条（分叉起点）。
-- 原始结果在 `data_runs/anchor_llama_2026-10-21/*.jsonl.gz`，恢复、续跑、导出命令见该目录 `README.md`（导出加 `--maa_exclusion docs/requests/maa_exclusion_v1.json`）。本地解压副本在 `/home/claude/anchor_runs/`（回放服务器读 `<fw>__normal.jsonl`）。
-- 运行器：`scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。密钥 `/home/claude/.mht_api.env` 从 Project 文档「api端点」重建，**不要提交**。
-- 成本：`scripts/run_cost.py`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
+**第 15 轮的结论（仍有效）**
+- 回放：1,200 条真实 normal 运行重跑，13,379 次请求 100% 命中（`scripts/replay_openai_server.py`）。
+- 公开数据抽查（140 条）逐字一致、无标签泄漏；`kind: "environment"` + `env_type` 已写进 `docs/mas_traj_schema_notes.md` 和 `check()`。
+- 原始公开数据在 `/home/claude/public_mas/raw`（不入库；AgentRx 用用户的私有 HF 镜像 `UUUooUUU/AgentRx`，与 gated 原版一致，下载要 HF 令牌，取自 private-documents 的 `huggingface/` 文件，只放 `/home/claude/.hf_token`）；MHT r61 转换器在 `/home/claude/mht_ref/p2m_r61`，结果在 `/home/claude/public_mas/mas_traj_r61`。
 
-**注入说明的版本**（`labels.injection[].note_version`）
-- 旧说明：注入步少用 markdown，medagents 投票把 `[YES]` 写成 `YES`。
-- **fmt_v1**：说明按同题干净参考回复的格式写，`match_format` 重采样要求格式签名一致；4 个锚点 YAML 已开启。
-- **fmt_v1_1**（只 llm_debate，`state_structure`）：PI 更好认，sham 无改善，**不推广**；fmt_v1_2（去掉这句，只留签名）已提议未实现。
-- **match_opener**（只 mdagents）：自我介绍开头加进签名；未真实验证。
-- 原则：能靠格式签名重采样解决的，优先用签名，不往说明里加话。
+**MHT 中训练试点 v1**（第 62 轮续）：纯文本 TAPT 在 MAA 上没有可测提升 → 不为纯文本中训练扩数据；结构感知中训练待用户决定。
 
-**验收标准**（MHT 第 47 轮）：MHT `norm()` 清洗后，同槽位 sham 对 normal 在 punct 和 char 下 CI 覆盖 0.5，或不超过 RC 上限 0.62；PI 不设门槛。fmt_v1：MAC、medagents 通过；mdagents punct 通过、char 0.65 不通过（自我介绍开头）；llm_debate 不通过（逐项分析结构）。工具：`quality_gate.py`、`pi_version_analysis.py`、`sham_residual_analysis.py`、`sameslot_format_scan.py`、`build_fmt_validation_export.py`。
+**合成路线**：在真实轨迹上分叉为主，注入为辅，不让 LLM 整条写轨迹；不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。
 
-**PI 和 sham 很少落在同一槽位**（0–14%）：可选配置 `injection_plan.pair_target_runs: [[1,2,3]]`（默认关闭，MHT 建议主数据开启；锚点暂不重跑 sham；开启后要记录配对目标是否在两条 run 里都落地，尚未实现）。
+**锚点数据**（只用 llama-4-maverick；用户说明它就是 llama，不用再核实）
+- 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents；题目 `datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
+- 已有：normal 100 题 × K=3；run 0 = RC（100 题）；旧说明的 `_pi4` / `_sham` / `_shamstyle`（不进训练）各前 50 题；fmt_v1 的 `_pi5` / `_sham5` 前 20 题 × 4 框架（mdagents sham 50 题）；fmt_v1_1（只 llm_debate）`_pi6` / `_sham6` 前 10 题。自然答错 575 条。
+- 原始结果 `data_runs/anchor_llama_2026-10-21/*.jsonl.gz`（命令见该目录 README；导出加 `--maa_exclusion docs/requests/maa_exclusion_v1.json`）；本地解压副本 `/home/claude/anchor_runs/`。
+- 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`（环境变量 OUT / SUFFIX / EXTRA / CFGNAME；用 `bash` 调用）。密钥 `/home/claude/.mht_api.env` 从 Project 文档「api端点」重建，**不要提交**。
+- 单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117（`scripts/run_cost.py`）。
 
-**AEGIS 原版 simulated**：只有严格口径的指令泄漏（`instruction_strict`）可剔除；拒答是 FM-1.2 / FM-1.5 故障本身。MAFA 和 MHT 都已接受。
+**注入说明的版本**：旧说明；fmt_v1（4 个锚点 YAML 已开启）；fmt_v1_1（只 llm_debate，PI 更好认，不推广）；fmt_v1_2（待验证）；match_opener（只 mdagents，待验证）。原则：能靠格式签名重采样解决的，不往说明里加话。
 
-**和 MHT 的分工**：中训练、公开数据转换、MAA 泄漏核对由 MHT 负责；我们回答字段约定并抽查。MAA 排除清单由 MHT 维护（副本 `docs/requests/maa_exclusion_v1.json`），锚点 2 题（1499、1939）重叠，51 条运行不能进训练。补齐 A–D（$6.0）不批；style_v1 不进训练；llm_debate 的 PI 只作压力测试。
+**验收标准**（MHT 第 47 轮）：MHT `norm()` 清洗后，同槽位 sham 对 normal 在 punct 和 char 下 CI 覆盖 0.5，或不超过 RC 上限 0.62；PI 不设门槛。fmt_v1：MAC、medagents 通过；mdagents char 0.65 不通过（自我介绍开头）；llm_debate 不通过（逐项分析结构）。工具：`quality_gate.py`、`pi_version_analysis.py`、`sham_residual_analysis.py`、`sameslot_format_scan.py`、`build_fmt_validation_export.py`。
+
+**其他约定**：`pair_target_runs` 主数据开启（MHT 第 59 轮）；AEGIS simulated 只有 `instruction_strict` 泄漏可剔除，拒答是故障本身；MAA 重叠 2 题（1499、1939）51 条运行不进训练；补齐 A–D（$6.0）不批；style_v1 不进训练。
 
 **沟通**
-- MHT：medical-aegis issue #1（读评论用 REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`，GraphQL 不可用）。我方最新一条是**第 43 轮**（comment 6412034874），下一条为第 44 轮。MHT 最新一条是第 60 轮及其补充。
-- 第 43 轮请 MHT 回答：1+1、温度 0 的分叉设计是否同意；A / C / D 是否改转换脚本（改完我们重跑抽查）；审 `phase_canonical` 公开数据映射和 `env_type`。
+- MHT：medical-aegis issue #1（REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新一条是**第 44 轮**，下一条为第 45 轮；MHT 最新一条是第 62 轮续（comment 6432028012）。
+- MHT 仓库按单文件用 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读，不 clone。
 - MAFA：MAFA 仓库 issue #1，暂无待办。**不往 MAFA 仓库提交代码。**
-- 先读对方最新评论，读完再单独发帖。用正则统计的结论先在 normal 步上查误报率；判断伪迹前先看是不是故障本身。
-- 不要用 `pkill -f` / `pgrep -f`；改用 `ps -eo pid,comm,args` 过滤后 kill。
+- 先读对方最新评论，读完再单独发帖。正则统计先在 normal 步上查误报率。
+- 不要用 `pkill -f` / `pgrep -f`；用 `ps -eo pid,comm,args` 过滤后 kill。
 - 修改本节时整节重写，不要原地字符串替换。
-- arxiv：用户给出的链接可以抓；自己构造的会被拒。private-documents 仓库只按文件用 API 取，不 clone。
 
 **待用户决定**
-1. 分叉试点：按 1+1、温度 0 的方案重估，llm_debate + mdagents 各 20 条失败轨迹约 $0.5 以内（试跑后报确切数）；是否排在 MHT 中训练试点之后。最好先等 MHT 对第 43 轮的回复。
-2. 按住的两项：llm_debate fmt_v1_2 验证约 $0.09；mdagents 开头筛选验证约 $0.14。
-3. 是否采用 `phase_canonical`（需和 MHT 定稿）。
-4. 主数据（其他框架、正式配置）的生成方案，等合成路线定下来再定。
+1. **确认三项付费运行**（分叉试点约 $0.31、fmt_v1_2 约 $0.06、开头筛选约 $0.09）。MHT 第 62 轮转达了用户对后两项和试点时机的决定，但按 Project 约定，开跑前仍要用户本人确认估算。
+2. 结构感知中训练做不做（MHT 那边的决定）。
+3. 主数据（其他框架、正式配置）的生成方案。
 
 ---
 

@@ -281,9 +281,14 @@ class StructuredFMWrapper(SystemWrapper):
                 # match_opener: the role-introduction opener is part of the signature
                 # (selection only, nothing is added to the note; MHT r55)
                 opener = bool(cfg.get("match_opener"))
+                # match_structure (fmt_v1_2, v10 round 16): the option walkthrough is part of the
+                # signature only -- the note says nothing about it (fmt_v1_1 said it and made PI
+                # easier to detect)
+                sig_struct = struct or bool(cfg.get("match_structure"))
                 ref_fmt = (FMMaliciousFactory.ref_format_features(ref_text, struct)
                            if (ref_text and cfg.get("state_format")) else None)
                 self.fm_factory.ref_format = ref_fmt
+                self.fm_factory.sig_structure = bool(cfg.get("match_structure")) and not struct
                 _sh = (targets[ti][1].get("attack_spec") or {}).get("sham")
                 self.fm_factory.sham_mode = "style" if _sh == "style" else bool(_sh)
                 new_args, new_kwargs, orig_txt, mod_txt = self._inject_into_call(
@@ -291,13 +296,14 @@ class StructuredFMWrapper(SystemWrapper):
                     lambda t: self.fm_factory.inject_prompt(t, malicious_agent.fm_error_type, agent_context))
                 self.fm_factory.target_words = None
                 self.fm_factory.ref_format = None
+                self.fm_factory.sig_structure = False
                 self.fm_factory.sham_mode = False
                 tries = int(cfg.get("max_tries", 3)) if (cfg and ref_text) else 1
                 lo, hi = float(cfg.get("min_ratio", 0.6)), float(cfg.get("max_ratio", 1.5))
                 # match_format: a try is accepted only if it also has markdown
                 # exactly when the reference does (same '###'/'**' test as r43)
                 ref_md = FMMaliciousFactory.has_markdown(ref_text) if ref_text else None
-                ref_sig = FMMaliciousFactory.format_signature(ref_text, struct, opener) if ref_text else None
+                ref_sig = FMMaliciousFactory.format_signature(ref_text, sig_struct, opener) if ref_text else None
                 want_fmt = bool(cfg.get("match_format")) and ref_text is not None
                 attempts = []
 
@@ -311,7 +317,7 @@ class StructuredFMWrapper(SystemWrapper):
                     attempts.append({"resp": r, "meta": llm_meta_by_call.get(turn_idx),
                                      "cap": cap_i, "ratio": ratio,
                                      "md": FMMaliciousFactory.has_markdown(r),
-                                     "sig": FMMaliciousFactory.format_signature(r, struct, opener)})
+                                     "sig": FMMaliciousFactory.format_signature(r, sig_struct, opener)})
                     if _ok(attempts[-1]):
                         break
                 import math
@@ -340,6 +346,7 @@ class StructuredFMWrapper(SystemWrapper):
                             # a kept try with format_matched = False hit the retry cap
                             # and should be flagged / dropped downstream, not trusted
                             "n_tries": len(attempts), "match_opener": opener,
+                            "match_structure": sig_struct,
                             "format_matched": (chosen["sig"] == ref_sig) if ref_sig is not None else None}
                 return chosen["resp"], info
 

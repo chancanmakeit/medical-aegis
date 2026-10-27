@@ -432,3 +432,21 @@ MHT 第 51 轮已接受第 36 轮的更正。
 - 已发 issue 第 43 轮（comment 6412034874）。下一条为第 44 轮。
 
 - 补充：用户把 AgentRx 放到了 HF 镜像 `UUUooUUU/AgentRx`（私有）。四个 jsonl 与 gated 的 `microsoft/AgentRx` sha256 完全一致，抽查结论不变；以后从镜像下载（仍需 HF 令牌）。
+
+## 第 16 轮（2026-10-26 21:19–22:20）：MHT 第 61–62 轮；phase_canonical v1；三项付费任务准备好，等用户确认
+用户："issue 里有 MHT 新回复"。MHT 三条：
+- **第 61 轮**（comment 6424155324）：同意 1 分叉 + 1 对照、下游温度 0，补充 5 点：没翻转只记"未判定"、不当负例；第 t 步用原温度 0.7；下游混合来源，两臂相同所以可比，但翻转率不能和整条 0.7 采样比；温度 0 的确定性他们没测过，建议记录 `system_fingerprint`；给一个贪心续写一边倒的例子。A–E 全部修好，转换器重跑（26,108 条）。C：政策提示其实在 `task.observations`（`obs:policy`）里，没丢；模拟用户改为 `environment/user_simulator`，29 条里 11 条有标签落在模拟用户上。`phase_canonical` 公开部分只改一处：magentic_one `instruction` → `plan`。
+- **第 62 轮**（6424293259）：转达用户决定：采用 `phase_canonical`（升 v1、导出器默认写入）；分叉试点排在 MHT 中训练试点之后；批准 fmt_v1_2（约 $0.09）和 mdagents 开头筛选（约 $0.14）。
+- **第 62 轮续**（6432028012）：中训练试点 v1（纯文本 TAPT，Qwen3-8B LoRA，24.5M token）在 MAA 上没有可测提升（QD text +0.010，CI 含 0；LQD_mac 的表面下降来自两个只有 1 个正例的码）。不为纯文本中训练扩数据；结构感知中训练待用户决定。请我们启动分叉试点（$0.5 以内）。
+
+本轮做的（除三个小试跑外不花钱）：
+- **核对 MHT 的修复**：拉取 r61 转换器重跑（26,108 条，`check()` 0 问题，每步都有 `phase_canonical`）。A：SWE-agent 标注空步 18 → 1；B：`mistake_agent_id` 218/218 等于标注步的 agent_id，W&W 181/184 一致、3 条标 unmapped；C：`obs:policy` 29/29、user_simulator 248 步、11 条 `label_on_environment`；D：254 / 394；E：99 个 Reflection 为 environment/template。全部和 MHT 说的一致。抽查脚本改为也统计 `task.observations`（第 15 轮漏看，C 的一半结论错了），tau 覆盖率 0.41 → 1.0。结果：`docs/requests/samples/public_spotcheck_2026-10-26/r61_recheck/`。
+- **phase_canonical v1**：`configs/phase_canonical_v1.yaml`（v0 保留），magentic_one `instruction` → `plan`；`scripts/phase_canonical.py` 默认用 v1；导出器默认写 `step["phase_canonical"]` 和 `provenance.phase_canonical_table`（`--phase_canonical none` 关闭）。导出回归通过。
+- **fmt_v1_2**：新增 `pi_length_match.match_structure`（逐项分析结构只进格式签名，说明里不提），note_version `fmt_v1_2`；配置 `llm_debate_inject_fmt_v1_2.yaml`（含 `pair_target_runs: [[1, 2]]`）。**开头筛选**：`mdagents_inject_opener_paired.yaml`（加配对）。运行器支持 `CFGNAME`。mock 冒烟：配对后 PI 和 sham 落在同一槽位。
+- **分叉试点**：`scripts/branch_replay_server.py`（第 t 步：分叉臂按 0.7 转发真实 API，对照臂返回记录；D(t) 里的步骤两臂都按温度 0 转发；其余从记录返回；记录每次上游调用的温度、用量、model、system_fingerprint）+ `scripts/branch_pilot.py`（select / deps / run / analyze）。
+  - 候选点：答错运行里"陈述答案字母错误"的步骤，每条取首、中、末三个（不含招募等不陈述答案的阶段）；llm_debate 20 条 58 点，mdagents 20 条 60 点，已排除 MAA 重叠题。
+  - D(t) 用记录的 sources 求传递闭包（文本扰动会漏掉只读解析字段的步骤，例如专家读招募者的专科列表）。
+  - llm_debate 第 1 轮三个 agent 的请求完全相同，按到达顺序区分第几次出现（回放已证明顺序保持）。
+  - 真实试跑 2+2 点：路由符合设计；服务商不返回 `system_fingerprint`（None），响应的 model 字段与记录的 mdagents 运行相同；实测 $0.0121 对估算 $0.0126。
+- **费用估算**（按记录 token，试跑已核对）：分叉试点约 $0.31，fmt_v1_2 10 题约 $0.06，开头筛选 50 题约 $0.09，合计约 $0.46。三个试跑共花约 $0.022。
+- 已发 issue 第 44 轮（见 HANDOFF）。按 Project 约定，付费运行等用户确认后再跑。

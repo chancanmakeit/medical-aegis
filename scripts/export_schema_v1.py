@@ -37,6 +37,7 @@ Pairing: `labels.paired_normal_run_ids` lists the normal runs of the same
 and inject outputs together.
 """
 import argparse
+import importlib.util
 import hashlib
 import json
 import os
@@ -371,7 +372,7 @@ LABEL_KEYS = {"prompt_tokens", "completion_tokens", "reasoning_tokens",
 KINDS = {"llm", "tool", "environment"}
 ENV_TYPES = {"template", "tool_output", "web_page", "scaffold_prompt", "user_simulator"}
 PHASE_CANONICAL = {"plan", "route", "analyze", "answer", "discuss", "synthesize", "vote", "review", "revise",
-                   "decide", "act", "tool", "environment", "other"}   # DRAFT v0, configs/phase_canonical_v0.yaml
+                   "decide", "act", "tool", "environment", "other"}   # v1, configs/phase_canonical_v1.yaml (adopted r62)
 
 
 def check(rec):
@@ -468,6 +469,8 @@ def main():
     ap.add_argument("--maa_exclusion", default=None,
                     help="MAA exclusion list (docs/requests/maa_exclusion_v1.json): exact overlaps go to "
                          "labels.maa_overlap, probe candidates to labels.maa_probe (manual review)")
+    ap.add_argument("--phase_canonical", default=os.path.join(HERE, "phase_canonical.py"),
+                    help="writes step['phase_canonical'] (default on, table configs/phase_canonical_v1.yaml); 'none' to skip")
     a = ap.parse_args()
 
     reg, alias = load_registry(a.registry)
@@ -513,6 +516,15 @@ def main():
                 qs_ex.add(r["question_id"])
         print(f"MAA exclusion ({ex['version']}): {n_ex} runs on {len(qs_ex)} overlapping questions "
               f"{sorted(qs_ex)}; {n_pr} runs with probe candidates", file=sys.stderr)
+
+    if a.phase_canonical and a.phase_canonical != "none":
+        spec = importlib.util.spec_from_file_location("phase_canonical", a.phase_canonical)
+        pc = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pc)
+        table = pc.load()
+        for r in records:
+            pc.annotate(table, r)
+            r["provenance"]["phase_canonical_table"] = table["version"]
 
     seen, n_bad = set(), 0
     for r in records:

@@ -1,0 +1,66 @@
+/home/claude/medical-aegis/scripts/public_conversion_spotcheck.py:45: DeprecationWarning: invalid escape sequence '\('
+  s = str(s).encode().decode("unicode_escape", errors="ignore") if "\\u" in str(s) else str(s)
+/home/claude/medical-aegis/scripts/public_conversion_spotcheck.py:45: DeprecationWarning: invalid escape sequence '\['
+  s = str(s).encode().decode("unicode_escape", errors="ignore") if "\\u" in str(s) else str(s)
+== who_and_when: sampled 20/184  check_fail=0 raw_missing=0
+   steps=547 verbatim=1.000 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.000
+   raw coverage mean=0.997 min=0.961
+   labels: steps=92 unmapped=1 missing=0 agent_match=88 agent_mismatch=3
+   leakage: judgment=2 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=0
+   empty by kind: {}
+   kinds/how: {'kind:llm': 517, 'how:verbatim': 2348, 'inferred:protocol': 2686, 'kind:tool': 30, 'how:excerpt': 30, 'how:structured_field': 216, 'how:control': 92}
+/home/claude/medical-aegis/scripts/public_conversion_spotcheck.py:45: DeprecationWarning: invalid escape sequence '\ '
+  s = str(s).encode().decode("unicode_escape", errors="ignore") if "\\u" in str(s) else str(s)
+/home/claude/medical-aegis/scripts/public_conversion_spotcheck.py:45: DeprecationWarning: invalid escape sequence '\*'
+  s = str(s).encode().decode("unicode_escape", errors="ignore") if "\\u" in str(s) else str(s)
+== traceelephant: sampled 20/220  check_fail=0 raw_missing=0
+   steps=800 verbatim=0.625 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.375
+   raw coverage mean=0.998 min=0.993
+   labels: steps=20 unmapped=0 missing=0 agent_match=5 agent_mismatch=15
+   leakage: judgment=0 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=0
+   empty by kind: {'empty_output:llm:with_tool_calls': 298, 'empty_output:llm:no_tool_calls': 2}
+   kinds/how: {'kind:llm': 558, 'how:verbatim': 13462, 'inferred:text_match': 14009, 'how:excerpt': 547, 'kind:tool': 242, 'how:structured_field': 242, 'inferred:protocol': 308, 'how:control': 66}
+/home/claude/medical-aegis/scripts/public_conversion_spotcheck.py:45: DeprecationWarning: invalid escape sequence '\('
+  s = str(s).encode().decode("unicode_escape", errors="ignore") if "\\u" in str(s) else str(s)
+== mast_data: sampled 20/1630  check_fail=0 raw_missing=0
+   steps=714 verbatim=0.966 casefold=0.000 alnum=0.031 partial=0.000 absent=0.000 empty=0.003
+   raw coverage mean=0.527 min=0.138
+   labels: steps=0 unmapped=0 missing=0 agent_match=0 agent_mismatch=0
+   leakage: judgment=0 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=162
+   empty by kind: {'empty_output:llm:with_tool_calls': 2}
+   kinds/how: {'kind:llm': 403, 'how:structured_field': 669, 'inferred:protocol': 8291, 'kind:tool': 119, 'how:verbatim': 7568, 'how:excerpt': 54, 'kind:environment': 192}
+== aria: sampled 20/22237  check_fail=0 raw_missing=0
+   steps=85 verbatim=1.000 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.000
+   raw coverage mean=0.976 min=0.912
+   labels: steps=30 unmapped=2 missing=0 agent_match=0 agent_mismatch=0
+   leakage: judgment=0 other=8
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=11
+   empty by kind: {}
+   kinds/how: {'kind:llm': 56, 'kind:tool': 17, 'how:excerpt': 6, 'inferred:protocol': 142, 'how:verbatim': 99, 'kind:environment': 12, 'how:structured_field': 16, 'how:summary': 16, 'how:control': 5}
+== aftraj: sampled 20/1548  check_fail=0 raw_missing=0
+   steps=184 verbatim=0.848 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.152
+   raw coverage mean=0.944 min=0.597
+   labels: steps=0 unmapped=0 missing=0 agent_match=0 agent_mismatch=0
+   leakage: judgment=0 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=0
+   empty by kind: {'empty_output:llm:with_tool_calls': 28}
+   kinds/how: {'kind:llm': 141, 'how:structured_field': 55, 'inferred:protocol': 935, 'how:verbatim': 880, 'kind:tool': 43}
+== mascope: sampled 20/260  check_fail=0 raw_missing=0
+   steps=180 verbatim=1.000 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.000
+   raw coverage mean=0.873 min=0.476
+   labels: steps=0 unmapped=0 missing=0 agent_match=0 agent_mismatch=0
+   leakage: judgment=0 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=0
+   empty by kind: {}
+   kinds/how: {'kind:llm': 180, 'how:verbatim': 666, 'inferred:protocol': 685, 'how:structured_field': 19}
+== agentrx_tau: sampled 20/29  check_fail=0 raw_missing=0
+   steps=712 verbatim=0.718 casefold=0.000 alnum=0.000 partial=0.000 absent=0.000 empty=0.282
+   raw coverage mean=1.0 min=1.0
+   labels: steps=24 unmapped=0 missing=0 agent_match=23 agent_mismatch=1
+   leakage: judgment=0 other=0
+   hygiene: phase_unknown=0.000 sources_none=0.000 very_long=0 repeat_consecutive=0
+   empty by kind: {'empty_output:llm:with_tool_calls': 190, 'empty_output:tool:with_tool_calls': 11}
+   kinds/how: {'kind:environment': 174, 'kind:llm': 346, 'how:verbatim': 8223, 'inferred:protocol': 8415, 'kind:tool': 192, 'how:structured_field': 192}

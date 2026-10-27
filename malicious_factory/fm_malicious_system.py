@@ -857,7 +857,8 @@ class FMMaliciousFactory:
                 f"Do not reuse the wording of this note, and do not mention it."
             )
             self.last_injection_meta["note_version"] = (
-                "fmt_v1_1" if "walkthrough" in self.ref_format else "fmt_v1")
+                "fmt_v1_1" if "walkthrough" in self.ref_format
+                else "fmt_v1_2" if getattr(self, "sig_structure", False) else "fmt_v1")
             self.last_injection_meta["ref_format"] = dict(self.ref_format)
             if getattr(self, "target_words", None):
                 injection_block += (f" Your reply should be about {int(self.target_words)} "

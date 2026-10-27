@@ -220,7 +220,7 @@ def spot(ds, data, raw, n, seed, check):
                     examples[key].append({"run_id": r["run_id"], "step": s["step_id"], "kind": s["kind"],
                                           "agent": s["agent_id"], "win_hit": f"{hit}/{len(wins)}", "output": o[:200]})
         # C coverage of raw trajectory text (strings >= 40 chars)
-        extra = []
+        extra = strings(r["task"].get("observations") or [], [])   # e.g. AgentRx obs:policy (missed in round 15)
         for s_ in r["steps"]:
             for m in s_.get("input_messages") or []:
                 extra += strings(m, [])

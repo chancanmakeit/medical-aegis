@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""phase_canonical lookup (DRAFT v0, configs/phase_canonical_v0.yaml; v10 round 15).
+"""phase_canonical lookup (v1, adopted in issue round 62: configs/phase_canonical_v1.yaml; v0 kept for history).
 
   from phase_canonical import load, canonical
   table = load()
@@ -20,7 +20,7 @@ from collections import Counter, defaultdict
 import yaml
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT = os.path.join(HERE, "..", "configs", "phase_canonical_v0.yaml")
+DEFAULT = os.path.join(HERE, "..", "configs", "phase_canonical_v1.yaml")
 
 
 def load(path=DEFAULT):

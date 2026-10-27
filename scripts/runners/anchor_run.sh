@@ -3,6 +3,7 @@
 #   anchor_run.sh <fw> <normal|inject> [limit]
 #   fw: medagents_mc | mac_groupchat | llm_debate | mdagents
 #   env: OUT  output dir (default /home/claude/anchor_runs)
+#        CFGNAME  YAML stem under experiments/fm_injection/anchor (default <fw>_<mode>)
 #        SUFFIX  appended to the output file name (e.g. _pi4, _sham, _shamstyle2)
 #        EXTRA   main.py run args for inject mode (default "--num_runs 2")
 # Strategy is picked by run_index via strategy_cycle in the anchor YAML:
@@ -27,7 +28,7 @@ json.dump({"llama-4-maverick": {"model_list": [m], "max_workers_per_model": 2}},
 os.chmod(sys.argv[1], 0o600)
 PY
 cfg=$OUT/_cfg_${fw}_${mode}.yaml
-python3 - experiments/fm_injection/anchor/${fw}_${mode}.yaml "$cfg" <<'PY'
+python3 - experiments/fm_injection/anchor/${CFGNAME:-${fw}_${mode}}.yaml "$cfg" <<'PY'
 import os, sys, yaml
 c = yaml.safe_load(open(sys.argv[1]))
 c["llm_config"].update(model_name="llama-4-maverick", model_url="https://aihubmix.com/v1", api_key=os.environ["AIHUBMIX_API_KEY"])

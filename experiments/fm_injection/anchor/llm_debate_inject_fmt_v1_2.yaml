@@ -1,0 +1,102 @@
+# fmt_v1_2 validation config (v10 round 16): llm_debate_inject.yaml with match_structure instead of
+# state_structure, and pair_target_runs [[1, 2]].
+# ANCHOR task (user decision 2026-10-21): llm_debate on datasets/data/anchor_medxpertqa100.json,
+# llama-4-maverick only; normal K=4 (--num_runs 4 --no_inject) + 2 injected runs per
+# question (--num_runs 2 with this file: run 0 = response corruption in place, run 1 =
+# prompt injection; target drawn from targets_pool). Rounds capped at 2 (user): rounds_num 2 (upstream default).
+# 2026-10-21 PI fix: FM-3.3 only on verifying roles; injected replies length-matched to a
+# clean reference reply (re-sampled up to 3 times into [0.6, 1.5] x its length).
+# 2026-10-21 PI fix v2: state the reference reply's word count in the note; range [0.8, 1.25], 4 tries.
+# 2026-10-21: run 2 = sham (placebo) injection: same note as PI, no error asked for.
+# 2026-10-21: run 3 = style-matched sham (no error, firm persuasive justification).
+run_mode: inject
+injection_method: direct_prepend
+system_under_test:
+  name: llm_debate
+  wrapper_class_path: aegis_core.agent_systems.fm_llm_debate_structured_wrapper.FMLLMDebateStructuredWrapper
+  method_config_path: methods/llm_debate/configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.7
+benchmark_name: medxpertqa-text
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+prompt_wrapper_style: simulation
+rc_mode: inplace
+rc_fallback: pi
+injection_seed: 20261021
+template_pool: malicious_factory/rewrite_pool.json
+template_pool_model: default
+llm_debate_config_name: config_medical
+rounds_num: 2
+injection_plan:
+  seed: 20261021
+  # runs 1 (PI) and 2 (sham) share the target draw of run 1 (v10 round 10 / MHT r59)
+  pair_target_runs:
+  - [1, 2]
+  strategy_cycle:
+  - response_corruption
+  - prompt_injection
+  - sham
+  - sham_style
+  targets_pool:
+  - role: Agent
+    role_index: 0
+    phase: discussion
+    round: 1
+  - role: Agent
+    role_index: 0
+    phase: discussion
+    round: 2
+  - role: Agent
+    role_index: 1
+    phase: discussion
+    round: 1
+  - role: Agent
+    role_index: 1
+    phase: discussion
+    round: 2
+  - role: Agent
+    role_index: 2
+    phase: discussion
+    round: 1
+  - role: Agent
+    role_index: 2
+    phase: discussion
+    round: 2
+  - role: Aggregator
+    role_index: 0
+    phase: aggregation
+  attack_pool:
+  - fm_error_type: FM-1.1
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.3
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-2.5
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.2
+    injection_strategy: prompt_injection
+  - fm_error_type: FM-3.3
+    injection_strategy: prompt_injection
+    roles:
+    - Aggregator
+  - fm_error_type: FM-2.6
+    injection_strategy: response_corruption
+pi_length_match:
+  min_ratio: 0.8
+  max_ratio: 1.25
+  max_tries: 4
+  state_length: true
+  # format-matched note + markdown-aware try selection (fmt_v1, MedHyperTrace r43)
+  state_format: true
+  match_format: true
+  # fmt_v1_2 (v10 round 16, approved MHT r62): the option walk-through is matched in the
+  # signature only; the note does not mention it (fmt_v1_1 stated it and made PI easier to detect)
+  match_structure: true
