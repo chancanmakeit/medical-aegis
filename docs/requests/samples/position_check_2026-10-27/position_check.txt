@@ -1,0 +1,103 @@
+# Branching pilot: position / selection checks (offline, no API calls)
+
+## (a1) Speaker-order effect in recorded normal runs (K=3 x 100 questions, no API calls)
+
+llm_debate: 279 runs with three round-1 letters and a final letter. Round-1 requests are identical,
+so the three round-1 agents are exchangeable; only the round-2 presentation order differs (agent 0 is
+listed first among the 'other opinions' for agents 1 and 2; agent 2 is listed second for 0 and 1).
+
+2:1 splits — final answer = the minority agent's letter, by which agent was the minority:
+- minority = agent 0: 8/41 = 0.20 [0.10, 0.34]
+- minority = agent 1: 18/36 = 0.50 [0.34, 0.66]
+- minority = agent 2: 13/49 = 0.27 [0.16, 0.40]
+- all 2:1 splits: 39/126 = 0.31 [0.24, 0.39]
+Round-2 adoption of the minority letter (rows: minority agent, cols: round-2 agent j):
+- minority 0: j0=2/41  j1=8/41  j2=8/41
+- minority 1: j0=8/36  j1=7/36  j2=18/36
+- minority 2: j0=29/49  j1=28/49  j2=6/49
+3-way splits (23): final = agent 0 / 1 / 2: 8 / 8 / 7
+
+Round-2 step letter = which input's round-1 letter (each round-2 agent sees its own answer as an
+assistant turn, then the two others in `sources` order; the last one directly precedes the instruction;
+presentation order checked against `sources` on all 900 round-2 steps, 0 mismatches):
+- own = first-other, last-other differs: own 58/134 = 0.43 [0.35, 0.52]; first-other 58/134 = 0.43 [0.35, 0.52]; last-other 75/134 = 0.56 [0.48, 0.64]
+- own = last-other, first-other differs: own 93/118 = 0.79 [0.71, 0.85]; first-other 24/118 = 0.20 [0.14, 0.28]; last-other 93/118 = 0.79 [0.71, 0.85]
+- both others agree against own: own 15/126 = 0.12 [0.07, 0.19]; first-other 109/126 = 0.87 [0.79, 0.91]; last-other 109/126 = 0.87 [0.79, 0.91]
+- all three differ: own 17/69 = 0.25 [0.16, 0.36]; first-other 15/69 = 0.22 [0.14, 0.33]; last-other 35/69 = 0.51 [0.39, 0.62]
+
+mdagents: 213 runs where the 5 experts do not all agree.
+final = expert letter, by panel position (all / when that expert's letter is held by nobody else):
+- position 0: 141/213 = 0.66 [0.60, 0.72]   singleton: 0/35 = 0.00 [0.00, 0.10]
+- position 1: 127/213 = 0.60 [0.53, 0.66]   singleton: 3/34 = 0.09 [0.03, 0.23]
+- position 2: 116/213 = 0.54 [0.48, 0.61]   singleton: 1/48 = 0.02 [0.00, 0.11]
+- position 3: 124/213 = 0.58 [0.52, 0.65]   singleton: 1/36 = 0.03 [0.00, 0.14]
+- position 4: 133/213 = 0.62 [0.56, 0.69]   singleton: 5/43 = 0.12 [0.05, 0.24]
+
+## (a2) Pilot flips by (round, speaker position); position-only baseline
+
+Flips by peer support (peers in the same round / other experts that already state the gold letter):
+- llm_debate r1 peers right 0: 2/16
+- llm_debate r1 peers right 1: 1/1
+- llm_debate r1 peers right 2: 2/3
+- llm_debate r2 peers right 0: 0/17
+- llm_debate r2 peers right 1: 0/1
+- llm_debate r2 peers right 2: 0/1
+- mdagents expert peers right 0: 1/24
+- mdagents expert peers right 1: 0/4
+- mdagents expert peers right 2: 4/10
+- mdagents expert peers right 3: 2/2
+
+- llm_debate agg pos 0: 0/19
+- llm_debate r1 pos 0: 3/17
+- llm_debate r1 pos 1: 2/3
+- llm_debate r2 pos 0: 0/15
+- llm_debate r2 pos 1: 0/3
+- llm_debate r2 pos 2: 0/1
+- mdagents agg pos 0: 0/20
+- mdagents expert pos 0: 0/16
+- mdagents expert pos 1: 2/4
+- mdagents expert pos 3: 2/16
+- mdagents expert pos 4: 3/4
+- baseline AUROC [llm_debate, no aggregator, n=39, flips=5] round only: leave-one-question-out 0.56, in-sample 0.78
+- baseline AUROC [llm_debate, no aggregator, n=39, flips=5] round x position: leave-one-question-out 0.72, in-sample 0.85
+- baseline AUROC [llm_debate, no aggregator, n=39, flips=5] |D(t)|: leave-one-question-out 0.56, in-sample 0.78
+- baseline AUROC [llm_debate, no aggregator, n=39, flips=5] peer support: leave-one-question-out 0.69, in-sample 0.90
+- baseline AUROC [mdagents, no aggregator, n=40, flips=7] round only: n/a (feature constant)
+- baseline AUROC [mdagents, no aggregator, n=40, flips=7] round x position: leave-one-question-out 0.79, in-sample 0.89
+- baseline AUROC [mdagents, no aggregator, n=40, flips=7] |D(t)|: n/a (feature constant)
+- baseline AUROC [mdagents, no aggregator, n=40, flips=7] peer support: leave-one-question-out 0.71, in-sample 0.85
+- baseline AUROC [both, no aggregator, n=79, flips=12] round only: leave-one-question-out 0.49, in-sample 0.68
+- baseline AUROC [both, no aggregator, n=79, flips=12] round x position: leave-one-question-out 0.76, in-sample 0.88
+- baseline AUROC [both, no aggregator, n=79, flips=12] |D(t)|: leave-one-question-out 0.49, in-sample 0.68
+- baseline AUROC [both, no aggregator, n=79, flips=12] peer support: leave-one-question-out 0.78, in-sample 0.89
+
+## (b) Control-candidate pools (MHT suggestion), recorded normal runs, all K=3, MAA overlap excluded
+
+Steps that state an answer, by (round, position) x letter status (wrong / right / none), split by how the run ends.
+
+llm_debate:
+- run_right r1 pos 0: wrong 44, right 108, none 2
+- run_right r1 pos 1: wrong 38, right 113, none 3
+- run_right r1 pos 2: wrong 44, right 106, none 4
+- run_right r2 pos 0: wrong 20, right 134, none 0
+- run_right r2 pos 1: wrong 20, right 134, none 0
+- run_right r2 pos 2: wrong 9, right 145, none 0
+- run_wrong r1 pos 0: wrong 100, right 32, none 8
+- run_wrong r1 pos 1: wrong 114, right 23, none 3
+- run_wrong r1 pos 2: wrong 102, right 36, none 2
+- run_wrong r2 pos 0: wrong 109, right 30, none 1
+- run_wrong r2 pos 1: wrong 109, right 28, none 3
+- run_wrong r2 pos 2: wrong 127, right 11, none 2
+
+mdagents:
+- run_right expert pos 0: wrong 31, right 122, none 0
+- run_right expert pos 1: wrong 43, right 110, none 0
+- run_right expert pos 2: wrong 35, right 118, none 0
+- run_right expert pos 3: wrong 47, right 106, none 0
+- run_right expert pos 4: wrong 38, right 115, none 0
+- run_wrong expert pos 0: wrong 124, right 17, none 0
+- run_wrong expert pos 1: wrong 121, right 20, none 0
+- run_wrong expert pos 2: wrong 110, right 31, none 0
+- run_wrong expert pos 3: wrong 119, right 22, none 0
+- run_wrong expert pos 4: wrong 121, right 20, none 0
+
