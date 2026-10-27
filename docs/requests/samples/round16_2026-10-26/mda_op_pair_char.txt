@@ -1,0 +1,17 @@
+features: char (normalised text)
+
+mdagents @fmt_v1
+  pi_vs_normal             0.62 [0.49, 0.74]
+  pi_vs_normal_drop1       0.62 [0.49, 0.74]
+  pi_answer_change         0.44 (n=18)
+  sham_vs_normal           0.65 [0.58, 0.73]
+  sham_vs_normal_drop1     0.58 [0.51, 0.66]
+  sham_answer_change       0.32 (n=44)
+
+mdagents @fmt_v1_opener
+  sham_vs_normal           0.58 [0.52, 0.65]
+  sham_vs_normal_drop1     0.51 [0.45, 0.59]
+  sham_answer_change       0.39 (n=44)
+
+paired difference fmt_v1_opener - fmt_v1 (bootstrap over questions, same resamples)
+  mdagents     sham  -0.07 [-0.16, +0.01]  (questions=50)

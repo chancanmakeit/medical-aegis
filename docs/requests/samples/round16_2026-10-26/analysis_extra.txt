@@ -1,0 +1,6 @@
+llm_debate {('D(t) empty', 'resample_correct'): 0, ('D(t) empty', 't_letter_same'): 19, ('D(t) empty', 't_letter_same', 'flip'): 0, ('D(t)>0', 'resample_correct'): 7, ('D(t)>0', 't_letter_changed'): 8, ('D(t)>0', 't_letter_changed', 'flip'): 5, ('D(t)>0', 't_letter_same'): 31, ('D(t)>0', 't_letter_same', 'flip'): 0}
+  example medxpertqa_text_2287 t= s0 gold E
+   control: [('s0', 1, 'C'), ('s1', 1, 'E'), ('s2', 1, 'E'), ('s3', 2, 'C'), ('s4', 2, 'C'), ('s5', 2, 'C'), ('s6', None, 'C')]
+   branch : [('s0', 1, 'E'), ('s1', 1, 'E'), ('s2', 1, 'E'), ('s3', 2, 'E'), ('s4', 2, 'E'), ('s5', 2, 'E'), ('s6', None, 'E')]
+mdagents {('D(t) empty', 'resample_correct'): 0, ('D(t) empty', 't_letter_same'): 20, ('D(t) empty', 't_letter_same', 'flip'): 0, ('D(t)>0', 'resample_correct'): 9, ('D(t)>0', 't_letter_changed'): 15, ('D(t)>0', 't_letter_changed', 'flip'): 5, ('D(t)>0', 't_letter_same'): 25, ('D(t)>0', 't_letter_same', 'flip'): 2}
+llm_debate pass0 (t = round-1 agent): round-2 unanimous {('recorded_0.7', 'round2_unanimous'): 18, ('recorded_0.7', 'n'): 20, ('control_T0', 'round2_unanimous'): 18, ('control_T0', 'n'): 20}

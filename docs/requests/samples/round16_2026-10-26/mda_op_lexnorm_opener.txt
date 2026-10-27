@@ -1,0 +1,5 @@
+framework      kind  note    feat   raw AUROC [CI]            normalised AUROC [CI]
+mdagents       PI    fmt_v1  punct  0.67 [0.57, 0.77]   ->   0.65 [0.56, 0.77]   n_pos=20
+mdagents       PI    fmt_v1  char   0.68 [0.59, 0.78]   ->   0.62 [0.53, 0.71]   n_pos=20
+mdagents       sham  fmt_v1  punct  0.63 [0.55, 0.68]   ->   0.59 [0.53, 0.65]   n_pos=50
+mdagents       sham  fmt_v1  char   0.65 [0.59, 0.70]   ->   0.58 [0.54, 0.63]   n_pos=50

@@ -1,0 +1,42 @@
+{"key": "4984159b4f78ef43c33bbd29c0a933b70138cd43", "t": 1793080442.5116267, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1193", "step_id": "s0"}
+{"key": "ab781b27dc1013efac1b30294093124e461d9aee", "t": 1793080442.5240035, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_2087", "step_id": "s0"}
+{"key": "53d367d2a5ebf521339770fecb53b89e02f540b2", "t": 1793080442.5282228, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1587", "step_id": "s0"}
+{"key": "87f011120fa51d2c2d4973f4351d34e6c66201e5", "t": 1793080442.5442715, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_301", "step_id": "s0"}
+{"key": "5eb75f4426882c401f763cde78d9ba09ba286db1", "t": 1793080442.5843928, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1634", "step_id": "s0"}
+{"key": "273e725f7a007915983ef4c0c1113cc72a19ee59", "t": 1793080442.6002367, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_543", "step_id": "s0"}
+{"key": "06d53c924bc6d23d0293f75057d274e27a3f7f34", "t": 1793080443.152266, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_1587"}
+{"key": "00ee0165ff05a02871c2abdabba127bc1f3e7a13", "t": 1793080443.1884046, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1193", "step_id": "s1"}
+{"key": "a25bc9f595309f62604a5d391831bcdd00a5327f", "t": 1793080443.232371, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_301"}
+{"key": "08cf1238afcef0a6dd688e0376db3c7017388703", "t": 1793080443.3645113, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_543"}
+{"key": "73c0957f9d3272566fa75c4ca8ea839b0462a968", "t": 1793080443.3682997, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1634", "step_id": "s1"}
+{"key": "cb4f7e7685328669cb06b9efc207d05f46b05ceb", "t": 1793080443.3762589, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_2087"}
+{"key": "de60af435902bae06604cf51c4968d87c5441bcb", "t": 1793080443.9842453, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1587", "step_id": "s2"}
+{"key": "0e511c6effcd3c007918968181c83ac5c96a1ae0", "t": 1793080444.0335991, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_1193"}
+{"key": "397c8cb396f69a3db30dc089b3ddd4b89bd2b842", "t": 1793080444.1362484, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_1634"}
+{"key": "4c1214fe9bcdcc2bf1183844b465a154a7624fd4", "t": 1793080444.1370118, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_543", "step_id": "s2"}
+{"key": "da8e79b60373f64217ffe304cf9571f525e240f3", "t": 1793080444.1417117, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_301", "step_id": "s2"}
+{"key": "16aefa78cb468205089048ef6fd5960271580172", "t": 1793080444.188803, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_2087", "step_id": "s2"}
+{"key": "dd24264a22f6d8eb99c993c2af6952891b34909d", "t": 1793080444.8380206, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1193", "step_id": "s3"}
+{"key": "1b242884e902d22ef3bed75d20fe75606823af57", "t": 1793080444.8402903, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1587", "step_id": "s3"}
+{"key": "a542ccaa748722a15d2dc6cb1efaed8dbc1dc9f7", "t": 1793080445.118036, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_543", "step_id": "s3"}
+{"key": "2d167b1dc849d0c5b16db51b468551eb14f4c3b3", "t": 1793080445.1292121, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1634", "step_id": "s3"}
+{"key": "6e8b408be15bdb69ea03691af7a1be4d8fda6c4b", "t": 1793080445.13213, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_301", "step_id": "s3"}
+{"key": "6b5d0d527cdf06e44ccee59313c5c2bbfea5d53d", "t": 1793080445.1464899, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_2087", "step_id": "s3"}
+{"key": "afd78de9fe8c5af9c7433d4ecb7f10808a6af0c2", "t": 1793080445.7947845, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1193", "step_id": "s4"}
+{"key": "719f2a68afc3d34a8c349f3974016b5611444b26", "t": 1793080445.7999134, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_543", "step_id": "s4"}
+{"key": "7f659e56ab6b850a40e8b5a189e4abe261ede085", "t": 1793080445.879413, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1587", "step_id": "s4"}
+{"key": "bdb32caf21589028c7003e530e6ec5a27de40c30", "t": 1793080445.8902783, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_2087", "step_id": "s4"}
+{"key": "e1e29ca45946f01a878ad7744e24323433ce16eb", "t": 1793080445.8962407, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_301", "step_id": "s4"}
+{"key": "a6564099364788767a497f54896bfec8242b4896", "t": 1793080445.9081552, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1634", "step_id": "s4"}
+{"key": "a11818fdca05def774a44b27bcad76673d47efc6", "t": 1793080446.3401566, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1193", "step_id": "s5"}
+{"key": "2151b8f1c6e3e6a921e83f32a74699142e4c214f", "t": 1793080446.4225297, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_543", "step_id": "s5"}
+{"key": "20bad43ae001f88939b7725108eec4f6ddfbdcbf", "t": 1793080446.4442182, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1587", "step_id": "s5"}
+{"key": "c38ab32c327428e3d4967155d7a0b921902f2252", "t": 1793080446.4867988, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1634", "step_id": "s5"}
+{"key": "ca2f900da564472f0f256760a3ef4bbf5aeef5f0", "t": 1793080446.4961956, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_2087", "step_id": "s5"}
+{"key": "38632e704a15e65990db07976a5cd583b6a7c5cd", "t": 1793080446.5042253, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_301", "step_id": "s5"}
+{"key": "ba62276365827db7e5991e8dbea684d1e3f530ed", "t": 1793080447.1681936, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_1193", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 1207, "completion_tokens": 226, "total_tokens": 1433, "prompt_tokens_details": {"cached_tokens": 32}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}
+{"key": "63278d74b8fb095964a23a1de92b3d54f1e56f12", "t": 1793080447.1230543, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_1634", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 1158, "completion_tokens": 249, "total_tokens": 1407, "prompt_tokens_details": {"cached_tokens": 1152}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}
+{"key": "e922e2cd3590ce0ae3b5508618355b55525aa297", "t": 1793080446.9688227, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_2087", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 1541, "completion_tokens": 259, "total_tokens": 1800, "prompt_tokens_details": {"cached_tokens": 32}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}
+{"key": "50da1b8f1524d728a5a77d320e950347165e2199", "t": 1793080446.9441957, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_543", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 1195, "completion_tokens": 262, "total_tokens": 1457, "prompt_tokens_details": {"cached_tokens": 800}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}
+{"key": "6eb03c7937bab6722db58b40f32f9544aa8d76a7", "t": 1793080447.2161856, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_1587", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 1532, "completion_tokens": 256, "total_tokens": 1788, "prompt_tokens_details": {"cached_tokens": 32}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}
+{"key": "b0c46260761dc9c7b2a491603fc12a8d98530de2", "t": 1793080447.1637368, "req_temperature": 0.7, "tag": "forced_dependent", "qid": "medxpertqa_text_301", "temperature": 0.0, "upstream": true, "usage": {"prompt_tokens": 3469, "completion_tokens": 351, "total_tokens": 3820, "prompt_tokens_details": {"cached_tokens": 32}}, "model": "google/gemma-4-31B-it-turbo", "system_fingerprint": null, "finish_reason": "stop"}

@@ -2,22 +2,17 @@
 
 > 最后更新：2026-10-26（会话 v10 讨论第 14 轮，issue 我方第 42 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"、discussion_log_v10 和 discussion_log_v9 的最新几轮为准。
 
-## 当前状态（v10 讨论第 16 轮，2026-10-26）
+## 当前状态（v10 讨论第 17 轮，2026-10-26）
 
-逐轮细节见 `docs/discussion_log_v10.md`（第 1–16 轮）。
+逐轮细节见 `docs/discussion_log_v10.md`（第 1–17 轮）。
 
-**第 16 轮（本轮）：三项付费任务已准备好，等用户确认（合计约 $0.46）**
-1. **分叉试点**（约 $0.31；MHT 第 62 轮续：中训练试点已有结果，请我们启动）。
-   - 代码：`scripts/branch_replay_server.py`、`scripts/branch_pilot.py`。工作目录 `/home/claude/branch_pilot`，不入库，候选点文件 `{fw}_candidates.jsonl` 已生成并带 D(t)。
-   - 设计：1 分叉 + 1 对照。第 t 步：分叉臂按 0.7 请求真实 API，对照臂返回记录；D(t) 里的步骤两臂都按温度 0 生成；其余从记录返回。D(t) 用记录 sources 的传递闭包。同输入请求按到达顺序区分。没翻转 = 未判定，不当负例；翻转点全部补跑对照（`run --arm control --rep 1 --only <qids>`），未翻转点抽一部分补跑。
-   - 命令：每个框架 `run --arm branch|control --pass 0|1|2 --upstream real`，然后 `analyze`。
-   - 已花：2+2 点真实试跑 $0.015（结果在 runs/ 下，正式跑会覆盖）。
-   - 报告项（MHT 第 60、61 轮）：翻转 / 未判定比例、对照复跑不一致率、位置分布、第 t 步原文对其重采样的同槽位 AUROC、每次调用的 model（服务商不返回 `system_fingerprint`）、一个贪心续写导致一边倒的例子。第 3 个点基本都是 aggregation（D(t) 为空），要单独列。
-2. **fmt_v1_2 验证**（约 $0.06）：`CFGNAME=llm_debate_inject_fmt_v1_2 SUFFIX=_v12 EXTRA="--num_runs 2 --run_index_start 1" bash scripts/runners/anchor_run.sh llm_debate inject 10`。报告：fmt_v1_2 − fmt_v1（`_pi5` / `_sham5`）的配对差（PI 和 sham，按题 bootstrap）、去掉首句后的结果、重采样拒收率。配对后 sham 的槽位与 `_sham5` 不同，要说明。
-3. **mdagents 开头筛选**（约 $0.09）：`CFGNAME=mdagents_inject_opener_paired SUFFIX=_op EXTRA="--num_runs 1 --run_index_start 2" bash scripts/runners/anchor_run.sh mdagents inject 50`。报告：同槽位 AUROC（punct / char）、`format_matched = false` 比例、重试次数分布、配对目标在两条 run 里都落地的比例（PI 只有 `_pi5` 前 20 题）。
-- 两项验证的 1 题试跑在 `/home/claude/anchor_runs_trial/`（共 $0.007）。
+**第 17 轮（本轮）：用户确认后，三项付费运行已完成，实际 $0.557（估算 $0.46）**，报告 `docs/requests/samples/round16_2026-10-26/REPORT.md`，issue 第 45 轮。
+- **分叉试点**（`scripts/branch_pilot.py` + `scripts/branch_replay_server.py`；原始运行 `data_runs/branch_pilot_2026-10-26/`）：llm_debate 翻转 5/58，mdagents 7/60，几乎全是由错变对；对照复跑 28 次 0 不一致；对照最终答案与原记录 118/118 相同；第 t 步原文对重采样 AUROC 0.47 / 0.50。翻转只在 llm_debate 第 1 轮和 mdagents 专家；aggregator 点（D(t) 为空）0/39，下一版候选规则去掉。每个点两臂合计 llm_debate 约 $0.003，mdagents 约 $0.0012。工作目录 `/home/claude/branch_pilot`（不入库）。
+- **fmt_v1_2**：PI 更好认，sham 无改善 → **不推广**，llm_debate 保持 fmt_v1（原始运行 `llm_debate__inject_v12.jsonl.gz`）。
+- **mdagents match_opener**（配对）：sham 同槽位 punct 0.59、char 0.58，**过门槛**（fmt_v1 char 0.65 不过）→ 建议正式配置保留（`mdagents__inject_op.jsonl.gz`）。
+- 估算教训：1 题试跑不触发重采样，会低估验证运行；要按重试率修正。
 
-**第 16 轮做完的（不花钱）**
+**第 16 轮做完的**
 - 核对 MHT r61 的 A–E 修复：全部和 MHT 说的一致（`docs/requests/samples/public_spotcheck_2026-10-26/r61_recheck/`）。第 15 轮的 C 有一半错了：政策提示在 `task.observations` 里，抽查脚本已改。
 - `phase_canonical` **v1 已采用**（用户决定，MHT 第 62 轮转达）：`configs/phase_canonical_v1.yaml`（magentic_one `instruction` → `plan`），导出器默认写入（`--phase_canonical none` 关闭）。MHT 的转换器直接 import 我们的 `scripts/phase_canonical.py`，**改接口要先通知 MHT**。
 - fmt_v1_2：`pi_length_match.match_structure`（结构只进签名，note_version `fmt_v1_2`）。
@@ -46,7 +41,7 @@
 **其他约定**：`pair_target_runs` 主数据开启（MHT 第 59 轮）；AEGIS simulated 只有 `instruction_strict` 泄漏可剔除，拒答是故障本身；MAA 重叠 2 题（1499、1939）51 条运行不进训练；补齐 A–D（$6.0）不批；style_v1 不进训练。
 
 **沟通**
-- MHT：medical-aegis issue #1（REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新一条是**第 44 轮**（comment 6434273919），下一条为第 45 轮；MHT 最新一条是第 62 轮续（comment 6432028012）。
+- MHT：medical-aegis issue #1（REST：`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新一条是**第 45 轮**（见 discussion log 第 17 轮），下一条为第 46 轮；MHT 最新一条是第 62 轮续（comment 6432028012）。
 - MHT 仓库按单文件用 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读，不 clone。
 - MAFA：MAFA 仓库 issue #1，暂无待办。**不往 MAFA 仓库提交代码。**
 - 先读对方最新评论，读完再单独发帖。正则统计先在 normal 步上查误报率。
@@ -54,9 +49,9 @@
 - 修改本节时整节重写，不要原地字符串替换。
 
 **待用户决定**
-1. **确认三项付费运行**（分叉试点约 $0.31、fmt_v1_2 约 $0.06、开头筛选约 $0.09）。MHT 第 62 轮转达了用户对后两项和试点时机的决定，但按 Project 约定，开跑前仍要用户本人确认估算。
+1. 分叉要不要扩大（先去掉 aggregator 点、调整候选规则；每点两臂合计 llm_debate 约 $0.003、mdagents 约 $0.0012）。
 2. 结构感知中训练做不做（MHT 那边的决定）。
-3. 主数据（其他框架、正式配置）的生成方案。
+3. 主数据（其他框架、正式配置）的生成方案；mdagents 保留 match_opener，llm_debate 保持 fmt_v1。
 
 ---
 

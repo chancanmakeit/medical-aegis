@@ -1,0 +1,22 @@
+features: punct (normalised text)
+
+llm_debate @fmt_v1
+  pi_vs_normal             0.64 [0.39, 0.86]
+  pi_vs_normal_drop1       0.63 [0.39, 0.84]
+  pi_answer_change         0.50 (n=10)
+  sham_vs_normal           0.63 [0.42, 0.84]
+  sham_vs_normal_drop1     0.55 [0.36, 0.74]
+  sham_answer_change       0.40 (n=10)
+
+llm_debate @fmt_v1_2
+  pi_vs_normal             0.83 [0.66, 0.97]
+  pi_vs_normal_drop1       0.81 [0.67, 0.98]
+  pi_answer_change         0.20 (n=10)
+  sham_vs_normal           0.60 [0.43, 0.72]
+  sham_vs_normal_drop1     0.50 [0.35, 0.63]
+  sham_answer_change       0.40 (n=10)
+  pi_vs_sham               0.90 [0.72, 1.00] (pairs=10, exact slot=10)
+
+paired difference fmt_v1_2 - fmt_v1 (bootstrap over questions, same resamples)
+  llm_debate   pi    +0.20 [-0.05, +0.47]  (questions=10)
+  llm_debate   sham  -0.04 [-0.26, +0.19]  (questions=10)

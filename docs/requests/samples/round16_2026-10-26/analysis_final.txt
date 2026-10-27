@@ -1,0 +1,11 @@
+== llm_debate: points 58  flip 5 (0.09)  undetermined 53  wrong->right 5  | controls re-run 13, disagree 0  | flips confirmed by a 2nd control 5  | control final != recorded final 0
+   position / phase: {'0-20%': '5/20', '40-60%': '0/18', '60-80%': '0/1', '80-100%': '0/19', 'aggregation': '0/19', 'discussion': '5/39'}
+   upstream calls 296 by tag {'t_resample': 58, 'forced_dependent': 110, 'miss': 128}; models {'google/gemma-4-31B-it-turbo': 296}; system_fingerprint {None: 296}; errors 0; cost $0.2127
+   same-slot AUROC recorded step t vs its resample (char 2-5, grouped CV): 0.467 [0.408, 0.519] n=58 pairs
+   flip example: {'qid': 'medxpertqa_text_2287', 't_step': 's0', 'phase': 'discussion', 't_letter': 'C', 't_resample_letter': 'E', 'control_final': 'C', 'branch_final': 'E', 'gold': 'E'}
+   flip example: {'qid': 'medxpertqa_text_2373', 't_step': 's1', 'phase': 'discussion', 't_letter': 'H', 't_resample_letter': 'J', 'control_final': 'H', 'branch_final': 'J', 'gold': 'J'}
+   flip example: {'qid': 'medxpertqa_text_2427', 't_step': 's1', 'phase': 'discussion', 't_letter': 'D', 't_resample_letter': 'F', 'control_final': 'D', 'branch_final': 'F', 'gold': 'F'}
+== mdagents: points 60  flip 7 (0.12)  undetermined 53  wrong->right 6  | controls re-run 15, disagree 0  | flips confirmed by a 2nd control 7  | control final != recorded final 0
+   upstream calls 155 by tag {'forced_dependent': 55, 't_resample': 60, 'miss': 40}; models {'google/gemma-4-31B-it-turbo': 155}; system_fingerprint {None: 155}; errors 0; cost $0.0826
+   same-slot AUROC recorded step t vs its resample (char 2-5, grouped CV): 0.496 [0.447, 0.548] n=60 pairs
+TOTAL upstream cost $0.2954

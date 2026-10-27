@@ -450,3 +450,12 @@ MHT 第 51 轮已接受第 36 轮的更正。
   - 真实试跑 2+2 点：路由符合设计；服务商不返回 `system_fingerprint`（None），响应的 model 字段与记录的 mdagents 运行相同；实测 $0.0121 对估算 $0.0126。
 - **费用估算**（按记录 token，试跑已核对）：分叉试点约 $0.31，fmt_v1_2 10 题约 $0.06，开头筛选 50 题约 $0.09，合计约 $0.46。三个试跑共花约 $0.022。
 - 已发 issue 第 44 轮（comment 6434273919）。按 Project 约定，付费运行等用户确认后再跑。
+
+## 第 17 轮（2026-10-26 22:50–23:50）：用户确认，三项付费运行完成
+用户："可以"（确认三项付费运行）。实际总花费 $0.557（估算 $0.46）。完整报告 `docs/requests/samples/round16_2026-10-26/REPORT.md`；原始运行入库：`data_runs/branch_pilot_2026-10-26/`，`data_runs/anchor_llama_2026-10-21/{llm_debate__inject_v12,mdagents__inject_op}.jsonl.gz`。
+- **分叉试点**（$0.295）：llm_debate 58 点翻转 5（9%），mdagents 60 点翻转 7（12%），几乎全是由错变对；对照复跑 28 次 0 不一致，翻转 12/12 被第二次对照确认；对照最终答案 118/118 与原记录相同（D(t) 139 步文本全变、字母全同）。第 t 步原文对重采样的同槽位 AUROC 0.47 / 0.50。翻转只发生在 llm_debate 第 1 轮（5/20）和 mdagents 专家（7/40）；aggregator 0/39（D(t) 为空，下一版候选规则应去掉）。llm_debate 里翻转都伴随第 t 步字母改变（5/8 vs 0/31）。贪心续写没有增加第 2 轮一致率（18/20 对 18/20）。例子 2287：对照第 1 轮 C/E/E → 第 2 轮全 C（agent 0 压过 2:1 多数），分叉 s0→E 后全 E。服务商不返回 system_fingerprint。
+- **fmt_v1_2**（$0.100）：PI 更好认（+0.20 punct / +0.16 char，CI 碰 0），sham 无改善（−0.04 / +0.11）；PI 拒收率 0.50；10 个参考里只有 2 个逐项分析。不推广，llm_debate 保持 fmt_v1。
+- **mdagents 开头筛选**（$0.140）：sham 同槽位（MHT lexical_norm）punct 0.59 [0.53, 0.65]、char 0.58 [0.54, 0.63]，**两种都过门槛**（fmt_v1 char 0.65 不过）；配对差 char −0.07 [−0.16, +0.01]；format_matched=false 7/50；重试 1 次 39、4 次 10；配对目标与 `_pi5` 同槽位 20/20。建议正式配置保留 match_opener。
+- 超支原因：1 题试跑没有触发重采样，正式运行 10–50% 的注入步骤用到重试上限。以后估算按重试率修正。
+- `scripts/pi_version_analysis.py` 允许只有 sham 的版本；`.gitignore` 加 `__pycache__/`（停止跟踪 pyc）。
+- 已发 issue 第 45 轮（见 HANDOFF）。

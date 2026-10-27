@@ -135,10 +135,12 @@ def main():
     for fw in sorted({k[0] for k in inj}):
         for ver in vers:
             pi, sh = inj.get((fw, "pi", ver), []), inj.get((fw, "sham", ver), [])
-            if not pi or not sh:
+            if not pi and not sh:
                 continue
             out = {}
             for name, items in (("pi", pi), ("sham", sh)):
+                if not items:            # e.g. a sham-only re-run (mdagents match_opener, v10 round 16)
+                    continue
                 res[(fw, name, ver)] = vs_normal(fw, items, ident)
                 out[f"{name}_vs_normal"] = fmt(*res[(fw, name, ver)])
                 out[f"{name}_vs_normal_drop1"] = fmt(*vs_normal(fw, items, drop_first_sentence))
