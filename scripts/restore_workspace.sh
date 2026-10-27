@@ -1,6 +1,8 @@
 #!/bin/bash
 # Rebuild the local (not-in-git) working data of medical-aegis in a fresh session. Free: no LLM API calls.
-#   bash scripts/restore_workspace.sh [all|anchor|branch|public|mht|aegis]      (default: all)
+#   bash scripts/restore_workspace.sh [hf|all|anchor|branch|public|mht|aegis]      (default: hf)
+#   hf = download the full snapshot from the private HF dataset UUUooUUU/medical-aegis-workspace (fastest, most
+#        complete); all = rebuild the same data from the repo and public sources instead.
 # env: ROOT (default /home/claude). Needs: HF token in $ROOT/.hf_token (read is enough) for the private
 # AgentRx mirror; gh with access to chancanmakeit/Medhypertrace (MHT converters) and, for "aegis",
 # chancanmakeit/nature-sub-record (add_repo first).
@@ -20,8 +22,30 @@ set -e
 ROOT=${ROOT:-/home/claude}
 REPO=$(cd "$(dirname "$0")/.." && pwd)
 WS=$REPO/data_runs/workspace_2026-10-27
-what=${1:-all}
+what=${1:-hf}
 pip install -q --break-system-packages huggingface_hub pandas pyarrow pyyaml tiktoken 2>/dev/null || true
+
+if [[ $what == hf ]]; then
+  # full 2026-10-27 snapshot from the private HF dataset (1.6 GB): everything the other modes rebuild, PLUS the
+  # derived anchor exports (gate7_export, fmt_val, mda50_val, anchor_all_*), val16 exports and aegis_data
+  S=$ROOT/hf_workspace
+  HF_TOKEN=$(cat $ROOT/.hf_token) S=$S python3 -I -c "
+import os
+from huggingface_hub import snapshot_download
+snapshot_download('UUUooUUU/medical-aegis-workspace', repo_type='dataset', local_dir=os.environ['S'], token=os.environ['HF_TOKEN'])"
+  mkdir -p $ROOT/anchor_runs $ROOT/public_mas
+  for f in $S/anchor_runs/*; do
+    b=$(basename $f)
+    if [[ $b == *.jsonl.gz ]]; then gunzip -c $f > $ROOT/anchor_runs/${b%.gz}; else cp $f $ROOT/anchor_runs/; fi
+  done
+  cp -r $S/anchor_runs_trial $ROOT/
+  for t in branch_pilot val16 run16_logs mht_ref; do tar xzf $S/$t.tar.gz -C $ROOT; done
+  tar xf $S/aegis_data.tar -C $ROOT
+  tar xf $S/public_mas/raw.tar -C $ROOT/public_mas
+  tar xzf $S/public_mas/mas_traj_r61.tar.gz -C $ROOT/public_mas
+  tar xzf $S/public_mas/mas_traj_r57.tar.gz -C $ROOT/public_mas
+  echo "hf: restored from UUUooUUU/medical-aegis-workspace; snapshot kept in $S (delete it to free 1.6 GB)"
+fi
 
 if [[ $what == all || $what == anchor ]]; then
   mkdir -p $ROOT/anchor_runs

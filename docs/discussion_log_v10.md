@@ -460,3 +460,10 @@ MHT 第 51 轮已接受第 36 轮的更正。
 - `scripts/pi_version_analysis.py` 允许只有 sham 的版本；`.gitignore` 加 `__pycache__/`（停止跟踪 pyc）。
 - 发帖前读到 MHT 第 64 轮（comment 6434952854）：批准记录（以用户答复为准）；phase_canonical v1 他们零差异核对、已删本地覆盖；要 D(t) 大小分布和推断来源比例；aggregator 点不进主分析；SAMT v1（结构感知中训练，对齐阶段）已开跑，约 12:30 UTC 出结果。补算：|D(t)| 分布、来源全部为运行时记录、对照臂 29 次未命中全在 D(t) 内（无漏边）、去掉 aggregator 后翻转 5/39、7/40、对照复跑 0/28。
 - 已发 issue 第 45 轮（comment 6434978710）。下一条为第 46 轮。
+
+## 第 18 轮（2026-10-27 00:09–00:45）：开新会话前的交接，数据上传 HuggingFace
+用户：因上下文限制要开新会话，要求准备开场白和资源，把数据传到 HuggingFace，让新会话直接下载。
+- private-documents 里的 HF 令牌是只读的，不能建仓库；会话里也不能建 GitHub release。先做了兜底：小而不可再生的文件（分叉试点工作目录、试跑、门槛输出和日志）入库 `data_runs/workspace_2026-10-27/`，并写了 `scripts/restore_workspace.sh`，可从仓库和公开源免费重建（`all` 模式，空目录实测约 5 分钟）。
+- 用户随后给了一个临时的 HF 写令牌（只存于本地 600 文件，用完删除，未提交）。已建私有数据集 **`UUUooUUU/medical-aegis-workspace`**（82 个文件，1.6 GB；含 anchor_runs 全部原始运行和派生导出、分叉试点、val16、公开原始数据和 MHT r57/r61 转换结果、MHT 参考代码、aegis_data）。上传前扫描过真实密钥：含密钥的 `_cfg_*.yaml`、`real_api.json` 已排除。用只读令牌下载核对 sha256 一致。
+- `restore_workspace.sh` 默认改为 `hf` 模式（下载快照并解包），空目录实测通过（gate7_export 逐字节一致）。
+- 开场白在 `docs/NEW_SESSION_PROMPT.md` 和 Project 入口文档里。新会话的讨论记录新开 `docs/discussion_log_v11.md`。
