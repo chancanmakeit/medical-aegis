@@ -116,3 +116,7 @@ whose slots differ from the paired fmt_v1_2 slots.
   llm_debate 0.467 [0.394, 0.542] (was [0.408, 0.519]); mdagents 0.496 [0.430, 0.563] (was [0.447, 0.548]).
 - Control re-runs were selective (all flips + random undetermined points). Report them stratified:
   flips 0/12, undetermined 0/16, not as an unconditional 0/28 nondeterminism rate.
+- (2026-11-03, plan A) "Temperature-0 determinism" above was measured on final letters only. The
+  regenerated texts of control rep 0 and rep 1 differ on 55/55 steps, and the provider returns different
+  texts at temperature 0 even with `seed`. At plan A's scale control rep 1 disagreed with rep 0 on 13/53
+  flipped points. See `docs/requests/samples/planA_2026-11-03/REPORT.md`.

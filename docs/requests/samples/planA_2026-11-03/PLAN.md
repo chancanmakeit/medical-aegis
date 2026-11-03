@@ -1,6 +1,6 @@
 # Plan A: llm_debate round-1 branching, stratified by speaker position x peer support (pre-registered)
 
-Status: candidates fixed (`llm_debate_candidates.jsonl`, seed 0); **not run** — paid, waiting for the user.
+Status: candidates fixed (`llm_debate_candidates.jsonl`, seed 0) before the run; **run 2026-11-03, results in `REPORT.md`** (this file is unchanged otherwise).
 Design: issue #1 rounds 46-48 (MHT r64 cont. concerns (a) position, (b) visible selection condition).
 
 ## Candidates (180 points, all K=3 recorded runs, MAA overlap excluded, letter-less steps excluded)
