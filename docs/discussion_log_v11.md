@@ -46,3 +46,21 @@
 - **同伴支持度：** 主点原始 19/45 对 10/45，确认后 10 对 10，9 个未确认翻转都在"同伴 ≥1"层，第 46 轮的结论在主点上收回。**唯一说对的 agent 是关键人物：** 答对运行里同伴 0 人说对时 12/15 翻成错（11 确认），≥1 人时 0/30。
 - 建议协议 v2（自适应确认：翻转点补 1 次 control，两次一致且不同于 branch 才算 confirmed），待用户和 MHT 确认。
 - 已发 #1 第 50 轮（comment 6606528394）。下一条第 51 轮。
+
+## 第 5 轮（2026-11-03 10:24–）：MHT 第 83 轮；评测集报价与多框架意见
+用户："issue 有新动静了，你先看，然后回复。若被要求运行不同的医学多智能体框架以获取轨迹数据的话，可以使用上下文 api 端点文档里 xiaojingai 端点的 `gemini-2.5-flash-lite` 模型（它作为多模态模型性价比高）"。
+- **注意：** Project 的「api端点」文档里目前**没有 xiaojingai 端点**（7 个端点：aiberm、aihubmix、deepseek、阿里云、智谱、MiMo、Ant Ling）。已请用户提供 baseurl 和 key。
+- **MHT 第 83 轮**（4 条）：
+  - #1 6611680037：用户已批准协议 v2；他们的入口按 `run_mode == "normal"` 白名单，自动排除分叉记录；他们用过的 12 个试点翻转在 v2 下都算 confirmed；请我们为"医学分叉责任层评测集"报价（只作评测；每条父运行 ≥4 个候选点；≥200 confirmed，也给 100 的价；按框架报价；backbone 建议；先测温度 0 噪声底）。
+  - #3 6611680396：阶段 0 改为按题目聚类重算区间，结论不变；征求我们对"由 medical-aegis 运行多个框架产出轨迹"的意见（5 个问题）。
+  - #4 6611681144：收回比值门槛，改用 GPT 的条件 NLL 估计对象；同意 `collection` 显式化、工具输出合并、`code_unverified`、read-set 多对多。
+  - #2：与我方无关。
+- **我方回复**（#1 第 51 轮 6612193880，#3 第 52 轮 6612194217）：
+  - 锚点 100 题已在 MHT 的 TAPT 语料里，不能用作评测集；评测集要用新题、新父运行，分叉与父运行同一 backbone 和端点。
+  - 锚点 "llama-4-maverick" 实际返回 `gemma-4-31B-it-turbo`，按实际名字记。
+  - backbone：评测集用 gemini-2.5-flash-lite（用户指定），与锚点 gemma 构成两个 backbone。
+  - 候选点：llm_debate、mdagents 全 7 步（末步保留作噪声基线）；medagents_mc、MAC 分层 6 点。未翻转点抽 10% 补 control 估噪声底。可选加项（未翻转点再补 branch，约 +35%）先不加。
+  - 报价（gemini 按 Google 列表价，每 100 个 confirmed）：llm_debate ~$2.7，mdagents ~$0.8，medagents_mc / MAC ~$3–6（产出率待测）；llm_debate + mdagents 各 100 个约 $3.5。锚点 backbone 约 2.5 倍。
+  - 第一步试跑（≤ $1，待用户批准）：噪声探针；6 个 MCQ 框架各 10 道新题 normal；llm_debate、mdagents 各 20 条答错父运行做全步分叉，测确认产出率。
+  - #3：真实端点验证情况（4 个锚点已验证，dylan / agentverse 等只过 mock）；每千条成本表；非 MCQ 排序（triage 第二批；clinical_agent 价值较低；mam、consensus 不进第一批；cmas 不用）；预算分配 分叉 55% / 自然 35% / 注入 10% 或暂停；两个 backbone。
+- 下一条第 53 轮。
