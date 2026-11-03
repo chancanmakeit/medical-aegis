@@ -405,8 +405,10 @@ class StructuredFMWrapper(SystemWrapper):
             print(f"[{type(self).__name__}] LLM API FAILURE (not an injection effect): {e}")
             final_output = {"response": f"LLM API failure: {e}", "history": []}
         except Exception as e:
-            execution_error = str(e)
-            print(f"[{type(self).__name__}] Inference failed: {e}")
+            import traceback
+            # keep the traceback: an exception with an empty message (e.g. a bare assert) left no trace
+            execution_error = f"{type(e).__name__}: {e}\n" + traceback.format_exc(limit=6)
+            print(f"[{type(self).__name__}] Inference failed: {type(e).__name__}: {e}")
             final_output = {"response": f"{fw} execution disrupted: {e}", "history": []}
         finally:
             self._stop_llm_capture(self.mas)

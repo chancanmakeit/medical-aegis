@@ -524,7 +524,7 @@ def main():
                 if branch is None and branch_identity.is_branch_output(path):
                     unstamped.append(f"{path}:{raw.get('id')}")
                     continue
-                if not raw.get("injection_log") or raw.get("status") in ("error", "llm_api_failure"):
+                if not raw.get("injection_log") or raw.get("status") in ("error", "llm_api_failure", "framework_error"):
                     # a sample main.py could not run (status "error"), or an API call
                     # failed mid-run ("llm_api_failure"): no complete trajectory
                     n_skipped += 1

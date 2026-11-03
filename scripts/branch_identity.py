@@ -163,25 +163,46 @@ def block_problems(b, rec=None):
     return p
 
 
+JUDGE_VERDICTS = {"CORRECT", "INCORRECT"}
+
+
 def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons=None, fw=None):
-    """Embed `branch` into every record of a fresh branch_pilot output file (called by branch_pilot.py)."""
-    calls = defaultdict(list)
-    for l in open(calls_path, encoding="utf-8"):
-        c = json.loads(l)
-        calls[c.get("qid")].append(c)
+    """Embed `branch` into every record of a fresh branch_pilot output file (called by branch_pilot.py).
+
+    The replay server attributes a request it cannot match ("miss") to the nearest recorded question, which
+    is wrong when step t changes the downstream prompts (e.g. a resampled mdagents recruiter: every expert
+    prompt is new). So upstream calls are matched to steps by text over the WHOLE file, each call used
+    once; the qid in the call log is ignored. Calls that match no step must be answer-judge verdicts
+    (regex_first fell back to the LLM judge), otherwise it is a problem."""
+    pool = [json.loads(l) for l in open(calls_path, encoding="utf-8")]
+    pool = [c for c in pool if c.get("upstream")]
+    by_text = defaultdict(list)
+    for i, c in enumerate(pool):
+        by_text[(c.get("output") or "").strip()].append(i)
+    used = set()
     by_q = {c["qid"]: c for c in cands}
     rows, probs = [], []
     for l in open(out_path, encoding="utf-8"):
         if not l.strip():
             continue
         r = json.loads(l)
-        regen, ev, pr = regenerated_from_calls(r, calls[r["id"]])
+        mine = []
+        for st in llm_steps(r):
+            free = [i for i in by_text.get((st.get("content") or "").strip(), []) if i not in used]
+            if free:
+                used.add(free[0])
+                mine.append(pool[free[0]])
+        regen, ev, pr = regenerated_from_calls(r, mine)
         b = make_block(r, by_q[r["id"]], arm, rep, regen, ev, experiment_id,
                        (rep_reasons or {}).get(r["id"]), fw)
         pr += block_problems(b, r)
         probs += [f"{r['id']}: {x}" for x in pr]
         r["branch"] = b
         rows.append(r)
+    left = [pool[i] for i in range(len(pool)) if i not in used]
+    judge = [c for c in left if (c.get("output") or "").strip().strip(".").upper() in JUDGE_VERDICTS]
+    probs += [f"file: upstream call {c.get('key', '')[:10]} ({c.get('tag')}) matches no step and is not a judge verdict"
+              for c in left if c not in judge]
     with open(out_path, "w", encoding="utf-8") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")

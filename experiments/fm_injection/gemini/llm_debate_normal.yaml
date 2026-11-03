@@ -1,0 +1,23 @@
+# GEMINI batch (v11 r6, user 2026-11-03): normal runs with gemini-2.5-flash-lite (xiaojingai endpoint)
+# on the pools_v1 eval / corpus questions. Same settings as experiments/fm_injection/anchor/llm_debate_normal.yaml.
+run_mode: clean
+injection_method: direct_prepend
+system_under_test:
+  name: llm_debate
+  wrapper_class_path: aegis_core.agent_systems.fm_llm_debate_structured_wrapper.FMLLMDebateStructuredWrapper
+  method_config_path: methods/llm_debate/configs/config_medical.yaml
+llm_config:
+  provider: openai
+  model_name: YOUR_MODEL
+  model_url: YOUR_BASE_URL
+  api_key: YOUR_API_KEY
+  temperature: 0.7
+benchmark_name: medxpertqa-text
+use_llm_judge: true
+judge_mode: regex_first
+experiment_settings:
+  max_workers: 4
+generate_injection_descriptions: false
+task_type: mcq
+llm_debate_config_name: config_medical
+rounds_num: 2

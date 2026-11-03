@@ -1,20 +1,21 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-03（会话 v11 讨论第 5 轮，issue 我方第 52 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-03（会话 v11 讨论第 6 轮，issue 我方第 53 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 5 轮，2026-11-03）
+## 当前状态（v11 讨论第 6 轮，2026-11-03）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
 **讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
-- #1 语料需求主线（我方第 51 轮 6612193880）；#2 CDE × Jev 方法讨论；#3 中训练动机 / 多框架运行（我方第 52 轮 6612194217）；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+- #1 语料需求主线（我方第 53 轮 6612871277）；#2 CDE × Jev 方法讨论；#3 中训练动机 / 多框架运行（我方第 52 轮 6612194217）；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
 
-**本轮（v11 第 5 轮，离线）：MHT 第 83 轮请我们报价"医学分叉责任层评测集"（协议 v2，用户已批准 v2）并征求多框架运行意见；已回复。**
-- 关键约束：锚点 100 题已在 MHT 的 TAPT 语料里，评测集要用新题、新父运行；分叉与父运行同 backbone / 端点。锚点 "llama-4-maverick" 实际返回 `gemma-4-31B-it-turbo`。
-- 用户指定新一批多框架运行用 **xiaojingai 端点的 `gemini-2.5-flash-lite`**，但 Project「api端点」文档里**没有 xiaojingai**——等用户给 baseurl 和 key（写进 `/home/claude/.mht_api.env`，不入库）。
-- 报价（gemini 按 Google 列表价，每 100 confirmed）：llm_debate ~$2.7，mdagents ~$0.8，medagents_mc / MAC ~$3–6；锚点 backbone 约 2.5 倍。
-- 第一步试跑（≤ $1，**待用户批准**）：温度 0 噪声探针；6 个 MCQ 框架（llm_debate、mdagents、medagents_mc、MAC、dylan、agentverse）各 10 道新题 normal；llm_debate、mdagents 各 20 条答错父运行做全步 v2 分叉。新题从 `datasets/data/medxpertqa_text.json` 去掉锚点和 MAA 排除后按 task_group_id 切评测池 / 语料池。
-- 需要的代码（未做）：`branch_pilot.py` 的全步候选规则 + 协议 v2 自动确认（翻转点补 control、10% 未翻转点抽查）；runner 支持 gemini 端点。
+**API 端点文档已搬家：** Project 同步的 private-documents `任务基础上下文/api端点.txt`（`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`，只读这一个文件）。新会话从这里重建 `/home/claude/.mht_api.env`，另加 `XIAOJINGAI_GEMINI_API_KEY`（gemini 系列低价 key）和 `XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。
+
+**本轮（v11 第 6 轮）：gemini-2.5-flash-lite（xiaojingai，用户指定的新 backbone）试跑完成，按 Google 列表价约 $0.48（上界；价目表 ¥0.036 / ¥0.144，单位待用户确认）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md`。
+- 题池 `datasets/data/pools_v1/`（eval 400 / corpus 1,849；锚点和 MAA 已排除；eval 题永不进训练语料）。
+- 6 个 MCQ 框架都在真实端点跑通（`scripts/runners/gemini_run.sh <fw> <eval|corpus> <limit> [K]`，YAML `experiments/fm_injection/gemini/`，输出 `/home/claude/gemini_runs`）。**DyLAN 已修**（`num_rounds` 3；10-21 以来 DyLAN 全是空轨迹）。新状态 `framework_error`。
+- 分叉：`branch_pilot.py --backbone gemini`、`select_all`；校准在 `/home/claude/branch_gemini_cal`（入库 `data_runs/gemini_trial_2026-11-03/`）。confirmed / 父运行：llm_debate 0.39，mdagents 0.29。报价每 100 confirmed：llm_debate 约 $3.3，mdagents 约 $2.3（列表价）。
+- gemini 温度 0 也不确定；同一请求有 n / n+253 两个 prompt token 计费通道。
 
 **v11 第 4 轮：方案 A 跑完，$1.528（批准约 $1.45，上限约 $1.6）。** 报告 `docs/requests/samples/planA_2026-11-03/REPORT.md`。
 - 预注册的近因预测（位置 2 翻转最高）**不成立**：0.37 / 0.37 / 0.23；确认的翻转 4 / 11 / 5。决定翻转的是 t 的字母是否改变。
@@ -42,13 +43,13 @@
 - 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
 
 **沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 52 轮（#3 6612194217），下一条第 53 轮。
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 53 轮（#1 6612871277），下一条第 54 轮。
 - MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
 - 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
 - 修改本节时整节重写，不要原地字符串替换。
 
 **待用户决定**
-1. xiaojingai 端点的 baseurl / key；第一步试跑（≤ $1）是否批准。协议 v2 用户已批准（MHT 第 83 轮转达）。方案 B 由评测集方案取代。
+1. 评测集正式规模：只做 llm_debate + mdagents（各 100 confirmed 约 $5.6 列表价），还是加 medagents_mc / MAC / DyLAN / AgentVerse（产出率未测）；eval 池是否扩到 800 题。xiaojingai 价目表单位（看账户余额变化）。
 2. #3 第四节：请我方做阶段 1 医学自然运行（MHT 估约 $5–15，单价和剩余题库要我方复核）。
 3. 主数据（其他框架、正式配置）的生成方案。
 

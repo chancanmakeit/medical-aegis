@@ -9,7 +9,10 @@ random_seed: 0
 debug: false
 
 num_agents: 4
-num_rounds: 2
+# DyLAN needs num_rounds > 2 (dylan_main.py asserts it, and the network is built from this value in
+# __init__, so a later override cannot add rounds). With 2 every run failed (empty AssertionError,
+# found 2026-11-03). 3 = the two answer rounds + one ranked round, the smallest valid value (upstream 3).
+num_rounds: 3
 activation: "listwise"
 type: "open-ended"
 

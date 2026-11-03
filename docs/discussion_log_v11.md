@@ -64,3 +64,13 @@
   - 第一步试跑（≤ $1，待用户批准）：噪声探针；6 个 MCQ 框架各 10 道新题 normal；llm_debate、mdagents 各 20 条答错父运行做全步分叉，测确认产出率。
   - #3：真实端点验证情况（4 个锚点已验证，dylan / agentverse 等只过 mock）；每千条成本表；非 MCQ 排序（triage 第二批；clinical_agent 价值较低；mam、consensus 不进第一批；cmas 不用）；预算分配 分叉 55% / 自然 35% / 注入 10% 或暂停；两个 backbone。
 - 下一条第 53 轮。
+
+## 第 6 轮（2026-11-03 10:35–）：用户补了 xiaojingai 端点；gemini 试跑
+用户："我已更新上下文 api 端点文档"。端点文档现在是 Project 同步的 private-documents `任务基础上下文/api端点.txt`（用 `gh api ... contents/任务基础上下文/api端点.txt` 读）。xiaojingai：base_url `https://open.xiaojingai.com/v1`，gemini 系列低价 key；价目表 gemini-2.5-flash-lite ¥0.036 / ¥0.144（单位待确认）。key 写进 `/home/claude/.mht_api.env`（`XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL`）。按第 51 轮 ≤ $1 方案试跑；按 Google 列表价约 **$0.48**（上界）。报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md`。
+- **端点：** 返回 model 一直是 `gemini-2.5-flash-lite`；温度 0 不确定（5 次 5 个文本，含 seed）；同一请求有两个计费通道（prompt token n 或 n+253，约各一半）。
+- **题池** `datasets/data/pools_v1/`（`scripts/build_question_pools.py`）：去掉锚点 100 和 MAA 101，Jaccard ≥ 0.3 分组，eval 400 / corpus 1,849。
+- **自然运行**（`scripts/runners/gemini_run.sh`，YAML `experiments/fm_injection/gemini/`）：6 个 MCQ 框架都跑通（准确率 0.42–0.70）。
+- **DyLAN 修复：** `config_medical.yaml` 的 `num_rounds: 2` 违反 DyLAN 的 `> 2` 断言，10-21 起每条运行都是空轨迹且 status success。改为 3。structured wrapper 记录异常类型和 traceback；`main.py` 对无步骤的框架崩溃记 `status: framework_error`；导出器跳过。
+- **分叉代码：** `branch_pilot.py` 加 `--backbone {anchor,gemini}`（记录文件、模型、YAML、端点、key、价格、题集）和 `select_all`（答错运行的全部 LLM 步）。`branch_identity.stamp_file` 改为在整个文件内按文本匹配上游调用（重采样招募者后，服务器把 miss 记到了错误的 qid），并容许判分调用（CORRECT/INCORRECT）。校准分析 `scripts/branch_eval_calibration.py`。
+- **校准结果：** confirmed / 父运行 llm_debate 0.39（7 个 / 18 条），mdagents 0.29（5 / 17）；gemini 重采样改字母更少（第 1 轮 12/54）。报价（列表价）每 100 confirmed：llm_debate 约 $3.3，mdagents 约 $2.3；两个框架各 100 约 $5.6。eval 池在 K=1 下不够，建议扩到 800 题。
+- 已发 #1 第 53 轮（comment 6612871277）。下一条第 54 轮。

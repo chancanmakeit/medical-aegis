@@ -1,0 +1,16 @@
+{
+ "version": "pools_v1",
+ "source": "datasets/data/medxpertqa_text.json",
+ "n_source": 2450,
+ "excluded_anchor": 100,
+ "excluded_maa": 101,
+ "excluded_by_group": 0,
+ "near_dup_rule": "question-stem word-set Jaccard >= 0.3 (words > 2 chars, options cut), connected components",
+ "n_groups_with_more_than_one_question": 2,
+ "n_similar_pairs": 2,
+ "eval_n": 400,
+ "corpus_n": 1849,
+ "seed": 0,
+ "rule": "eval questions never enter any training corpus; the split is by task_group_id; files are in a seeded group order, take the first N for a batch",
+ "review_status": "automatic (no manual review of near-duplicate groups yet)"
+}

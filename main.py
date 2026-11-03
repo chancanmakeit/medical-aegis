@@ -529,6 +529,12 @@ async def process_sample(args, sample: dict, lock: threading.Lock, output_path: 
                     print(f"[describer] failed: {_de}")
 
             save_data['status'] = 'success'
+            _log = save_data.get('injection_log') or {}
+            if _log.get('execution_error') and not _log.get('conversation_history') \
+                    and not str(_log.get('execution_error')).startswith('llm_api_failure'):
+                # the framework itself crashed before producing any step (e.g. DyLAN's num_rounds assert,
+                # 2026-11-03): no trajectory; the exporter skips this status
+                save_data['status'] = 'framework_error'
 
     except Exception:
         save_data["error"] = f"Processing Error: {traceback.format_exc()}"

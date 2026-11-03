@@ -30,6 +30,19 @@ from collections import Counter, defaultdict
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 RECORDED = "/home/claude/anchor_runs/{fw}__normal.jsonl"
+# backbone profiles (--backbone); "anchor" = the llama-4-maverick name on aihubmix (served as gemma-4-31B-it-turbo)
+BACKBONES = {
+    "anchor": {"recorded": "/home/claude/anchor_runs/{fw}__normal.jsonl", "model": "llama-4-maverick",
+               "yaml_dir": "experiments/fm_injection/anchor", "upstream": "https://aihubmix.com/v1",
+               "key_env": "AIHUBMIX_API_KEY", "price": (0.27e-6, 0.85e-6),
+               "dataset": os.path.join(REPO, "datasets/data/anchor_medxpertqa100.json")},
+    # gemini batch (v11 r6): xiaojingai endpoint; cost reported at the Google list price (an upper bound)
+    "gemini": {"recorded": "/home/claude/gemini_runs/{fw}__normal_eval.jsonl", "model": "gemini-2.5-flash-lite",
+               "yaml_dir": "experiments/fm_injection/gemini", "upstream": "https://open.xiaojingai.com/v1",
+               "key_env": "XIAOJINGAI_GEMINI_API_KEY", "price": (0.10e-6, 0.40e-6),
+               "dataset": os.path.join(REPO, "datasets/data/pools_v1/eval.json")},
+}
+MODEL, YAML_DIR, UPSTREAM, KEY_ENV = "llama-4-maverick", "experiments/fm_injection/anchor", "https://aihubmix.com/v1", "AIHUBMIX_API_KEY"
 DATASET = os.path.join(REPO, "datasets/data/anchor_medxpertqa100.json")
 MAA_IDS = {"medxpertqa_text_1499", "medxpertqa_text_1939"}     # MAA overlap (labels.maa_overlap)
 LETTER = re.compile(r"(?:Correct Option|Final answer|Final Answer|Answer|answer is)\s*[:\-]?\s*\**\s*\(?([A-J])\b\)?")
@@ -174,6 +187,38 @@ def cmd_select_strat(a):
           f"{dict(Counter((c['run_end'], c['letter_status'], c['position'], min(c['peers_right'], 1)) for c in rows))}")
 
 
+ALL_STEPS_RULE = ("eval set v1: every LLM step of each wrong-ending normal run (all K recorded runs), aggregator / "
+                  "last step included (its D(t) is empty: single-step resampling baseline); batch = step index t")
+
+
+def cmd_select_all(a):
+    """Every LLM step of every wrong-ending recorded run (MHT r83: within-trajectory ranking needs >= 4 points per run).
+    One batch ('pass') = one (run_index, t) so that a question appears once per batch."""
+    os.makedirs(a.out, exist_ok=True)
+    rows = []
+    for (qid, ri), r in sorted(recorded_all(a.fw).items()):
+        if qid in MAA_IDS or r.get("is_correct") is not False or r.get("status") != "success":
+            continue
+        if a.limit and len({(x["qid"], x["run_index"]) for x in rows}) >= a.limit:
+            break
+        g, h = gold(r), llm_steps(r)
+        for i, s in enumerate(h):
+            L = letter(s.get("content"))
+            rows.append({"fw": a.fw, "qid": qid, "run_index": ri, "t": i, "n_steps": len(h), "t_step_id": s["step_id"],
+                         "agent": s.get("agent_name"), "phase": s.get("phase"), "round": s.get("round"),
+                         "t_letter": L, "gold": g, "recorded_final": letter(r.get("response")), "run_end": "end_wrong",
+                         "letter_status": "none" if L is None else ("right" if L == g else "wrong"), "rule": ALL_STEPS_RULE})
+    keys = sorted({(c["run_index"], c["t"]) for c in rows})
+    bid = {k: i for i, k in enumerate(keys)}
+    for c in rows:
+        c["pass"] = bid[(c["run_index"], c["t"])]
+    with open(os.path.join(a.out, f"{a.fw}_candidates.jsonl"), "w") as f:
+        for c in sorted(rows, key=lambda c: (c["pass"], c["qid"])):
+            f.write(json.dumps(c) + "\n")
+    print(f"{a.fw}: {len({(c['qid'], c['run_index']) for c in rows})} parent runs, {len(rows)} candidate points, "
+          f"{len(keys)} batches")
+
+
 def subset_dataset(qids, path):
     d = [x for x in json.load(open(DATASET)) if x["id"] in qids]
     json.dump(d, open(path, "w"), ensure_ascii=False)
@@ -183,10 +228,10 @@ def subset_dataset(qids, path):
 def write_cfg(fw, port, wd, tag):
     import yaml
     api = os.path.join(wd, f"_api_{tag}.json")
-    json.dump({"llama-4-maverick": {"model_list": [{"model_name": "llama-4-maverick", "model_url": f"http://127.0.0.1:{port}/v1",
+    json.dump({MODEL: {"model_list": [{"model_name": MODEL, "model_url": f"http://127.0.0.1:{port}/v1",
                                                    "api_key": "via-branch-server"}], "max_workers_per_model": 2}}, open(api, "w"))
-    c = yaml.safe_load(open(os.path.join(REPO, f"experiments/fm_injection/anchor/{fw}_normal.yaml")))
-    c["llm_config"].update(model_name="llama-4-maverick", model_url=f"http://127.0.0.1:{port}/v1", api_key="via-branch-server")
+    c = yaml.safe_load(open(os.path.join(REPO, f"{YAML_DIR}/{fw}_normal.yaml")))
+    c["llm_config"].update(model_name=MODEL, model_url=f"http://127.0.0.1:{port}/v1", api_key="via-branch-server")
     cfg = os.path.join(wd, f"_cfg_{tag}.yaml")
     open(cfg, "w").write(yaml.safe_dump(c, sort_keys=False, allow_unicode=True))
     return api, cfg
@@ -195,9 +240,9 @@ def write_cfg(fw, port, wd, tag):
 def run_main(fw, api, cfg, ds, out, log, run_index=0):
     if os.path.exists(out):      # main.py resumes from an existing output file
         os.remove(out)
-    env = {k: v for k, v in os.environ.items() if k not in ("AIHUBMIX_API_KEY", "OPENAI_API_KEY")}
+    env = {k: v for k, v in os.environ.items() if k not in ("AIHUBMIX_API_KEY", "OPENAI_API_KEY", KEY_ENV)}
     cmd = [sys.executable, "main.py", "--method_name", fw, "--experiment_config", cfg, "--model_api_config", api,
-           "--model_name", "llama-4-maverick", "--dataset_file", ds, "--test_dataset_name", "medxpertqa_text",
+           "--model_name", MODEL, "--dataset_file", ds, "--test_dataset_name", "medxpertqa_text",
            "--output_path", out, "--model_temperature", "0.7", "--model_max_tokens", "4096", "--max_workers", "16",
            "--num_runs", "1", "--run_index_start", str(run_index), "--no_inject"]
     with open(log, "w") as lf:
@@ -313,8 +358,9 @@ def cmd_run(a):
             if "=" in line and not line.startswith("#"):
                 k, v = line.strip().split("=", 1)
                 env[k.replace("export ", "")] = v.strip().strip('"').strip("'")
-        upstream = "https://aihubmix.com/v1"
+        upstream = UPSTREAM
     srv = start_server(["scripts/branch_replay_server.py", "--port", str(a.port), "--results", RECORDED.format(fw=a.fw),
+                        "--api_key_env", KEY_ENV,
                         "--run_index", str(ri), "--spec", spec, "--log", calls, "--upstream", upstream], calls, os.path.join(wd, f"{tag}_server.log"), env)
     try:
         ds = os.path.join(wd, f"{tag}_ds.json"); subset_dataset({c["qid"] for c in cp}, ds)
@@ -449,7 +495,7 @@ def cmd_analyze(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["select", "select_strat", "deps", "deps_mock", "run", "analyze"])
+    ap.add_argument("cmd", choices=["select", "select_strat", "select_all", "deps", "deps_mock", "run", "analyze"])
     ap.add_argument("--fw")
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--out")
@@ -462,8 +508,14 @@ def main():
     ap.add_argument("--upstream", choices=["mock", "real"], default="mock")
     ap.add_argument("--port", type=int, default=18200)
     ap.add_argument("--experiment_id", default=None, help="branch identity experiment id (default: basename of --dir)")
+    ap.add_argument("--backbone", choices=sorted(BACKBONES), default="anchor")
     a = ap.parse_args()
-    {"select": cmd_select, "select_strat": cmd_select_strat, "deps": cmd_deps, "deps_mock": cmd_deps_mock, "run": cmd_run, "analyze": cmd_analyze}[a.cmd](a)
+    global RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV, P_IN, P_OUT, DATASET
+    bb = BACKBONES[a.backbone]
+    DATASET = bb["dataset"]
+    RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV = bb["recorded"], bb["model"], bb["yaml_dir"], bb["upstream"], bb["key_env"]
+    P_IN, P_OUT = bb["price"]
+    {"select": cmd_select, "select_strat": cmd_select_strat, "select_all": cmd_select_all, "deps": cmd_deps, "deps_mock": cmd_deps_mock, "run": cmd_run, "analyze": cmd_analyze}[a.cmd](a)
 
 
 if __name__ == "__main__":

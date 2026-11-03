@@ -1,0 +1,14 @@
+{"key": "bb3017929a1936fc31314dec9f1edde2b6087e85", "t": 1793732383.4003148, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s0"}
+{"key": "bb3017929a1936fc31314dec9f1edde2b6087e85", "t": 1793732383.4233994, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s1"}
+{"key": "0a14b983272ddb9d5135a0d65e80b400fa0257cc", "t": 1793732383.4333174, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s0"}
+{"key": "bb3017929a1936fc31314dec9f1edde2b6087e85", "t": 1793732383.4555397, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s2"}
+{"key": "0a14b983272ddb9d5135a0d65e80b400fa0257cc", "t": 1793732383.4647841, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s1"}
+{"key": "072c6ae8f22b89fd7c4cce348c917c23962f9d8b", "t": 1793732383.4802988, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s3"}
+{"key": "3696549b3e9deed6307d3f5679cf83e2df7ee598", "t": 1793732383.4956071, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s4"}
+{"key": "0a14b983272ddb9d5135a0d65e80b400fa0257cc", "t": 1793732383.5001333, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s2"}
+{"key": "680c307d5a292e6000edb64b0ef3d937dd9d1b78", "t": 1793732383.5179884, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_11", "step_id": "s5"}
+{"key": "f16bbf87092d67b640abf723bf41d78ef03dccea", "t": 1793732383.53903, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s3"}
+{"key": "4fa3e2133d0ea6bb8947667534de27fe441e2e47", "t": 1793732383.5420403, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_11"}
+{"key": "ef1eff3c8dbe4c3b1b871ec2bb5aff010c9ef607", "t": 1793732383.5578632, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s4"}
+{"key": "130aaf84254e021535496b50babce5a3a545b8ff", "t": 1793732383.5746207, "req_temperature": 0.7, "tag": "recorded", "qid": "medxpertqa_text_1339", "step_id": "s5"}
+{"key": "1e3170da352da482d080bbfcf0b0d378434a2b4b", "t": 1793732383.5900297, "req_temperature": 0.7, "tag": "t_kept", "qid": "medxpertqa_text_1339"}
