@@ -33,8 +33,16 @@ from mock_openai_server import reply_for  # noqa: E402
 LOCK = threading.Lock()
 
 
+def _text_of(content):
+    # multimodal requests carry [{"type": "text"}, {"type": "image_url"}, ...]; recorded input_messages keep
+    # the text only (the images are task observations), so key on the text parts
+    if isinstance(content, list):
+        return "".join(p.get("text", "") for p in content if isinstance(p, dict) and p.get("type") == "text")
+    return content
+
+
 def norm_msgs(msgs):
-    return [(m.get("role"), m.get("content")) for m in msgs]
+    return [(m.get("role"), _text_of(m.get("content"))) for m in msgs]
 
 
 def key(msgs):

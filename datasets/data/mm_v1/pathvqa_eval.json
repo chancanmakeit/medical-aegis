@@ -1,0 +1,5602 @@
+[
+ {
+  "id": "pathvqa_4963",
+  "query": "does this image show intraventricular hemorrhage, neonate brain?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a112201bafa1c71b.jpg"
+  ],
+  "image_sha1": [
+   "a112201bafa1c71b20ae42e41a1ab9afe7ae57eb"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4963,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5465.jpg",
+  "modality": "pathology",
+  "image_group": "a112201bafa1c71b"
+ },
+ {
+  "id": "pathvqa_4964",
+  "query": "does carcinoma metastatic lung show intraventricular hemorrhage, neonate brain?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a112201bafa1c71b.jpg"
+  ],
+  "image_sha1": [
+   "a112201bafa1c71b20ae42e41a1ab9afe7ae57eb"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4964,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5466.jpg",
+  "modality": "pathology",
+  "image_group": "a112201bafa1c71b"
+ },
+ {
+  "id": "pathvqa_4966",
+  "query": "is nervous present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a112201bafa1c71b.jpg"
+  ],
+  "image_sha1": [
+   "a112201bafa1c71b20ae42e41a1ab9afe7ae57eb"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4966,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5468.jpg",
+  "modality": "pathology",
+  "image_group": "a112201bafa1c71b"
+ },
+ {
+  "id": "pathvqa_4967",
+  "query": "is retroperitoneum present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a112201bafa1c71b.jpg"
+  ],
+  "image_sha1": [
+   "a112201bafa1c71b20ae42e41a1ab9afe7ae57eb"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4967,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5469.jpg",
+  "modality": "pathology",
+  "image_group": "a112201bafa1c71b"
+ },
+ {
+  "id": "pathvqa_865",
+  "query": "does this image show amyloidosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6b4fce0b2aa6f74a.jpg"
+  ],
+  "image_sha1": [
+   "6b4fce0b2aa6f74ace2687809f1b080a908ccb5c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 865,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1777.jpg",
+  "modality": "pathology",
+  "image_group": "6b4fce0b2aa6f74a"
+ },
+ {
+  "id": "pathvqa_866",
+  "query": "does newborn cord around neck show amyloidosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6b4fce0b2aa6f74a.jpg"
+  ],
+  "image_sha1": [
+   "6b4fce0b2aa6f74ace2687809f1b080a908ccb5c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 866,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1778.jpg",
+  "modality": "pathology",
+  "image_group": "6b4fce0b2aa6f74a"
+ },
+ {
+  "id": "pathvqa_869",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6b4fce0b2aa6f74a.jpg"
+  ],
+  "image_sha1": [
+   "6b4fce0b2aa6f74ace2687809f1b080a908ccb5c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 869,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1780.jpg",
+  "modality": "pathology",
+  "image_group": "6b4fce0b2aa6f74a"
+ },
+ {
+  "id": "pathvqa_870",
+  "query": "is this section showing liver with tumor mass in hilar area tumor present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6b4fce0b2aa6f74a.jpg"
+  ],
+  "image_sha1": [
+   "6b4fce0b2aa6f74ace2687809f1b080a908ccb5c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 870,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1781.jpg",
+  "modality": "pathology",
+  "image_group": "6b4fce0b2aa6f74a"
+ },
+ {
+  "id": "pathvqa_2594",
+  "query": "does this image show colon, cryptosporidia?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_ab45813a3cada28a.jpg"
+  ],
+  "image_sha1": [
+   "ab45813a3cada28aba719b1cef461176e42de7d9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2594,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3332.jpg",
+  "modality": "pathology",
+  "image_group": "ab45813a3cada28a"
+ },
+ {
+  "id": "pathvqa_2595",
+  "query": "does photo show colon, cryptosporidia?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_ab45813a3cada28a.jpg"
+  ],
+  "image_sha1": [
+   "ab45813a3cada28aba719b1cef461176e42de7d9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2595,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3333.jpg",
+  "modality": "pathology",
+  "image_group": "ab45813a3cada28a"
+ },
+ {
+  "id": "pathvqa_2597",
+  "query": "is gastrointestinal present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_ab45813a3cada28a.jpg"
+  ],
+  "image_sha1": [
+   "ab45813a3cada28aba719b1cef461176e42de7d9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2597,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3335.jpg",
+  "modality": "pathology",
+  "image_group": "ab45813a3cada28a"
+ },
+ {
+  "id": "pathvqa_2598",
+  "query": "is this partially fixed gross present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_ab45813a3cada28a.jpg"
+  ],
+  "image_sha1": [
+   "ab45813a3cada28aba719b1cef461176e42de7d9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2598,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3336.jpg",
+  "modality": "pathology",
+  "image_group": "ab45813a3cada28a"
+ },
+ {
+  "id": "pathvqa_6505",
+  "query": "does the lesions show an outpouching which on section is seen communicating with the intestinal lumen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_290c5aeb1458002b.jpg"
+  ],
+  "image_sha1": [
+   "290c5aeb1458002b8e963778d9ee6e1c9e443041"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6505,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_806.jpg",
+  "modality": "pathology",
+  "image_group": "290c5aeb1458002b"
+ },
+ {
+  "id": "pathvqa_6508",
+  "query": "does the lumen contain necrotic debris?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_290c5aeb1458002b.jpg"
+  ],
+  "image_sha1": [
+   "290c5aeb1458002b8e963778d9ee6e1c9e443041"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6508,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_809.jpg",
+  "modality": "pathology",
+  "image_group": "290c5aeb1458002b"
+ },
+ {
+  "id": "pathvqa_6510",
+  "query": "does the centres of whorls of smooth muscle and connective tissue contain necrotic debris?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_290c5aeb1458002b.jpg"
+  ],
+  "image_sha1": [
+   "290c5aeb1458002b8e963778d9ee6e1c9e443041"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6510,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_810.jpg",
+  "modality": "pathology",
+  "image_group": "290c5aeb1458002b"
+ },
+ {
+  "id": "pathvqa_5920",
+  "query": "do thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d3828b033ebae0be.jpg"
+  ],
+  "image_sha1": [
+   "d3828b033ebae0be6ebfbe2d8584e2eb71efb4fa"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5920,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6326.jpg",
+  "modality": "pathology",
+  "image_group": "d3828b033ebae0be"
+ },
+ {
+  "id": "pathvqa_5921",
+  "query": "do yellow color burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d3828b033ebae0be.jpg"
+  ],
+  "image_sha1": [
+   "d3828b033ebae0be6ebfbe2d8584e2eb71efb4fa"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5921,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6327.jpg",
+  "modality": "pathology",
+  "image_group": "d3828b033ebae0be"
+ },
+ {
+  "id": "pathvqa_5923",
+  "query": "does this image show thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d3828b033ebae0be.jpg"
+  ],
+  "image_sha1": [
+   "d3828b033ebae0be6ebfbe2d8584e2eb71efb4fa"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5923,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6329.jpg",
+  "modality": "pathology",
+  "image_group": "d3828b033ebae0be"
+ },
+ {
+  "id": "pathvqa_5925",
+  "query": "does abruption show thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d3828b033ebae0be.jpg"
+  ],
+  "image_sha1": [
+   "d3828b033ebae0be6ebfbe2d8584e2eb71efb4fa"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5925,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6330.jpg",
+  "modality": "pathology",
+  "image_group": "d3828b033ebae0be"
+ },
+ {
+  "id": "pathvqa_5865",
+  "query": "does this image show lung, congestion, heart failure cells hemosiderin laden macrophages?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fd96a1499a253cf5.jpg"
+  ],
+  "image_sha1": [
+   "fd96a1499a253cf592fba675b8656d9797a3c55a"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5865,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6277.jpg",
+  "modality": "pathology",
+  "image_group": "fd96a1499a253cf5"
+ },
+ {
+  "id": "pathvqa_5866",
+  "query": "does pinworm show lung, congestion, heart failure cells hemosiderin laden macrophages?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fd96a1499a253cf5.jpg"
+  ],
+  "image_sha1": [
+   "fd96a1499a253cf592fba675b8656d9797a3c55a"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5866,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6278.jpg",
+  "modality": "pathology",
+  "image_group": "fd96a1499a253cf5"
+ },
+ {
+  "id": "pathvqa_5869",
+  "query": "is respiratory present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fd96a1499a253cf5.jpg"
+  ],
+  "image_sha1": [
+   "fd96a1499a253cf592fba675b8656d9797a3c55a"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5869,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6280.jpg",
+  "modality": "pathology",
+  "image_group": "fd96a1499a253cf5"
+ },
+ {
+  "id": "pathvqa_5870",
+  "query": "is glioblastoma multiforme present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fd96a1499a253cf5.jpg"
+  ],
+  "image_sha1": [
+   "fd96a1499a253cf592fba675b8656d9797a3c55a"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5870,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6281.jpg",
+  "modality": "pathology",
+  "image_group": "fd96a1499a253cf5"
+ },
+ {
+  "id": "pathvqa_856",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f0cb1359320f4151.jpg"
+  ],
+  "image_sha1": [
+   "f0cb1359320f4151f281e62a783c631d7f4409da"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 856,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1769.jpg",
+  "modality": "pathology",
+  "image_group": "f0cb1359320f4151"
+ },
+ {
+  "id": "pathvqa_858",
+  "query": "is abdomen present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f0cb1359320f4151.jpg"
+  ],
+  "image_sha1": [
+   "f0cb1359320f4151f281e62a783c631d7f4409da"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 858,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1770.jpg",
+  "modality": "pathology",
+  "image_group": "f0cb1359320f4151"
+ },
+ {
+  "id": "pathvqa_5765",
+  "query": "does this image show pleura, talc reaction?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5765,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6187.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5766",
+  "query": "does purulent sinusitis show pleura, talc reaction?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5766,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6188.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5771",
+  "query": "was talc used to sclerose emphysematous lung, alpha-1 antitrypsin deficiency?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5771,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6192.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5772",
+  "query": "was macerated stillborn used to sclerose emphysematous lung, alpha-1 antitrypsin deficiency?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5772,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6193.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5774",
+  "query": "is respiratory present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5774,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6195.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5775",
+  "query": "is this partially fixed gross present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_7d1dd299fea35315.jpg"
+  ],
+  "image_sha1": [
+   "7d1dd299fea353152faee154c847bb913090753d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5775,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6196.jpg",
+  "modality": "pathology",
+  "image_group": "7d1dd299fea35315"
+ },
+ {
+  "id": "pathvqa_5713",
+  "query": "are the lesions predominantly seen in lymph nodes and throughout lung parenchyma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_12faeb09353e996a.jpg"
+  ],
+  "image_sha1": [
+   "12faeb09353e996a97c86305c385dc5ef28118b6"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5713,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_614.jpg",
+  "modality": "pathology",
+  "image_group": "12faeb09353e996a"
+ },
+ {
+  "id": "pathvqa_5724",
+  "query": "are the nuclei predominantly seen in lymph nodes and throughout lung parenchyma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_12faeb09353e996a.jpg"
+  ],
+  "image_sha1": [
+   "12faeb09353e996a97c86305c385dc5ef28118b6"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5724,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_615.jpg",
+  "modality": "pathology",
+  "image_group": "12faeb09353e996a"
+ },
+ {
+  "id": "pathvqa_5912",
+  "query": "do thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f7bdb4ef246e7b1d.jpg"
+  ],
+  "image_sha1": [
+   "f7bdb4ef246e7b1dbb15e21536f59a4981bbbd7c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5912,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6319.jpg",
+  "modality": "pathology",
+  "image_group": "f7bdb4ef246e7b1d"
+ },
+ {
+  "id": "pathvqa_5914",
+  "query": "do metastatic lung carcinoma burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f7bdb4ef246e7b1d.jpg"
+  ],
+  "image_sha1": [
+   "f7bdb4ef246e7b1dbb15e21536f59a4981bbbd7c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5914,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6320.jpg",
+  "modality": "pathology",
+  "image_group": "f7bdb4ef246e7b1d"
+ },
+ {
+  "id": "pathvqa_5916",
+  "query": "does this image show thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f7bdb4ef246e7b1d.jpg"
+  ],
+  "image_sha1": [
+   "f7bdb4ef246e7b1dbb15e21536f59a4981bbbd7c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5916,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6322.jpg",
+  "modality": "pathology",
+  "image_group": "f7bdb4ef246e7b1d"
+ },
+ {
+  "id": "pathvqa_5917",
+  "query": "does yellow color show thermal burn?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_f7bdb4ef246e7b1d.jpg"
+  ],
+  "image_sha1": [
+   "f7bdb4ef246e7b1dbb15e21536f59a4981bbbd7c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5917,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6323.jpg",
+  "modality": "pathology",
+  "image_group": "f7bdb4ef246e7b1d"
+ },
+ {
+  "id": "pathvqa_5293",
+  "query": "does this image show sjogrens syndrome?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_bb527c0e2519de31.jpg"
+  ],
+  "image_sha1": [
+   "bb527c0e2519de312112ac663a3c0795970bc979"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5293,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5762.jpg",
+  "modality": "pathology",
+  "image_group": "bb527c0e2519de31"
+ },
+ {
+  "id": "pathvqa_5294",
+  "query": "does carcinomatous meningitis show sjogrens syndrome?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_bb527c0e2519de31.jpg"
+  ],
+  "image_sha1": [
+   "bb527c0e2519de312112ac663a3c0795970bc979"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5294,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5763.jpg",
+  "modality": "pathology",
+  "image_group": "bb527c0e2519de31"
+ },
+ {
+  "id": "pathvqa_5296",
+  "query": "is oral present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_bb527c0e2519de31.jpg"
+  ],
+  "image_sha1": [
+   "bb527c0e2519de312112ac663a3c0795970bc979"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5296,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5765.jpg",
+  "modality": "pathology",
+  "image_group": "bb527c0e2519de31"
+ },
+ {
+  "id": "pathvqa_5297",
+  "query": "is opened uterus and cervix with large cervical myoma protruding into vagina slide present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_bb527c0e2519de31.jpg"
+  ],
+  "image_sha1": [
+   "bb527c0e2519de312112ac663a3c0795970bc979"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5297,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5766.jpg",
+  "modality": "pathology",
+  "image_group": "bb527c0e2519de31"
+ },
+ {
+  "id": "pathvqa_5410",
+  "query": "is tetracycline induced discoloration?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5410,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5868.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_5411",
+  "query": "is supernumerary digits induced discoloration?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5411,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5869.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_5414",
+  "query": "does this image show tetracycline induced discoloration?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5414,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5871.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_5415",
+  "query": "does carcinoma metastatic lung show tetracycline induced discoloration?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5415,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5872.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_5417",
+  "query": "is oral present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5417,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5874.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_5418",
+  "query": "is inflamed exocervix present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_50253b22267f0532.jpg"
+  ],
+  "image_sha1": [
+   "50253b22267f05322af34ce40f71690eb5ff783f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5418,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5875.jpg",
+  "modality": "pathology",
+  "image_group": "50253b22267f0532"
+ },
+ {
+  "id": "pathvqa_4165",
+  "query": "does this image show autoimmune hepatitis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4165,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4747.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_4166",
+  "query": "does exposure show autoimmune hepatitis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4166,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4748.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_4169",
+  "query": "is hepatobiliary present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4169,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4750.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_4170",
+  "query": "is very good example present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4170,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4751.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_4172",
+  "query": "is liver present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4172,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4753.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_4173",
+  "query": "is lymphangiomatosis generalized present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3deb5f3e6527385e.jpg"
+  ],
+  "image_sha1": [
+   "3deb5f3e6527385e05a5e483aee1d15bacddb0e9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4173,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4754.jpg",
+  "modality": "pathology",
+  "image_group": "3deb5f3e6527385e"
+ },
+ {
+  "id": "pathvqa_5231",
+  "query": "does this image show compound nevus?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d9d40d89603b24d4.jpg"
+  ],
+  "image_sha1": [
+   "d9d40d89603b24d4718d50c01e3933e23b699d4f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5231,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5706.jpg",
+  "modality": "pathology",
+  "image_group": "d9d40d89603b24d4"
+ },
+ {
+  "id": "pathvqa_5232",
+  "query": "does bilateral cleft palate show compound nevus?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d9d40d89603b24d4.jpg"
+  ],
+  "image_sha1": [
+   "d9d40d89603b24d4718d50c01e3933e23b699d4f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5232,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5707.jpg",
+  "modality": "pathology",
+  "image_group": "d9d40d89603b24d4"
+ },
+ {
+  "id": "pathvqa_5234",
+  "query": "is oral present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d9d40d89603b24d4.jpg"
+  ],
+  "image_sha1": [
+   "d9d40d89603b24d4718d50c01e3933e23b699d4f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5234,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5709.jpg",
+  "modality": "pathology",
+  "image_group": "d9d40d89603b24d4"
+ },
+ {
+  "id": "pathvqa_5236",
+  "query": "is excellent example present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d9d40d89603b24d4.jpg"
+  ],
+  "image_sha1": [
+   "d9d40d89603b24d4718d50c01e3933e23b699d4f"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5236,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5710.jpg",
+  "modality": "pathology",
+  "image_group": "d9d40d89603b24d4"
+ },
+ {
+  "id": "pathvqa_6718",
+  "query": "does the subcutaneous tissue show masses or nodules of calcium salt surrounded by foreign body giant cells?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_b0dcdbf11772becf.jpg"
+  ],
+  "image_sha1": [
+   "b0dcdbf11772becff61202655604e2eea9693873"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6718,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_999.jpg",
+  "modality": "pathology",
+  "image_group": "b0dcdbf11772becf"
+ },
+ {
+  "id": "pathvqa_956",
+  "query": "does this image show heart, old myocardial infarction with fibrosis, he?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2d3de3e768f0d4f8.jpg"
+  ],
+  "image_sha1": [
+   "2d3de3e768f0d4f82cce19eeb3305a8228ed0182"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 956,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1859.jpg",
+  "modality": "pathology",
+  "image_group": "2d3de3e768f0d4f8"
+ },
+ {
+  "id": "pathvqa_958",
+  "query": "does mesentery show heart, old myocardial infarction with fibrosis, he?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2d3de3e768f0d4f8.jpg"
+  ],
+  "image_sha1": [
+   "2d3de3e768f0d4f82cce19eeb3305a8228ed0182"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 958,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1860.jpg",
+  "modality": "pathology",
+  "image_group": "2d3de3e768f0d4f8"
+ },
+ {
+  "id": "pathvqa_960",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2d3de3e768f0d4f8.jpg"
+  ],
+  "image_sha1": [
+   "2d3de3e768f0d4f82cce19eeb3305a8228ed0182"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 960,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1862.jpg",
+  "modality": "pathology",
+  "image_group": "2d3de3e768f0d4f8"
+ },
+ {
+  "id": "pathvqa_961",
+  "query": "is this typical lesion present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2d3de3e768f0d4f8.jpg"
+  ],
+  "image_sha1": [
+   "2d3de3e768f0d4f82cce19eeb3305a8228ed0182"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 961,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1863.jpg",
+  "modality": "pathology",
+  "image_group": "2d3de3e768f0d4f8"
+ },
+ {
+  "id": "pathvqa_1602",
+  "query": "is the necrotic ulcer base composed of granulation tissue overlaid by degraded blood?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_4a3b766dca0705ba.jpg"
+  ],
+  "image_sha1": [
+   "17c588a07752cf947ce0ce377ae7f2c7b0b13ee4"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1602,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_244.jpg",
+  "modality": "pathology",
+  "image_group": "17c588a07752cf94"
+ },
+ {
+  "id": "pathvqa_1613",
+  "query": "is reversible injury composed of granulation tissue overlaid by degraded blood?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_4a3b766dca0705ba.jpg"
+  ],
+  "image_sha1": [
+   "17c588a07752cf947ce0ce377ae7f2c7b0b13ee4"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1613,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_245.jpg",
+  "modality": "pathology",
+  "image_group": "17c588a07752cf94"
+ },
+ {
+  "id": "pathvqa_1232",
+  "query": "does this image show postmortangiogram of coronary arteries?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1232,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_2106.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1233",
+  "query": "does acid show postmortangiogram of coronary arteries?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1233,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_2107.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1235",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1235,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_2109.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1237",
+  "query": "is vessel present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1237,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_2110.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1239",
+  "query": "is myocardial infarct present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1239,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_2112.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1240",
+  "query": "is quite good liver present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_844024700d3995ba.jpg"
+  ],
+  "image_sha1": [
+   "844024700d3995baa362e666b5854e434518003b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1240,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_2113.jpg",
+  "modality": "pathology",
+  "image_group": "844024700d3995ba"
+ },
+ {
+  "id": "pathvqa_1677",
+  "query": "does this image show parathyroid adenoma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fcad3c1269a3eba1.jpg"
+  ],
+  "image_sha1": [
+   "fcad3c1269a3eba1d72e9b5f7a5b9483dfb70ca0"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1677,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_2507.jpg",
+  "modality": "pathology",
+  "image_group": "fcad3c1269a3eba1"
+ },
+ {
+  "id": "pathvqa_1678",
+  "query": "does angiogram show parathyroid adenoma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fcad3c1269a3eba1.jpg"
+  ],
+  "image_sha1": [
+   "fcad3c1269a3eba1d72e9b5f7a5b9483dfb70ca0"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1678,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_2508.jpg",
+  "modality": "pathology",
+  "image_group": "fcad3c1269a3eba1"
+ },
+ {
+  "id": "pathvqa_1681",
+  "query": "is endocrine present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fcad3c1269a3eba1.jpg"
+  ],
+  "image_sha1": [
+   "fcad3c1269a3eba1d72e9b5f7a5b9483dfb70ca0"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1681,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_2510.jpg",
+  "modality": "pathology",
+  "image_group": "fcad3c1269a3eba1"
+ },
+ {
+  "id": "pathvqa_1682",
+  "query": "is vessel present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fcad3c1269a3eba1.jpg"
+  ],
+  "image_sha1": [
+   "fcad3c1269a3eba1d72e9b5f7a5b9483dfb70ca0"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1682,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_2511.jpg",
+  "modality": "pathology",
+  "image_group": "fcad3c1269a3eba1"
+ },
+ {
+  "id": "pathvqa_4561",
+  "query": "do close-up view pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4561,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5102.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_4562",
+  "query": "do morphology pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4562,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5103.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_4564",
+  "query": "does this image show close-up view pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4564,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5105.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_4565",
+  "query": "does mixed mesodermal tumor show close-up view pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4565,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5106.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_4567",
+  "query": "is soft tissue present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4567,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5108.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_4568",
+  "query": "is quite good liver present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a97c79815b1b19d9.jpg"
+  ],
+  "image_sha1": [
+   "a97c79815b1b19d9eafb0bca0ea4a17dc8576543"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4568,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5109.jpg",
+  "modality": "pathology",
+  "image_group": "a97c79815b1b19d9"
+ },
+ {
+  "id": "pathvqa_5608",
+  "query": "does this image show islet cell carcinoma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2bfdd03e1e86aec2.jpg"
+  ],
+  "image_sha1": [
+   "2bfdd03e1e86aec25fb46e4db4f1df321d215f1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5608,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6045.jpg",
+  "modality": "pathology",
+  "image_group": "2bfdd03e1e86aec2"
+ },
+ {
+  "id": "pathvqa_5609",
+  "query": "does pancreas show islet cell carcinoma?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2bfdd03e1e86aec2.jpg"
+  ],
+  "image_sha1": [
+   "2bfdd03e1e86aec25fb46e4db4f1df321d215f1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5609,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6046.jpg",
+  "modality": "pathology",
+  "image_group": "2bfdd03e1e86aec2"
+ },
+ {
+  "id": "pathvqa_5611",
+  "query": "is pancreas present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2bfdd03e1e86aec2.jpg"
+  ],
+  "image_sha1": [
+   "2bfdd03e1e86aec25fb46e4db4f1df321d215f1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5611,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6048.jpg",
+  "modality": "pathology",
+  "image_group": "2bfdd03e1e86aec2"
+ },
+ {
+  "id": "pathvqa_5612",
+  "query": "is no cystic aortic lesions present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_2bfdd03e1e86aec2.jpg"
+  ],
+  "image_sha1": [
+   "2bfdd03e1e86aec25fb46e4db4f1df321d215f1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5612,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6049.jpg",
+  "modality": "pathology",
+  "image_group": "2bfdd03e1e86aec2"
+ },
+ {
+  "id": "pathvqa_6427",
+  "query": "is there narrowing of the lumen of coronary due to fully developed atheromatous plaque which has dystrophic calcification in its core?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_956c09f45b2593ef.jpg"
+  ],
+  "image_sha1": [
+   "956c09f45b2593ef33cc6e712485d208df97e016"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6427,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_736.jpg",
+  "modality": "pathology",
+  "image_group": "956c09f45b2593ef"
+ },
+ {
+  "id": "pathvqa_6428",
+  "query": "is the alveolar septa narrowing of the lumen of coronary due to fully developed atheromatous plaque which has dystrophic calcification in its core?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_956c09f45b2593ef.jpg"
+  ],
+  "image_sha1": [
+   "956c09f45b2593ef33cc6e712485d208df97e016"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6428,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_737.jpg",
+  "modality": "pathology",
+  "image_group": "956c09f45b2593ef"
+ },
+ {
+  "id": "pathvqa_5254",
+  "query": "does this image show incisive canal cyst nasopalatien duct cyst?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_17241ea7a5e5672e.jpg"
+  ],
+  "image_sha1": [
+   "17241ea7a5e5672e6875eda3ce4e6c7a2270e247"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5254,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5727.jpg",
+  "modality": "pathology",
+  "image_group": "17241ea7a5e5672e"
+ },
+ {
+  "id": "pathvqa_5255",
+  "query": "does pulmonary osteoarthropathy show incisive canal cyst nasopalatien duct cyst?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_17241ea7a5e5672e.jpg"
+  ],
+  "image_sha1": [
+   "17241ea7a5e5672e6875eda3ce4e6c7a2270e247"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5255,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5728.jpg",
+  "modality": "pathology",
+  "image_group": "17241ea7a5e5672e"
+ },
+ {
+  "id": "pathvqa_5258",
+  "query": "is oral present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_17241ea7a5e5672e.jpg"
+  ],
+  "image_sha1": [
+   "17241ea7a5e5672e6875eda3ce4e6c7a2270e247"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5258,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5730.jpg",
+  "modality": "pathology",
+  "image_group": "17241ea7a5e5672e"
+ },
+ {
+  "id": "pathvqa_5259",
+  "query": "is nuclear change present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_17241ea7a5e5672e.jpg"
+  ],
+  "image_sha1": [
+   "17241ea7a5e5672e6875eda3ce4e6c7a2270e247"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5259,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5731.jpg",
+  "modality": "pathology",
+  "image_group": "17241ea7a5e5672e"
+ },
+ {
+  "id": "pathvqa_5007",
+  "query": "does this image show brain, microthrombi, thrombotic thrombocytopenic purpura?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_c1d5a8583725ae1b.jpg"
+  ],
+  "image_sha1": [
+   "c1d5a8583725ae1bcebff51677891cf7220d632d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5007,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5504.jpg",
+  "modality": "pathology",
+  "image_group": "c1d5a8583725ae1b"
+ },
+ {
+  "id": "pathvqa_5009",
+  "query": "is nervous present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_c1d5a8583725ae1b.jpg"
+  ],
+  "image_sha1": [
+   "c1d5a8583725ae1bcebff51677891cf7220d632d"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5009,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5506.jpg",
+  "modality": "pathology",
+  "image_group": "c1d5a8583725ae1b"
+ },
+ {
+  "id": "pathvqa_857",
+  "query": "does a low-power view show well-defined bands of pink, acellular collagen that have subdivided the tumor cells into nodules?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_65f2d7fd6c761732.jpg"
+  ],
+  "image_sha1": [
+   "c6d01f94abd98d830d20ed2e2b518d933c071c6c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 857,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_177.jpg",
+  "modality": "pathology",
+  "image_group": "c6d01f94abd98d83"
+ },
+ {
+  "id": "pathvqa_868",
+  "query": "does some long-lived resident tissue macrophages show well-defined bands of pink, acellular collagen that have subdivided the tumor cells into nodules?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_65f2d7fd6c761732.jpg"
+  ],
+  "image_sha1": [
+   "c6d01f94abd98d830d20ed2e2b518d933c071c6c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 868,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_178.jpg",
+  "modality": "pathology",
+  "image_group": "c6d01f94abd98d83"
+ },
+ {
+  "id": "pathvqa_4578",
+  "query": "does this image show close-up very pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d98a123794e417ba.jpg"
+  ],
+  "image_sha1": [
+   "d98a123794e417badb6c007e0d15b258a05d0553"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4578,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5118.jpg",
+  "modality": "pathology",
+  "image_group": "d98a123794e417ba"
+ },
+ {
+  "id": "pathvqa_4579",
+  "query": "does myocardial infarct show close-up very pale muscle?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d98a123794e417ba.jpg"
+  ],
+  "image_sha1": [
+   "d98a123794e417badb6c007e0d15b258a05d0553"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4579,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5119.jpg",
+  "modality": "pathology",
+  "image_group": "d98a123794e417ba"
+ },
+ {
+  "id": "pathvqa_4582",
+  "query": "is soft tissue present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d98a123794e417ba.jpg"
+  ],
+  "image_sha1": [
+   "d98a123794e417badb6c007e0d15b258a05d0553"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4582,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5121.jpg",
+  "modality": "pathology",
+  "image_group": "d98a123794e417ba"
+ },
+ {
+  "id": "pathvqa_4583",
+  "query": "is muscle atrophy present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d98a123794e417ba.jpg"
+  ],
+  "image_sha1": [
+   "d98a123794e417badb6c007e0d15b258a05d0553"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4583,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5122.jpg",
+  "modality": "pathology",
+  "image_group": "d98a123794e417ba"
+ },
+ {
+  "id": "pathvqa_6289",
+  "query": "does this image show atn acute tubular necrosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_0d382f8dec3a2ae4.jpg"
+  ],
+  "image_sha1": [
+   "0d382f8dec3a2ae404754623751b81d176ca069b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6289,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6659.jpg",
+  "modality": "pathology",
+  "image_group": "0d382f8dec3a2ae4"
+ },
+ {
+  "id": "pathvqa_6291",
+  "query": "does linear fracture in occiput show atn acute tubular necrosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_0d382f8dec3a2ae4.jpg"
+  ],
+  "image_sha1": [
+   "0d382f8dec3a2ae404754623751b81d176ca069b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6291,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6660.jpg",
+  "modality": "pathology",
+  "image_group": "0d382f8dec3a2ae4"
+ },
+ {
+  "id": "pathvqa_6293",
+  "query": "is urinary present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_0d382f8dec3a2ae4.jpg"
+  ],
+  "image_sha1": [
+   "0d382f8dec3a2ae404754623751b81d176ca069b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6293,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6662.jpg",
+  "modality": "pathology",
+  "image_group": "0d382f8dec3a2ae4"
+ },
+ {
+  "id": "pathvqa_6294",
+  "query": "is case of peritonitis slide present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_0d382f8dec3a2ae4.jpg"
+  ],
+  "image_sha1": [
+   "0d382f8dec3a2ae404754623751b81d176ca069b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6294,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6663.jpg",
+  "modality": "pathology",
+  "image_group": "0d382f8dec3a2ae4"
+ },
+ {
+  "id": "pathvqa_6455",
+  "query": "are the location of vegetations on mitral valve shown as seen from the left ventricular surface?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_677dbc38abf63f8d.jpg"
+  ],
+  "image_sha1": [
+   "677dbc38abf63f8ded1c0558b8f21a94322b59f7"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6455,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_761.jpg",
+  "modality": "pathology",
+  "image_group": "677dbc38abf63f8d"
+ },
+ {
+  "id": "pathvqa_6456",
+  "query": "are some leucocytes and red cells and a tight meshwork shown as seen from the left ventricular surface?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_677dbc38abf63f8d.jpg"
+  ],
+  "image_sha1": [
+   "677dbc38abf63f8ded1c0558b8f21a94322b59f7"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6456,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_762.jpg",
+  "modality": "pathology",
+  "image_group": "677dbc38abf63f8d"
+ },
+ {
+  "id": "pathvqa_6460",
+  "query": "does the free surface and margin of the mitral valve show tiny firm granular vegetations?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_677dbc38abf63f8d.jpg"
+  ],
+  "image_sha1": [
+   "677dbc38abf63f8ded1c0558b8f21a94322b59f7"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6460,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_766.jpg",
+  "modality": "pathology",
+  "image_group": "677dbc38abf63f8d"
+ },
+ {
+  "id": "pathvqa_6461",
+  "query": "does a, the pink acellular amyloid material show tiny firm granular vegetations?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_677dbc38abf63f8d.jpg"
+  ],
+  "image_sha1": [
+   "677dbc38abf63f8ded1c0558b8f21a94322b59f7"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6461,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_767.jpg",
+  "modality": "pathology",
+  "image_group": "677dbc38abf63f8d"
+ },
+ {
+  "id": "pathvqa_307",
+  "query": "does this image show posterior view open cord?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3c1b79709aeadb2c.jpg"
+  ],
+  "image_sha1": [
+   "3c1b79709aeadb2ccfe529e7ebabcdadff9c3346"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 307,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1274.jpg",
+  "modality": "pathology",
+  "image_group": "3c1b79709aeadb2c"
+ },
+ {
+  "id": "pathvqa_308",
+  "query": "does natural color show posterior view open cord?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3c1b79709aeadb2c.jpg"
+  ],
+  "image_sha1": [
+   "3c1b79709aeadb2ccfe529e7ebabcdadff9c3346"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 308,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1275.jpg",
+  "modality": "pathology",
+  "image_group": "3c1b79709aeadb2c"
+ },
+ {
+  "id": "pathvqa_310",
+  "query": "is anencephaly present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3c1b79709aeadb2c.jpg"
+  ],
+  "image_sha1": [
+   "3c1b79709aeadb2ccfe529e7ebabcdadff9c3346"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 310,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1277.jpg",
+  "modality": "pathology",
+  "image_group": "3c1b79709aeadb2c"
+ },
+ {
+  "id": "pathvqa_311",
+  "query": "is liver with tuberculoid granuloma in glissons present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_3c1b79709aeadb2c.jpg"
+  ],
+  "image_sha1": [
+   "3c1b79709aeadb2ccfe529e7ebabcdadff9c3346"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 311,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1278.jpg",
+  "modality": "pathology",
+  "image_group": "3c1b79709aeadb2c"
+ },
+ {
+  "id": "pathvqa_687",
+  "query": "does this image show normal cardiovascular?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_342456e509684e4a.jpg"
+  ],
+  "image_sha1": [
+   "342456e509684e4aa46f4eefd2e0ef1ff92615c1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 687,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1616.jpg",
+  "modality": "pathology",
+  "image_group": "342456e509684e4a"
+ },
+ {
+  "id": "pathvqa_688",
+  "query": "does intraductal papillomatosis with apocrine metaplasia show normal cardiovascular?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_342456e509684e4a.jpg"
+  ],
+  "image_sha1": [
+   "342456e509684e4aa46f4eefd2e0ef1ff92615c1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 688,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1617.jpg",
+  "modality": "pathology",
+  "image_group": "342456e509684e4a"
+ },
+ {
+  "id": "pathvqa_1101",
+  "query": "is plexiform lesion characteristic of advanced pulmonary hypertension seen in small arteries?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_25f2e917714ab6e1.jpg"
+  ],
+  "image_sha1": [
+   "040b88a0afd1de88c25ca3be88341fc6ffa77918"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1101,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_199.jpg",
+  "modality": "pathology",
+  "image_group": "040b88a0afd1de88"
+ },
+ {
+  "id": "pathvqa_1114",
+  "query": "is hematoxylin-eosin seen in small arteries?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_25f2e917714ab6e1.jpg"
+  ],
+  "image_sha1": [
+   "040b88a0afd1de88c25ca3be88341fc6ffa77918"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1114,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_200.jpg",
+  "modality": "pathology",
+  "image_group": "040b88a0afd1de88"
+ },
+ {
+  "id": "pathvqa_2250",
+  "query": "does this image show opened uterus with three myomas quite typical?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2250,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3022.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_2251",
+  "query": "does normal newborn show opened uterus with three myomas quite typical?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2251,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3023.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_2253",
+  "query": "is female reproductive present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2253,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3025.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_2254",
+  "query": "is infant body present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2254,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3026.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_2256",
+  "query": "is leiomyoma present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2256,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3028.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_2257",
+  "query": "is good example of muscle atrophy present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_e083874d5e07bc54.jpg"
+  ],
+  "image_sha1": [
+   "e083874d5e07bc5423b4456a887e3ab9bb5d59c9"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 2257,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3029.jpg",
+  "modality": "pathology",
+  "image_group": "e083874d5e07bc54"
+ },
+ {
+  "id": "pathvqa_3198",
+  "query": "does this image show external view bilateral cleft palate?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d8405bb7763ecae2.jpg"
+  ],
+  "image_sha1": [
+   "d8405bb7763ecae2e81824df353347fc4a50c1b1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3198,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3877.jpg",
+  "modality": "pathology",
+  "image_group": "d8405bb7763ecae2"
+ },
+ {
+  "id": "pathvqa_3199",
+  "query": "does cytomegalovirus show external view bilateral cleft palate?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d8405bb7763ecae2.jpg"
+  ],
+  "image_sha1": [
+   "d8405bb7763ecae2e81824df353347fc4a50c1b1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3199,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3878.jpg",
+  "modality": "pathology",
+  "image_group": "d8405bb7763ecae2"
+ },
+ {
+  "id": "pathvqa_3676",
+  "query": "are organisms easily evident?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3676,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4306.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3677",
+  "query": "are hyalin mass in pituitary which is amyloid there are several slides from this case in this file 23 yowf amyloid limited to brain easily evident?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3677,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4307.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3679",
+  "query": "does this image show organisms are easily evident?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3679,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4309.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3681",
+  "query": "does hilar cell tumor show organisms are easily evident?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3681,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4310.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3683",
+  "query": "is hematologic present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3683,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4312.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3684",
+  "query": "is postpartum present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3684,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4313.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3686",
+  "query": "is bone marrow present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3686,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4315.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3687",
+  "query": "is lymphangiomatosis generalized present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3687,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4316.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3689",
+  "query": "is histoplasmosis present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3689,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4318.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_3690",
+  "query": "is situs inversus present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9d3ab935b6cdd8be.jpg"
+  ],
+  "image_sha1": [
+   "9d3ab935b6cdd8bec0566b77673d07af9ff0674e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3690,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4319.jpg",
+  "modality": "pathology",
+  "image_group": "9d3ab935b6cdd8be"
+ },
+ {
+  "id": "pathvqa_5207",
+  "query": "does this image show pemphigus vulgaris?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6269340bc597656d.jpg"
+  ],
+  "image_sha1": [
+   "6269340bc597656d8bd7764288c9f5c3cb944b08"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5207,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5685.jpg",
+  "modality": "pathology",
+  "image_group": "6269340bc597656d"
+ },
+ {
+  "id": "pathvqa_5208",
+  "query": "does opened base of skull with brain show pemphigus vulgaris?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6269340bc597656d.jpg"
+  ],
+  "image_sha1": [
+   "6269340bc597656d8bd7764288c9f5c3cb944b08"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5208,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5686.jpg",
+  "modality": "pathology",
+  "image_group": "6269340bc597656d"
+ },
+ {
+  "id": "pathvqa_5210",
+  "query": "is oral present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6269340bc597656d.jpg"
+  ],
+  "image_sha1": [
+   "6269340bc597656d8bd7764288c9f5c3cb944b08"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5210,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5688.jpg",
+  "modality": "pathology",
+  "image_group": "6269340bc597656d"
+ },
+ {
+  "id": "pathvqa_5211",
+  "query": "is umbilical cord present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6269340bc597656d.jpg"
+  ],
+  "image_sha1": [
+   "6269340bc597656d8bd7764288c9f5c3cb944b08"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5211,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5689.jpg",
+  "modality": "pathology",
+  "image_group": "6269340bc597656d"
+ },
+ {
+  "id": "pathvqa_3118",
+  "query": "does this image show close-up view of hemorrhagic excavation quite good?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3118,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3804.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_3119",
+  "query": "does squamous cell carcinoma, lip remote, show close-up view of hemorrhagic excavation quite good?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3119,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3805.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_3121",
+  "query": "is bone, skull present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3121,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3807.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_3122",
+  "query": "is carcinoma metastatic lung present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3122,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3808.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_3125",
+  "query": "is multiple myeloma present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3125,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_3810.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_3126",
+  "query": "is photo present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_90d31c04f9152ee5.jpg"
+  ],
+  "image_sha1": [
+   "90d31c04f9152ee565ce7b5ec3e5be235dc29c1b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 3126,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_3811.jpg",
+  "modality": "pathology",
+  "image_group": "90d31c04f9152ee5"
+ },
+ {
+  "id": "pathvqa_1446",
+  "query": "are the cellular alterations in apoptosis illustrated?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_8ae2fa8b952941f9.jpg"
+  ],
+  "image_sha1": [
+   "772de498226b48a5fc9949f69a107fbca4eb7df4"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1446,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_23.jpg",
+  "modality": "pathology",
+  "image_group": "772de498226b48a5"
+ },
+ {
+  "id": "pathvqa_1557",
+  "query": "are methylation of particular histone residues illustrated?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_8ae2fa8b952941f9.jpg"
+  ],
+  "image_sha1": [
+   "772de498226b48a5fc9949f69a107fbca4eb7df4"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1557,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_24.jpg",
+  "modality": "pathology",
+  "image_group": "772de498226b48a5"
+ },
+ {
+  "id": "pathvqa_5049",
+  "query": "does this image show herpes simplex virus, brain, immunohistochemistry?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_127909db0277b6f1.jpg"
+  ],
+  "image_sha1": [
+   "127909db0277b6f109e66e74a174c285c38a2545"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5049,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5542.jpg",
+  "modality": "pathology",
+  "image_group": "127909db0277b6f1"
+ },
+ {
+  "id": "pathvqa_5050",
+  "query": "does retroperitoneal liposarcoma show herpes simplex virus, brain, immunohistochemistry?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_127909db0277b6f1.jpg"
+  ],
+  "image_sha1": [
+   "127909db0277b6f109e66e74a174c285c38a2545"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5050,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5543.jpg",
+  "modality": "pathology",
+  "image_group": "127909db0277b6f1"
+ },
+ {
+  "id": "pathvqa_5052",
+  "query": "is nervous present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_127909db0277b6f1.jpg"
+  ],
+  "image_sha1": [
+   "127909db0277b6f109e66e74a174c285c38a2545"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5052,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5545.jpg",
+  "modality": "pathology",
+  "image_group": "127909db0277b6f1"
+ },
+ {
+  "id": "pathvqa_5053",
+  "query": "is malignant thymoma present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_127909db0277b6f1.jpg"
+  ],
+  "image_sha1": [
+   "127909db0277b6f109e66e74a174c285c38a2545"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5053,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5546.jpg",
+  "modality": "pathology",
+  "image_group": "127909db0277b6f1"
+ },
+ {
+  "id": "pathvqa_5811",
+  "query": "does this image show lung, mycobacterium tuberculosis, acid fast?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_63d14f69bfa774e0.jpg"
+  ],
+  "image_sha1": [
+   "63d14f69bfa774e06acc434ca9184244e3a629f1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5811,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6228.jpg",
+  "modality": "pathology",
+  "image_group": "63d14f69bfa774e0"
+ },
+ {
+  "id": "pathvqa_5812",
+  "query": "does hemochromatosis show lung, mycobacterium tuberculosis, acid fast?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_63d14f69bfa774e0.jpg"
+  ],
+  "image_sha1": [
+   "63d14f69bfa774e06acc434ca9184244e3a629f1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5812,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6229.jpg",
+  "modality": "pathology",
+  "image_group": "63d14f69bfa774e0"
+ },
+ {
+  "id": "pathvqa_5815",
+  "query": "is respiratory present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_63d14f69bfa774e0.jpg"
+  ],
+  "image_sha1": [
+   "63d14f69bfa774e06acc434ca9184244e3a629f1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5815,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6231.jpg",
+  "modality": "pathology",
+  "image_group": "63d14f69bfa774e0"
+ },
+ {
+  "id": "pathvqa_5816",
+  "query": "is case of dic not bad photo present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_63d14f69bfa774e0.jpg"
+  ],
+  "image_sha1": [
+   "63d14f69bfa774e06acc434ca9184244e3a629f1"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5816,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6232.jpg",
+  "modality": "pathology",
+  "image_group": "63d14f69bfa774e0"
+ },
+ {
+  "id": "pathvqa_6582",
+  "query": "does icroscopy show three layers in the wall of hydatid cyst?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_83410c9ec30a112f.jpg"
+  ],
+  "image_sha1": [
+   "83410c9ec30a112f7775df664f1f183030e3481b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6582,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_876.jpg",
+  "modality": "pathology",
+  "image_group": "83410c9ec30a112f"
+ },
+ {
+  "id": "pathvqa_6583",
+  "query": "does irregular nuclear show three layers in the wall of hydatid cyst?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_83410c9ec30a112f.jpg"
+  ],
+  "image_sha1": [
+   "83410c9ec30a112f7775df664f1f183030e3481b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6583,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_877.jpg",
+  "modality": "pathology",
+  "image_group": "83410c9ec30a112f"
+ },
+ {
+  "id": "pathvqa_6588",
+  "query": "does inbox in the right photomicrograph show a scolex with a row of hooklets?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_83410c9ec30a112f.jpg"
+  ],
+  "image_sha1": [
+   "83410c9ec30a112f7775df664f1f183030e3481b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6588,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_881.jpg",
+  "modality": "pathology",
+  "image_group": "83410c9ec30a112f"
+ },
+ {
+  "id": "pathvqa_6589",
+  "query": "does the peripheral zone show a scolex with a row of hooklets?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_83410c9ec30a112f.jpg"
+  ],
+  "image_sha1": [
+   "83410c9ec30a112f7775df664f1f183030e3481b"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6589,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_882.jpg",
+  "modality": "pathology",
+  "image_group": "83410c9ec30a112f"
+ },
+ {
+  "id": "pathvqa_1280",
+  "query": "does the histologic appearance demonstrate small round, uniform nuclei and moderate cytoplasm?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_a6a50474f5dfea39.jpg"
+  ],
+  "image_sha1": [
+   "d10d78338f7242b7c6f99ca5a1388947aab68d26"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1280,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_215.jpg",
+  "modality": "pathology",
+  "image_group": "d10d78338f7242b7"
+ },
+ {
+  "id": "pathvqa_5778",
+  "query": "does this image show pleura, talc reaction?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5778,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6199.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5781",
+  "query": "does this person show pleura, talc reaction?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5781,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6200.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5785",
+  "query": "was talc used to sclerose emphysematous lung, alpha-1 antitrypsin deficiency?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5785,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6204.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5786",
+  "query": "was coronary artery anomalous origin left from pulmonary artery used to sclerose emphysematous lung, alpha-1 antitrypsin deficiency?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5786,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6205.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5788",
+  "query": "does trichrome stain?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5788,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6207.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5789",
+  "query": "does serous cystadenoma stain?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5789,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6208.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5792",
+  "query": "is respiratory present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5792,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_6210.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_5793",
+  "query": "is endometritis present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6a9d615cf27ea753.jpg"
+  ],
+  "image_sha1": [
+   "6a9d615cf27ea75335edede556b14a39182b1c38"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 5793,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_6211.jpg",
+  "modality": "pathology",
+  "image_group": "6a9d615cf27ea753"
+ },
+ {
+  "id": "pathvqa_4682",
+  "query": "does this image show synovium, pannus and fibrinoid necrosis, rheumatoid arthritis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d81e650607ba142f.jpg"
+  ],
+  "image_sha1": [
+   "d81e650607ba142f78e2b7c9984a2a5fb08fdd48"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4682,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5211.jpg",
+  "modality": "pathology",
+  "image_group": "d81e650607ba142f"
+ },
+ {
+  "id": "pathvqa_4683",
+  "query": "does opened muscle show synovium, pannus and fibrinoid necrosis, rheumatoid arthritis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d81e650607ba142f.jpg"
+  ],
+  "image_sha1": [
+   "d81e650607ba142f78e2b7c9984a2a5fb08fdd48"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4683,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5212.jpg",
+  "modality": "pathology",
+  "image_group": "d81e650607ba142f"
+ },
+ {
+  "id": "pathvqa_4685",
+  "query": "is musculoskeletal present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d81e650607ba142f.jpg"
+  ],
+  "image_sha1": [
+   "d81e650607ba142f78e2b7c9984a2a5fb08fdd48"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4685,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_5214.jpg",
+  "modality": "pathology",
+  "image_group": "d81e650607ba142f"
+ },
+ {
+  "id": "pathvqa_4686",
+  "query": "is mucoepidermoid carcinoma present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_d81e650607ba142f.jpg"
+  ],
+  "image_sha1": [
+   "d81e650607ba142f78e2b7c9984a2a5fb08fdd48"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4686,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_5215.jpg",
+  "modality": "pathology",
+  "image_group": "d81e650607ba142f"
+ },
+ {
+  "id": "pathvqa_1913",
+  "query": "is necrotic debris, present in the gland lumen, typical?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_366d028c6607557c.jpg"
+  ],
+  "image_sha1": [
+   "09e59dcaeea8b4c42a40baf89357986f642724ed"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1913,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_272.jpg",
+  "modality": "pathology",
+  "image_group": "09e59dcaeea8b4c4"
+ },
+ {
+  "id": "pathvqa_1924",
+  "query": "are bile duct cells and canals of hering typical?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_366d028c6607557c.jpg"
+  ],
+  "image_sha1": [
+   "09e59dcaeea8b4c42a40baf89357986f642724ed"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 1924,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_273.jpg",
+  "modality": "pathology",
+  "image_group": "09e59dcaeea8b4c4"
+ },
+ {
+  "id": "pathvqa_398",
+  "query": "does this image show herpes zoster?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6fbedce0bc834b9f.jpg"
+  ],
+  "image_sha1": [
+   "6fbedce0bc834b9fec7ce42dbcbc1486496df04e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 398,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1356.jpg",
+  "modality": "pathology",
+  "image_group": "6fbedce0bc834b9f"
+ },
+ {
+  "id": "pathvqa_399",
+  "query": "does retroperitoneal leiomyosarcoma show herpes zoster?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_6fbedce0bc834b9f.jpg"
+  ],
+  "image_sha1": [
+   "6fbedce0bc834b9fec7ce42dbcbc1486496df04e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 399,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1357.jpg",
+  "modality": "pathology",
+  "image_group": "6fbedce0bc834b9f"
+ },
+ {
+  "id": "pathvqa_6368",
+  "query": "is there progressive condensation of the nuclear chromatin which is eventually extruded from the cell at the late erythroblast stage?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_10590ddf82b51613.jpg"
+  ],
+  "image_sha1": [
+   "10590ddf82b516134b10f73ea2b192286de4878e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6368,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_683.jpg",
+  "modality": "pathology",
+  "image_group": "10590ddf82b51613"
+ },
+ {
+  "id": "pathvqa_6371",
+  "query": "does the cytoplasm contain progressively less rna and more haemoglobin?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_10590ddf82b51613.jpg"
+  ],
+  "image_sha1": [
+   "10590ddf82b516134b10f73ea2b192286de4878e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6371,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_686.jpg",
+  "modality": "pathology",
+  "image_group": "10590ddf82b51613"
+ },
+ {
+  "id": "pathvqa_6372",
+  "query": "does the circle shown with red line contain progressively less rna and more haemoglobin?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_10590ddf82b51613.jpg"
+  ],
+  "image_sha1": [
+   "10590ddf82b516134b10f73ea2b192286de4878e"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 6372,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_687.jpg",
+  "modality": "pathology",
+  "image_group": "10590ddf82b51613"
+ },
+ {
+  "id": "pathvqa_4215",
+  "query": "does this image show mild-to-moderate acute rejection?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4215,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4792.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_4216",
+  "query": "does child show mild-to-moderate acute rejection?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4216,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4793.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_4218",
+  "query": "is hepatobiliary present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4218,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4795.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_4219",
+  "query": "is leiomyomas present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4219,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4796.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_4221",
+  "query": "is liver present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4221,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4798.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_4222",
+  "query": "is metastatic carcinoma lung present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_9cdf6107db403b7f.jpg"
+  ],
+  "image_sha1": [
+   "9cdf6107db403b7ff2b8006d3af48ec5ec94336c"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4222,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4799.jpg",
+  "modality": "pathology",
+  "image_group": "9cdf6107db403b7f"
+ },
+ {
+  "id": "pathvqa_974",
+  "query": "does this image show saphenous vein graft sclerosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 974,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1875.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_975",
+  "query": "does retroperitoneal liposarcoma show saphenous vein graft sclerosis?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 975,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1876.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_977",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 977,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1878.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_978",
+  "query": "is atherosclerosis present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 978,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1879.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_981",
+  "query": "is vasculature present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 981,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1881.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_982",
+  "query": "is coronary artery present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_1cfa3f4561a8334a.jpg"
+  ],
+  "image_sha1": [
+   "1cfa3f4561a8334aacc69ead9fc41e4e11778c28"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 982,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1882.jpg",
+  "modality": "pathology",
+  "image_group": "1cfa3f4561a8334a"
+ },
+ {
+  "id": "pathvqa_906",
+  "query": "does this image show heart, fibrosis, chronic rheumatic heart disease?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fb5269e5caba3a3e.jpg"
+  ],
+  "image_sha1": [
+   "fb5269e5caba3a3e0633d9bd53780bcfc1ac12f2"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 906,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1813.jpg",
+  "modality": "pathology",
+  "image_group": "fb5269e5caba3a3e"
+ },
+ {
+  "id": "pathvqa_907",
+  "query": "does an opened peritoneal cavity cause by fibrous band strangulation show heart, fibrosis, chronic rheumatic heart disease?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fb5269e5caba3a3e.jpg"
+  ],
+  "image_sha1": [
+   "fb5269e5caba3a3e0633d9bd53780bcfc1ac12f2"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 907,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1814.jpg",
+  "modality": "pathology",
+  "image_group": "fb5269e5caba3a3e"
+ },
+ {
+  "id": "pathvqa_909",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fb5269e5caba3a3e.jpg"
+  ],
+  "image_sha1": [
+   "fb5269e5caba3a3e0633d9bd53780bcfc1ac12f2"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 909,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1816.jpg",
+  "modality": "pathology",
+  "image_group": "fb5269e5caba3a3e"
+ },
+ {
+  "id": "pathvqa_910",
+  "query": "is omphalocele present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_fb5269e5caba3a3e.jpg"
+  ],
+  "image_sha1": [
+   "fb5269e5caba3a3e0633d9bd53780bcfc1ac12f2"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 910,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_1817.jpg",
+  "modality": "pathology",
+  "image_group": "fb5269e5caba3a3e"
+ },
+ {
+  "id": "pathvqa_4432",
+  "query": "is lymph node present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_44d74b2395d1c28a.jpg"
+  ],
+  "image_sha1": [
+   "44d74b2395d1c28adb095d524ef96bb866a5a721"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4432,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4988.jpg",
+  "modality": "pathology",
+  "image_group": "44d74b2395d1c28a"
+ },
+ {
+  "id": "pathvqa_4433",
+  "query": "is this image shows of smooth muscle cell with lipid in sarcoplasm and lipid present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_44d74b2395d1c28a.jpg"
+  ],
+  "image_sha1": [
+   "44d74b2395d1c28adb095d524ef96bb866a5a721"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4433,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4989.jpg",
+  "modality": "pathology",
+  "image_group": "44d74b2395d1c28a"
+ },
+ {
+  "id": "pathvqa_4436",
+  "query": "is tuberculosis present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_44d74b2395d1c28a.jpg"
+  ],
+  "image_sha1": [
+   "44d74b2395d1c28adb095d524ef96bb866a5a721"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4436,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_4991.jpg",
+  "modality": "pathology",
+  "image_group": "44d74b2395d1c28a"
+ },
+ {
+  "id": "pathvqa_4437",
+  "query": "is stein leventhal present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_44d74b2395d1c28a.jpg"
+  ],
+  "image_sha1": [
+   "44d74b2395d1c28adb095d524ef96bb866a5a721"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 4437,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "no",
+  "orig_image_name": "img_4992.jpg",
+  "modality": "pathology",
+  "image_group": "44d74b2395d1c28a"
+ },
+ {
+  "id": "pathvqa_599",
+  "query": "does this image show fibroblasts in adventitia of monkey basilar artery?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_dbbc94298c54f3fe.jpg"
+  ],
+  "image_sha1": [
+   "dbbc94298c54f3febe9143ad865aecd534f295dc"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 599,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1537.jpg",
+  "modality": "pathology",
+  "image_group": "dbbc94298c54f3fe"
+ },
+ {
+  "id": "pathvqa_601",
+  "query": "is cardiovascular present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_dbbc94298c54f3fe.jpg"
+  ],
+  "image_sha1": [
+   "dbbc94298c54f3febe9143ad865aecd534f295dc"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 601,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1539.jpg",
+  "modality": "pathology",
+  "image_group": "dbbc94298c54f3fe"
+ },
+ {
+  "id": "pathvqa_604",
+  "query": "is vasculature present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_dbbc94298c54f3fe.jpg"
+  ],
+  "image_sha1": [
+   "dbbc94298c54f3febe9143ad865aecd534f295dc"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 604,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1541.jpg",
+  "modality": "pathology",
+  "image_group": "dbbc94298c54f3fe"
+ },
+ {
+  "id": "pathvqa_606",
+  "query": "is cranial artery present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/pathvqa/images/pathvqa_dbbc94298c54f3fe.jpg"
+  ],
+  "image_sha1": [
+   "dbbc94298c54f3febe9143ad865aecd534f295dc"
+  ],
+  "source_dataset": "flaviagiammarino/path-vqa",
+  "source_split": "test",
+  "orig_id": 606,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "yes",
+  "orig_image_name": "img_1543.jpg",
+  "modality": "pathology",
+  "image_group": "dbbc94298c54f3fe"
+ }
+]

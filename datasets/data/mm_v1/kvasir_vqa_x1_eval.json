@@ -1,0 +1,6402 @@
+[
+ {
+  "id": "kvasir_vqa_x1_65",
+  "query": "Is there any abnormality observed in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonparyp0755gj0v2k1s.jpg"
+  ],
+  "image_sha1": [
+   "ed2b561f7d6119bd0dbb880eb6ed63a96710deb9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 65,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonparyp0755gj0v2k1s",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "ed2b561f7d6119bd"
+ },
+ {
+  "id": "kvasir_vqa_x1_4797",
+  "query": "Are there any green or black box-shaped artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvg90no074yhcyb0sj6.jpg"
+  ],
+  "image_sha1": [
+   "ef1e623b99a3d90aed440394ccd99394572df214"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4797,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvg90no074yhcyb0sj6",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "ef1e623b99a3d90a"
+ },
+ {
+  "id": "kvasir_vqa_x1_3604",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4cn071u0m2x8rre.jpg"
+  ],
+  "image_sha1": [
+   "60fd96502f3cdd80a418701b5b6854d95614295c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3604,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4cn071u0m2x8rre",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "60fd96502f3cdd80"
+ },
+ {
+  "id": "kvasir_vqa_x1_5350",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmjs5uz071uajgi1xsj.jpg"
+  ],
+  "image_sha1": [
+   "8407712e6c863a933882406625fdf358a71e616b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5350,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gmjs5uz071uajgi1xsj",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "8407712e6c863a93"
+ },
+ {
+  "id": "kvasir_vqa_x1_14955",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q41egv08327l2wfa9u.jpg"
+  ],
+  "image_sha1": [
+   "10c38410da4b4d731e44ab4386fb555578548329"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14955,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q41egv08327l2wfa9u",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No visible text identified",
+  "modality": "GI endoscopy",
+  "image_group": "10c38410da4b4d73"
+ },
+ {
+  "id": "kvasir_vqa_x1_13444",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtof4blh6074cfynwca1l.jpg"
+  ],
+  "image_sha1": [
+   "36e2f450dbeef99c62d1fa47bac6e3ee37984823"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13444,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtof4blh6074cfynwca1l",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "36e2f450dbeef99c"
+ },
+ {
+  "id": "kvasir_vqa_x1_8132",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl6s3y7071u9k638dv6.jpg"
+  ],
+  "image_sha1": [
+   "7fc0702910549450d1ea94839779dced7f267e1c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8132,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gl6s3y7071u9k638dv6",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "7fc0702910549450"
+ },
+ {
+  "id": "kvasir_vqa_x1_11561",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtofablu6074c0oh3fv4f.jpg"
+  ],
+  "image_sha1": [
+   "2170dedf29a007239b20fefb2e45089069650795"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11561,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtofablu6074c0oh3fv4f",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "2170dedf29a00723"
+ },
+ {
+  "id": "kvasir_vqa_x1_2609",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gn7s6n3071udc5324za.jpg"
+  ],
+  "image_sha1": [
+   "5ca141d2ac93754ac5128f241afb73107635a317"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2609,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gn7s6n3071udc5324za",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual elements observed",
+  "modality": "GI endoscopy",
+  "image_group": "5ca141d2ac93754a"
+ },
+ {
+  "id": "kvasir_vqa_x1_8646",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4cj071u5kek6b66.jpg"
+  ],
+  "image_sha1": [
+   "5b9dcaad934f9dfa233106a6c297b85f02215c83"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8646,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4cj071u5kek6b66",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "5b9dcaad934f9dfa"
+ },
+ {
+  "id": "kvasir_vqa_x1_14119",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pt1e2f0832e4gz80vq.jpg"
+  ],
+  "image_sha1": [
+   "553a2f5ab51e7ece01218674b9cb0db6cc8d384e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14119,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pt1e2f0832e4gz80vq",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "553a2f5ab51e7ece"
+ },
+ {
+  "id": "kvasir_vqa_x1_14746",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qf1etb0832g3dpeeyx.jpg"
+  ],
+  "image_sha1": [
+   "e2cade810149b1a643f726edeba672fb9e090684"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14746,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qf1etb0832g3dpeeyx",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "e2cade810149b1a6"
+ },
+ {
+  "id": "kvasir_vqa_x1_15039",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtowb6to6079of0gjemac.jpg"
+  ],
+  "image_sha1": [
+   "17a767b6741688b609cf5effccc1a72290625900"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15039,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtowb6to6079of0gjemac",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "17a767b6741688b6"
+ },
+ {
+  "id": "kvasir_vqa_x1_9047",
+  "query": "Is there any abnormality visible in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonyasfd07551137655s.jpg"
+  ],
+  "image_sha1": [
+   "27f8edc5b1c48908e7dd1467ae9e7fc14154d787"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9047,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonyasfd07551137655s",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "27f8edc5b1c48908"
+ },
+ {
+  "id": "kvasir_vqa_x1_12542",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwk92bo074yftfd0pno.jpg"
+  ],
+  "image_sha1": [
+   "66fe6aae8bd1a3f3e5e136db76f2f53c97154283"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12542,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwk92bo074yftfd0pno",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "66fe6aae8bd1a3f3"
+ },
+ {
+  "id": "kvasir_vqa_x1_3393",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtof7blna074cgu4hhtf3.jpg"
+  ],
+  "image_sha1": [
+   "db10c9b1ec281d08c233a89a02252a36f4ad73fb"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3393,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtof7blna074cgu4hhtf3",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "db10c9b1ec281d08"
+ },
+ {
+  "id": "kvasir_vqa_x1_5408",
+  "query": "Is text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzfdp3w086u6u5kaz56.jpg"
+  ],
+  "image_sha1": [
+   "4e4acbdff54aa3fd19a6d234324d00d5ab455621"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5408,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwzfdp3w086u6u5kaz56",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "4e4acbdff54aa3fd"
+ },
+ {
+  "id": "kvasir_vqa_x1_8602",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwz1doo8086u6jk81iuh.jpg"
+  ],
+  "image_sha1": [
+   "02520b8b80b36ee4b1468ce31b428711c929f307"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8602,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwz1doo8086u6jk81iuh",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "02520b8b80b36ee4"
+ },
+ {
+  "id": "kvasir_vqa_x1_13371",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwz1doo8086u6jk81iuh.jpg"
+  ],
+  "image_sha1": [
+   "02520b8b80b36ee4b1468ce31b428711c929f307"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13371,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwz1doo8086u6jk81iuh",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present in the image",
+  "modality": "GI endoscopy",
+  "image_group": "02520b8b80b36ee4"
+ },
+ {
+  "id": "kvasir_vqa_x1_8345",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glvs50b071uhoii6g4y.jpg"
+  ],
+  "image_sha1": [
+   "96e40c4baccfec55645dc490d76087816bb50ff2"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8345,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glvs50b071uhoii6g4y",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "96e40c4baccfec55"
+ },
+ {
+  "id": "kvasir_vqa_x1_3667",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyddo28086u9gcj0yfr.jpg"
+  ],
+  "image_sha1": [
+   "db5b968e0473716a037fb185ca0123ca27b55dde"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3667,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyddo28086u9gcj0yfr",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present in the image",
+  "modality": "GI endoscopy",
+  "image_group": "db5b968e0473716a"
+ },
+ {
+  "id": "kvasir_vqa_x1_4694",
+  "query": "Is there any abnormality present in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoezbl8y074cdh1ib7g8.jpg"
+  ],
+  "image_sha1": [
+   "593c7d7e07750761ebdefeb704a5a15b22d677f9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4694,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoezbl8y074cdh1ib7g8",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "593c7d7e07750761"
+ },
+ {
+  "id": "kvasir_vqa_x1_1588",
+  "query": "Is there any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4cr071ueoca9u0i.jpg"
+  ],
+  "image_sha1": [
+   "6e0179229a48a3d61e137689838a573beddcc84e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1588,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4cr071ueoca9u0i",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content present",
+  "modality": "GI endoscopy",
+  "image_group": "6e0179229a48a3d6"
+ },
+ {
+  "id": "kvasir_vqa_x1_14685",
+  "query": "Is there any textual information visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzndpdc086u6dzhdh2t.jpg"
+  ],
+  "image_sha1": [
+   "65f0e34444a17d55519d01299779f10531515d21"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14685,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwzndpdc086u6dzhdh2t",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text identified",
+  "modality": "GI endoscopy",
+  "image_group": "65f0e34444a17d55"
+ },
+ {
+  "id": "kvasir_vqa_x1_12349",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pw1e6z0832bfu79zmh.jpg"
+  ],
+  "image_sha1": [
+   "cd6f9e4ea4b58711bc41123a45f8fb50bee9cd3f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12349,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pw1e6z0832bfu79zmh",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "cd6f9e4ea4b58711"
+ },
+ {
+  "id": "kvasir_vqa_x1_10860",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmns60r071u963pb90r.jpg"
+  ],
+  "image_sha1": [
+   "86e8a15fcfac19a8da15f25bff054f836dc6ff85"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 10860,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gmns60r071u963pb90r",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "86e8a15fcfac19a8"
+ },
+ {
+  "id": "kvasir_vqa_x1_3201",
+  "query": "Is there any textual information present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1r41fk708328xnt35ru.jpg"
+  ],
+  "image_sha1": [
+   "3b05b0c0d340710eb570577461f9b7baa8c7755d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3201,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1r41fk708328xnt35ru",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content visible",
+  "modality": "GI endoscopy",
+  "image_group": "3b05b0c0d340710e"
+ },
+ {
+  "id": "kvasir_vqa_x1_6561",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxuq8zmw074ya45k4874.jpg"
+  ],
+  "image_sha1": [
+   "0bd65593ad46d466c5ce609a9a3a7ee58ca48ab9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6561,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxuq8zmw074ya45k4874",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "no text detected",
+  "modality": "GI endoscopy",
+  "image_group": "0bd65593ad46d466"
+ },
+ {
+  "id": "kvasir_vqa_x1_4078",
+  "query": "Have all detected polyps been successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q41ehf08327dkn0wfx.jpg"
+  ],
+  "image_sha1": [
+   "e9c70b9122437d955ec46fad077fd8f08291924d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4078,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1q41ehf08327dkn0wfx",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Residual polyps remain present",
+  "modality": "GI endoscopy",
+  "image_group": "e9c70b9122437d95"
+ },
+ {
+  "id": "kvasir_vqa_x1_11943",
+  "query": "Is there any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q41ehf08327dkn0wfx.jpg"
+  ],
+  "image_sha1": [
+   "e9c70b9122437d955ec46fad077fd8f08291924d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11943,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q41ehf08327dkn0wfx",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text detected on image",
+  "modality": "GI endoscopy",
+  "image_group": "e9c70b9122437d95"
+ },
+ {
+  "id": "kvasir_vqa_x1_6583",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwo92hg074y3tsu8e5y.jpg"
+  ],
+  "image_sha1": [
+   "901e8ff0381e52ce175af4ef6e7acd81b6ccef06"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6583,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwo92hg074y3tsu8e5y",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "901e8ff0381e52ce"
+ },
+ {
+  "id": "kvasir_vqa_x1_13464",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxve90k4074yeawvbbt7.jpg"
+  ],
+  "image_sha1": [
+   "381a04a66770cd108e5ce581c9795af110ff3139"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13464,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxve90k4074yeawvbbt7",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "381a04a66770cd10"
+ },
+ {
+  "id": "kvasir_vqa_x1_3314",
+  "query": "Have all identified polyps been completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1ql1ezr08325pyd56mc.jpg"
+  ],
+  "image_sha1": [
+   "327527748343d21e5893a699512dabeafdfe8bf2"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3314,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1ql1ezr08325pyd56mc",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps remaining",
+  "modality": "GI endoscopy",
+  "image_group": "327527748343d21e"
+ },
+ {
+  "id": "kvasir_vqa_x1_7862",
+  "query": "Is any textual information visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qs1f6z083208yghik0.jpg"
+  ],
+  "image_sha1": [
+   "91994a351321335b02f6e2d4404cc8627f982d10"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7862,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qs1f6z083208yghik0",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text noted on image",
+  "modality": "GI endoscopy",
+  "image_group": "91994a351321335b"
+ },
+ {
+  "id": "kvasir_vqa_x1_5949",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtox46vbi079o6wn966vn.jpg"
+  ],
+  "image_sha1": [
+   "621f7fb6f02d3dd387e6ddb7a9127ae201598d47"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5949,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtox46vbi079o6wn966vn",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant abnormalities detected",
+  "modality": "GI endoscopy",
+  "image_group": "621f7fb6f02d3dd3"
+ },
+ {
+  "id": "kvasir_vqa_x1_6335",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl2s3q7071u7ej2fp2n.jpg"
+  ],
+  "image_sha1": [
+   "70c2195ee03eade921767bb4cddce57a547a7e39"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6335,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gl2s3q7071u7ej2fp2n",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "70c2195ee03eade9"
+ },
+ {
+  "id": "kvasir_vqa_x1_15862",
+  "query": "Is there any significant abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtogfbnhm074c7i6m8vef.jpg"
+  ],
+  "image_sha1": [
+   "213e4fa11f7045c0b9815ef75f2a786dc233e5b8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15862,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtogfbnhm074c7i6m8vef",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no evidence of abnormal findings",
+  "modality": "GI endoscopy",
+  "image_group": "213e4fa11f7045c0"
+ },
+ {
+  "id": "kvasir_vqa_x1_13805",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwybdnyg086udpzx1ivi.jpg"
+  ],
+  "image_sha1": [
+   "ad801724b27559e024f18aa69bf4b58ddac8816a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13805,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwybdnyg086udpzx1ivi",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text identified on the image",
+  "modality": "GI endoscopy",
+  "image_group": "ad801724b27559e0"
+ },
+ {
+  "id": "kvasir_vqa_x1_3302",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glus4yb071u71nia0yw.jpg"
+  ],
+  "image_sha1": [
+   "15a1f7e5b86a427ef0342cf09adc647c078d9ffe"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3302,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glus4yb071u71nia0yw",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text identified in the image",
+  "modality": "GI endoscopy",
+  "image_group": "15a1f7e5b86a427e"
+ },
+ {
+  "id": "kvasir_vqa_x1_4717",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtox26v4q079od8oj4k2q.jpg"
+  ],
+  "image_sha1": [
+   "d6e3dc3242303fe71ca31b9d9f8a16e6ed2adea5"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4717,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtox26v4q079od8oj4k2q",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "d6e3dc3242303fe7"
+ },
+ {
+  "id": "kvasir_vqa_x1_5124",
+  "query": "Were all polyps completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q41ei308324h7dbir8.jpg"
+  ],
+  "image_sha1": [
+   "2211a4e60472f39bc775ae00e2012a432436015d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5124,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1q41ei308324h7dbir8",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Residual polyps observed",
+  "modality": "GI endoscopy",
+  "image_group": "2211a4e60472f39b"
+ },
+ {
+  "id": "kvasir_vqa_x1_716",
+  "query": "Is there any significant abnormality present in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoxf6vny079o2rjw69ar.jpg"
+  ],
+  "image_sha1": [
+   "773a53b77b20a4746dd3f539039a1dcc3c7f5e5f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 716,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoxf6vny079o2rjw69ar",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No abnormal findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "773a53b77b20a474"
+ },
+ {
+  "id": "kvasir_vqa_x1_4034",
+  "query": "Are there any green or black artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1ro1gg708322bk70uab.jpg"
+  ],
+  "image_sha1": [
+   "1f250f23c192552fe61cd027782182b1726d985e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4034,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1ro1gg708322bk70uab",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black imaging artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "1f250f23c192552f"
+ },
+ {
+  "id": "kvasir_vqa_x1_9430",
+  "query": "Is there any text present on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxuw8zt0074yfc365i0w.jpg"
+  ],
+  "image_sha1": [
+   "a5f24830ee044677797f38ec0ec6a96078344835"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9430,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxuw8zt0074yfc365i0w",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "a5f24830ee044677"
+ },
+ {
+  "id": "kvasir_vqa_x1_509",
+  "query": "Have all visible polyps been completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rc1fy30832atalgleg.jpg"
+  ],
+  "image_sha1": [
+   "f1f148e522cd61184d3856f42bb85c484fda1d65"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 509,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1rc1fy30832atalgleg",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps remaining",
+  "modality": "GI endoscopy",
+  "image_group": "f1f148e522cd6118"
+ },
+ {
+  "id": "kvasir_vqa_x1_12964",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxv4901o074y8ygaf737.jpg"
+  ],
+  "image_sha1": [
+   "e30110a0acf7b68b5ce582a629e7ec06e934715e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12964,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxv4901o074y8ygaf737",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "e30110a0acf7b68b"
+ },
+ {
+  "id": "kvasir_vqa_x1_291",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx08dq7w086uf8qd7rva.jpg"
+  ],
+  "image_sha1": [
+   "61e991af184fdf44c1ae3ad1122ceaee573aa1f5"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 291,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx08dq7w086uf8qd7rva",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the imaging study",
+  "modality": "GI endoscopy",
+  "image_group": "61e991af184fdf44"
+ },
+ {
+  "id": "kvasir_vqa_x1_9646",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pn1dxb0832dcxd14tf.jpg"
+  ],
+  "image_sha1": [
+   "b4dc6c6df82c8c4d2e3029c4e63a580064d95cfa"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9646,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pn1dxb0832dcxd14tf",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "b4dc6c6df82c8c4d"
+ },
+ {
+  "id": "kvasir_vqa_x1_9935",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoxm6w4e079o07cufy99.jpg"
+  ],
+  "image_sha1": [
+   "5768541a24615b492448cf4c0bde31e3a201e394"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9935,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoxm6w4e079o07cufy99",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings identified",
+  "modality": "GI endoscopy",
+  "image_group": "5768541a24615b49"
+ },
+ {
+  "id": "kvasir_vqa_x1_11271",
+  "query": "Are there any green or black box-shaped artifacts visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qq1f3r0832bhibea15.jpg"
+  ],
+  "image_sha1": [
+   "09e462f9edbd682cfa803b458f1abfc0abc8e61e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11271,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qq1f3r0832bhibea15",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of box-shaped artifacts present",
+  "modality": "GI endoscopy",
+  "image_group": "09e462f9edbd682c"
+ },
+ {
+  "id": "kvasir_vqa_x1_5617",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qi1exb0832b1h51dba.jpg"
+  ],
+  "image_sha1": [
+   "0fe9842a169623c2ed2c65215e2fa9642d6740d6"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5617,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qi1exb0832b1h51dba",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "0fe9842a169623c2"
+ },
+ {
+  "id": "kvasir_vqa_x1_4395",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwf923s074yfpch1k5u.jpg"
+  ],
+  "image_sha1": [
+   "b8f615d2c87be44276b44a4fca1ca170ec5f22c0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4395,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwf923s074yfpch1k5u",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "b8f615d2c87be442"
+ },
+ {
+  "id": "kvasir_vqa_x1_9147",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl9s42f071ucqtt9qsy.jpg"
+  ],
+  "image_sha1": [
+   "617e4822aee9ffc40b05d3ba92b6a26f27fdb6d4"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9147,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gl9s42f071ucqtt9qsy",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content observed",
+  "modality": "GI endoscopy",
+  "image_group": "617e4822aee9ffc4"
+ },
+ {
+  "id": "kvasir_vqa_x1_14331",
+  "query": "Were all detected polyps successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qt1f8f08322ra0b2np.jpg"
+  ],
+  "image_sha1": [
+   "964a1f991064941efcb2b53c628dd54694104160"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14331,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1qt1f8f08322ra0b2np",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Some polyps remaining in colon",
+  "modality": "GI endoscopy",
+  "image_group": "964a1f991064941e"
+ },
+ {
+  "id": "kvasir_vqa_x1_13851",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pz1eab08320whn998o.jpg"
+  ],
+  "image_sha1": [
+   "1983c8f52b7c56702a9cfb227d2ea206c673c820"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13851,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pz1eab08320whn998o",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content visible",
+  "modality": "GI endoscopy",
+  "image_group": "1983c8f52b7c5670"
+ },
+ {
+  "id": "kvasir_vqa_x1_4037",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q21ee30832fg9m145n.jpg"
+  ],
+  "image_sha1": [
+   "3699f8be7314f8ce6d5c2b8da0070b6b8a170bb6"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4037,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q21ee30832fg9m145n",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "3699f8be7314f8ce"
+ },
+ {
+  "id": "kvasir_vqa_x1_14372",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvo90zw074y7gk7byiz.jpg"
+  ],
+  "image_sha1": [
+   "4237b64d43e7582d5c667b733ceb521c592ba74b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14372,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvo90zw074y7gk7byiz",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text detected",
+  "modality": "GI endoscopy",
+  "image_group": "4237b64d43e7582d"
+ },
+ {
+  "id": "kvasir_vqa_x1_12821",
+  "query": "Has there been complete removal of all identified polyps?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1st1gyb08328ooken3l.jpg"
+  ],
+  "image_sha1": [
+   "ae3136312ab90905b024a5d9f7ec1c1bb2dc7a15"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12821,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1st1gyb08328ooken3l",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "ae3136312ab90905"
+ },
+ {
+  "id": "kvasir_vqa_x1_1136",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoezbl96074c2dy34gv9.jpg"
+  ],
+  "image_sha1": [
+   "7fd165abe2bc3d9146b20ccc482406cb9a801963"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1136,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoezbl96074c2dy34gv9",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "7fd165abe2bc3d91"
+ },
+ {
+  "id": "kvasir_vqa_x1_9631",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwc9200074y5f6netux.jpg"
+  ],
+  "image_sha1": [
+   "ff820caee994407a37287a4f7a25ff45e7b58fc3"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9631,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwc9200074y5f6netux",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text identified",
+  "modality": "GI endoscopy",
+  "image_group": "ff820caee994407a"
+ },
+ {
+  "id": "kvasir_vqa_x1_4626",
+  "query": "Have all detected polyps been successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1r71fpv08324y8t2e5r.jpg"
+  ],
+  "image_sha1": [
+   "850d7e27f19df799f25d1943643e08ce6874e76b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4626,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1r71fpv08324y8t2e5r",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "850d7e27f19df799"
+ },
+ {
+  "id": "kvasir_vqa_x1_15256",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qq1f3n08325d33cse7.jpg"
+  ],
+  "image_sha1": [
+   "038cd1478d0ef46cbb3bf60c3d293f7ffbe274f8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15256,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qq1f3n08325d33cse7",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "038cd1478d0ef46c"
+ },
+ {
+  "id": "kvasir_vqa_x1_1844",
+  "query": "Have all detected polyps been completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qg1eu70832bucwbqvd.jpg"
+  ],
+  "image_sha1": [
+   "b4aa51eb3cc9e0035d90ef96410d020a0d0cd5a8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1844,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1qg1eu70832bucwbqvd",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "some polyps remain present",
+  "modality": "GI endoscopy",
+  "image_group": "b4aa51eb3cc9e003"
+ },
+ {
+  "id": "kvasir_vqa_x1_5211",
+  "query": "Are there any green or black artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qg1eu70832bucwbqvd.jpg"
+  ],
+  "image_sha1": [
+   "b4aa51eb3cc9e0035d90ef96410d020a0d0cd5a8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5211,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qg1eu70832bucwbqvd",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "b4aa51eb3cc9e003"
+ },
+ {
+  "id": "kvasir_vqa_x1_12816",
+  "query": "Is there any text visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl6s3xf071uhz1s3rac.jpg"
+  ],
+  "image_sha1": [
+   "3660d4220517897123834d3a10d3ff7b1ea03d1e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12816,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gl6s3xf071uhz1s3rac",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text observed on image",
+  "modality": "GI endoscopy",
+  "image_group": "3660d42205178971"
+ },
+ {
+  "id": "kvasir_vqa_x1_8011",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwm92f8074yf9rkgni7.jpg"
+  ],
+  "image_sha1": [
+   "6dad12208880438552d13ed2ab7bf8e5656fa56a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8011,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwm92f8074yf9rkgni7",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text detected",
+  "modality": "GI endoscopy",
+  "image_group": "6dad122088804385"
+ },
+ {
+  "id": "kvasir_vqa_x1_3276",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl5s3vr071u7iil4yr1.jpg"
+  ],
+  "image_sha1": [
+   "6b943e61a9f070c3344a59eddce0a4a4a8140617"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3276,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gl5s3vr071u7iil4yr1",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual elements identified",
+  "modality": "GI endoscopy",
+  "image_group": "6b943e61a9f070c3"
+ },
+ {
+  "id": "kvasir_vqa_x1_1819",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtof6blkm074chx8ahvcq.jpg"
+  ],
+  "image_sha1": [
+   "4042c266129573d2cb179be4edc45787748dcb7a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1819,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtof6blkm074chx8ahvcq",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "4042c266129573d2"
+ },
+ {
+  "id": "kvasir_vqa_x1_12706",
+  "query": "Have all detected polyps been successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rn1gej08320xzk78yo.jpg"
+  ],
+  "image_sha1": [
+   "8032d2f086e8e00380a583d3c0ec53f0d5b8a004"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12706,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1rn1gej08320xzk78yo",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Residual polyps remain present",
+  "modality": "GI endoscopy",
+  "image_group": "8032d2f086e8e003"
+ },
+ {
+  "id": "kvasir_vqa_x1_8648",
+  "query": "Is there any text present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rs1gmn0832cwqb4w10.jpg"
+  ],
+  "image_sha1": [
+   "beee2beaed231388e5121f5bf62cd48758331445"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8648,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1rs1gmn0832cwqb4w10",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text visible on image",
+  "modality": "GI endoscopy",
+  "image_group": "beee2beaed231388"
+ },
+ {
+  "id": "kvasir_vqa_x1_15810",
+  "query": "Is there any significant abnormality present in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoxr6w8y079o41ush7zh.jpg"
+  ],
+  "image_sha1": [
+   "907b5a9865d6402637e2dcd2b742b3d0dd0e4bbc"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15810,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoxr6w8y079o41ush7zh",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "907b5a9865d64026"
+ },
+ {
+  "id": "kvasir_vqa_x1_15888",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtowe6tta079ogm6yfpax.jpg"
+  ],
+  "image_sha1": [
+   "681717cc4236a6eb22da3b84ff4506995b7e65e0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15888,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtowe6tta079ogm6yfpax",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "681717cc4236a6eb"
+ },
+ {
+  "id": "kvasir_vqa_x1_15507",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gm9s5gz071uaot51f4q.jpg"
+  ],
+  "image_sha1": [
+   "0648b697ba99b1e0b6049584524d5c02310c660f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15507,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gm9s5gz071uaot51f4q",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "0648b697ba99b1e0"
+ },
+ {
+  "id": "kvasir_vqa_x1_15953",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwysdogc086u3uyogkcy.jpg"
+  ],
+  "image_sha1": [
+   "c8049e8624cbfa7f54b7a16d31bec8cf54d6be8d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15953,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwysdogc086u3uyogkcy",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "c8049e8624cbfa7f"
+ },
+ {
+  "id": "kvasir_vqa_x1_845",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1idqho086ugm3ba23m.jpg"
+  ],
+  "image_sha1": [
+   "85cf4405331395d554d7c198559536750d2de01c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 845,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1idqho086ugm3ba23m",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "85cf4405331395d5"
+ },
+ {
+  "id": "kvasir_vqa_x1_11763",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx05dq2k086ub5fkaich.jpg"
+  ],
+  "image_sha1": [
+   "542f1f0c8c1772e413928fdd5528e8374d8e97e0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11763,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx05dq2k086ub5fkaich",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "542f1f0c8c1772e4"
+ },
+ {
+  "id": "kvasir_vqa_x1_11934",
+  "query": "Is there any text present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qt1f8308323y41bu5k.jpg"
+  ],
+  "image_sha1": [
+   "0e043dda42218559e87da629af9bfe91379e418a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11934,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qt1f8308323y41bu5k",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text observed in the image",
+  "modality": "GI endoscopy",
+  "image_group": "0e043dda42218559"
+ },
+ {
+  "id": "kvasir_vqa_x1_1857",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1s81gxj0832bokx1tpc.jpg"
+  ],
+  "image_sha1": [
+   "7cc996e334827e2ce4c887712189af9dbf97107d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1857,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1s81gxj0832bokx1tpc",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of box artifacts noted",
+  "modality": "GI endoscopy",
+  "image_group": "7cc996e334827e2c"
+ },
+ {
+  "id": "kvasir_vqa_x1_7160",
+  "query": "Are all polyps completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1re1g070832hb6a3y5u.jpg"
+  ],
+  "image_sha1": [
+   "3c109c92c1dbcc677d06a0323566ca9fd0722de0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7160,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1re1g070832hb6a3y5u",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "3c109c92c1dbcc67"
+ },
+ {
+  "id": "kvasir_vqa_x1_3845",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzadoy0086udnrb45ab.jpg"
+  ],
+  "image_sha1": [
+   "7ba200d4119fb7d290e1e44a183478c522305218"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3845,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwzadoy0086udnrb45ab",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "7ba200d4119fb7d2"
+ },
+ {
+  "id": "kvasir_vqa_x1_2872",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyddo1w086u8d955azz.jpg"
+  ],
+  "image_sha1": [
+   "bb722e6dcbef839a0e64787ee21116084aa8bb4b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2872,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyddo1w086u8d955azz",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text detected",
+  "modality": "GI endoscopy",
+  "image_group": "bb722e6dcbef839a"
+ },
+ {
+  "id": "kvasir_vqa_x1_1377",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmks5vz071ubwqh5xzw.jpg"
+  ],
+  "image_sha1": [
+   "4b5575c33ed0ff4bd72c3a98d4a43ca76c9a43f1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1377,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gmks5vz071ubwqh5xzw",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "4b5575c33ed0ff4b"
+ },
+ {
+  "id": "kvasir_vqa_x1_3696",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gn4s6jn071uaxcb24w9.jpg"
+  ],
+  "image_sha1": [
+   "68d874db36f86013e13ab7e3ca8c03f88b0f29f5"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3696,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gn4s6jn071uaxcb24w9",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "68d874db36f86013"
+ },
+ {
+  "id": "kvasir_vqa_x1_4175",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx07dq74086u3j9z1wr6.jpg"
+  ],
+  "image_sha1": [
+   "bfc1e18983e9928a085eee2b997f74c435a14f73"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4175,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx07dq74086u3j9z1wr6",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "bfc1e18983e9928a"
+ },
+ {
+  "id": "kvasir_vqa_x1_1916",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qg1evb0832h5cs4mcs.jpg"
+  ],
+  "image_sha1": [
+   "26db78d855b628b88d11b61632145b8902a8d87d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1916,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qg1evb0832h5cs4mcs",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "26db78d855b628b8"
+ },
+ {
+  "id": "kvasir_vqa_x1_14792",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonyasg50755b6cf2uuf.jpg"
+  ],
+  "image_sha1": [
+   "df62aa6977998dd26b099d424252af5c5995ac02"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14792,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonyasg50755b6cf2uuf",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "df62aa6977998dd2"
+ },
+ {
+  "id": "kvasir_vqa_x1_15118",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxw291j4074yff7m9fc3.jpg"
+  ],
+  "image_sha1": [
+   "4696ffe81d6b317929c25d6c0d28c58176b7d7aa"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15118,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxw291j4074yff7m9fc3",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "4696ffe81d6b3179"
+ },
+ {
+  "id": "kvasir_vqa_x1_10726",
+  "query": "Is there any abnormality observed in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoxf6vlm079ognyb36ry.jpg"
+  ],
+  "image_sha1": [
+   "efeecd34fd6fd00a23997c67d70bbb59a3c9fda7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 10726,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoxf6vlm079ognyb36ry",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "efeecd34fd6fd00a"
+ },
+ {
+  "id": "kvasir_vqa_x1_13668",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoww6uri079oaodo7spf.jpg"
+  ],
+  "image_sha1": [
+   "1a87841d51fb2128bdc1ea66cf38ef3f7d8319c1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13668,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoww6uri079oaodo7spf",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "1a87841d51fb2128"
+ },
+ {
+  "id": "kvasir_vqa_x1_8316",
+  "query": "Have all identified polyps been completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1s61gvn0832h2kob34e.jpg"
+  ],
+  "image_sha1": [
+   "ba67151cf3725906a4a7775533df7e7eecfd2694"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8316,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1s61gvn0832h2kob34e",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "some polyps remain present",
+  "modality": "GI endoscopy",
+  "image_group": "ba67151cf3725906"
+ },
+ {
+  "id": "kvasir_vqa_x1_13857",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyadnxc086u61nr9r4z.jpg"
+  ],
+  "image_sha1": [
+   "67eed23d50cb63dc882a9b5febc061e7167e3de3"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13857,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyadnxc086u61nr9r4z",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "67eed23d50cb63dc"
+ },
+ {
+  "id": "kvasir_vqa_x1_12487",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwztdpkw086udeqb6x4i.jpg"
+  ],
+  "image_sha1": [
+   "7c0bfd5d17b24b8a9aaa9e120acc3f4ec333bd52"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12487,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwztdpkw086udeqb6x4i",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "7c0bfd5d17b24b8a"
+ },
+ {
+  "id": "kvasir_vqa_x1_6168",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1ndqpo086ubdnyd1yc.jpg"
+  ],
+  "image_sha1": [
+   "67f3dd83ee05507e0985969b0261cd7877b8efcc"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6168,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1ndqpo086ubdnyd1yc",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No visible box-like artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "67f3dd83ee05507e"
+ },
+ {
+  "id": "kvasir_vqa_x1_14867",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pv1e5j08325pk11s24.jpg"
+  ],
+  "image_sha1": [
+   "9a07a97c3389f3fd7bbe21a409bbdf798c750d24"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14867,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pv1e5j08325pk11s24",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "9a07a97c3389f3fd"
+ },
+ {
+  "id": "kvasir_vqa_x1_2882",
+  "query": "Were all detected polyps completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qx1ff708322qf95dpe.jpg"
+  ],
+  "image_sha1": [
+   "9f0ebaec17eb2d823c2b788f2130952d631f37e1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2882,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1qx1ff708322qf95dpe",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "9f0ebaec17eb2d82"
+ },
+ {
+  "id": "kvasir_vqa_x1_4000",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glxs51r071ubhx28deg.jpg"
+  ],
+  "image_sha1": [
+   "fe44d789f3035fe3c99844d3e44ab54eaeff1d7d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4000,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glxs51r071ubhx28deg",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No visible textual content",
+  "modality": "GI endoscopy",
+  "image_group": "fe44d789f3035fe3"
+ },
+ {
+  "id": "kvasir_vqa_x1_8944",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1jdqj0086u2209c9pc.jpg"
+  ],
+  "image_sha1": [
+   "7d299ebf85741d2a070bd1eccb93a3f7c3170aee"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8944,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1jdqj0086u2209c9pc",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "7d299ebf85741d2a"
+ },
+ {
+  "id": "kvasir_vqa_x1_5520",
+  "query": "Were all polyps completely excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rh1g530832bv6ddmnn.jpg"
+  ],
+  "image_sha1": [
+   "be76880d84dda25e6e70bdb48b23982d40b530f4"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5520,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1rh1g530832bv6ddmnn",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps identified",
+  "modality": "GI endoscopy",
+  "image_group": "be76880d84dda25e"
+ },
+ {
+  "id": "kvasir_vqa_x1_8756",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtof7blnm074c0jey3grc.jpg"
+  ],
+  "image_sha1": [
+   "5e920405aaa437edd8d49e46ed65ab56a802530c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8756,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtof7blnm074c0jey3grc",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "5e920405aaa437ed"
+ },
+ {
+  "id": "kvasir_vqa_x1_11232",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzmdpd0086ubchv7eh4.jpg"
+  ],
+  "image_sha1": [
+   "8ed39e9a523588919add187601ea92f97477ed51"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11232,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwzmdpd0086ubchv7eh4",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "8ed39e9a52358891"
+ },
+ {
+  "id": "kvasir_vqa_x1_11813",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwm92ek074y7xn5buol.jpg"
+  ],
+  "image_sha1": [
+   "4c5b999f1a01d4b712bf1917fe0e9302130a5a3d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11813,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwm92ek074y7xn5buol",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "4c5b999f1a01d4b7"
+ },
+ {
+  "id": "kvasir_vqa_x1_9231",
+  "query": "Are there any green or black box-shaped artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qv1fc708322l3rbimi.jpg"
+  ],
+  "image_sha1": [
+   "6d35d165e92a48ddae80871114e0c9d8cdb2946c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9231,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qv1fc708322l3rbimi",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "6d35d165e92a48dd"
+ },
+ {
+  "id": "kvasir_vqa_x1_2129",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonmarrl07559fd2aglp.jpg"
+  ],
+  "image_sha1": [
+   "b15755795b817893587c3207a5bf1e9fa8323729"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2129,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonmarrl07559fd2aglp",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "b15755795b817893"
+ },
+ {
+  "id": "kvasir_vqa_x1_2707",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1r51flj0832fhenefrm.jpg"
+  ],
+  "image_sha1": [
+   "a94d902d2769e3f42c6cef72d7c6c37fa96ea748"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2707,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1r51flj0832fhenefrm",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual information observed",
+  "modality": "GI endoscopy",
+  "image_group": "a94d902d2769e3f4"
+ },
+ {
+  "id": "kvasir_vqa_x1_9784",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4df071u98r5gart.jpg"
+  ],
+  "image_sha1": [
+   "42197f081f842f3ccd53ccd9800ee8f2ba86e5ab"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9784,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4df071u98r5gart",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "42197f081f842f3c"
+ },
+ {
+  "id": "kvasir_vqa_x1_2239",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtow56tcm079ohwzv8c03.jpg"
+  ],
+  "image_sha1": [
+   "8b0bb75bfe4b8cfc7490da2a4526662d2f348fdd"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2239,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtow56tcm079ohwzv8c03",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "8b0bb75bfe4b8cfc"
+ },
+ {
+  "id": "kvasir_vqa_x1_7385",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtow66tcq079o5c0l6s8f.jpg"
+  ],
+  "image_sha1": [
+   "8b0bb75bfe4b8cfc7490da2a4526662d2f348fdd"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7385,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtow66tcq079o5c0l6s8f",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "8b0bb75bfe4b8cfc"
+ },
+ {
+  "id": "kvasir_vqa_x1_8720",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwymdoaw086u0fr70z13.jpg"
+  ],
+  "image_sha1": [
+   "43fb5906be9faf130d8eaa3207386219c9c986b9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8720,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwymdoaw086u0fr70z13",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "43fb5906be9faf13"
+ },
+ {
+  "id": "kvasir_vqa_x1_7990",
+  "query": "Is there any abnormality present in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoewbl1i074c3dt6fo43.jpg"
+  ],
+  "image_sha1": [
+   "c6754a55c42a1cc5bfb5dbe9dce1b75ea7d51792"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7990,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoewbl1i074c3dt6fo43",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant abnormalities identified",
+  "modality": "GI endoscopy",
+  "image_group": "c6754a55c42a1cc5"
+ },
+ {
+  "id": "kvasir_vqa_x1_4516",
+  "query": "Is there any abnormality visible in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoevbl06074c8uda4cgs.jpg"
+  ],
+  "image_sha1": [
+   "210c0beb75a2b414ad250e32a43650678351dfff"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4516,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoevbl06074c8uda4cgs",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "210c0beb75a2b414"
+ },
+ {
+  "id": "kvasir_vqa_x1_1016",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gl5s3wv071u32becg92.jpg"
+  ],
+  "image_sha1": [
+   "b65b636a4d261140fe69be59ddb4d8870e290a3e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1016,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gl5s3wv071u32becg92",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "presence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "b65b636a4d261140"
+ },
+ {
+  "id": "kvasir_vqa_x1_2884",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx06dq40086uhhai8ka5.jpg"
+  ],
+  "image_sha1": [
+   "1a195a558933fc7a5444d60e1a6f075a7ac159b7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2884,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx06dq40086uhhai8ka5",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "1a195a558933fc7a"
+ },
+ {
+  "id": "kvasir_vqa_x1_7856",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1jdqiw086ubs0t85ou.jpg"
+  ],
+  "image_sha1": [
+   "fdb4340a87c09e50408d99ffb3d833abfd6e959e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7856,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1jdqiw086ubs0t85ou",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "fdb4340a87c09e50"
+ },
+ {
+  "id": "kvasir_vqa_x1_13754",
+  "query": "Are there any green or black box-shaped artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmis5s7071uhjmr3jy7.jpg"
+  ],
+  "image_sha1": [
+   "ef4079a4b6f14408a94a9f2779118c9c43da0d70"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13754,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gmis5s7071uhjmr3jy7",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "ef4079a4b6f14408"
+ },
+ {
+  "id": "kvasir_vqa_x1_6020",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvn90yw074y7k9t23hf.jpg"
+  ],
+  "image_sha1": [
+   "854e2e9a31cdf28db382467b46b40cec502bbd00"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6020,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvn90yw074y7k9t23hf",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "854e2e9a31cdf28d"
+ },
+ {
+  "id": "kvasir_vqa_x1_6052",
+  "query": "Has the complete removal of all polyps been achieved?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwz6doto086u3ox734mj.jpg"
+  ],
+  "image_sha1": [
+   "3ead41ecb979d717981dde20b8dc4ac1efb2fb0c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6052,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "clb0lbwz6doto086u3ox734mj",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "evidence of remaining polyps",
+  "modality": "GI endoscopy",
+  "image_group": "3ead41ecb979d717"
+ },
+ {
+  "id": "kvasir_vqa_x1_14285",
+  "query": "Is there any significant abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonsas2x07553hfuhk0k.jpg"
+  ],
+  "image_sha1": [
+   "7cbcfd3273ef9b9f41a742fade98ffd5b5d6a1a9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14285,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonsas2x07553hfuhk0k",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No abnormal findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "7cbcfd3273ef9b9f"
+ },
+ {
+  "id": "kvasir_vqa_x1_5077",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonearet07554kak2j05.jpg"
+  ],
+  "image_sha1": [
+   "300982861428cada5948374634ac0de3f37319a4"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5077,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonearet07554kak2j05",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "300982861428cada"
+ },
+ {
+  "id": "kvasir_vqa_x1_4431",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4dv071u2r6kf5ir.jpg"
+  ],
+  "image_sha1": [
+   "8daeef71e3a3f743bab1f30ab836876b71fbd7e9"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4431,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4dv071u2r6kf5ir",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "8daeef71e3a3f743"
+ },
+ {
+  "id": "kvasir_vqa_x1_13434",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1r71fpz0832577ffviu.jpg"
+  ],
+  "image_sha1": [
+   "c3d5df7e35f1a3b6745759c7f26798a80c6752e0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13434,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1r71fpz0832577ffviu",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text detected",
+  "modality": "GI endoscopy",
+  "image_group": "c3d5df7e35f1a3b6"
+ },
+ {
+  "id": "kvasir_vqa_x1_11879",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1gdqe8086u9q8t9cv3.jpg"
+  ],
+  "image_sha1": [
+   "e0ca50a65ba1a3322b6b1e54f054c1a392874b4d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11879,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1gdqe8086u9q8t9cv3",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "e0ca50a65ba1a332"
+ },
+ {
+  "id": "kvasir_vqa_x1_6648",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glps4sf071u3ckud9nv.jpg"
+  ],
+  "image_sha1": [
+   "a715c3c6f47037db8a71de6ca7973169e47c43c8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6648,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glps4sf071u3ckud9nv",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "a715c3c6f47037db"
+ },
+ {
+  "id": "kvasir_vqa_x1_15649",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxw891rk074yh9zf0mvw.jpg"
+  ],
+  "image_sha1": [
+   "554489e76113ba02a94eb39fa811be06ba23740d"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15649,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxw891rk074yh9zf0mvw",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "554489e76113ba02"
+ },
+ {
+  "id": "kvasir_vqa_x1_3168",
+  "query": "Is there any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q31eg708329lf9hkmv.jpg"
+  ],
+  "image_sha1": [
+   "f3a7b6167995ae87aa6ffc79762061544b1fe6be"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3168,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q31eg708329lf9hkmv",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content present",
+  "modality": "GI endoscopy",
+  "image_group": "f3a7b6167995ae87"
+ },
+ {
+  "id": "kvasir_vqa_x1_9316",
+  "query": "Is there any textual information present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxuu8zqw074y6owx4apm.jpg"
+  ],
+  "image_sha1": [
+   "ffea09b221edd40414b48f637843fcb6991132f3"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9316,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxuu8zqw074y6owx4apm",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No textual content observed",
+  "modality": "GI endoscopy",
+  "image_group": "ffea09b221edd404"
+ },
+ {
+  "id": "kvasir_vqa_x1_10323",
+  "query": "Is there any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyzdomg086u9zaq52jm.jpg"
+  ],
+  "image_sha1": [
+   "982d1178380165cf6fc1416b12707f68b2298329"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 10323,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyzdomg086u9zaq52jm",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text detected on image",
+  "modality": "GI endoscopy",
+  "image_group": "982d1178380165cf"
+ },
+ {
+  "id": "kvasir_vqa_x1_9658",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glfs4d7071u447u26s7.jpg"
+  ],
+  "image_sha1": [
+   "56ade5f047a644febf82787a1d16a4688edaadf7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9658,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glfs4d7071u447u26s7",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "56ade5f047a644fe"
+ },
+ {
+  "id": "kvasir_vqa_x1_12521",
+  "query": "Is there any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvy91d8074y7blwflc8.jpg"
+  ],
+  "image_sha1": [
+   "7eabc6c1e1705937fc42f4438d62b3d0b1000a98"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12521,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvy91d8074y7blwflc8",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text detected in the image",
+  "modality": "GI endoscopy",
+  "image_group": "7eabc6c1e1705937"
+ },
+ {
+  "id": "kvasir_vqa_x1_14291",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmbs5in071u7b4zc3oz.jpg"
+  ],
+  "image_sha1": [
+   "628420d1060e21661f45c477962ac0df095f3a20"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14291,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gmbs5in071u7b4zc3oz",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "628420d1060e2166"
+ },
+ {
+  "id": "kvasir_vqa_x1_4679",
+  "query": "Is there any textual information visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmhs5r3071u9kex46xk.jpg"
+  ],
+  "image_sha1": [
+   "52a6720adb8427482a3d814b4bfbcd0597a16072"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4679,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gmhs5r3071u9kex46xk",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "52a6720adb842748"
+ },
+ {
+  "id": "kvasir_vqa_x1_928",
+  "query": "Is there any textual information visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvp911k074y4c951b7m.jpg"
+  ],
+  "image_sha1": [
+   "0fa1d9b1120b12f623f92e01a5f077c16697df96"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 928,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvp911k074y4c951b7m",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "0fa1d9b1120b12f6"
+ },
+ {
+  "id": "kvasir_vqa_x1_1487",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qd1epb08329q4w22ch.jpg"
+  ],
+  "image_sha1": [
+   "21ba3c995e1cf010b834b4bde8ddf68f05f7e5bd"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1487,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qd1epb08329q4w22ch",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "Text is present in the image",
+  "modality": "GI endoscopy",
+  "image_group": "21ba3c995e1cf010"
+ },
+ {
+  "id": "kvasir_vqa_x1_2346",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvy91cs074y01n2d3kw.jpg"
+  ],
+  "image_sha1": [
+   "01897f3020398c7f2daa0d2e5182fca4ddbc5333"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2346,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvy91cs074y01n2d3kw",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "01897f3020398c7f"
+ },
+ {
+  "id": "kvasir_vqa_x1_1230",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rq1gk30832fytidoga.jpg"
+  ],
+  "image_sha1": [
+   "3dfa8db2542eb078d57b115745e0fd46e7662b2a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1230,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1rq1gk30832fytidoga",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "3dfa8db2542eb078"
+ },
+ {
+  "id": "kvasir_vqa_x1_10424",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtofablsu074ce22qdg38.jpg"
+  ],
+  "image_sha1": [
+   "74f05620e2fec9579ce9cdd96d023eaefdded90e"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 10424,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtofablsu074ce22qdg38",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "74f05620e2fec957"
+ },
+ {
+  "id": "kvasir_vqa_x1_11458",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwz8dow0086uevqeagqn.jpg"
+  ],
+  "image_sha1": [
+   "9eaae7c859c997288992cd77d1f7391a9af3c616"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11458,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwz8dow0086uevqeagqn",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "9eaae7c859c99728"
+ },
+ {
+  "id": "kvasir_vqa_x1_15678",
+  "query": "Is there any abnormality observed in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonsas4l0755hhhx2qq3.jpg"
+  ],
+  "image_sha1": [
+   "700497dd560efa6677bbae068e14a94937c00d29"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15678,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonsas4l0755hhhx2qq3",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings identified",
+  "modality": "GI endoscopy",
+  "image_group": "700497dd560efa66"
+ },
+ {
+  "id": "kvasir_vqa_x1_11903",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxus8zow074y5djsdlru.jpg"
+  ],
+  "image_sha1": [
+   "8df820d86ee2138138514a2d0c9b63aee1e6fa7b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11903,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxus8zow074y5djsdlru",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "8df820d86ee21381"
+ },
+ {
+  "id": "kvasir_vqa_x1_2125",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glxs51z071u66002dpu.jpg"
+  ],
+  "image_sha1": [
+   "4e30be096083d016fdfd2f1b27b285ccf8800b21"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2125,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820glxs51z071u66002dpu",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "presence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "4e30be096083d016"
+ },
+ {
+  "id": "kvasir_vqa_x1_4870",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1pdqtc086udvmk4e3t.jpg"
+  ],
+  "image_sha1": [
+   "53d6d29adeacd7c47efcf2e8af0dcda3810747f2"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4870,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1pdqtc086udvmk4e3t",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "53d6d29adeacd7c4"
+ },
+ {
+  "id": "kvasir_vqa_x1_8734",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtox36v82079ogsqo1p3o.jpg"
+  ],
+  "image_sha1": [
+   "d8e77748ef3c35ef70e496ab6032a8be21badc39"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8734,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtox36v82079ogsqo1p3o",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "d8e77748ef3c35ef"
+ },
+ {
+  "id": "kvasir_vqa_x1_8513",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q01ebj08325e231z0b.jpg"
+  ],
+  "image_sha1": [
+   "1489b2b9478032a7bf252bcbb04580d77476179a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8513,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q01ebj08325e231z0b",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "1489b2b9478032a7"
+ },
+ {
+  "id": "kvasir_vqa_x1_11302",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtonfargp07559saj902v.jpg"
+  ],
+  "image_sha1": [
+   "f4c5bcca2278c138354fa7969ac6baee362a6e6f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11302,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtonfargp07559saj902v",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "f4c5bcca2278c138"
+ },
+ {
+  "id": "kvasir_vqa_x1_7132",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyadnx4086u7i6da7zp.jpg"
+  ],
+  "image_sha1": [
+   "1dc56ecc8e91cf7310368a9e583c5c653c792e21"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7132,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyadnx4086u7i6da7zp",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "1dc56ecc8e91cf73"
+ },
+ {
+  "id": "kvasir_vqa_x1_7409",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rk1gaf08325nurd9xz.jpg"
+  ],
+  "image_sha1": [
+   "7129d832e5e379e3670b3afb0faab80d9b071c0c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7409,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1rk1gaf08325nurd9xz",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "7129d832e5e379e3"
+ },
+ {
+  "id": "kvasir_vqa_x1_15335",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvw91ao074ydcyk95w7.jpg"
+  ],
+  "image_sha1": [
+   "35bee7dedf81e4bd331d5a49808c54d222c619b8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15335,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvw91ao074ydcyk95w7",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "35bee7dedf81e4bd"
+ },
+ {
+  "id": "kvasir_vqa_x1_15904",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxv49030074y4dir095j.jpg"
+  ],
+  "image_sha1": [
+   "3d0b755397a8ff6b22271c16b0556f8e5aec0997"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15904,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxv49030074y4dir095j",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "3d0b755397a8ff6b"
+ },
+ {
+  "id": "kvasir_vqa_x1_7360",
+  "query": "Are there any green or black artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1s11gpj0832hhpl6wru.jpg"
+  ],
+  "image_sha1": [
+   "9b60517d04317d396df636a30d5d4309712fb22f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7360,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1s11gpj0832hhpl6wru",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "9b60517d04317d39"
+ },
+ {
+  "id": "kvasir_vqa_x1_9753",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwg9254074y7roo6u1p.jpg"
+  ],
+  "image_sha1": [
+   "8cdc93391875d46afa33288d76863d2dbb5e8cff"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9753,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwg9254074y7roo6u1p",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "Text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "8cdc93391875d46a"
+ },
+ {
+  "id": "kvasir_vqa_x1_12609",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmrs66v071ubwic2vyi.jpg"
+  ],
+  "image_sha1": [
+   "3dbc5a64ad16c8e615ab5adde5c753ba3d9079dd"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12609,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gmrs66v071ubwic2vyi",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "3dbc5a64ad16c8e6"
+ },
+ {
+  "id": "kvasir_vqa_x1_5286",
+  "query": "Is there any abnormality visible in this gastrointestinal image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoexbl3e074cfjs1ejp7.jpg"
+  ],
+  "image_sha1": [
+   "21ada99178499dfe1f876f1da945aee509ce61a6"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5286,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoexbl3e074cfjs1ejp7",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "21ada99178499dfe"
+ },
+ {
+  "id": "kvasir_vqa_x1_278",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1s81gxr083293jrf6fb.jpg"
+  ],
+  "image_sha1": [
+   "792bb361661b5eb83ecbb9268c76616d956e2c40"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 278,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1s81gxr083293jrf6fb",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "no evidence of box-like artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "792bb361661b5eb8"
+ },
+ {
+  "id": "kvasir_vqa_x1_12000",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvd90is074ycennh40o.jpg"
+  ],
+  "image_sha1": [
+   "b73648e230d67bb5f2ad946c3588719da837bd2c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12000,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvd90is074ycennh40o",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "b73648e230d67bb5"
+ },
+ {
+  "id": "kvasir_vqa_x1_1467",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvb90fc074y862k88z9.jpg"
+  ],
+  "image_sha1": [
+   "ad4e7dc2432132eec74562d3f982dfef71d16bf3"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1467,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvb90fc074y862k88z9",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "ad4e7dc2432132ee"
+ },
+ {
+  "id": "kvasir_vqa_x1_5092",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxwi928s074yaghf65ee.jpg"
+  ],
+  "image_sha1": [
+   "f799cf41f7e2c0de30d52808bb9616adafd1ca58"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5092,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxwi928s074yaghf65ee",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "f799cf41f7e2c0de"
+ },
+ {
+  "id": "kvasir_vqa_x1_3956",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtowo6u62079ofnsm7ph1.jpg"
+  ],
+  "image_sha1": [
+   "6b29f9d058583b87b900fb08a1f085571f663e0b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3956,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtowo6u62079ofnsm7ph1",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings identified",
+  "modality": "GI endoscopy",
+  "image_group": "6b29f9d058583b87"
+ },
+ {
+  "id": "kvasir_vqa_x1_5574",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxton7ar4l07554tsmgefe.jpg"
+  ],
+  "image_sha1": [
+   "727568525cf052960a84decd9e2af705349725e7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5574,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxton7ar4l07554tsmgefe",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "727568525cf05296"
+ },
+ {
+  "id": "kvasir_vqa_x1_5907",
+  "query": "Are there any green or black box artifacts visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gm8s5en071u9fhm2284.jpg"
+  ],
+  "image_sha1": [
+   "54e7f645f85ddb32d07c7ae5d492054b296ea5c2"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5907,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cla820gm8s5en071u9fhm2284",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "54e7f645f85ddb32"
+ },
+ {
+  "id": "kvasir_vqa_x1_8982",
+  "query": "Is there any textual content present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gm8s5en071u9fhm2284.jpg"
+  ],
+  "image_sha1": [
+   "54e7f645f85ddb32d07c7ae5d492054b296ea5c2"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8982,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gm8s5en071u9fhm2284",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual content is visible",
+  "modality": "GI endoscopy",
+  "image_group": "54e7f645f85ddb32"
+ },
+ {
+  "id": "kvasir_vqa_x1_7786",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820glhs4gv071uhfx8hwoo.jpg"
+  ],
+  "image_sha1": [
+   "08210824edfed6c94e7da597aeb8d42279c26600"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7786,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820glhs4gv071uhfx8hwoo",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text detected on the image",
+  "modality": "GI endoscopy",
+  "image_group": "08210824edfed6c9"
+ },
+ {
+  "id": "kvasir_vqa_x1_1538",
+  "query": "Is there any pathological finding visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtof4blhe074caqv443k2.jpg"
+  ],
+  "image_sha1": [
+   "f3b0ccacb13624792fc509f659075d41eca8d253"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1538,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtof4blhe074caqv443k2",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant abnormalities noted",
+  "modality": "GI endoscopy",
+  "image_group": "f3b0ccacb1362479"
+ },
+ {
+  "id": "kvasir_vqa_x1_12537",
+  "query": "Were all identified polyps successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzbdoys086udm576u3f.jpg"
+  ],
+  "image_sha1": [
+   "4d2a83f0ad58086244b95da28a19badea03e3269"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12537,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "clb0lbwzbdoys086udm576u3f",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "4d2a83f0ad580862"
+ },
+ {
+  "id": "kvasir_vqa_x1_6444",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gles4bz071u8fr012hd.jpg"
+  ],
+  "image_sha1": [
+   "3fb6b26e19e20bf20d33a57cac0da98867deb5ba"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6444,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gles4bz071u8fr012hd",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "3fb6b26e19e20bf2"
+ },
+ {
+  "id": "kvasir_vqa_x1_14214",
+  "query": "Are there any green or black box-shaped artifacts visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1r71fpb08322exsadrq.jpg"
+  ],
+  "image_sha1": [
+   "980e37e90fdf6a3b7d1f18b04440c9752b3a460b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 14214,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1r71fpb08322exsadrq",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "980e37e90fdf6a3b"
+ },
+ {
+  "id": "kvasir_vqa_x1_4853",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoetbkvm074cahfx8vnm.jpg"
+  ],
+  "image_sha1": [
+   "74ea08bfd5fd944c27329f7f9fcaf25ad921a1a5"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 4853,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoetbkvm074cahfx8vnm",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "74ea08bfd5fd944c"
+ },
+ {
+  "id": "kvasir_vqa_x1_9008",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1hdqf8086u5u9ga131.jpg"
+  ],
+  "image_sha1": [
+   "49c10974c3c2cbd7c1926a783d46bc07142fbca8"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9008,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1hdqf8086u5u9ga131",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "Text is present and clearly visible",
+  "modality": "GI endoscopy",
+  "image_group": "49c10974c3c2cbd7"
+ },
+ {
+  "id": "kvasir_vqa_x1_2449",
+  "query": "Is there any textual information visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwzwdpow086u62aj2u8x.jpg"
+  ],
+  "image_sha1": [
+   "7b8e2398b88be05e955a56cb5fea10ddd8d3a0dc"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2449,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwzwdpow086u62aj2u8x",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present in the image",
+  "modality": "GI endoscopy",
+  "image_group": "7b8e2398b88be05e"
+ },
+ {
+  "id": "kvasir_vqa_x1_647",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyydokw086u0ovm2kjl.jpg"
+  ],
+  "image_sha1": [
+   "1914dd0ba5ac8b22ba37567b7b4c21193349882b"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 647,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyydokw086u0ovm2kjl",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "1914dd0ba5ac8b22"
+ },
+ {
+  "id": "kvasir_vqa_x1_15907",
+  "query": "Has complete removal of all polyps been achieved?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q11ed70832c6r9g98q.jpg"
+  ],
+  "image_sha1": [
+   "662e52f9de98fdb11c8783186fa7b3769812b7a1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 15907,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1q11ed70832c6r9g98q",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "Incomplete polyp removal noted",
+  "modality": "GI endoscopy",
+  "image_group": "662e52f9de98fdb1"
+ },
+ {
+  "id": "kvasir_vqa_x1_12714",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtog0bmn2074c9oy31el0.jpg"
+  ],
+  "image_sha1": [
+   "32c044b4f19020cb237de0198899f6439e2a5b98"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12714,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtog0bmn2074c9oy31el0",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "no significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "32c044b4f19020cb"
+ },
+ {
+  "id": "kvasir_vqa_x1_8700",
+  "query": "Are there any green or black artifacts visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q91ekb0832138447lf.jpg"
+  ],
+  "image_sha1": [
+   "577ba893ba7c8779eaf59ad3fa809fc7859d4c2a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8700,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q91ekb0832138447lf",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "presence of green and black artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "577ba893ba7c8779"
+ },
+ {
+  "id": "kvasir_vqa_x1_11632",
+  "query": "Is there any text present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gmjs5uj071uan8m7p41.jpg"
+  ],
+  "image_sha1": [
+   "24d94d73a1c3e48009b2bbcc744dbfcb9882f397"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11632,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gmjs5uj071uan8m7p41",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text observed on image",
+  "modality": "GI endoscopy",
+  "image_group": "24d94d73a1c3e480"
+ },
+ {
+  "id": "kvasir_vqa_x1_7209",
+  "query": "Are there any green or black box-shaped artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1q01ecf0832eqal9442.jpg"
+  ],
+  "image_sha1": [
+   "e0a257c05726cffac52b54d3cc7453491a71fb2c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7209,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1q01ecf0832eqal9442",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "e0a257c05726cffa"
+ },
+ {
+  "id": "kvasir_vqa_x1_5469",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtowc6tom079o6xnth299.jpg"
+  ],
+  "image_sha1": [
+   "af1f313e6886a41676f1cdc56d16b68097bb62fd"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5469,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtowc6tom079o6xnth299",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings detected",
+  "modality": "GI endoscopy",
+  "image_group": "af1f313e6886a416"
+ },
+ {
+  "id": "kvasir_vqa_x1_6226",
+  "query": "Is there any text visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gm6s5cv071u72qtfz4h.jpg"
+  ],
+  "image_sha1": [
+   "7ca29e7b46d2a164dccefdc398d6fbf888490600"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6226,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gm6s5cv071u72qtfz4h",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "7ca29e7b46d2a164"
+ },
+ {
+  "id": "kvasir_vqa_x1_12148",
+  "query": "Were all identified polyps successfully excised?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1py1e970832b2trgjim.jpg"
+  ],
+  "image_sha1": [
+   "ecc3ef60735e8e1ddfd5081090462148c1a3bc86"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12148,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1py1e970832b2trgjim",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "residual polyps present",
+  "modality": "GI endoscopy",
+  "image_group": "ecc3ef60735e8e1d"
+ },
+ {
+  "id": "kvasir_vqa_x1_5575",
+  "query": "Is there any significant abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtogibnoe074cgjjhe9a4.jpg"
+  ],
+  "image_sha1": [
+   "cde22ee92ff3d1cb5c21127428d0ef6faddd34fe"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5575,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtogibnoe074cgjjhe9a4",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No abnormalities identified",
+  "modality": "GI endoscopy",
+  "image_group": "cde22ee92ff3d1cb"
+ },
+ {
+  "id": "kvasir_vqa_x1_7223",
+  "query": "Have all identified polyps been successfully removed?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1po1dxj0832cfis0nt5.jpg"
+  ],
+  "image_sha1": [
+   "f30e2a3b3a95ba17680bd893bd30aaf6b35c53bb"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 7223,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "polyp_removal_status",
+  "complexity": 1,
+  "img_id": "cl8k2u1po1dxj0832cfis0nt5",
+  "atomic_question": "Have all polyps been removed?",
+  "atomic_answer": "no",
+  "x1_answer": "some polyps remain present",
+  "modality": "GI endoscopy",
+  "image_group": "f30e2a3b3a95ba17"
+ },
+ {
+  "id": "kvasir_vqa_x1_6295",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxv3900o074y4a2067yv.jpg"
+  ],
+  "image_sha1": [
+   "f59728ce5fc1f9e16e4db1efe856345bf50388ae"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6295,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxv3900o074y4a2067yv",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-like artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "f59728ce5fc1f9e1"
+ },
+ {
+  "id": "kvasir_vqa_x1_529",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gn5s6lj071ughv62ynq.jpg"
+  ],
+  "image_sha1": [
+   "043d503a95bef534d141a989e9ae083a9e6a0a6a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 529,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gn5s6lj071ughv62ynq",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "043d503a95bef534"
+ },
+ {
+  "id": "kvasir_vqa_x1_13242",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cla820gn5s6ln071u0vyk3pkt.jpg"
+  ],
+  "image_sha1": [
+   "ab9c2ee2942e93441d711b3d7996a2b004acf4d0"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13242,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cla820gn5s6ln071u0vyk3pkt",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "ab9c2ee2942e9344"
+ },
+ {
+  "id": "kvasir_vqa_x1_8453",
+  "query": "Is any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1s21gqz083267x3a37z.jpg"
+  ],
+  "image_sha1": [
+   "76e10c9d053be0dbd5c844bc76fa48d5bbf6b0d5"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8453,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1s21gqz083267x3a37z",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "76e10c9d053be0db"
+ },
+ {
+  "id": "kvasir_vqa_x1_11379",
+  "query": "Is there any abnormality visible in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtox76vhm079oarf594lu.jpg"
+  ],
+  "image_sha1": [
+   "da17c1137ecaefa9b6517493235dc98ce812bdcb"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 11379,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtox76vhm079oarf594lu",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings noted",
+  "modality": "GI endoscopy",
+  "image_group": "da17c1137ecaefa9"
+ },
+ {
+  "id": "kvasir_vqa_x1_5240",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbwyldo9o086u3irn7ej7.jpg"
+  ],
+  "image_sha1": [
+   "2f85dcc0c75d9647b3fb2e45c0639ab94a78cc09"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 5240,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbwyldo9o086u3irn7ej7",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts observed",
+  "modality": "GI endoscopy",
+  "image_group": "2f85dcc0c75d9647"
+ },
+ {
+  "id": "kvasir_vqa_x1_13832",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx00dpts086u61nbgiy0.jpg"
+  ],
+  "image_sha1": [
+   "3a696581b206d2fdf13f82e7bb19e9942c1a8df7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 13832,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx00dpts086u61nbgiy0",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "3a696581b206d2fd"
+ },
+ {
+  "id": "kvasir_vqa_x1_885",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qx1ffb0832gmev3dkn.jpg"
+  ],
+  "image_sha1": [
+   "aae531709da54e9038ef32ba0bb8d2025cba5ff4"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 885,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qx1ffb0832gmev3dkn",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "aae531709da54e90"
+ },
+ {
+  "id": "kvasir_vqa_x1_578",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qi1ex7083237wq3fnk.jpg"
+  ],
+  "image_sha1": [
+   "5a2896c73f87670b076b2cd34deee4fd32fe4bfc"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 578,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qi1ex7083237wq3fnk",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "5a2896c73f87670b"
+ },
+ {
+  "id": "kvasir_vqa_x1_9084",
+  "query": "Are there any green or black box-shaped artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx01dpuo086uaiel38gs.jpg"
+  ],
+  "image_sha1": [
+   "e10a47b444e7409f8e207de27d9bff57686c23c7"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9084,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx01dpuo086uaiel38gs",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "e10a47b444e7409f"
+ },
+ {
+  "id": "kvasir_vqa_x1_6730",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxv6905k074ydl6b0v75.jpg"
+  ],
+  "image_sha1": [
+   "6b7b60d077971b2b2dc6e04b00b20c201c757fb1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6730,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxv6905k074ydl6b0v75",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No visible text identified",
+  "modality": "GI endoscopy",
+  "image_group": "6b7b60d077971b2b"
+ },
+ {
+  "id": "kvasir_vqa_x1_8347",
+  "query": "Are there any green or black box artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxv6905k074ydl6b0v75.jpg"
+  ],
+  "image_sha1": [
+   "6b7b60d077971b2b2dc6e04b00b20c201c757fb1"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 8347,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxv6905k074ydl6b0v75",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box artifacts detected",
+  "modality": "GI endoscopy",
+  "image_group": "6b7b60d077971b2b"
+ },
+ {
+  "id": "kvasir_vqa_x1_12941",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtogibnnm074c3osx31j9.jpg"
+  ],
+  "image_sha1": [
+   "e504b3e7a1fa0fbed711eda306a31f4dc4fd72db"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 12941,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtogibnnm074c3osx31j9",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "e504b3e7a1fa0fbe"
+ },
+ {
+  "id": "kvasir_vqa_x1_2443",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1pt1e1z0832f9g543sa.jpg"
+  ],
+  "image_sha1": [
+   "050fb89f7276adf3653a566c62fddd456ddcfa0c"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 2443,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1pt1e1z0832f9g543sa",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is present on the image",
+  "modality": "GI endoscopy",
+  "image_group": "050fb89f7276adf3"
+ },
+ {
+  "id": "kvasir_vqa_x1_6901",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rd1fzb08327gv560no.jpg"
+  ],
+  "image_sha1": [
+   "e36f51387af31398cdcc43a0a6040780c8e097ec"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6901,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1rd1fzb08327gv560no",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "no",
+  "x1_answer": "No evidence of box-shaped artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "e36f51387af31398"
+ },
+ {
+  "id": "kvasir_vqa_x1_10522",
+  "query": "Is there any text visible on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxuz8zvw074y8jmz3ibu.jpg"
+  ],
+  "image_sha1": [
+   "575c4c5ee309f4f6eaf6026497ccbc8c6171bd3f"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 10522,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxuz8zvw074y8jmz3ibu",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No text observed",
+  "modality": "GI endoscopy",
+  "image_group": "575c4c5ee309f4f6"
+ },
+ {
+  "id": "kvasir_vqa_x1_6898",
+  "query": "Is there any abnormality visible in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clbnxtoezbl7q074chli313nu.jpg"
+  ],
+  "image_sha1": [
+   "e123a4dd2f4456145156627995a320774a68797a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 6898,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "finding_presence",
+  "complexity": 1,
+  "img_id": "clbnxtoezbl7q074chli313nu",
+  "atomic_question": "Does this image contain any finding?",
+  "atomic_answer": "no",
+  "x1_answer": "No significant findings observed",
+  "modality": "GI endoscopy",
+  "image_group": "e123a4dd2f445614"
+ },
+ {
+  "id": "kvasir_vqa_x1_9649",
+  "query": "Is there any textual information present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0kvxvm90xc074y5yp9azlb.jpg"
+  ],
+  "image_sha1": [
+   "42ff55d5c1054b187f621dce5caca51f2118f298"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 9649,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0kvxvm90xc074y5yp9azlb",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "no",
+  "x1_answer": "No visible text noted",
+  "modality": "GI endoscopy",
+  "image_group": "42ff55d5c1054b18"
+ },
+ {
+  "id": "kvasir_vqa_x1_1096",
+  "query": "Is there any visible text on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1qf1et708329xdk2qbb.jpg"
+  ],
+  "image_sha1": [
+   "65f00d2e0356233a90e55509c440e51695c4cbe4"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 1096,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1qf1et708329xdk2qbb",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "Text is present and visible",
+  "modality": "GI endoscopy",
+  "image_group": "65f00d2e0356233a"
+ },
+ {
+  "id": "kvasir_vqa_x1_399",
+  "query": "Are there any green or black box-like artifacts present?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1rr1gkv0832bcxl4zot.jpg"
+  ],
+  "image_sha1": [
+   "95b54bb1e1639a5b4f25e5fd5738a1f2030c079a"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 399,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "box_artifact_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1rr1gkv0832bcxl4zot",
+  "atomic_question": "Is there a green/black box artefact?",
+  "atomic_answer": "yes",
+  "x1_answer": "evidence of green and black box artifacts",
+  "modality": "GI endoscopy",
+  "image_group": "95b54bb1e1639a5b"
+ },
+ {
+  "id": "kvasir_vqa_x1_3313",
+  "query": "Is there any text present on the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/clb0lbx1mdqo4086u2xew5ogs.jpg"
+  ],
+  "image_sha1": [
+   "eb5524aa91430817849eed0adec159af0216ccf3"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3313,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "clb0lbx1mdqo4086u2xew5ogs",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "text is visible on the image",
+  "modality": "GI endoscopy",
+  "image_group": "eb5524aa91430817"
+ },
+ {
+  "id": "kvasir_vqa_x1_3118",
+  "query": "Is any textual content visible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/kvasir_vqa_x1/images/cl8k2u1ra1fu30832b5ovaoz3.jpg"
+  ],
+  "image_sha1": [
+   "067030e386b2c5200714779ca39cec69921bef00"
+  ],
+  "source_dataset": "SimulaMet/Kvasir-VQA-x1",
+  "source_split": "test",
+  "orig_id": 3118,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "question_class": "text_presence",
+  "complexity": 1,
+  "img_id": "cl8k2u1ra1fu30832b5ovaoz3",
+  "atomic_question": "Is there text?",
+  "atomic_answer": "yes",
+  "x1_answer": "textual information present",
+  "modality": "GI endoscopy",
+  "image_group": "067030e386b2c520"
+ }
+]

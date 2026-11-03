@@ -1,0 +1,11 @@
+0 medxpertqa_text_1774,medxpertqa_text_2382
+1 medxpertqa_text_1014,medxpertqa_text_1674
+2 medxpertqa_text_11,medxpertqa_text_2216
+3 medxpertqa_text_238
+4 medxpertqa_text_1014,medxpertqa_text_11,medxpertqa_text_2022,medxpertqa_text_2032
+5 medxpertqa_text_1014,medxpertqa_text_1339,medxpertqa_text_2072
+6 medxpertqa_text_2022
+7 medxpertqa_text_1674,medxpertqa_text_2032
+8 medxpertqa_text_2022,medxpertqa_text_238
+9 medxpertqa_text_1389,medxpertqa_text_1579,medxpertqa_text_1774,medxpertqa_text_2286
+12 medxpertqa_text_2216

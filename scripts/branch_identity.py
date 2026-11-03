@@ -86,6 +86,13 @@ def regenerated_from_calls(rec, calls):
     for c in calls:
         if not c.get("upstream"):
             continue
+        if c.get("_step"):
+            sid = c["_step"]
+            if sha1(c.get("output")) != sha1(next((s.get("content") for s in llm_steps(rec) if s["step_id"] == sid), None)):
+                probs.append(f"upstream call {c.get('key', '')[:10]} ({c.get('tag')}) text differs from step {sid}")
+            regen.append(sid)
+            ev[sid] = {"tag": c.get("tag"), "temperature": c.get("temperature"), "text_sha1": sha1(c.get("output"))}
+            continue
         ids = [i for i in by_text.get((c.get("output") or "").strip(), []) if i not in ev]
         if not ids:
             probs.append(f"upstream call {c.get('key', '')[:10]} ({c.get('tag')}) matches no step")
@@ -101,6 +108,7 @@ def make_block(rec, cand, arm, rep, regen, evidence, experiment_id, rep_reason=N
     h = llm_steps(rec)
     order = [s["step_id"] for s in h]
     regen_sorted = [s for s in order if s in set(regen)]
+    parent_ids = cand.get("parent_step_ids")
     b = {
         "experiment_id": experiment_id,
         "protocol_id": PROTOCOL_ID,
@@ -118,6 +126,20 @@ def make_block(rec, cand, arm, rep, regen, evidence, experiment_id, rep_reason=N
         "selection": {"candidate_rule": cand.get("rule") or CANDIDATE_RULE,
                       **{k: cand[k] for k in ("position", "peers_right", "letter_status", "run_end") if k in cand}},
     }
+    if parent_ids is not None:
+        # frameworks with data-dependent control flow (AgentVerse's evaluator loop, MAC's speaker selection,
+        # DyLAN's early consensus, MedAgents' vote rounds) can end earlier or run longer than the parent
+        t_i = cand["t"]
+        new = [s for s in order if s not in set(parent_ids)]
+        dropped = [s for s in parent_ids if s not in set(order)]
+        same_prefix = order[:t_i + 1] == parent_ids[:t_i + 1]
+        b["structure"] = {"parent_step_ids": list(parent_ids), "new_step_ids": new, "dropped_step_ids": dropped,
+                          "changed": bool(new or dropped) or not same_prefix}
+        if not b["structure"]["changed"]:
+            # a parent step outside {t} + D(t) that had to be regenerated: its input changed although the
+            # recorded read sets say it does not read t (a missing read edge or a control dependency)
+            exp = set(b["descendant_step_ids"]) | ({cand["t_step_id"]} if arm == "branch" else set())
+            b["structure"]["hidden_dependency_step_ids"] = [s for s in regen_sorted if s not in exp]
     if rep > 0:
         b["selection"]["repetition_rule"] = REP_RULE
         b["selection"]["repetition_reason"] = rep_reason
@@ -140,10 +162,20 @@ def block_problems(b, rec=None):
     if regen & rep:
         p.append("a step is both regenerated and replayed")
     exp = set(b.get("descendant_step_ids") or []) | ({b.get("candidate_step_id")} if b.get("arm") == "branch" else set())
-    if regen != exp:
-        p.append(f"regenerated {sorted(regen)} != expected {sorted(exp)}")
-    if b.get("arm") == "control" and b.get("candidate_step_id") not in rep:
+    st = b.get("structure")
+    t_run = b.get("t_step_id_in_run", b.get("candidate_step_id"))
+    if b.get("arm") == "branch" and t_run not in regen:
+        p.append("branch arm must regenerate step t")
+    if b.get("arm") == "control" and (t_run is None or t_run in regen):
         p.append("control arm must replay step t")
+    if st is None:
+        # no parent structure recorded (2026-10-26 pilot): fixed-structure frameworks, strict check
+        if regen != exp:
+            p.append(f"regenerated {sorted(regen)} != expected {sorted(exp)}")
+    elif not st.get("changed"):
+        if not exp <= regen:
+            p.append(f"steps of D(t) not regenerated: {sorted(exp - regen)}")
+
     if set(b.get("evidence") or {}) != regen:
         p.append("evidence does not cover exactly the regenerated steps")
     if b.get("repetition", 0) > 0 and b.get("arm") == "control" and not (b.get("selection") or {}).get("repetition_reason"):
@@ -166,36 +198,68 @@ def block_problems(b, rec=None):
 JUDGE_VERDICTS = {"CORRECT", "INCORRECT"}
 
 
+def _req_key(msgs):
+    sys.path.insert(0, HERE)
+    from replay_openai_server import key
+    return key(msgs)
+
+
 def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons=None, fw=None):
     """Embed `branch` into every record of a fresh branch_pilot output file (called by branch_pilot.py).
 
-    The replay server attributes a request it cannot match ("miss") to the nearest recorded question, which
-    is wrong when step t changes the downstream prompts (e.g. a resampled mdagents recruiter: every expert
-    prompt is new). So upstream calls are matched to steps by text over the WHOLE file, each call used
-    once; the qid in the call log is ignored. Calls that match no step must be answer-judge verdicts
-    (regex_first fell back to the LLM judge), otherwise it is a problem."""
+    Each upstream call is matched to the step of THIS run whose recorded input has the call's request key
+    (the replay server logs sha1 of the request messages; recorded input_messages give the same key: replay
+    hit rate 100% on every framework that replays). Identical inputs (parallel experts, votes) are told
+    apart by the output text. This needs no question attribution (the server attributes a "miss" to the
+    nearest recorded question, which is wrong when t changes downstream prompts) and no step-id alignment
+    with the parent (frameworks with parallel calls number steps in completion order). The resampled /
+    kept step t of this run is the one whose input key equals the parent's step t (branch: the t_resample
+    call). Calls matching no step must be answer-judge verdicts."""
     pool = [json.loads(l) for l in open(calls_path, encoding="utf-8")]
     pool = [c for c in pool if c.get("upstream")]
-    by_text = defaultdict(list)
-    for i, c in enumerate(pool):
-        by_text[(c.get("output") or "").strip()].append(i)
-    used = set()
     by_q = {c["qid"]: c for c in cands}
-    rows, probs = [], []
-    for l in open(out_path, encoding="utf-8"):
-        if not l.strip():
-            continue
-        r = json.loads(l)
-        mine = []
+    recs = [json.loads(l) for l in open(out_path, encoding="utf-8") if l.strip()]
+    where = defaultdict(list)                    # request key -> [(record id, step id, text)]
+    for r in recs:
         for st in llm_steps(r):
-            free = [i for i in by_text.get((st.get("content") or "").strip(), []) if i not in used]
-            if free:
-                used.add(free[0])
-                mine.append(pool[free[0]])
-        regen, ev, pr = regenerated_from_calls(r, mine)
-        b = make_block(r, by_q[r["id"]], arm, rep, regen, ev, experiment_id,
-                       (rep_reasons or {}).get(r["id"]), fw)
+            where[_req_key(st["input_messages"])].append((r["id"], st["step_id"], (st.get("content") or "").strip()))
+    taken, mine, used = set(), defaultdict(list), set()
+    for i, c in enumerate(pool):
+        opts = [x for x in where.get(c.get("key"), []) if (x[0], x[1]) not in taken]
+        if not opts:
+            continue
+        hit = [x for x in opts if x[2] == (c.get("output") or "").strip()]
+        q, sid, _ = (hit or opts)[0]
+        taken.add((q, sid)); used.add(i)
+        mine[q].append(dict(c, _step=sid))
+    rows, probs = [], []
+    for r in recs:
+        c = by_q[r["id"]]
+        regen, ev, pr = regenerated_from_calls(r, mine[r["id"]])
+        b = make_block(r, c, arm, rep, regen, ev, experiment_id, (rep_reasons or {}).get(r["id"]), fw)
+        # step t in THIS run's numbering
+        pk = dict(c.get("parent_keys") or [])
+        t_key = pk.get(c["t_step_id"])
+        h = llm_steps(r)
+        if arm == "branch":
+            t_run = next((x["_step"] for x in mine[r["id"]] if x.get("tag") == "t_resample"), None)
+        else:
+            t_run = next((st["step_id"] for st in h if t_key and _req_key(st["input_messages"]) == t_key), None)
+        b["t_step_id_in_run"] = t_run
+        if pk and b.get("structure") is not None:
+            # parent steps whose input reappears unchanged in this run but under another step id
+            run_ids = {_req_key(st["input_messages"]): st["step_id"] for st in h}
+            moved = [(p_sid, run_ids[k]) for p_sid, k in pk.items() if k in run_ids and run_ids[k] != p_sid]
+            b["structure"]["renumbered"] = moved
+            if moved:
+                b["structure"]["changed"] = True
+                b["structure"].pop("hidden_dependency_step_ids", None)
         pr += block_problems(b, r)
+        ps = c.get("parent_prefix_sha1")
+        if ps is not None and not (b.get("structure") or {}).get("renumbered"):
+            got = [sha1(st.get("content")) for st in h[:len(ps)]]
+            if got != ps:
+                pr.append("prefix text differs from the parent run (replay did not reproduce the prefix)")
         probs += [f"{r['id']}: {x}" for x in pr]
         r["branch"] = b
         rows.append(r)

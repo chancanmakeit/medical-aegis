@@ -1,0 +1,6407 @@
+[
+ {
+  "id": "slake_12958",
+  "query": "Does the picture contain brian?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab77_source.jpg"
+  ],
+  "image_sha1": [
+   "49da0b7957b59359ce94e47b17f98417b03bc284"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12958,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 77,
+  "img_name": "xmlab77/source.jpg",
+  "image_group": "49da0b7957b59359"
+ },
+ {
+  "id": "slake_12960",
+  "query": "Is the brain healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab77_source.jpg"
+  ],
+  "image_sha1": [
+   "49da0b7957b59359ce94e47b17f98417b03bc284"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12960,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 77,
+  "img_name": "xmlab77/source.jpg",
+  "image_group": "49da0b7957b59359"
+ },
+ {
+  "id": "slake_12355",
+  "query": "Is this sagittal plane?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab329_source.jpg"
+  ],
+  "image_sha1": [
+   "1a2cb0081574c4fb8bd413eeee4923ffecac8427"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12355,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 329,
+  "img_name": "xmlab329/source.jpg",
+  "image_group": "1a2cb0081574c4fb"
+ },
+ {
+  "id": "slake_12361",
+  "query": "Does the lung look abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab329_source.jpg"
+  ],
+  "image_sha1": [
+   "1a2cb0081574c4fb8bd413eeee4923ffecac8427"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12361,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 329,
+  "img_name": "xmlab329/source.jpg",
+  "image_group": "1a2cb0081574c4fb"
+ },
+ {
+  "id": "slake_12363",
+  "query": "Can pulmonary infiltration be observed on the upper right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab329_source.jpg"
+  ],
+  "image_sha1": [
+   "1a2cb0081574c4fb8bd413eeee4923ffecac8427"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12363,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 329,
+  "img_name": "xmlab329/source.jpg",
+  "image_group": "1a2cb0081574c4fb"
+ },
+ {
+  "id": "slake_12601",
+  "query": "Is this an MRI scan?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12601,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12602",
+  "query": "Is this a transverse section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12602,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12606",
+  "query": "Does the picture contain spinal cord?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12606,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12607",
+  "query": "Are/Is there kidneys in the picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12607,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12611",
+  "query": "Does the picture contain the organ which has the effect of discharging waste?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12611,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12612",
+  "query": "Do any of the organs in the picture belong to the nervous system?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab429_source.jpg"
+  ],
+  "image_sha1": [
+   "20457b375e8195d14d329ea8220d29839ba96e7e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12612,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 429,
+  "img_name": "xmlab429/source.jpg",
+  "image_group": "20457b375e8195d1"
+ },
+ {
+  "id": "slake_12011",
+  "query": "Are there abnormalities in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab148_source.jpg"
+  ],
+  "image_sha1": [
+   "17e483e5540b5d4d561b8083ef306ca4f7149d7d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12011,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 148,
+  "img_name": "xmlab148/source.jpg",
+  "image_group": "17e483e5540b5d4d"
+ },
+ {
+  "id": "slake_12015",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "heart"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab148_source.jpg"
+  ],
+  "image_sha1": [
+   "17e483e5540b5d4d561b8083ef306ca4f7149d7d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12015,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Heart",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 148,
+  "img_name": "xmlab148/source.jpg",
+  "image_group": "17e483e5540b5d4d"
+ },
+ {
+  "id": "slake_12975",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab85_source.jpg"
+  ],
+  "image_sha1": [
+   "8f80234b6d2b0b9cb0ff14db6cc3a3056db0f081"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12975,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 85,
+  "img_name": "xmlab85/source.jpg",
+  "image_group": "8f80234b6d2b0b9c"
+ },
+ {
+  "id": "slake_12976",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab85_source.jpg"
+  ],
+  "image_sha1": [
+   "8f80234b6d2b0b9cb0ff14db6cc3a3056db0f081"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12976,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 85,
+  "img_name": "xmlab85/source.jpg",
+  "image_group": "8f80234b6d2b0b9c"
+ },
+ {
+  "id": "slake_12977",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab85_source.jpg"
+  ],
+  "image_sha1": [
+   "8f80234b6d2b0b9cb0ff14db6cc3a3056db0f081"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12977,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 85,
+  "img_name": "xmlab85/source.jpg",
+  "image_group": "8f80234b6d2b0b9c"
+ },
+ {
+  "id": "slake_12978",
+  "query": "Does the lung look healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab85_source.jpg"
+  ],
+  "image_sha1": [
+   "8f80234b6d2b0b9cb0ff14db6cc3a3056db0f081"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12978,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 85,
+  "img_name": "xmlab85/source.jpg",
+  "image_group": "8f80234b6d2b0b9c"
+ },
+ {
+  "id": "slake_12979",
+  "query": "Which is the biggest in this image,lung,liver or heart?\n\nOptions:\nA. lung\nB. liver\nC. heart\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "liver"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab85_source.jpg"
+  ],
+  "image_sha1": [
+   "8f80234b6d2b0b9cb0ff14db6cc3a3056db0f081"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12979,
+  "options": {
+   "A": "lung",
+   "B": "liver",
+   "C": "heart"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice3",
+  "orig_answer": "Liver",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 85,
+  "img_name": "xmlab85/source.jpg",
+  "image_group": "8f80234b6d2b0b9c"
+ },
+ {
+  "id": "slake_12294",
+  "query": "Is this image taken via X-Ray?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12294,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12295",
+  "query": "Is this a transverse plane?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12295,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12297",
+  "query": "Which side of lung is abnormal in this image,left or right?\n\nOptions:\nA. left\nB. right\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "left"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12297,
+  "options": {
+   "A": "left",
+   "B": "right"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Left",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12299",
+  "query": "Is this a study of the chest?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12299,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12300",
+  "query": "Is this a study of the pelvic cavity?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12300,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12302",
+  "query": "Is the lung abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12302,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12303",
+  "query": "Can mass be observed on the lower left lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab311_source.jpg"
+  ],
+  "image_sha1": [
+   "26fe05616b1e26048493c38ce4cd8ffb6e6a6b9f"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12303,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 311,
+  "img_name": "xmlab311/source.jpg",
+  "image_group": "26fe05616b1e2604"
+ },
+ {
+  "id": "slake_12238",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab269_source.jpg"
+  ],
+  "image_sha1": [
+   "0317781381c169d82697b52586e6d4ae6d645d1d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12238,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 269,
+  "img_name": "xmlab269/source.jpg",
+  "image_group": "0317781381c169d8"
+ },
+ {
+  "id": "slake_12239",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab269_source.jpg"
+  ],
+  "image_sha1": [
+   "0317781381c169d82697b52586e6d4ae6d645d1d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12239,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 269,
+  "img_name": "xmlab269/source.jpg",
+  "image_group": "0317781381c169d8"
+ },
+ {
+  "id": "slake_12240",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab269_source.jpg"
+  ],
+  "image_sha1": [
+   "0317781381c169d82697b52586e6d4ae6d645d1d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12240,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 269,
+  "img_name": "xmlab269/source.jpg",
+  "image_group": "0317781381c169d8"
+ },
+ {
+  "id": "slake_12241",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab269_source.jpg"
+  ],
+  "image_sha1": [
+   "0317781381c169d82697b52586e6d4ae6d645d1d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12241,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 269,
+  "img_name": "xmlab269/source.jpg",
+  "image_group": "0317781381c169d8"
+ },
+ {
+  "id": "slake_12242",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab269_source.jpg"
+  ],
+  "image_sha1": [
+   "0317781381c169d82697b52586e6d4ae6d645d1d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12242,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 269,
+  "img_name": "xmlab269/source.jpg",
+  "image_group": "0317781381c169d8"
+ },
+ {
+  "id": "slake_12669",
+  "query": "Which kind of weighting is this image generated with, t1 or t2?\n\nOptions:\nA. t1\nB. t2\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "t2"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab473_source.jpg"
+  ],
+  "image_sha1": [
+   "ea9e7037922405cae2a169c31c575544c84a997c"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12669,
+  "options": {
+   "A": "t1",
+   "B": "t2"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "T2",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 473,
+  "img_name": "xmlab473/source.jpg",
+  "image_group": "ea9e7037922405ca"
+ },
+ {
+  "id": "slake_12670",
+  "query": "Is this a transverse section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab473_source.jpg"
+  ],
+  "image_sha1": [
+   "ea9e7037922405cae2a169c31c575544c84a997c"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12670,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 473,
+  "img_name": "xmlab473/source.jpg",
+  "image_group": "ea9e7037922405ca"
+ },
+ {
+  "id": "slake_12673",
+  "query": "Is this a study of the neck?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab473_source.jpg"
+  ],
+  "image_sha1": [
+   "ea9e7037922405cae2a169c31c575544c84a997c"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12673,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 473,
+  "img_name": "xmlab473/source.jpg",
+  "image_group": "ea9e7037922405ca"
+ },
+ {
+  "id": "slake_12675",
+  "query": "Is the abnormality hyperdense or hypodense?\n\nOptions:\nA. hyperdense\nB. hypodense\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "hyperdense"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab473_source.jpg"
+  ],
+  "image_sha1": [
+   "ea9e7037922405cae2a169c31c575544c84a997c"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12675,
+  "options": {
+   "A": "hyperdense",
+   "B": "hypodense"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Hyperdense",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Color",
+  "base_type": "vqa",
+  "img_id": 473,
+  "img_name": "xmlab473/source.jpg",
+  "image_group": "ea9e7037922405ca"
+ },
+ {
+  "id": "slake_12933",
+  "query": "Is there colon in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab629_source.jpg"
+  ],
+  "image_sha1": [
+   "f2eddd47492d9fe3486d72ebbf27898031d9b6e1"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12933,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 629,
+  "img_name": "xmlab629/source.jpg",
+  "image_group": "f2eddd47492d9fe3"
+ },
+ {
+  "id": "slake_12934",
+  "query": "Which is smaller in this image, colon or small bowel?\n\nOptions:\nA. colon\nB. small bowel\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "colon"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab629_source.jpg"
+  ],
+  "image_sha1": [
+   "f2eddd47492d9fe3486d72ebbf27898031d9b6e1"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12934,
+  "options": {
+   "A": "colon",
+   "B": "small bowel"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Colon",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 629,
+  "img_name": "xmlab629/source.jpg",
+  "image_group": "f2eddd47492d9fe3"
+ },
+ {
+  "id": "slake_12936",
+  "query": "Do any of the organs in the picture belong to the digestive system?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab629_source.jpg"
+  ],
+  "image_sha1": [
+   "f2eddd47492d9fe3486d72ebbf27898031d9b6e1"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12936,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 629,
+  "img_name": "xmlab629/source.jpg",
+  "image_group": "f2eddd47492d9fe3"
+ },
+ {
+  "id": "slake_12252",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12252,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12253",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12253,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12254",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12254,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12255",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12255,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12256",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12256,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12258",
+  "query": "Which is bigger in this image, liver or spleen?\n\nOptions:\nA. liver\nB. spleen\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "liver"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab274_source.jpg"
+  ],
+  "image_sha1": [
+   "9876debf6e5660bb9c1e448aa1fc41baa6fbd129"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12258,
+  "options": {
+   "A": "liver",
+   "B": "spleen"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Liver",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 274,
+  "img_name": "xmlab274/source.jpg",
+  "image_group": "9876debf6e5660bb"
+ },
+ {
+  "id": "slake_12340",
+  "query": "Which plane is the image scanned, transverse plane or coronal plane?\n\nOptions:\nA. transverse plane\nB. coronal plane\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "coronal plane"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab320_source.jpg"
+  ],
+  "image_sha1": [
+   "304bd31858012ec42e67da252b7c3b6ae5658fe9"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12340,
+  "options": {
+   "A": "transverse plane",
+   "B": "coronal plane"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Coronal Plane",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 320,
+  "img_name": "xmlab320/source.jpg",
+  "image_group": "304bd31858012ec4"
+ },
+ {
+  "id": "slake_12341",
+  "query": "Do the organs in the image exist in the abdomen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab320_source.jpg"
+  ],
+  "image_sha1": [
+   "304bd31858012ec42e67da252b7c3b6ae5658fe9"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12341,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 320,
+  "img_name": "xmlab320/source.jpg",
+  "image_group": "304bd31858012ec4"
+ },
+ {
+  "id": "slake_12347",
+  "query": "Is this image normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab320_source.jpg"
+  ],
+  "image_sha1": [
+   "304bd31858012ec42e67da252b7c3b6ae5658fe9"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12347,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 320,
+  "img_name": "xmlab320/source.jpg",
+  "image_group": "304bd31858012ec4"
+ },
+ {
+  "id": "slake_12348",
+  "query": "Can cardiomegaly be observed on the heart in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab320_source.jpg"
+  ],
+  "image_sha1": [
+   "304bd31858012ec42e67da252b7c3b6ae5658fe9"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12348,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 320,
+  "img_name": "xmlab320/source.jpg",
+  "image_group": "304bd31858012ec4"
+ },
+ {
+  "id": "slake_12025",
+  "query": "Does this image look normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab159_source.jpg"
+  ],
+  "image_sha1": [
+   "a7af1f155c3f99ab4a6be87db5c386327a9d0147"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12025,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 159,
+  "img_name": "xmlab159/source.jpg",
+  "image_group": "a7af1f155c3f99ab"
+ },
+ {
+  "id": "slake_12029",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab159_source.jpg"
+  ],
+  "image_sha1": [
+   "a7af1f155c3f99ab4a6be87db5c386327a9d0147"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12029,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 159,
+  "img_name": "xmlab159/source.jpg",
+  "image_group": "a7af1f155c3f99ab"
+ },
+ {
+  "id": "slake_12030",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab159_source.jpg"
+  ],
+  "image_sha1": [
+   "a7af1f155c3f99ab4a6be87db5c386327a9d0147"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12030,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Lung",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 159,
+  "img_name": "xmlab159/source.jpg",
+  "image_group": "a7af1f155c3f99ab"
+ },
+ {
+  "id": "slake_12580",
+  "query": "Do the organs in the image exist in the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab427_source.jpg"
+  ],
+  "image_sha1": [
+   "957731af716a25461a6fd26f43822b95439e1022"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12580,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 427,
+  "img_name": "xmlab427/source.jpg",
+  "image_group": "957731af716a2546"
+ },
+ {
+  "id": "slake_12582",
+  "query": "Is there an esophagus in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab427_source.jpg"
+  ],
+  "image_sha1": [
+   "957731af716a25461a6fd26f43822b95439e1022"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12582,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 427,
+  "img_name": "xmlab427/source.jpg",
+  "image_group": "957731af716a2546"
+ },
+ {
+  "id": "slake_12583",
+  "query": "Does the trachea exist in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab427_source.jpg"
+  ],
+  "image_sha1": [
+   "957731af716a25461a6fd26f43822b95439e1022"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12583,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 427,
+  "img_name": "xmlab427/source.jpg",
+  "image_group": "957731af716a2546"
+ },
+ {
+  "id": "slake_12586",
+  "query": "Are there organs in the picture that can deliver food?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab427_source.jpg"
+  ],
+  "image_sha1": [
+   "957731af716a25461a6fd26f43822b95439e1022"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12586,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 427,
+  "img_name": "xmlab427/source.jpg",
+  "image_group": "957731af716a2546"
+ },
+ {
+  "id": "slake_12587",
+  "query": "Does the picture contain the organ which has the effect of gas delivery?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab427_source.jpg"
+  ],
+  "image_sha1": [
+   "957731af716a25461a6fd26f43822b95439e1022"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12587,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Neck",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 427,
+  "img_name": "xmlab427/source.jpg",
+  "image_group": "957731af716a2546"
+ },
+ {
+  "id": "slake_12460",
+  "query": "Is this a coronal plane?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab374_source.jpg"
+  ],
+  "image_sha1": [
+   "82964facd281884adf6288cbf1c6be4afb1ceddf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12460,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 374,
+  "img_name": "xmlab374/source.jpg",
+  "image_group": "82964facd281884a"
+ },
+ {
+  "id": "slake_12465",
+  "query": "Is this a study of the neck?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab374_source.jpg"
+  ],
+  "image_sha1": [
+   "82964facd281884adf6288cbf1c6be4afb1ceddf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12465,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 374,
+  "img_name": "xmlab374/source.jpg",
+  "image_group": "82964facd281884a"
+ },
+ {
+  "id": "slake_12466",
+  "query": "Does the lung look abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab374_source.jpg"
+  ],
+  "image_sha1": [
+   "82964facd281884adf6288cbf1c6be4afb1ceddf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12466,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 374,
+  "img_name": "xmlab374/source.jpg",
+  "image_group": "82964facd281884a"
+ },
+ {
+  "id": "slake_12467",
+  "query": "Are there abnormalities in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab374_source.jpg"
+  ],
+  "image_sha1": [
+   "82964facd281884adf6288cbf1c6be4afb1ceddf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12467,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 374,
+  "img_name": "xmlab374/source.jpg",
+  "image_group": "82964facd281884a"
+ },
+ {
+  "id": "slake_12468",
+  "query": "Can pneumonia be observed on the upper right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab374_source.jpg"
+  ],
+  "image_sha1": [
+   "82964facd281884adf6288cbf1c6be4afb1ceddf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12468,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 374,
+  "img_name": "xmlab374/source.jpg",
+  "image_group": "82964facd281884a"
+ },
+ {
+  "id": "slake_12123",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12123,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12124",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12124,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12125",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12125,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12132",
+  "query": "Does this image look normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12132,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12133",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12133,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12134",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab234_source.jpg"
+  ],
+  "image_sha1": [
+   "d66b4807b8dc8679a6782d80716cb718fdb78f69"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12134,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 234,
+  "img_name": "xmlab234/source.jpg",
+  "image_group": "d66b4807b8dc8679"
+ },
+ {
+  "id": "slake_12733",
+  "query": "Is this a study of the abdomen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab508_source.jpg"
+  ],
+  "image_sha1": [
+   "04938b61646eb695236f3cc35286aab04b6a686e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12733,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 508,
+  "img_name": "xmlab508/source.jpg",
+  "image_group": "04938b61646eb695"
+ },
+ {
+  "id": "slake_12429",
+  "query": "Is this image taken via X-Ray?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab361_source.jpg"
+  ],
+  "image_sha1": [
+   "8e6481528e98ca4306185582e942a368e14932ca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12429,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 361,
+  "img_name": "xmlab361/source.jpg",
+  "image_group": "8e6481528e98ca43"
+ },
+ {
+  "id": "slake_12436",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab361_source.jpg"
+  ],
+  "image_sha1": [
+   "8e6481528e98ca4306185582e942a368e14932ca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12436,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 361,
+  "img_name": "xmlab361/source.jpg",
+  "image_group": "8e6481528e98ca43"
+ },
+ {
+  "id": "slake_12437",
+  "query": "Is the lung abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab361_source.jpg"
+  ],
+  "image_sha1": [
+   "8e6481528e98ca4306185582e942a368e14932ca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12437,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 361,
+  "img_name": "xmlab361/source.jpg",
+  "image_group": "8e6481528e98ca43"
+ },
+ {
+  "id": "slake_12438",
+  "query": "Can nodule be observed on the lower right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab361_source.jpg"
+  ],
+  "image_sha1": [
+   "8e6481528e98ca4306185582e942a368e14932ca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12438,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 361,
+  "img_name": "xmlab361/source.jpg",
+  "image_group": "8e6481528e98ca43"
+ },
+ {
+  "id": "slake_11996",
+  "query": "Are there abnormalities in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab142_source.jpg"
+  ],
+  "image_sha1": [
+   "e7691f967a4726c5bd5a563718ab9a1fc3f3e9fa"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 11996,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 142,
+  "img_name": "xmlab142/source.jpg",
+  "image_group": "e7691f967a4726c5"
+ },
+ {
+  "id": "slake_12000",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "heart"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab142_source.jpg"
+  ],
+  "image_sha1": [
+   "e7691f967a4726c5bd5a563718ab9a1fc3f3e9fa"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12000,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Heart",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 142,
+  "img_name": "xmlab142/source.jpg",
+  "image_group": "e7691f967a4726c5"
+ },
+ {
+  "id": "slake_12992",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab93_source.jpg"
+  ],
+  "image_sha1": [
+   "d548c5188cad08406258370bb5d61bede95fb2bf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12992,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 93,
+  "img_name": "xmlab93/source.jpg",
+  "image_group": "d548c5188cad0840"
+ },
+ {
+  "id": "slake_12993",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab93_source.jpg"
+  ],
+  "image_sha1": [
+   "d548c5188cad08406258370bb5d61bede95fb2bf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12993,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 93,
+  "img_name": "xmlab93/source.jpg",
+  "image_group": "d548c5188cad0840"
+ },
+ {
+  "id": "slake_12994",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab93_source.jpg"
+  ],
+  "image_sha1": [
+   "d548c5188cad08406258370bb5d61bede95fb2bf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12994,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 93,
+  "img_name": "xmlab93/source.jpg",
+  "image_group": "d548c5188cad0840"
+ },
+ {
+  "id": "slake_12385",
+  "query": "Which plane is the image scanned, transverse plane or coronal plane?\n\nOptions:\nA. transverse plane\nB. coronal plane\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "coronal plane"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab344_source.jpg"
+  ],
+  "image_sha1": [
+   "b8f6ee5482699f02a7fe422ddcddb0aa9b42a7f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12385,
+  "options": {
+   "A": "transverse plane",
+   "B": "coronal plane"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Coronal Plane",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 344,
+  "img_name": "xmlab344/source.jpg",
+  "image_group": "b8f6ee5482699f02"
+ },
+ {
+  "id": "slake_12391",
+  "query": "Does the patient have any abnormalities?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab344_source.jpg"
+  ],
+  "image_sha1": [
+   "b8f6ee5482699f02a7fe422ddcddb0aa9b42a7f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12391,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 344,
+  "img_name": "xmlab344/source.jpg",
+  "image_group": "b8f6ee5482699f02"
+ },
+ {
+  "id": "slake_12392",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab344_source.jpg"
+  ],
+  "image_sha1": [
+   "b8f6ee5482699f02a7fe422ddcddb0aa9b42a7f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12392,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 344,
+  "img_name": "xmlab344/source.jpg",
+  "image_group": "b8f6ee5482699f02"
+ },
+ {
+  "id": "slake_12393",
+  "query": "Can nodule be observed on the upper right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab344_source.jpg"
+  ],
+  "image_sha1": [
+   "b8f6ee5482699f02a7fe422ddcddb0aa9b42a7f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12393,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 344,
+  "img_name": "xmlab344/source.jpg",
+  "image_group": "b8f6ee5482699f02"
+ },
+ {
+  "id": "slake_12613",
+  "query": "Is this a CT scan?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab436_source.jpg"
+  ],
+  "image_sha1": [
+   "3f1b93566b358c2797918a3331b8ee4460a03416"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12613,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 436,
+  "img_name": "xmlab436/source.jpg",
+  "image_group": "3f1b93566b358c27"
+ },
+ {
+  "id": "slake_12614",
+  "query": "Which kind of weighting is this image generated with, t1 or t2?\n\nOptions:\nA. t1\nB. t2\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "t2"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab436_source.jpg"
+  ],
+  "image_sha1": [
+   "3f1b93566b358c2797918a3331b8ee4460a03416"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12614,
+  "options": {
+   "A": "t1",
+   "B": "t2"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "T2",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 436,
+  "img_name": "xmlab436/source.jpg",
+  "image_group": "3f1b93566b358c27"
+ },
+ {
+  "id": "slake_12616",
+  "query": "Do the organs in the image exist in the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab436_source.jpg"
+  ],
+  "image_sha1": [
+   "3f1b93566b358c2797918a3331b8ee4460a03416"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12616,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 436,
+  "img_name": "xmlab436/source.jpg",
+  "image_group": "3f1b93566b358c27"
+ },
+ {
+  "id": "slake_12617",
+  "query": "Which hemisphere is abnormal,left or right?\n\nOptions:\nA. left\nB. right\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "right"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab436_source.jpg"
+  ],
+  "image_sha1": [
+   "3f1b93566b358c2797918a3331b8ee4460a03416"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12617,
+  "options": {
+   "A": "left",
+   "B": "right"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Right",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 436,
+  "img_name": "xmlab436/source.jpg",
+  "image_group": "3f1b93566b358c27"
+ },
+ {
+  "id": "slake_12861",
+  "query": "Does the esophagus exist in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab578_source.jpg"
+  ],
+  "image_sha1": [
+   "14290e2c039bc0d0715ff7ff66cc90364aeb0eca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12861,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 578,
+  "img_name": "xmlab578/source.jpg",
+  "image_group": "14290e2c039bc0d0"
+ },
+ {
+  "id": "slake_12862",
+  "query": "Does the stomach appear in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab578_source.jpg"
+  ],
+  "image_sha1": [
+   "14290e2c039bc0d0715ff7ff66cc90364aeb0eca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12862,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 578,
+  "img_name": "xmlab578/source.jpg",
+  "image_group": "14290e2c039bc0d0"
+ },
+ {
+  "id": "slake_12864",
+  "query": "Which is the biggest in this image, spleen, heart or liver?\n\nOptions:\nA. spleen\nB. heart\nC. liver\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "C",
+  "ground_truth": {
+   "correct_answer": "C",
+   "answer_text": "liver"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab578_source.jpg"
+  ],
+  "image_sha1": [
+   "14290e2c039bc0d0715ff7ff66cc90364aeb0eca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12864,
+  "options": {
+   "A": "spleen",
+   "B": "heart",
+   "C": "liver"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice3",
+  "orig_answer": "Liver",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 578,
+  "img_name": "xmlab578/source.jpg",
+  "image_group": "14290e2c039bc0d0"
+ },
+ {
+  "id": "slake_12867",
+  "query": "Are there organs in the picture that can digest food?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab578_source.jpg"
+  ],
+  "image_sha1": [
+   "14290e2c039bc0d0715ff7ff66cc90364aeb0eca"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12867,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 578,
+  "img_name": "xmlab578/source.jpg",
+  "image_group": "14290e2c039bc0d0"
+ },
+ {
+  "id": "slake_12698",
+  "query": "Does the picture contain brian?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab49_source.jpg"
+  ],
+  "image_sha1": [
+   "503ad837a7c93e445795056aacdf9a626eab7677"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12698,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 49,
+  "img_name": "xmlab49/source.jpg",
+  "image_group": "503ad837a7c93e44"
+ },
+ {
+  "id": "slake_12700",
+  "query": "Does the brain look abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab49_source.jpg"
+  ],
+  "image_sha1": [
+   "503ad837a7c93e445795056aacdf9a626eab7677"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12700,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 49,
+  "img_name": "xmlab49/source.jpg",
+  "image_group": "503ad837a7c93e44"
+ },
+ {
+  "id": "slake_12873",
+  "query": "Does the picture contain brian?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab58_source.jpg"
+  ],
+  "image_sha1": [
+   "1f9814e0a7fbca4440fc9600eaad7279c641f264"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12873,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 58,
+  "img_name": "xmlab58/source.jpg",
+  "image_group": "1f9814e0a7fbca44"
+ },
+ {
+  "id": "slake_12875",
+  "query": "Is the brain healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab58_source.jpg"
+  ],
+  "image_sha1": [
+   "1f9814e0a7fbca4440fc9600eaad7279c641f264"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12875,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 58,
+  "img_name": "xmlab58/source.jpg",
+  "image_group": "1f9814e0a7fbca44"
+ },
+ {
+  "id": "slake_12984",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab90_source.jpg"
+  ],
+  "image_sha1": [
+   "a07e9309b9def55ccb322ae6b80d90ef45a5c1f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12984,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 90,
+  "img_name": "xmlab90/source.jpg",
+  "image_group": "a07e9309b9def55c"
+ },
+ {
+  "id": "slake_12985",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab90_source.jpg"
+  ],
+  "image_sha1": [
+   "a07e9309b9def55ccb322ae6b80d90ef45a5c1f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12985,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 90,
+  "img_name": "xmlab90/source.jpg",
+  "image_group": "a07e9309b9def55c"
+ },
+ {
+  "id": "slake_12986",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab90_source.jpg"
+  ],
+  "image_sha1": [
+   "a07e9309b9def55ccb322ae6b80d90ef45a5c1f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12986,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 90,
+  "img_name": "xmlab90/source.jpg",
+  "image_group": "a07e9309b9def55c"
+ },
+ {
+  "id": "slake_12987",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab90_source.jpg"
+  ],
+  "image_sha1": [
+   "a07e9309b9def55ccb322ae6b80d90ef45a5c1f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12987,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 90,
+  "img_name": "xmlab90/source.jpg",
+  "image_group": "a07e9309b9def55c"
+ },
+ {
+  "id": "slake_12988",
+  "query": "Which is the biggest in this image,lung,liver or heart?\n\nOptions:\nA. lung\nB. liver\nC. heart\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab90_source.jpg"
+  ],
+  "image_sha1": [
+   "a07e9309b9def55ccb322ae6b80d90ef45a5c1f3"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12988,
+  "options": {
+   "A": "lung",
+   "B": "liver",
+   "C": "heart"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice3",
+  "orig_answer": "Lung",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 90,
+  "img_name": "xmlab90/source.jpg",
+  "image_group": "a07e9309b9def55c"
+ },
+ {
+  "id": "slake_12209",
+  "query": "Does this image look normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12209,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12211",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12211,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12212",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12212,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12213",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12213,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12214",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12214,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12215",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab253_source.jpg"
+  ],
+  "image_sha1": [
+   "5fc64db494fdebbe98b189de1c18f0429445d2dc"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12215,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 253,
+  "img_name": "xmlab253/source.jpg",
+  "image_group": "5fc64db494fdebbe"
+ },
+ {
+  "id": "slake_12950",
+  "query": "Does the picture contain brian?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab71_source.jpg"
+  ],
+  "image_sha1": [
+   "46bcc2093f4be43edbcc3864f222e241c3bfd003"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12950,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 71,
+  "img_name": "xmlab71/source.jpg",
+  "image_group": "46bcc2093f4be43e"
+ },
+ {
+  "id": "slake_12952",
+  "query": "Is the brain healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab71_source.jpg"
+  ],
+  "image_sha1": [
+   "46bcc2093f4be43edbcc3864f222e241c3bfd003"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12952,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 71,
+  "img_name": "xmlab71/source.jpg",
+  "image_group": "46bcc2093f4be43e"
+ },
+ {
+  "id": "slake_12041",
+  "query": "Does this image look normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab169_source.jpg"
+  ],
+  "image_sha1": [
+   "5b0acacb33832bd5b43a7190f9309ae843b1b686"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12041,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 169,
+  "img_name": "xmlab169/source.jpg",
+  "image_group": "5b0acacb33832bd5"
+ },
+ {
+  "id": "slake_12045",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab169_source.jpg"
+  ],
+  "image_sha1": [
+   "5b0acacb33832bd5b43a7190f9309ae843b1b686"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12045,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 169,
+  "img_name": "xmlab169/source.jpg",
+  "image_group": "5b0acacb33832bd5"
+ },
+ {
+  "id": "slake_12046",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab169_source.jpg"
+  ],
+  "image_sha1": [
+   "5b0acacb33832bd5b43a7190f9309ae843b1b686"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12046,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Lung",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 169,
+  "img_name": "xmlab169/source.jpg",
+  "image_group": "5b0acacb33832bd5"
+ },
+ {
+  "id": "slake_12370",
+  "query": "Which plane is the image scanned, transverse plane or coronal plane?\n\nOptions:\nA. transverse plane\nB. coronal plane\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "coronal plane"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab338_source.jpg"
+  ],
+  "image_sha1": [
+   "d884f854b23b352f982c37f33fa1ec8fd3e3f71b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12370,
+  "options": {
+   "A": "transverse plane",
+   "B": "coronal plane"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Coronal Plane",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 338,
+  "img_name": "xmlab338/source.jpg",
+  "image_group": "d884f854b23b352f"
+ },
+ {
+  "id": "slake_12376",
+  "query": "Is the lung normal appearing?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab338_source.jpg"
+  ],
+  "image_sha1": [
+   "d884f854b23b352f982c37f33fa1ec8fd3e3f71b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12376,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 338,
+  "img_name": "xmlab338/source.jpg",
+  "image_group": "d884f854b23b352f"
+ },
+ {
+  "id": "slake_12377",
+  "query": "Is this image normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab338_source.jpg"
+  ],
+  "image_sha1": [
+   "d884f854b23b352f982c37f33fa1ec8fd3e3f71b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12377,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 338,
+  "img_name": "xmlab338/source.jpg",
+  "image_group": "d884f854b23b352f"
+ },
+ {
+  "id": "slake_12378",
+  "query": "Can nodule be observed on the lower left lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab338_source.jpg"
+  ],
+  "image_sha1": [
+   "d884f854b23b352f982c37f33fa1ec8fd3e3f71b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12378,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 338,
+  "img_name": "xmlab338/source.jpg",
+  "image_group": "d884f854b23b352f"
+ },
+ {
+  "id": "slake_12748",
+  "query": "Is this an MRI image with T2 weighted?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab525_source.jpg"
+  ],
+  "image_sha1": [
+   "7b6dab6e5b4557929be3b1562197b86ecd886e85"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12748,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 525,
+  "img_name": "xmlab525/source.jpg",
+  "image_group": "7b6dab6e5b455792"
+ },
+ {
+  "id": "slake_12750",
+  "query": "Do the organs in the image exist in the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab525_source.jpg"
+  ],
+  "image_sha1": [
+   "7b6dab6e5b4557929be3b1562197b86ecd886e85"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12750,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 525,
+  "img_name": "xmlab525/source.jpg",
+  "image_group": "7b6dab6e5b455792"
+ },
+ {
+  "id": "slake_12752",
+  "query": "Is this a study of the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab525_source.jpg"
+  ],
+  "image_sha1": [
+   "7b6dab6e5b4557929be3b1562197b86ecd886e85"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12752,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 525,
+  "img_name": "xmlab525/source.jpg",
+  "image_group": "7b6dab6e5b455792"
+ },
+ {
+  "id": "slake_12928",
+  "query": "Does the rectum exist in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab628_source.jpg"
+  ],
+  "image_sha1": [
+   "f074c40a43761e61c1f33cddac15ad585562aad4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12928,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 628,
+  "img_name": "xmlab628/source.jpg",
+  "image_group": "f074c40a43761e61"
+ },
+ {
+  "id": "slake_12929",
+  "query": "Which is bigger in this image, small bowel or colon?\n\nOptions:\nA. small bowel\nB. colon\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "small bowel"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab628_source.jpg"
+  ],
+  "image_sha1": [
+   "f074c40a43761e61c1f33cddac15ad585562aad4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12929,
+  "options": {
+   "A": "small bowel",
+   "B": "colon"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Small Bowel",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 628,
+  "img_name": "xmlab628/source.jpg",
+  "image_group": "f074c40a43761e61"
+ },
+ {
+  "id": "slake_12931",
+  "query": "Do any of the organs in the picture belong to the urinary system?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab628_source.jpg"
+  ],
+  "image_sha1": [
+   "f074c40a43761e61c1f33cddac15ad585562aad4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12931,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Pelvic Cavity",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 628,
+  "img_name": "xmlab628/source.jpg",
+  "image_group": "f074c40a43761e61"
+ },
+ {
+  "id": "slake_12623",
+  "query": "Is this an MRI image with T1 weighted?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab442_source.jpg"
+  ],
+  "image_sha1": [
+   "d6239166bf10c6f151999be596615012131a22a0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12623,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 442,
+  "img_name": "xmlab442/source.jpg",
+  "image_group": "d6239166bf10c6f1"
+ },
+ {
+  "id": "slake_12624",
+  "query": "Is this a coronal section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab442_source.jpg"
+  ],
+  "image_sha1": [
+   "d6239166bf10c6f151999be596615012131a22a0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12624,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 442,
+  "img_name": "xmlab442/source.jpg",
+  "image_group": "d6239166bf10c6f1"
+ },
+ {
+  "id": "slake_12628",
+  "query": "Is the brain healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab442_source.jpg"
+  ],
+  "image_sha1": [
+   "d6239166bf10c6f151999be596615012131a22a0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12628,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 442,
+  "img_name": "xmlab442/source.jpg",
+  "image_group": "d6239166bf10c6f1"
+ },
+ {
+  "id": "slake_12003",
+  "query": "Are there abnormalities in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab147_source.jpg"
+  ],
+  "image_sha1": [
+   "8366ac76632eb59660245a9e725cec81fd9e88e0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12003,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 147,
+  "img_name": "xmlab147/source.jpg",
+  "image_group": "8366ac76632eb596"
+ },
+ {
+  "id": "slake_12007",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab147_source.jpg"
+  ],
+  "image_sha1": [
+   "8366ac76632eb59660245a9e725cec81fd9e88e0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12007,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 147,
+  "img_name": "xmlab147/source.jpg",
+  "image_group": "8366ac76632eb596"
+ },
+ {
+  "id": "slake_12008",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab147_source.jpg"
+  ],
+  "image_sha1": [
+   "8366ac76632eb59660245a9e725cec81fd9e88e0"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12008,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Lung",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 147,
+  "img_name": "xmlab147/source.jpg",
+  "image_group": "8366ac76632eb596"
+ },
+ {
+  "id": "slake_12489",
+  "query": "Is this image taken via CT?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab378_source.jpg"
+  ],
+  "image_sha1": [
+   "fbf5b8d89d7fd399bd940c771862434e5b24fe40"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12489,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 378,
+  "img_name": "xmlab378/source.jpg",
+  "image_group": "fbf5b8d89d7fd399"
+ },
+ {
+  "id": "slake_12490",
+  "query": "Is this a transverse plane?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab378_source.jpg"
+  ],
+  "image_sha1": [
+   "fbf5b8d89d7fd399bd940c771862434e5b24fe40"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12490,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 378,
+  "img_name": "xmlab378/source.jpg",
+  "image_group": "fbf5b8d89d7fd399"
+ },
+ {
+  "id": "slake_12496",
+  "query": "Is/Are there abnormalities in the patient's left lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab378_source.jpg"
+  ],
+  "image_sha1": [
+   "fbf5b8d89d7fd399bd940c771862434e5b24fe40"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12496,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 378,
+  "img_name": "xmlab378/source.jpg",
+  "image_group": "fbf5b8d89d7fd399"
+ },
+ {
+  "id": "slake_12498",
+  "query": "Can infiltration be observed on the lower left lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab378_source.jpg"
+  ],
+  "image_sha1": [
+   "fbf5b8d89d7fd399bd940c771862434e5b24fe40"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12498,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 378,
+  "img_name": "xmlab378/source.jpg",
+  "image_group": "fbf5b8d89d7fd399"
+ },
+ {
+  "id": "slake_12632",
+  "query": "Which kind of weighting is this image generated with, t1 or t2?\n\nOptions:\nA. t1\nB. t2\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "t2"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab447_source.jpg"
+  ],
+  "image_sha1": [
+   "e2ca0d322f209d0d3bf1d6f9d21d282f73be617e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12632,
+  "options": {
+   "A": "t1",
+   "B": "t2"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "T2",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 447,
+  "img_name": "xmlab447/source.jpg",
+  "image_group": "e2ca0d322f209d0d"
+ },
+ {
+  "id": "slake_12633",
+  "query": "Is this sagittal plane?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab447_source.jpg"
+  ],
+  "image_sha1": [
+   "e2ca0d322f209d0d3bf1d6f9d21d282f73be617e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12633,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 447,
+  "img_name": "xmlab447/source.jpg",
+  "image_group": "e2ca0d322f209d0d"
+ },
+ {
+  "id": "slake_12635",
+  "query": "Which hemisphere is abnormal,left or right?\n\nOptions:\nA. left\nB. right\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "left"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab447_source.jpg"
+  ],
+  "image_sha1": [
+   "e2ca0d322f209d0d3bf1d6f9d21d282f73be617e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12635,
+  "options": {
+   "A": "left",
+   "B": "right"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Left",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 447,
+  "img_name": "xmlab447/source.jpg",
+  "image_group": "e2ca0d322f209d0d"
+ },
+ {
+  "id": "slake_12638",
+  "query": "Is the tumor enhancing?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab447_source.jpg"
+  ],
+  "image_sha1": [
+   "e2ca0d322f209d0d3bf1d6f9d21d282f73be617e"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12638,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Color",
+  "base_type": "vqa",
+  "img_id": 447,
+  "img_name": "xmlab447/source.jpg",
+  "image_group": "e2ca0d322f209d0d"
+ },
+ {
+  "id": "slake_12783",
+  "query": "Does the stomach appear in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab538_source.jpg"
+  ],
+  "image_sha1": [
+   "58df7c18a4be7ffa03a90406626aaf5cae9bc74b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12783,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 538,
+  "img_name": "xmlab538/source.jpg",
+  "image_group": "58df7c18a4be7ffa"
+ },
+ {
+  "id": "slake_12784",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab538_source.jpg"
+  ],
+  "image_sha1": [
+   "58df7c18a4be7ffa03a90406626aaf5cae9bc74b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12784,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 538,
+  "img_name": "xmlab538/source.jpg",
+  "image_group": "58df7c18a4be7ffa"
+ },
+ {
+  "id": "slake_12786",
+  "query": "Which is smaller in this image,liver or right kidney?\n\nOptions:\nA. liver\nB. right kidney\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "right kidney"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab538_source.jpg"
+  ],
+  "image_sha1": [
+   "58df7c18a4be7ffa03a90406626aaf5cae9bc74b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12786,
+  "options": {
+   "A": "liver",
+   "B": "right kidney"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Right Kidney",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 538,
+  "img_name": "xmlab538/source.jpg",
+  "image_group": "58df7c18a4be7ffa"
+ },
+ {
+  "id": "slake_12791",
+  "query": "Does the picture contain the organ which has the effect of discharging waste?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab538_source.jpg"
+  ],
+  "image_sha1": [
+   "58df7c18a4be7ffa03a90406626aaf5cae9bc74b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12791,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 538,
+  "img_name": "xmlab538/source.jpg",
+  "image_group": "58df7c18a4be7ffa"
+ },
+ {
+  "id": "slake_12792",
+  "query": "Do any of the organs in the picture belong to the respiratory system?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab538_source.jpg"
+  ],
+  "image_sha1": [
+   "58df7c18a4be7ffa03a90406626aaf5cae9bc74b"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12792,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 538,
+  "img_name": "xmlab538/source.jpg",
+  "image_group": "58df7c18a4be7ffa"
+ },
+ {
+  "id": "slake_12720",
+  "query": "Is this image taken via CT?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab506_source.jpg"
+  ],
+  "image_sha1": [
+   "7563b02aa2275af0151161d2c62fbf70cb39cee4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12720,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 506,
+  "img_name": "xmlab506/source.jpg",
+  "image_group": "7563b02aa2275af0"
+ },
+ {
+  "id": "slake_12721",
+  "query": "Which kind of weighting is this image generated with, t1 or t2?\n\nOptions:\nA. t1\nB. t2\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "t1"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab506_source.jpg"
+  ],
+  "image_sha1": [
+   "7563b02aa2275af0151161d2c62fbf70cb39cee4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12721,
+  "options": {
+   "A": "t1",
+   "B": "t2"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "T1",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 506,
+  "img_name": "xmlab506/source.jpg",
+  "image_group": "7563b02aa2275af0"
+ },
+ {
+  "id": "slake_12725",
+  "query": "Is this a study of the chest?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab506_source.jpg"
+  ],
+  "image_sha1": [
+   "7563b02aa2275af0151161d2c62fbf70cb39cee4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12725,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 506,
+  "img_name": "xmlab506/source.jpg",
+  "image_group": "7563b02aa2275af0"
+ },
+ {
+  "id": "slake_12726",
+  "query": "Does the patient have brain tumor?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab506_source.jpg"
+  ],
+  "image_sha1": [
+   "7563b02aa2275af0151161d2c62fbf70cb39cee4"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12726,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 506,
+  "img_name": "xmlab506/source.jpg",
+  "image_group": "7563b02aa2275af0"
+ },
+ {
+  "id": "slake_12772",
+  "query": "Is this image taken via MRI?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab532_source.jpg"
+  ],
+  "image_sha1": [
+   "ce4ffa034822dfdf6cd2da9372cd338ffc0acde8"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12772,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 532,
+  "img_name": "xmlab532/source.jpg",
+  "image_group": "ce4ffa034822dfdf"
+ },
+ {
+  "id": "slake_12773",
+  "query": "Which kind of weighting is this image generated with, t1 or t2?\n\nOptions:\nA. t1\nB. t2\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "t2"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab532_source.jpg"
+  ],
+  "image_sha1": [
+   "ce4ffa034822dfdf6cd2da9372cd338ffc0acde8"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12773,
+  "options": {
+   "A": "t1",
+   "B": "t2"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "T2",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 532,
+  "img_name": "xmlab532/source.jpg",
+  "image_group": "ce4ffa034822dfdf"
+ },
+ {
+  "id": "slake_12774",
+  "query": "Is this a transverse section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab532_source.jpg"
+  ],
+  "image_sha1": [
+   "ce4ffa034822dfdf6cd2da9372cd338ffc0acde8"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12774,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 532,
+  "img_name": "xmlab532/source.jpg",
+  "image_group": "ce4ffa034822dfdf"
+ },
+ {
+  "id": "slake_12965",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab82_source.jpg"
+  ],
+  "image_sha1": [
+   "89ca4d92675123112bf81f1f7b2a0ab66591c207"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12965,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 82,
+  "img_name": "xmlab82/source.jpg",
+  "image_group": "89ca4d9267512311"
+ },
+ {
+  "id": "slake_12966",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab82_source.jpg"
+  ],
+  "image_sha1": [
+   "89ca4d92675123112bf81f1f7b2a0ab66591c207"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12966,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 82,
+  "img_name": "xmlab82/source.jpg",
+  "image_group": "89ca4d9267512311"
+ },
+ {
+  "id": "slake_12967",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab82_source.jpg"
+  ],
+  "image_sha1": [
+   "89ca4d92675123112bf81f1f7b2a0ab66591c207"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12967,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 82,
+  "img_name": "xmlab82/source.jpg",
+  "image_group": "89ca4d9267512311"
+ },
+ {
+  "id": "slake_12969",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab82_source.jpg"
+  ],
+  "image_sha1": [
+   "89ca4d92675123112bf81f1f7b2a0ab66591c207"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12969,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 82,
+  "img_name": "xmlab82/source.jpg",
+  "image_group": "89ca4d9267512311"
+ },
+ {
+  "id": "slake_12970",
+  "query": "Which is the biggest in this image,lung,liver or heart?\n\nOptions:\nA. lung\nB. liver\nC. heart\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab82_source.jpg"
+  ],
+  "image_sha1": [
+   "89ca4d92675123112bf81f1f7b2a0ab66591c207"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12970,
+  "options": {
+   "A": "lung",
+   "B": "liver",
+   "C": "heart"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice3",
+  "orig_answer": "Lung",
+  "modality": "CT",
+  "organ": "Lung",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 82,
+  "img_name": "xmlab82/source.jpg",
+  "image_group": "89ca4d9267512311"
+ },
+ {
+  "id": "slake_12890",
+  "query": "Does the picture contain spinal cord?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab586_source.jpg"
+  ],
+  "image_sha1": [
+   "2ccfce67b1a65619f4d8fe076d6d9cec92649889"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12890,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Chest_mediastinal",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 586,
+  "img_name": "xmlab586/source.jpg",
+  "image_group": "2ccfce67b1a65619"
+ },
+ {
+  "id": "slake_12891",
+  "query": "Does the rectum appear in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab586_source.jpg"
+  ],
+  "image_sha1": [
+   "2ccfce67b1a65619f4d8fe076d6d9cec92649889"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12891,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Chest_mediastinal",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 586,
+  "img_name": "xmlab586/source.jpg",
+  "image_group": "2ccfce67b1a65619"
+ },
+ {
+  "id": "slake_12893",
+  "query": "Which is smaller in this image,heart or esophagus?\n\nOptions:\nA. heart\nB. esophagus\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "esophagus"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab586_source.jpg"
+  ],
+  "image_sha1": [
+   "2ccfce67b1a65619f4d8fe076d6d9cec92649889"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12893,
+  "options": {
+   "A": "heart",
+   "B": "esophagus"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Esophagus",
+  "modality": "CT",
+  "organ": "Chest_mediastinal",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 586,
+  "img_name": "xmlab586/source.jpg",
+  "image_group": "2ccfce67b1a65619"
+ },
+ {
+  "id": "slake_12896",
+  "query": "Does the picture contain the organ that could receive sound?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab586_source.jpg"
+  ],
+  "image_sha1": [
+   "2ccfce67b1a65619f4d8fe076d6d9cec92649889"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12896,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Chest_mediastinal",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 586,
+  "img_name": "xmlab586/source.jpg",
+  "image_group": "2ccfce67b1a65619"
+ },
+ {
+  "id": "slake_12897",
+  "query": "Does the picture contain the organ which has the effect of sensing light?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab586_source.jpg"
+  ],
+  "image_sha1": [
+   "2ccfce67b1a65619f4d8fe076d6d9cec92649889"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12897,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Chest_mediastinal",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 586,
+  "img_name": "xmlab586/source.jpg",
+  "image_group": "2ccfce67b1a65619"
+ },
+ {
+  "id": "slake_12310",
+  "query": "Is this a coronal section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab312_source.jpg"
+  ],
+  "image_sha1": [
+   "db44b0d6bb9c10bb7cbef19e4934e6afef8b067a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12310,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 312,
+  "img_name": "xmlab312/source.jpg",
+  "image_group": "db44b0d6bb9c10bb"
+ },
+ {
+  "id": "slake_12314",
+  "query": "Is this a study of the neck?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab312_source.jpg"
+  ],
+  "image_sha1": [
+   "db44b0d6bb9c10bb7cbef19e4934e6afef8b067a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12314,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 312,
+  "img_name": "xmlab312/source.jpg",
+  "image_group": "db44b0d6bb9c10bb"
+ },
+ {
+  "id": "slake_12316",
+  "query": "Does the patient have any abnormalities?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab312_source.jpg"
+  ],
+  "image_sha1": [
+   "db44b0d6bb9c10bb7cbef19e4934e6afef8b067a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12316,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 312,
+  "img_name": "xmlab312/source.jpg",
+  "image_group": "db44b0d6bb9c10bb"
+ },
+ {
+  "id": "slake_12317",
+  "query": "Is this image normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab312_source.jpg"
+  ],
+  "image_sha1": [
+   "db44b0d6bb9c10bb7cbef19e4934e6afef8b067a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12317,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 312,
+  "img_name": "xmlab312/source.jpg",
+  "image_group": "db44b0d6bb9c10bb"
+ },
+ {
+  "id": "slake_12318",
+  "query": "Can atelectasis be observed on the lower left lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab312_source.jpg"
+  ],
+  "image_sha1": [
+   "db44b0d6bb9c10bb7cbef19e4934e6afef8b067a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12318,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 312,
+  "img_name": "xmlab312/source.jpg",
+  "image_group": "db44b0d6bb9c10bb"
+ },
+ {
+  "id": "slake_12324",
+  "query": "Is this image taken via X-Ray?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab314_source.jpg"
+  ],
+  "image_sha1": [
+   "c9ae8ec8008d58fc0f9c8d1224a2c4c56dbc914d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12324,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 314,
+  "img_name": "xmlab314/source.jpg",
+  "image_group": "c9ae8ec8008d58fc"
+ },
+ {
+  "id": "slake_12327",
+  "query": "Which side of lung is abnormal in this image,left or right?\n\nOptions:\nA. left\nB. right\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "right"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab314_source.jpg"
+  ],
+  "image_sha1": [
+   "c9ae8ec8008d58fc0f9c8d1224a2c4c56dbc914d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12327,
+  "options": {
+   "A": "left",
+   "B": "right"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Right",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 314,
+  "img_name": "xmlab314/source.jpg",
+  "image_group": "c9ae8ec8008d58fc"
+ },
+ {
+  "id": "slake_12332",
+  "query": "Does the lung look abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab314_source.jpg"
+  ],
+  "image_sha1": [
+   "c9ae8ec8008d58fc0f9c8d1224a2c4c56dbc914d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12332,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 314,
+  "img_name": "xmlab314/source.jpg",
+  "image_group": "c9ae8ec8008d58fc"
+ },
+ {
+  "id": "slake_12333",
+  "query": "Can pneumonia be observed on the right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab314_source.jpg"
+  ],
+  "image_sha1": [
+   "c9ae8ec8008d58fc0f9c8d1224a2c4c56dbc914d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12333,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 314,
+  "img_name": "xmlab314/source.jpg",
+  "image_group": "c9ae8ec8008d58fc"
+ },
+ {
+  "id": "slake_12475",
+  "query": "Is this a transverse section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab375_source.jpg"
+  ],
+  "image_sha1": [
+   "11fcde0e186f6c2682c1b937f8dfeecd6fa5183a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12475,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 375,
+  "img_name": "xmlab375/source.jpg",
+  "image_group": "11fcde0e186f6c26"
+ },
+ {
+  "id": "slake_12479",
+  "query": "Is this a study of the chest?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab375_source.jpg"
+  ],
+  "image_sha1": [
+   "11fcde0e186f6c2682c1b937f8dfeecd6fa5183a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12479,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 375,
+  "img_name": "xmlab375/source.jpg",
+  "image_group": "11fcde0e186f6c26"
+ },
+ {
+  "id": "slake_12482",
+  "query": "Is the lung normal appearing?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab375_source.jpg"
+  ],
+  "image_sha1": [
+   "11fcde0e186f6c2682c1b937f8dfeecd6fa5183a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12482,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 375,
+  "img_name": "xmlab375/source.jpg",
+  "image_group": "11fcde0e186f6c26"
+ },
+ {
+  "id": "slake_12483",
+  "query": "Can pneumonia be observed on the lower right lung in this picture?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab375_source.jpg"
+  ],
+  "image_sha1": [
+   "11fcde0e186f6c2682c1b937f8dfeecd6fa5183a"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12483,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 375,
+  "img_name": "xmlab375/source.jpg",
+  "image_group": "11fcde0e186f6c26"
+ },
+ {
+  "id": "slake_12109",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12109,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12110",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12110,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12111",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12111,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12112",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12112,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12113",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12113,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12116",
+  "query": "Which is the biggest in this image, spleen,lung, or liver?\n\nOptions:\nA. spleen\nB. lung\nC. liver\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "C",
+  "ground_truth": {
+   "correct_answer": "C",
+   "answer_text": "liver"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab224_source.jpg"
+  ],
+  "image_sha1": [
+   "4561d3472aaf5a9717215f14c5b1d4114d28ceaf"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12116,
+  "options": {
+   "A": "spleen",
+   "B": "lung",
+   "C": "liver"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice3",
+  "orig_answer": "Liver",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 224,
+  "img_name": "xmlab224/source.jpg",
+  "image_group": "4561d3472aaf5a97"
+ },
+ {
+  "id": "slake_12172",
+  "query": "Does this image look normal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12172,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12174",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12174,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12175",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12175,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12176",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12176,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12177",
+  "query": "Does the picture contain lung?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12177,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12178",
+  "query": "Does the picture contain heart?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12178,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12183",
+  "query": "Which is bigger in this image, liver or heart?\n\nOptions:\nA. liver\nB. heart\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "liver"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab250_source.jpg"
+  ],
+  "image_sha1": [
+   "3000bbb2e0cf957458b0db523b67ba4c589c42ee"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12183,
+  "options": {
+   "A": "liver",
+   "B": "heart"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Liver",
+  "modality": "CT",
+  "organ": "Abdomen",
+  "content_type": "Size",
+  "base_type": "vqa",
+  "img_id": 250,
+  "img_name": "xmlab250/source.jpg",
+  "image_group": "3000bbb2e0cf9574"
+ },
+ {
+  "id": "slake_12737",
+  "query": "Is this a CT?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab513_source.jpg"
+  ],
+  "image_sha1": [
+   "46b2686b7dd477a2e83cd35f960f716cefdae851"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12737,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 513,
+  "img_name": "xmlab513/source.jpg",
+  "image_group": "46b2686b7dd477a2"
+ },
+ {
+  "id": "slake_12738",
+  "query": "Is this an MRI image with T2 weighted?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab513_source.jpg"
+  ],
+  "image_sha1": [
+   "46b2686b7dd477a2e83cd35f960f716cefdae851"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12738,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 513,
+  "img_name": "xmlab513/source.jpg",
+  "image_group": "46b2686b7dd477a2"
+ },
+ {
+  "id": "slake_12740",
+  "query": "Do the organs in the image exist in the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab513_source.jpg"
+  ],
+  "image_sha1": [
+   "46b2686b7dd477a2e83cd35f960f716cefdae851"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12740,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 513,
+  "img_name": "xmlab513/source.jpg",
+  "image_group": "46b2686b7dd477a2"
+ },
+ {
+  "id": "slake_12158",
+  "query": "Does the picture contain liver?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab24_source.jpg"
+  ],
+  "image_sha1": [
+   "6156272f48dde218de8f634d6569f5d009054e02"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12158,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 24,
+  "img_name": "xmlab24/source.jpg",
+  "image_group": "6156272f48dde218"
+ },
+ {
+  "id": "slake_12159",
+  "query": "Does the picture contain kidney?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab24_source.jpg"
+  ],
+  "image_sha1": [
+   "6156272f48dde218de8f634d6569f5d009054e02"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12159,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 24,
+  "img_name": "xmlab24/source.jpg",
+  "image_group": "6156272f48dde218"
+ },
+ {
+  "id": "slake_12160",
+  "query": "Does the picture contain spleen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab24_source.jpg"
+  ],
+  "image_sha1": [
+   "6156272f48dde218de8f634d6569f5d009054e02"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12160,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Abdomen",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 24,
+  "img_name": "xmlab24/source.jpg",
+  "image_group": "6156272f48dde218"
+ },
+ {
+  "id": "slake_12565",
+  "query": "Do the organs in the image exist in the head?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12565,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12567",
+  "query": "Is this a study of the abdomen?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12567,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12569",
+  "query": "Does the picture contain mandible?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12569,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12570",
+  "query": "Does the parotid appear in the image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12570,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "Organ",
+  "base_type": "vqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12576",
+  "query": "Are there organs in the picture that can digest food?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12576,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12577",
+  "query": "Do any of the organs in the picture belong to the circulatory system?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab407_source.jpg"
+  ],
+  "image_sha1": [
+   "d2372d752bf2acb42e941a2f7fa151ff075e8997"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12577,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "CT",
+  "organ": "Brain_Face",
+  "content_type": "KG",
+  "base_type": "kvqa",
+  "img_id": 407,
+  "img_name": "xmlab407/source.jpg",
+  "image_group": "d2372d752bf2acb4"
+ },
+ {
+  "id": "slake_12756",
+  "query": "Is this an MRI scan?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab529_source.jpg"
+  ],
+  "image_sha1": [
+   "9e163a72d69df1695b3ab595d6b7a82ccd80258d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12756,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Modality",
+  "base_type": "vqa",
+  "img_id": 529,
+  "img_name": "xmlab529/source.jpg",
+  "image_group": "9e163a72d69df169"
+ },
+ {
+  "id": "slake_12758",
+  "query": "Is this a coronal section?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab529_source.jpg"
+  ],
+  "image_sha1": [
+   "9e163a72d69df1695b3ab595d6b7a82ccd80258d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12758,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Plane",
+  "base_type": "vqa",
+  "img_id": 529,
+  "img_name": "xmlab529/source.jpg",
+  "image_group": "9e163a72d69df169"
+ },
+ {
+  "id": "slake_12759",
+  "query": "Do the organs in the image exist in the neck?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab529_source.jpg"
+  ],
+  "image_sha1": [
+   "9e163a72d69df1695b3ab595d6b7a82ccd80258d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12759,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Position",
+  "base_type": "vqa",
+  "img_id": 529,
+  "img_name": "xmlab529/source.jpg",
+  "image_group": "9e163a72d69df169"
+ },
+ {
+  "id": "slake_12762",
+  "query": "Is the brain normal appearing?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab529_source.jpg"
+  ],
+  "image_sha1": [
+   "9e163a72d69df1695b3ab595d6b7a82ccd80258d"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12762,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "MRI",
+  "organ": "Brain_Tissue",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 529,
+  "img_name": "xmlab529/source.jpg",
+  "image_group": "9e163a72d69df169"
+ },
+ {
+  "id": "slake_12068",
+  "query": "Does this image look abnormal?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab185_source.jpg"
+  ],
+  "image_sha1": [
+   "bcb7b21d867cae71c45a0f9b55f92f471a55f4cb"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12068,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 185,
+  "img_name": "xmlab185/source.jpg",
+  "image_group": "bcb7b21d867cae71"
+ },
+ {
+  "id": "slake_12072",
+  "query": "Is the lung healthy?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "no"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab185_source.jpg"
+  ],
+  "image_sha1": [
+   "bcb7b21d867cae71c45a0f9b55f92f471a55f4cb"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12072,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "No",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 185,
+  "img_name": "xmlab185/source.jpg",
+  "image_group": "bcb7b21d867cae71"
+ },
+ {
+  "id": "slake_12073",
+  "query": "Are there abnormalities in this image?\n\nOptions:\nA. yes\nB. no\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "A",
+  "ground_truth": {
+   "correct_answer": "A",
+   "answer_text": "yes"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab185_source.jpg"
+  ],
+  "image_sha1": [
+   "bcb7b21d867cae71c45a0f9b55f92f471a55f4cb"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12073,
+  "options": {
+   "A": "yes",
+   "B": "no"
+  },
+  "question_type": "closed_yes_no",
+  "answer_type": "yes_no",
+  "orig_answer": "Yes",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 185,
+  "img_name": "xmlab185/source.jpg",
+  "image_group": "bcb7b21d867cae71"
+ },
+ {
+  "id": "slake_12074",
+  "query": "Which organ is abnormal, heart or lung?\n\nOptions:\nA. heart\nB. lung\n\nAnswer with the single best option letter and a brief justification.",
+  "answer": "B",
+  "ground_truth": {
+   "correct_answer": "B",
+   "answer_text": "lung"
+  },
+  "image_paths": [
+   "/home/claude/mm_data/slake/images/xmlab185_source.jpg"
+  ],
+  "image_sha1": [
+   "bcb7b21d867cae71c45a0f9b55f92f471a55f4cb"
+  ],
+  "source_dataset": "BoKelvin/SLAKE",
+  "source_split": "test",
+  "orig_id": 12074,
+  "options": {
+   "A": "heart",
+   "B": "lung"
+  },
+  "question_type": "closed_choice",
+  "answer_type": "choice2",
+  "orig_answer": "Lung",
+  "modality": "X-Ray",
+  "organ": "Lung",
+  "content_type": "Abnormality",
+  "base_type": "vqa",
+  "img_id": 185,
+  "img_name": "xmlab185/source.jpg",
+  "image_group": "bcb7b21d867cae71"
+ }
+]

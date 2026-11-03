@@ -59,7 +59,10 @@ class DyLAN_Main(MAS):
 
     def inference(self, sample):
         query = sample["query"]
-        random.seed(self.seed)
+        # a private generator per run: the module-level `random` is shared by the worker threads of main.py,
+        # so with --max_workers > 1 the node order depended on thread scheduling and runs could not be
+        # replayed (gemini trial 2026-11-03: 85/220 replay hits). Same seed, deterministic per run.
+        self.rng = random.Random(self.seed)
         self.conversation_history, self.node_step = [], {}
         
         self._zero_grad()
@@ -68,7 +71,7 @@ class DyLAN_Main(MAS):
 
         # First round
         loop_indices = list(range(self.num_agents))
-        random.shuffle(loop_indices)
+        self.rng.shuffle(loop_indices)
         activated_indices = []
         for idx, node_idx in enumerate(loop_indices):
             self._activate_node(node_idx, query, round_id=0)
@@ -80,7 +83,7 @@ class DyLAN_Main(MAS):
 
         # Second round
         loop_indices = list(range(self.num_agents, self.num_agents*2))
-        random.shuffle(loop_indices)
+        self.rng.shuffle(loop_indices)
         activated_indices = []
         for idx, node_idx in enumerate(loop_indices):
             self._activate_node(node_idx, query, round_id=1)
@@ -97,7 +100,7 @@ class DyLAN_Main(MAS):
             if self.num_agents > 3:
                 replies = [self.nodes[idx]['reply'] for idx in idxs]
                 indices = list(range(len(replies)))
-                random.shuffle(indices)
+                self.rng.shuffle(indices)
                 shuffled_replies = [replies[idx] for idx in indices]
                 
                 if self.activation == 0:  # listwise
@@ -107,7 +110,7 @@ class DyLAN_Main(MAS):
                     idx_mask = list(map(lambda x: idxs[indices[x]] % self.num_agents, tops))
 
             loop_indices = list(range(self.num_agents*rid, self.num_agents*(rid+1)))
-            random.shuffle(loop_indices)
+            self.rng.shuffle(loop_indices)
             idxs = []
             for idx, node_idx in enumerate(loop_indices):
                 if idx in idx_mask:
@@ -262,7 +265,7 @@ class DyLAN_Main(MAS):
             tops = [clip(x) for x in tops]
         except:
             print("error in parsing ranks")
-            tops = random.sample(list(range(max_num)), 2)
+            tops = self.rng.sample(list(range(max_num)), 2)
 
         return tops
 
@@ -309,7 +312,7 @@ class DyLAN_Main(MAS):
 
         # Shuffle and process responses
         original_idxs = [mess[1] for mess in formers]
-        random.shuffle(formers)
+        self.rng.shuffle(formers)
         shuffled_idxs = [mess[1] for mess in formers]
         formers = [mess[0] for mess in formers]
 

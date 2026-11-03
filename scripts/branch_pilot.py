@@ -370,6 +370,7 @@ def cmd_run(a):
         srv.terminate()
     # run identity at the source (issue #1, 2026-11-03): embed a `branch` block in every output record
     import branch_identity
+    from replay_openai_server import key as replay_key
     out = os.path.join(wd, f"{tag}_out.jsonl")
     reasons = None
     if a.rep > 0:
@@ -383,6 +384,13 @@ def cmd_run(a):
                               else "random_undetermined") if ("branch", c["qid"]) in fin else "rep0_missing"
                    for c in cp}
     if os.path.exists(out):
+        allrec = recorded_all(a.fw)
+        for c in cp:      # parent structure, for frameworks whose step sequence can change after t
+            ph = llm_steps(rec_of(allrec, c))
+            c["parent_step_ids"] = [s["step_id"] for s in ph]
+            n_pre = c["t"] + (0 if a.arm == "branch" else 1)
+            c["parent_prefix_sha1"] = [branch_identity.sha1(s.get("content")) for s in ph[:n_pre]]
+            c["parent_keys"] = [(s["step_id"], replay_key(s["input_messages"])) for s in ph]
         bad = branch_identity.stamp_file(out, cp, a.arm, a.rep, calls, a.experiment_id or os.path.basename(
             os.path.abspath(a.dir)), reasons, a.fw)
         print(f"{tag}: branch identity stamped; problems {len(bad)}" + (f" e.g. {bad[:3]}" if bad else ""))
