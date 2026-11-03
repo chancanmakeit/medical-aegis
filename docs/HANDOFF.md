@@ -7,7 +7,7 @@
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
 **讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
-- #1 语料需求主线（我方第 49 轮，见 discussion_log_v11）；#2 CDE × Jev 方法讨论；#3 中训练动机与是否请我方生成中训练语料；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+- #1 语料需求主线（我方第 49 轮 6606051071）；#2 CDE × Jev 方法讨论；#3 中训练动机与是否请我方生成中训练语料；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
 
 **本轮（v11 第 3 轮，离线）：分叉身份完成；方案 A 准备好，等用户批准约 $1.45。**
 - 分叉身份：`scripts/branch_identity.py`（`branch` 块、源头打戳、回填、校验）；pilot sidecar `data_runs/branch_pilot_2026-10-26/branch_sidecar.jsonl`（264 条，重生成集合 264/264 与调用日志一致）；导出器读 .gz、`--branch_sidecar`、`run_mode: "branch"`、`labels.branch`、无身份拒绝、重复 run_id 默认停止、`<out>.problems.json`；原有导出逐字节不变；`tests/test_branch_identity.py` 6 项通过；说明在 `docs/mas_traj_schema_notes.md` 第 3 节。**用分叉数据一律走 sidecar / 嵌入身份。**
@@ -30,7 +30,7 @@
 - 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
 
 **沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 49 轮（#1，见 discussion_log_v11），下一条第 50 轮。
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 49 轮（#1 6606051071），下一条第 50 轮。
 - MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
 - 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
 - 修改本节时整节重写，不要原地字符串替换。
