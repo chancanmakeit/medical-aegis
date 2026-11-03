@@ -1,21 +1,18 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-03（会话 v11 讨论第 2 轮，issue 我方第 48 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-03（会话 v11 讨论第 3 轮，issue 我方第 49 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 2 轮，2026-11-03）
+## 当前状态（v11 讨论第 3 轮，2026-11-03）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
 **讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
-- #1 语料需求主线（我方第 48 轮 6605424424）；#2 CDE × Jev 方法讨论；#3 中训练动机与是否请我方生成中训练语料；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+- #1 语料需求主线（我方第 49 轮，见 discussion_log_v11）；#2 CDE × Jev 方法讨论；#3 中训练动机与是否请我方生成中训练语料；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
 
-**本轮（v11 第 2 轮，离线）**：回答 #4 点名我方的三个问题，处理 #1 里 GPT / Muse 指出的两个问题。
-- 问 1 动作类型：锚点 13,379 步无代码、无工具调用，决策都在 `structured`，可按"框架 × structured 键"表确定性派生 `actions[]`（一步可兼有消息和决策）。公开数据：工具调用位置因转换器而异；`kind: tool` 与 `environment/tool_output` 并存，应合并；代码只以代码块出现，无执行对齐时标 `code_unverified`。
-- 问 2 思考：导出器有 `--reasoning keep`；llama-4-maverick 无思考输出；公开数据全无。
-- 问 3 分叉关联：**没有关联字段**。264 条分叉记录按导出器身份只有 40 组（最多重复 8 次）。已接受四步：源头打戳（arm / pair_id / parent_run_id / protocol_id / repetition / candidate_step_id=t_step_id）→ 264 条全量回填 sidecar → 导出器对重复 run_id 默认失败、明细写进报告文件 → 单元测试。**等用户确认后做**，离线。MHT 已承诺 sidecar 落地前不把分叉原始文件交给通用导出器。
-- 更正 #4 正文：`how` 是变换语义，`inferred` 是采集方式（缺失 = runtime），建议显式化为 `collection`。
-- **bootstrap bug 已修**（`branch_pilot.py`，set 丢了重复次数）：AUROC llm_debate 0.467 [0.394, 0.542]，mdagents 0.496 [0.430, 0.563]，结论不变；round16 REPORT 加勘误；复测分层报：翻转点 0/12、未判定点 0/16。
-- 1.1 的标签 sidecar：分叉只产出 `outcome_sensitive_under_protocol`，`answer_changed` 与 `correctness_changed` 分开存（12 个翻转里 11 个由错变对），不产出 `decisive_step`，未翻转写 undetermined。
+**本轮（v11 第 3 轮，离线）：分叉身份完成；方案 A 准备好，等用户批准约 $1.45。**
+- 分叉身份：`scripts/branch_identity.py`（`branch` 块、源头打戳、回填、校验）；pilot sidecar `data_runs/branch_pilot_2026-10-26/branch_sidecar.jsonl`（264 条，重生成集合 264/264 与调用日志一致）；导出器读 .gz、`--branch_sidecar`、`run_mode: "branch"`、`labels.branch`、无身份拒绝、重复 run_id 默认停止、`<out>.problems.json`；原有导出逐字节不变；`tests/test_branch_identity.py` 6 项通过；说明在 `docs/mas_traj_schema_notes.md` 第 3 节。**用分叉数据一律走 sidecar / 嵌入身份。**
+- 方案 A：`docs/requests/samples/planA_2026-11-03/`（PLAN.md 预注册 + 180 个候选点，seed 0）。运行：`D=/home/claude/branch_planA`（候选已在），`python3 scripts/branch_pilot.py deps --fw llm_debate --dir $D`，然后 9 个批次（pass 0–8）× 两臂 `run --upstream real --port …`，再对翻转点 + 10% 未判定点跑 control rep 1（`--rep 1 --only <qids>`）。估算 $1.30 + 约 $0.14。
+- v11 第 2 轮：回答 #4 的三个问题（锚点无代码/工具动作，决策在 `structured`；llama 无思考输出；分叉原本无关联字段）；`branch_pilot.py` bootstrap 已修（AUROC llm_debate 0.467 [0.394, 0.542]，mdagents 0.496 [0.430, 0.563]）；round16 REPORT 有勘误。
 
 **v11 第 1 轮（仍有效）**：llm_debate 第 2 轮有近因效应（2 对 1 时 56% 改成最后一条他人意见）；试点翻转主要取决于同伴支持度；平凡基线 AUROC 轮次 × 位置 0.76、同伴支持度 0.78（`docs/requests/samples/position_check_2026-10-27/REPORT.md`）。MHT 第 64 轮续 3（#1 6442362292）：SAMT v1 图 token 读得出来，但 MAA 缺陷层 SFT 无提升；他们认为结构应在责任层（分叉数据）更有用；扩大方案倾向 A。
 
@@ -33,14 +30,14 @@
 - 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
 
 **沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 48 轮（#1 6605424424；#4 第 47 轮 6605421826），下一条第 49 轮。
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 49 轮（#1，见 discussion_log_v11），下一条第 50 轮。
 - MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
 - 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
 - 修改本节时整节重写，不要原地字符串替换。
 
 **待用户决定**
-1. 分叉身份四步（离线，免费）：做不做、现在做还是和扩大一起做。
-2. 分叉扩大：A（约 $1.2）、B（约 $2.1）。MHT 倾向 A。
+1. 方案 A 付费运行（约 $1.45，上限约 $1.6）。
+2. 方案 B（两框架分层扩大，约 $2.1，按 A 的结果再定）。
 3. #3 第四节：请我方做阶段 1 医学自然运行（MHT 估约 $5–15，单价和剩余题库要我方复核）。
 4. 主数据（其他框架、正式配置）的生成方案。
 

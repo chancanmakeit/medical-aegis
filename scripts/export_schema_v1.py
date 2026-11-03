@@ -32,6 +32,15 @@ labels (`labels`) are physically separate:
     the stored `output` with one fixed tokenizer for every step
     (`provenance.output_tokenizer`). `finish_reason` stays on the step.
 
+Branching runs (scripts/branch_pilot.py; issue #1 2026-11-03): a branch or control record has the
+same framework / model / dataset / id / run_index as its recorded parent normal run, so it needs its
+own identity. The exporter takes it from the record's embedded `branch` block (runs from 2026-11-03 on)
+or from `--branch_sidecar` (keyed by input file basename + record id; the 2026-10-26 pilot:
+data_runs/branch_pilot_2026-10-26/branch_sidecar.jsonl). Such a record gets run_mode "branch",
+run_id "<pair_id>|<arm>|rep<k>" and `labels.branch` (never model input). A branch_pilot output file
+without identity is refused (fail closed). Duplicate run_ids now stop the export by default
+(`--allow_duplicate_run_ids` to override); every problem is also written to <out>.problems.json.
+
 Pairing: `labels.paired_normal_run_ids` lists the normal runs of the same
 (framework, question_id, model) found among ALL input files, so pass the clean
 and inject outputs together.
@@ -46,6 +55,9 @@ import sys
 from collections import defaultdict
 
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import branch_identity  # noqa: E402
 
 try:   # fixed tokenizer for output_tokens_est (the same for every step / backbone)
     import tiktoken
@@ -153,7 +165,7 @@ def _final_answer(rec, log, steps_by_id):
     return (rec.get("verification") or {}).get("regex_extracted")
 
 
-def convert(rec, reg, alias, reasoning_mode):
+def convert(rec, reg, alias, reasoning_mode, branch=None):
     log = rec.get("injection_log") or {}
     fw_raw = rec.get("framework") or log.get("framework") or "unknown"
     fw = alias.get(fw_raw, fw_raw)
@@ -168,6 +180,10 @@ def convert(rec, reg, alias, reasoning_mode):
     # several backbones (a collision found on the first real probe, 2026-10-20)
     model_name = (rec.get("model") or {}).get("name") or "unknown-model"
     run_id = f"{fw}|{model_name}|{dataset}|{rec.get('id')}|{mode_tag}|r{run_index}"
+    if branch is not None:
+        # branch / control arm of a branching run: own identity, never counted as a normal run
+        run_mode = "branch"
+        run_id = branch_identity.branch_run_id(branch)
     structured_fw = _is_structured(log)
 
     obs = log.get("task_observations") or []
@@ -251,7 +267,7 @@ def convert(rec, reg, alias, reasoning_mode):
 
     by_id = {s["step_id"]: s for s in steps}
     gold, acceptable = _gold(rec.get("ground_truth"))
-    is_valid = rec.get("is_valid_normal") if run_mode == "normal" else rec.get("is_valid_error")
+    is_valid = rec.get("is_valid_error") if run_mode == "inject" else rec.get("is_valid_normal")
     task = {"dataset": dataset, "query": rec.get("query"),
             "images": list(rec.get("images") or []),
             "observations": [dict(o, id=f"obs:{o['id']}") for o in obs]}
@@ -289,6 +305,9 @@ def convert(rec, reg, alias, reasoning_mode):
             "output_tokenizer": TOKENIZER,
         },
     }
+    if branch is not None:
+        # experiment metadata: label side only, never rendered into model input or graph features
+        out["labels"]["branch"] = branch
     return out
 
 
@@ -379,6 +398,19 @@ def check(rec):
     """Schema invariants + leak checks; returns a list of problems."""
     probs = []
     ids = {s["step_id"]: s["order"] for s in rec["steps"]}
+    b = rec["labels"].get("branch")
+    if rec["run_mode"] == "branch" or b is not None:
+        if rec["run_mode"] != "branch" or b is None:
+            probs.append("run_mode branch and labels.branch must come together")
+        else:
+            probs += branch_identity.block_problems(b)
+            if rec["run_id"] != branch_identity.branch_run_id(b):
+                probs.append("branch run_id is not <pair_id>|<arm>|rep<k>")
+            if set(b.get("regenerated_step_ids") or []) | set(b.get("replayed_step_ids") or []) != \
+                    {s["step_id"] for s in rec["steps"] if s["kind"] == "llm"}:
+                probs.append("branch regenerated + replayed != llm steps")
+            if any("branch" in s for s in rec["steps"]):
+                probs.append("branch metadata inside steps")
     obs = {o["id"] for o in rec["task"]["observations"]}
     for s in rec["steps"]:
         kind = s.get("kind", "llm")
@@ -466,6 +498,10 @@ def main():
     ap.add_argument("--reasoning", choices=("omit", "keep"), default="omit")
     ap.add_argument("--registry", default=DEFAULT_REGISTRY)
     ap.add_argument("--strict", action="store_true", help="exit 1 if any record fails the checks")
+    ap.add_argument("--branch_sidecar", action="append", default=[],
+                    help="branch identity sidecar(s) for branch_pilot outputs without an embedded `branch` block")
+    ap.add_argument("--allow_duplicate_run_ids", action="store_true",
+                    help="write the export even if run_ids collide (default: stop, nothing written)")
     ap.add_argument("--maa_exclusion", default=None,
                     help="MAA exclusion list (docs/requests/maa_exclusion_v1.json): exact overlaps go to "
                          "labels.maa_overlap, probe candidates to labels.maa_probe (manual review)")
@@ -474,13 +510,20 @@ def main():
     a = ap.parse_args()
 
     reg, alias = load_registry(a.registry)
-    records, n_skipped = [], 0
+    sidecar = {}
+    for sp in a.branch_sidecar:
+        sidecar.update(branch_identity.load_sidecar(sp))
+    records, n_skipped, unstamped = [], 0, []
     for path in a.inputs:
-        with open(path, encoding="utf-8") as f:
+        with branch_identity.open_any(path) as f:
             for line in f:
                 if not line.strip():
                     continue
                 raw = json.loads(line)
+                branch = raw.get("branch") or sidecar.get((os.path.basename(path), raw.get("id")))
+                if branch is None and branch_identity.is_branch_output(path):
+                    unstamped.append(f"{path}:{raw.get('id')}")
+                    continue
                 if not raw.get("injection_log") or raw.get("status") in ("error", "llm_api_failure"):
                     # a sample main.py could not run (status "error"), or an API call
                     # failed mid-run ("llm_api_failure"): no complete trajectory
@@ -488,7 +531,12 @@ def main():
                     print(f"-- skipped {path}:{raw.get('id')} (status={raw.get('status')}, no trajectory)",
                           file=sys.stderr)
                     continue
-                records.append(convert(raw, reg, alias, a.reasoning))
+                records.append(convert(raw, reg, alias, a.reasoning, branch))
+    if unstamped:
+        # fail closed: a branch / control record without its identity would collide with its parent run
+        print(f"!! {len(unstamped)} branch_pilot records have no branch identity (embedded `branch` or "
+              f"--branch_sidecar), e.g. {unstamped[:3]}; nothing written", file=sys.stderr)
+        sys.exit(2)
 
     normals = defaultdict(list)
     for r in records:
@@ -526,27 +574,38 @@ def main():
             pc.annotate(table, r)
             r["provenance"]["phase_canonical_table"] = table["version"]
 
-    seen, n_bad = set(), 0
+    seen, n_bad, dups, problems = set(), 0, defaultdict(int), {}
     for r in records:
         if r["run_id"] in seen:
+            dups[r["run_id"]] += 1
             print(f"!! duplicate run_id {r['run_id']}", file=sys.stderr); n_bad += 1
         seen.add(r["run_id"])
         probs = check(r)
         if probs:
             n_bad += 1
+            problems.setdefault(r["run_id"], []).extend(probs)
             print(f"!! {r['run_id']}: " + "; ".join(probs[:5]), file=sys.stderr)
 
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
+    with open(a.out + ".problems.json", "w", encoding="utf-8") as f:
+        json.dump({"n_records": len(records), "n_with_problems": n_bad,
+                   "duplicate_run_ids": {k: v + 1 for k, v in dups.items()},
+                   "check_problems": problems, "skipped_without_trajectory": n_skipped},
+                  f, ensure_ascii=False, indent=1)
+    if dups and not a.allow_duplicate_run_ids:
+        print(f"!! {len(dups)} duplicate run_ids (see {a.out}.problems.json); nothing written. "
+              f"Pass --allow_duplicate_run_ids to override.", file=sys.stderr)
+        sys.exit(2)
     with open(a.out, "w", encoding="utf-8") as f:
         for r in records:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    by_fw = defaultdict(lambda: [0, 0])
+    by_fw = defaultdict(lambda: [0, 0, 0])
     for r in records:
-        by_fw[r["framework"]][0 if r["run_mode"] == "normal" else 1] += 1
+        by_fw[r["framework"]][{"normal": 0, "inject": 1}.get(r["run_mode"], 2)] += 1
     print(f"exported {len(records)} runs -> {a.out}  (records with problems: {n_bad}; "
           f"skipped without trajectory: {n_skipped})")
-    for fw, (n, i) in sorted(by_fw.items()):
-        print(f"  {fw:22s} normal={n:4d} inject={i:4d}")
+    for fw, (n, i, b) in sorted(by_fw.items()):
+        print(f"  {fw:22s} normal={n:4d} inject={i:4d}" + (f" branch={b:4d}" if b else ""))
     if a.strict and n_bad:
         sys.exit(1)
 

@@ -26,3 +26,14 @@
 - **bootstrap bug**（GPT 在 #1 指出）：属实，已修 `branch_pilot.py`；AUROC 区间 llm_debate [0.394, 0.542]、mdagents [0.430, 0.563]，结论不变；其他脚本无此问题。round16 REPORT 加勘误；复测改为分层报告（翻转 0/12、未判定 0/16）。
 - 已发 #4 第 47 轮（6605421826）、#1 第 48 轮（6605424424）。下一条第 49 轮。
 - 未处理：#3 第四节请 medical-aegis 做阶段 1 医学自然运行（约 $5–15，需复核单价和剩余题库），待用户决定。
+
+## 第 3 轮（2026-11-03 06:04–）：按推荐继续：分叉身份四步完成；方案 A 准备好，等用户批准付费
+用户："按你推荐的继续吧"。本轮离线，未调用付费 API。
+- **分叉身份**（#1 的四步，全部完成）：
+  - `scripts/branch_identity.py`：`branch` 块（experiment_id、protocol_id、parent_run_id、candidate_step_id + candidate_index{t, base 0, sequence llm_steps}、pair_id = 父运行|t_step_id|协议、arm、repetition、descendant / regenerated / replayed 步、每个重生成步的调用标签 + 温度 + 文本 sha1、selection）。
+  - 源头打戳：`branch_pilot.py run` 结束后把 `branch` 写进每条输出记录（mock 试跑通过）。
+  - 回填：`data_runs/branch_pilot_2026-10-26/branch_sidecar.jsonl`，264 条；用完整调用日志核对，264/264 的重生成集合等于 {t}∪D(t)（branch）/ D(t)（control），每个上游调用恰好对应一步。264 个唯一身份、118 组完整 rep0、28 条 rep1（翻转 12、随机未判定 16）。
+  - 导出器：读 .gz；`--branch_sidecar`；分叉记录 `run_mode: "branch"`、`run_id = pair_id|arm|repk`、`labels.branch`（不进 steps），不算 normal；无身份的 branch_pilot 输出直接拒绝；重复 run_id 默认停止、不写输出（`--allow_duplicate_run_ids` 覆盖）；问题明细写 `<out>.problems.json`；`check()` 校验分叉块。原有导出回归逐字节一致（670 条）。
+  - 测试 `tests/test_branch_identity.py` 6 项通过（含：无 sidecar 失败、重复 run_id 停止、父运行存在、两臂前缀与父运行一致）。说明写进 `docs/mas_traj_schema_notes.md` 第 3 节。
+- **方案 A 准备**（`docs/requests/samples/planA_2026-11-03/`，预注册）：`branch_pilot.py` 支持 K=3 全部运行（批次 = 一个 run_index、题目不重复）和 `select_strat`。180 个点：每个位置 主点 15+15、对照候选 1（答错运行里字母对）7+8、对照候选 2（答对运行里字母对）5+10（同伴说对 0 / ≥1），同伴支持度在位置间平衡。预测：主点翻转率 位置 2 > 1 > 0。功效有限（每位置 30 点，模拟单侧功效约 0.6）。mock 试跑（run_index 1）通过。
+- **估算**（按这 180 个点记录的 token）：两臂 $1.30 + 对照复跑约 $0.14 → **约 $1.45**（上限约 $1.6），比 10-27 说的 $1.2 高：run 1–2 的题更长。等用户批准。

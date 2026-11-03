@@ -8,6 +8,7 @@ negative). Controls are re-run (rep 1) on all flipped points and on a random sha
 how deterministic temperature 0 is (the chance-flip baseline).
 
   python scripts/branch_pilot.py select  --fw llm_debate --n 20 --out <dir>
+  python scripts/branch_pilot.py select_strat --fw llm_debate --out <dir>                 # plan A (v11)
   python scripts/branch_pilot.py deps    --fw llm_debate --dir <dir>                      # offline, mock
   python scripts/branch_pilot.py run     --fw llm_debate --dir <dir> --arm branch  --pass 0 --upstream mock|real
   python scripts/branch_pilot.py run     --fw llm_debate --dir <dir> --arm control --pass 0 --rep 1 --only <qids>
@@ -60,6 +61,19 @@ def recorded(fw, run_index=0):
     return out
 
 
+def recorded_all(fw):
+    """{(qid, run_index): record} over all K recorded normal runs."""
+    out = {}
+    for line in open(RECORDED.format(fw=fw), encoding="utf-8"):
+        r = json.loads(line)
+        out[(r["id"], int(r["run_index"]))] = r
+    return out
+
+
+def rec_of(allrec, c):
+    return allrec[(c["qid"], int(c.get("run_index", 0)))]
+
+
 def llm_steps(r):
     return [s for s in r["injection_log"]["conversation_history"] if isinstance(s.get("input_messages"), list)]
 
@@ -93,6 +107,73 @@ def cmd_select(a):
     print(f"{a.fw}: {len({x['qid'] for x in rows})} runs, {len(rows)} candidate points, passes {Counter(x['pass'] for x in rows)}")
 
 
+# Plan A (v11, issue #1 rounds 46-48): llm_debate round-1 agents only, all K recorded runs, stratified by
+# speaker position x peer support (round-1 peers that state the gold letter, 0 or >= 1), so position and
+# peer support are not confounded. Main points: wrong letter in runs that end wrong. Control candidates
+# (MHT r64 cont.): right letter in runs that end wrong, and right letter in runs that end right (right ->
+# wrong direction). Letter-less steps are not candidates. Aggregator / D(t)-empty points are excluded.
+PLAN_A = [  # (run_end, letter_status, n per position with peers_right == 0, n per position with >= 1)
+    ("end_wrong", "wrong", 15, 15),
+    ("end_wrong", "right", 7, 8),
+    ("end_right", "right", 5, 10),
+]
+PLAN_A_RULE = ("plan A v1: llm_debate round-1 agent steps, all K=3 recorded runs, MAA overlap excluded; per "
+               "speaker position: wrong-letter in wrong-ending runs 15 + 15, right-letter in wrong-ending runs "
+               "7 + 8, right-letter in right-ending runs 5 + 10 (peers right 0 / >= 1); seed 0")
+
+
+def cmd_select_strat(a):
+    """Stratified candidates (plan A). One batch ('pass') = one run_index, distinct questions."""
+    os.makedirs(a.out, exist_ok=True)
+    assert a.fw == "llm_debate", "plan A is defined for llm_debate round 1"
+    rng = random.Random(0)
+    pools = defaultdict(list)
+    for (qid, ri), r in sorted(recorded_all(a.fw).items()):
+        if qid in MAA_IDS or r.get("is_correct") is None:
+            continue
+        g, h = gold(r), llm_steps(r)
+        r1 = [i for i, s in enumerate(h) if s.get("round") == 1]
+        if len(r1) != 3:
+            continue
+        L = [letter(h[i].get("content")) for i in r1]
+        end = "end_right" if r["is_correct"] else "end_wrong"
+        for p, i in enumerate(r1):
+            if L[p] is None:
+                continue
+            status = "right" if L[p] == g else "wrong"
+            peers = sum(L[j] == g for j in range(3) if j != p)
+            pools[(end, status, p, min(peers, 1))].append(
+                {"fw": a.fw, "qid": qid, "run_index": ri, "t": i, "n_steps": len(h), "t_step_id": h[i]["step_id"],
+                 "agent": h[i].get("agent_name"), "phase": h[i].get("phase"), "round": 1, "position": p,
+                 "t_letter": L[p], "gold": g, "recorded_final": letter(r.get("response")), "run_end": end,
+                 "letter_status": status, "peers_right": peers, "rule": PLAN_A_RULE})
+    rows = []
+    for end, status, n0, n1 in PLAN_A:
+        for p in range(3):
+            for peer, n in ((0, n0), (1, n1)):
+                pool = pools[(end, status, p, peer)]
+                if len(pool) < n:
+                    sys.exit(f"pool {(end, status, p, peer)} has {len(pool)} < {n}")
+                rows += rng.sample(pool, n)
+    # batches: one run_index each, a question at most once per batch
+    batches = []
+    for c in sorted(rows, key=lambda c: (c["run_index"], c["qid"], c["position"])):
+        for b in batches:
+            if b["ri"] == c["run_index"] and c["qid"] not in b["q"]:
+                break
+        else:
+            b = {"ri": c["run_index"], "q": set(), "n": 0, "id": len(batches)}
+            batches.append(b)
+        b["q"].add(c["qid"]); b["n"] += 1
+        c["pass"] = b["id"]
+    with open(os.path.join(a.out, f"{a.fw}_candidates.jsonl"), "w") as f:
+        for c in sorted(rows, key=lambda c: (c["pass"], c["qid"])):
+            f.write(json.dumps(c) + "\n")
+    print(f"{a.fw}: {len(rows)} candidate points in {len(batches)} batches "
+          f"{[(b['id'], b['ri'], b['n']) for b in batches]}; strata "
+          f"{dict(Counter((c['run_end'], c['letter_status'], c['position'], min(c['peers_right'], 1)) for c in rows))}")
+
+
 def subset_dataset(qids, path):
     d = [x for x in json.load(open(DATASET)) if x["id"] in qids]
     json.dump(d, open(path, "w"), ensure_ascii=False)
@@ -111,14 +192,14 @@ def write_cfg(fw, port, wd, tag):
     return api, cfg
 
 
-def run_main(fw, api, cfg, ds, out, log):
+def run_main(fw, api, cfg, ds, out, log, run_index=0):
     if os.path.exists(out):      # main.py resumes from an existing output file
         os.remove(out)
     env = {k: v for k, v in os.environ.items() if k not in ("AIHUBMIX_API_KEY", "OPENAI_API_KEY")}
     cmd = [sys.executable, "main.py", "--method_name", fw, "--experiment_config", cfg, "--model_api_config", api,
            "--model_name", "llama-4-maverick", "--dataset_file", ds, "--test_dataset_name", "medxpertqa_text",
            "--output_path", out, "--model_temperature", "0.7", "--model_max_tokens", "4096", "--max_workers", "16",
-           "--num_runs", "1", "--run_index_start", "0", "--no_inject"]
+           "--num_runs", "1", "--run_index_start", str(run_index), "--no_inject"]
     with open(log, "w") as lf:
         return subprocess.run(cmd, cwd=REPO, env=env, stdout=lf, stderr=subprocess.STDOUT).returncode
 
@@ -136,9 +217,9 @@ def cmd_deps(a):
     exactly D(t) at temperature 0."""
     path = os.path.join(a.dir, f"{a.fw}_candidates.jsonl")
     cands = [json.loads(l) for l in open(path)]
-    rec = recorded(a.fw)
+    rec = recorded_all(a.fw)
     for c in cands:
-        h = llm_steps(rec[c["qid"]])
+        h = llm_steps(rec_of(rec, c))
         dep = {c["t_step_id"]}
         for s in h[c["t"] + 1:]:
             src = s.get("sources") or []
@@ -212,6 +293,10 @@ def cmd_run(a):
     if a.limit:
         cp = cp[:a.limit]
     tag = f"{a.fw}_p{a.pass_}_{a.arm}_rep{a.rep}"
+    ris = {int(c.get("run_index", 0)) for c in cp}
+    if len(ris) != 1 or len({c["qid"] for c in cp}) != len(cp):
+        sys.exit(f"{tag}: a batch needs one run_index and distinct questions (got run_index {ris})")
+    ri = ris.pop()
     wd = os.path.join(a.dir, "runs"); os.makedirs(wd, exist_ok=True)
     spec = os.path.join(wd, f"{tag}_spec.jsonl")
     with open(spec, "w") as f:
@@ -230,13 +315,31 @@ def cmd_run(a):
                 env[k.replace("export ", "")] = v.strip().strip('"').strip("'")
         upstream = "https://aihubmix.com/v1"
     srv = start_server(["scripts/branch_replay_server.py", "--port", str(a.port), "--results", RECORDED.format(fw=a.fw),
-                        "--spec", spec, "--log", calls, "--upstream", upstream], calls, os.path.join(wd, f"{tag}_server.log"), env)
+                        "--run_index", str(ri), "--spec", spec, "--log", calls, "--upstream", upstream], calls, os.path.join(wd, f"{tag}_server.log"), env)
     try:
         ds = os.path.join(wd, f"{tag}_ds.json"); subset_dataset({c["qid"] for c in cp}, ds)
         api, cfg = write_cfg(a.fw, a.port, wd, tag)
-        rc = run_main(a.fw, api, cfg, ds, os.path.join(wd, f"{tag}_out.jsonl"), os.path.join(wd, f"{tag}_main.log"))
+        rc = run_main(a.fw, api, cfg, ds, os.path.join(wd, f"{tag}_out.jsonl"), os.path.join(wd, f"{tag}_main.log"), ri)
     finally:
         srv.terminate()
+    # run identity at the source (issue #1, 2026-11-03): embed a `branch` block in every output record
+    import branch_identity
+    out = os.path.join(wd, f"{tag}_out.jsonl")
+    reasons = None
+    if a.rep > 0:
+        fin = {}
+        for arm in ("branch", "control"):
+            p0 = os.path.join(wd, f"{a.fw}_p{a.pass_}_{arm}_rep0_out.jsonl")
+            for l in open(p0) if os.path.exists(p0) else []:
+                r = json.loads(l)
+                fin[(arm, r["id"])] = letter(r.get("response"))
+        reasons = {c["qid"]: ("flipped_at_rep0" if fin.get(("branch", c["qid"])) != fin.get(("control", c["qid"]))
+                              else "random_undetermined") if ("branch", c["qid"]) in fin else "rep0_missing"
+                   for c in cp}
+    if os.path.exists(out):
+        bad = branch_identity.stamp_file(out, cp, a.arm, a.rep, calls, a.experiment_id or os.path.basename(
+            os.path.abspath(a.dir)), reasons, a.fw)
+        print(f"{tag}: branch identity stamped; problems {len(bad)}" + (f" e.g. {bad[:3]}" if bad else ""))
     L = [json.loads(l) for l in open(calls)]
     up = [x for x in L if x.get("upstream")]
     cost = sum((x.get("usage") or {}).get("prompt_tokens", 0) * P_IN + (x.get("usage") or {}).get("completion_tokens", 0) * P_OUT for x in up)
@@ -280,7 +383,7 @@ def cmd_analyze(a):
     tot_cost = 0.0
     for fw in fws:
         cands = {(c["qid"], c["pass"]): c for c in map(json.loads, open(os.path.join(a.dir, f"{fw}_candidates.jsonl")))}
-        rec = recorded(fw)
+        rec = recorded_all(fw)
         outs = defaultdict(dict)    # (qid, pass) -> {(arm, rep): record}
         calls = []
         for fn in os.listdir(wd):
@@ -321,7 +424,7 @@ def cmd_analyze(a):
             pos[c["phase"]]["flip"] += flip
             # step t: recorded text vs its natural resample (same slot)
             bs = next((s for s in o[("branch", 0)]["injection_log"]["conversation_history"] if s.get("step_id") == c["t_step_id"]), None)
-            os_ = next(s for s in llm_steps(rec[c["qid"]]) if s["step_id"] == c["t_step_id"])
+            os_ = next(s for s in llm_steps(rec_of(rec, c)) if s["step_id"] == c["t_step_id"])
             if bs is not None and bs.get("content") and bs.get("content") != os_.get("content"):
                 orig_t.append(os_["content"]); new_t.append(bs["content"]); grp.append(c["qid"])
             if flip and len(examples) < 3:
@@ -346,7 +449,7 @@ def cmd_analyze(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["select", "deps", "deps_mock", "run", "analyze"])
+    ap.add_argument("cmd", choices=["select", "select_strat", "deps", "deps_mock", "run", "analyze"])
     ap.add_argument("--fw")
     ap.add_argument("--n", type=int, default=20)
     ap.add_argument("--out")
@@ -358,8 +461,9 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--upstream", choices=["mock", "real"], default="mock")
     ap.add_argument("--port", type=int, default=18200)
+    ap.add_argument("--experiment_id", default=None, help="branch identity experiment id (default: basename of --dir)")
     a = ap.parse_args()
-    {"select": cmd_select, "deps": cmd_deps, "deps_mock": cmd_deps_mock, "run": cmd_run, "analyze": cmd_analyze}[a.cmd](a)
+    {"select": cmd_select, "select_strat": cmd_select_strat, "deps": cmd_deps, "deps_mock": cmd_deps_mock, "run": cmd_run, "analyze": cmd_analyze}[a.cmd](a)
 
 
 if __name__ == "__main__":
