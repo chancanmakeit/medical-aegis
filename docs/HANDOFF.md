@@ -1,17 +1,24 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-03（会话 v11 讨论第 6 轮，issue 我方第 53 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-03（会话 v11 讨论第 7 轮，issue 我方第 54 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 6 轮，2026-11-03）
+## 当前状态（v11 讨论第 7 轮，2026-11-03）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
 **讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
-- #1 语料需求主线（我方第 53 轮 6612871277）；#2 CDE × Jev 方法讨论；#3 中训练动机 / 多框架运行（我方第 52 轮 6612194217）；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+- #1 语料需求主线（我方第 54 轮 6615225277）；#2 CDE × Jev 方法讨论；#3 中训练动机 / 多框架运行（我方第 52 轮 6612194217）；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
 
-**API 端点文档已搬家：** Project 同步的 private-documents `任务基础上下文/api端点.txt`（`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`，只读这一个文件）。新会话从这里重建 `/home/claude/.mht_api.env`，另加 `XIAOJINGAI_GEMINI_API_KEY`（gemini 系列低价 key）和 `XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。
+**API 端点文档已搬家：** Project 同步的 private-documents `任务基础上下文/api端点.txt`（`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`，只读这一个文件）。新会话从这里重建 `/home/claude/.mht_api.env`，另加 `XIAOJINGAI_GEMINI_API_KEY`（gemini 系列低价 key）和 `XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量查询（免费）：`curl -H "Authorization: Bearer $XIAOJINGAI_GEMINI_API_KEY" "https://open.xiaojingai.com/v1/dashboard/billing/usage?start_date=..&end_date=.."`，`total_usage` 单位 ¥0.01；价目表 ¥0.036 / ¥0.144 **每百万 token**（已实测核对）。
 
-**本轮（v11 第 6 轮）：gemini-2.5-flash-lite（xiaojingai，用户指定的新 backbone）试跑完成，按 Google 列表价约 $0.48（上界；价目表 ¥0.036 / ¥0.144，单位待用户确认）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md`。
+**本轮（v11 第 7 轮）：用户决定把其他框架加入评测集、多模态框架可用 PathVQA / SLAKE / Kvasir-VQA-x1、eval 池按推荐（800 题）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md` 第 2 部分。
+- 另外 4 个框架校准完：**协议 v2 只在下游稳定的框架够用**（噪声底 d：llm_debate / mdagents 约 0.016，AgentVerse 0.136，DyLAN 0.150，MedAgents 0.095，MAC 0.056；MAC 的 confirmed 全在噪声内）。提议**协议 v3**（2+2 起步，有分歧扩到 6+6，Fisher 单侧 p<0.05），报价约 $3.5（实测价），**待用户批准**。
+- DyLAN 改私有 RNG（可回放）；分叉身份按请求 key 匹配，`t_step_id_in_run` + `branch.structure`（DyLAN 的 `sources` 漏依赖：221/350）；回放 key 忽略图像部分。
+- 多模态数据 `datasets/data/mm_v1/`（图片在 `/home/claude/mm_data`，不入 git；`scripts/build_mm_datasets.py` 按 HF 固定 commit 重建，需 HF 令牌）。mdagents 是唯一原生图像框架；MM 试跑通过。
+- 运行：自然 `scripts/runners/gemini_run.sh <fw> <pool> <limit> [K]`（`DATASET=` 可指定 mm_v1 文件）；分叉 `branch_pilot.py --backbone gemini select_all / deps / run`；校准分析 `scripts/branch_eval_calibration.py`；离线回放 `scripts/runners/replay_gemini.sh`。本地工作目录 `/home/claude/gemini_runs`、`/home/claude/branch_gemini_cal{,2}`（全部输出已入库 `data_runs/gemini_trial_2026-11-03/`）。
+- 协议 v3 还没实现：需要 `branch_pilot.py run` 支持同一点多次 branch（`--rep k` 对 branch 臂）、自适应扩展和 Fisher 判定的分析脚本。
+
+**v11 第 6 轮：gemini-2.5-flash-lite（xiaojingai，用户指定的新 backbone）试跑完成，按 Google 列表价约 $0.48（上界；价目表 ¥0.036 / ¥0.144，单位待用户确认）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md`。
 - 题池 `datasets/data/pools_v1/`（eval 400 / corpus 1,849；锚点和 MAA 已排除；eval 题永不进训练语料）。
 - 6 个 MCQ 框架都在真实端点跑通（`scripts/runners/gemini_run.sh <fw> <eval|corpus> <limit> [K]`，YAML `experiments/fm_injection/gemini/`，输出 `/home/claude/gemini_runs`）。**DyLAN 已修**（`num_rounds` 3；10-21 以来 DyLAN 全是空轨迹）。新状态 `framework_error`。
 - 分叉：`branch_pilot.py --backbone gemini`、`select_all`；校准在 `/home/claude/branch_gemini_cal`（入库 `data_runs/gemini_trial_2026-11-03/`）。confirmed / 父运行：llm_debate 0.39，mdagents 0.29。报价每 100 confirmed：llm_debate 约 $3.3，mdagents 约 $2.3（列表价）。
@@ -43,14 +50,14 @@
 - 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
 
 **沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 53 轮（#1 6612871277），下一条第 54 轮。
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 54 轮（#1 6615225277），下一条第 55 轮。
 - MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
 - 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
 - 修改本节时整节重写，不要原地字符串替换。
 
 **待用户决定**
-1. 评测集正式规模：只做 llm_debate + mdagents（各 100 confirmed 约 $5.6 列表价），还是加 medagents_mc / MAC / DyLAN / AgentVerse（产出率未测）；eval 池是否扩到 800 题。xiaojingai 价目表单位（看账户余额变化）。
-2. #3 第四节：请我方做阶段 1 医学自然运行（MHT 估约 $5–15，单价和剩余题库要我方复核）。
+1. 协议 v3 与规模（约 $3.5 实测价）：llm_debate / mdagents / AgentVerse / DyLAN 各 100 阳性，MedAgents / MAC 各 40 父运行，mdagents 多模态 4 个数据集各 50 父运行。
+2. #3：多框架自然运行（语料池）的正式规模。
 3. 主数据（其他框架、正式配置）的生成方案。
 
 ---

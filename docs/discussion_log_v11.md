@@ -74,3 +74,13 @@
 - **分叉代码：** `branch_pilot.py` 加 `--backbone {anchor,gemini}`（记录文件、模型、YAML、端点、key、价格、题集）和 `select_all`（答错运行的全部 LLM 步）。`branch_identity.stamp_file` 改为在整个文件内按文本匹配上游调用（重采样招募者后，服务器把 miss 记到了错误的 qid），并容许判分调用（CORRECT/INCORRECT）。校准分析 `scripts/branch_eval_calibration.py`。
 - **校准结果：** confirmed / 父运行 llm_debate 0.39（7 个 / 18 条），mdagents 0.29（5 / 17）；gemini 重采样改字母更少（第 1 轮 12/54）。报价（列表价）每 100 confirmed：llm_debate 约 $3.3，mdagents 约 $2.3；两个框架各 100 约 $5.6。eval 池在 K=1 下不够，建议扩到 800 题。
 - 已发 #1 第 53 轮（comment 6612871277）。下一条第 54 轮。
+
+## 第 7 轮（2026-11-03 11:42–）：用户三项决定；另外 4 个框架校准；多模态数据
+用户："首先，可以把其他框架也加进来；其次，若存在某些框架是针对多模态问答 case 的话，那么除了 medxpertqa 数据集之外，也可以用类似于 pathvqa、SLAKE、Kvasir-VQA 数据集（SimulaMet/Kvasir-VQA-x1）；最后，关于评测题池，按你推荐来。"
+- **eval 池扩到 800**（原 400 是前缀）。
+- **实测价格：** xiaojingai `/v1/dashboard/billing/usage`（单位 ¥0.01，`/home/claude/posts/xj_usage.sh` 已不入库，命令见报告）与 token 吻合：价目表是每百万 token，约 Google 列表价 1/20。今天合计约 ¥2.5。
+- **4 个框架校准**（20 条父运行、全步、v2）：confirmed 超出噪声预期：AgentVerse +8，DyLAN +12，MedAgents +3，MAC −1.5（llm_debate +6，mdagents +4）。噪声底 d：AgentVerse 0.136，DyLAN 0.150，MedAgents 0.095，MAC 0.056，llm_debate / mdagents 约 0.016。**v2 只在下游稳定的框架够用。** 提议协议 v3（2+2 起步，有分歧扩到 6+6，Fisher 单侧 p<0.05）。
+- **修复：** DyLAN 改用私有 RNG（之前全局 random 被线程共享，回放 85/220 → 599/599）；分叉身份按请求 key 匹配，新增 `t_step_id_in_run`、`branch.structure`（含 `hidden_dependency_step_ids`：DyLAN 221/350 条有 `sources` 漏掉的依赖）；回放 key 忽略图像部分。
+- **多模态：** 子 agent 建 `datasets/data/mm_v1/`（`scripts/build_mm_datasets.py`；图片在 `/home/claude/mm_data`，不入 git）：MedXpertQA-MM 1,998、PathVQA 3,354、SLAKE 412、Kvasir-VQA-x1 1,124（CC-BY-NC）；各 eval 200。mdagents 是唯一原生图像框架，各 10 题试跑通过，回放 70/70。
+- 报价（v3，实测价格）：llm_debate / mdagents / AgentVerse / DyLAN 各 100 阳性 + MedAgents / MAC 各 40 父运行 + mdagents 多模态 4×50 父运行，约 $3.5（¥25）。
+- 已发 #1 第 54 轮（comment 6615225277）。下一条第 55 轮。
