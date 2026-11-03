@@ -108,3 +108,11 @@ whose slots differ from the paired fmt_v1_2 slots.
   points (0/39) serve as the single-step sampling-flip baseline.
 - Temperature-0 nondeterminism: 0/28 control re-runs disagree (95% upper bound ~10%, rule of three).
 - Files: `dt_sizes.txt`.
+
+## Erratum (2026-11-03)
+- The AUROC bootstrap in `scripts/branch_pilot.py` turned the resampled questions into a set and lost
+  their multiplicity (found by GPT, issue #1 comment 6599933976). Fixed to a with-replacement question
+  cluster bootstrap over the same out-of-fold scores (no refitting variance). Point estimates unchanged:
+  llm_debate 0.467 [0.394, 0.542] (was [0.408, 0.519]); mdagents 0.496 [0.430, 0.563] (was [0.447, 0.548]).
+- Control re-runs were selective (all flips + random undetermined points). Report them stratified:
+  flips 0/12, undetermined 0/16, not as an unconditional 0/28 nondeterminism rate.

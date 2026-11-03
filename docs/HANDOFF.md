@@ -1,46 +1,52 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-10-27（会话 v11 讨论第 1 轮，issue 我方第 46 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-03（会话 v11 讨论第 2 轮，issue 我方第 48 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 1 轮，2026-10-27）
+## 当前状态（v11 讨论第 2 轮，2026-11-03）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
-**本轮（v11 第 1 轮）**：新会话续接，环境按入口文档恢复（`restore_workspace.sh` hf 模式一次成功）。MHT 第 64 轮续（comment 6436721040）：**SAMT v1 结果还没贴**（Linux #2 连接器断开，任务在后台跑）；对分叉扩大提两点混杂：(a) 位置，(b) 候选点"字母错"在文本里可见。离线核实（`scripts/branch_position_analysis.py`，报告 `docs/requests/samples/position_check_2026-10-27/REPORT.md`，未花钱）：
-- llm_debate 第 2 轮**近因效应**：agent 倾向于改成提示里最后一条他人意见（2 对 1 时 56%；第一条只拉走 20%）。第 45 轮"agent 0 决定性"已在第 46 轮更正。mdagents 无明显顺序效应。
-- 试点翻转主要取决于**同伴支持度**（同伴里已有几人说出正确字母）：llm_debate 第 1 轮和 mdagents 专家点里，0 人时 3/40，至少 1 人（llm_debate）或至少 2 人（mdagents）时 9/16。旧选点规则把票差编码进位置，且从没选到第 1 轮 agent 2。
-- 平凡基线 AUROC（79 点，留一题外）：轮次 × 位置 0.76，同伴支持度 0.78。MHT 的 (a)(b) 成立。
-- 扩大方案：A 约 $1.2（只 llm_debate 第 1 轮，按位置分层 + 对照候选点，检验近因效应的干预证据）；B 约 $2.1（两框架分层扩大）。单价来自试点按层实测：llm_debate 第 1 轮 $0.0064/点、第 2 轮 $0.0022，mdagents 专家 $0.0015。
+**讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
+- #1 语料需求主线（我方第 48 轮 6605424424）；#2 CDE × Jev 方法讨论；#3 中训练动机与是否请我方生成中训练语料；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+
+**本轮（v11 第 2 轮，离线）**：回答 #4 点名我方的三个问题，处理 #1 里 GPT / Muse 指出的两个问题。
+- 问 1 动作类型：锚点 13,379 步无代码、无工具调用，决策都在 `structured`，可按"框架 × structured 键"表确定性派生 `actions[]`（一步可兼有消息和决策）。公开数据：工具调用位置因转换器而异；`kind: tool` 与 `environment/tool_output` 并存，应合并；代码只以代码块出现，无执行对齐时标 `code_unverified`。
+- 问 2 思考：导出器有 `--reasoning keep`；llama-4-maverick 无思考输出；公开数据全无。
+- 问 3 分叉关联：**没有关联字段**。264 条分叉记录按导出器身份只有 40 组（最多重复 8 次）。已接受四步：源头打戳（arm / pair_id / parent_run_id / protocol_id / repetition / candidate_step_id=t_step_id）→ 264 条全量回填 sidecar → 导出器对重复 run_id 默认失败、明细写进报告文件 → 单元测试。**等用户确认后做**，离线。MHT 已承诺 sidecar 落地前不把分叉原始文件交给通用导出器。
+- 更正 #4 正文：`how` 是变换语义，`inferred` 是采集方式（缺失 = runtime），建议显式化为 `collection`。
+- **bootstrap bug 已修**（`branch_pilot.py`，set 丢了重复次数）：AUROC llm_debate 0.467 [0.394, 0.542]，mdagents 0.496 [0.430, 0.563]，结论不变；round16 REPORT 加勘误；复测分层报：翻转点 0/12、未判定点 0/16。
+- 1.1 的标签 sidecar：分叉只产出 `outcome_sensitive_under_protocol`，`answer_changed` 与 `correctness_changed` 分开存（12 个翻转里 11 个由错变对），不产出 `decisive_step`，未翻转写 undetermined。
+
+**v11 第 1 轮（仍有效）**：llm_debate 第 2 轮有近因效应（2 对 1 时 56% 改成最后一条他人意见）；试点翻转主要取决于同伴支持度；平凡基线 AUROC 轮次 × 位置 0.76、同伴支持度 0.78（`docs/requests/samples/position_check_2026-10-27/REPORT.md`）。MHT 第 64 轮续 3（#1 6442362292）：SAMT v1 图 token 读得出来，但 MAA 缺陷层 SFT 无提升；他们认为结构应在责任层（分叉数据）更有用；扩大方案倾向 A。
 
 **仍有效的结论（v10）**
-- 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40，几乎全是由错变对；对照复跑 0/28 不一致；第 t 步原文对重采样 AUROC 0.47 / 0.50；无漏边。aggregator 点（D(t) 为空）不再作为候选。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
-- fmt_v1_2 不推广（llm_debate 保持 fmt_v1）；mdagents 正式配置保留 match_opener（MHT 同意；`format_matched=false` 的点 MHT 训练时排除，导出要保留该标签）。
-- `phase_canonical` v1 已采用，导出器默认写入；MHT 转换器 import 我们的 `scripts/phase_canonical.py`，**改接口先通知 MHT**。MHT 转换器现写 `phase_canonical_table.version`（`phase_canonical/1`）。
-- MHT 纯文本 TAPT 无提升；SAMT v1（结构感知中训练）在跑。
+- 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
+- fmt_v1_2 不推广（llm_debate 保持 fmt_v1）；mdagents 正式配置保留 match_opener（`format_matched` 路径 `pi_length_match.format.format_matched`）。
+- `phase_canonical` v1 已采用；MHT 转换器 import 我们的 `scripts/phase_canonical.py`，**改接口先通知 MHT**。
 - 合成路线：在真实轨迹上分叉为主，注入为辅，不让 LLM 整条写轨迹；不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。
-- 估算：1 题试跑不触发重采样，注入/验证类运行要按重试率修正；分叉不涉及格式重采样，没有这个放大。
+- 估算：注入/验证类运行要按重试率修正；分叉没有这个放大。
 
 **锚点数据**（只用 llama-4-maverick，aihubmix；响应 model 字段 `google/gemma-4-31B-it-turbo`，用户说明不再核实）
 - 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents；题目 `datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
 - 已有：normal 100 题 × K=3；run 0 = RC；旧说明 `_pi4`/`_sham`/`_shamstyle`（不进训练）；fmt_v1 `_pi5`/`_sham5`；fmt_v1_1 `_pi6`/`_sham6`；fmt_v1_2 `_v12`；mdagents match_opener `_op`（50 题 sham）。
-- 原始结果 `data_runs/anchor_llama_2026-10-21/*.jsonl.gz`（命令见该目录 README；导出加 `--maa_exclusion docs/requests/maa_exclusion_v1.json`）；本地解压副本 `/home/claude/anchor_runs/`。
-- 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`（OUT / SUFFIX / EXTRA / CFGNAME；用 `bash` 调用）。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
-- 验收标准（MHT 第 47 轮）：MHT `norm()` 清洗后同槽位 sham 对 normal 在 punct 和 char 下 CI 覆盖 0.5 或不超过 RC 上限 0.62。
+- 原始结果 `data_runs/anchor_llama_2026-10-21/*.jsonl.gz`（导出加 `--maa_exclusion docs/requests/maa_exclusion_v1.json`）；本地解压副本 `/home/claude/anchor_runs/`。
+- 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
 
 **沟通**
-- MHT：medical-aegis issue #1（`gh api repos/chancanmakeit/medical-aegis/issues/1/comments?per_page=100&page=N`）。我方最新**第 46 轮**（comment 6436904644），下一条第 47 轮；MHT 最新第 64 轮续（comment 6436721040）。MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。
-- MAFA：MAFA 仓库 issue #1，暂无待办，不往 MAFA 仓库提交代码。
-- 先读对方最新评论，读完再单独发帖。正则统计先在 normal 步上查误报率。
-- 不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 48 轮（#1 6605424424；#4 第 47 轮 6605421826），下一条第 49 轮。
+- MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
+- 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
 - 修改本节时整节重写，不要原地字符串替换。
 
 **待用户决定**
-1. 分叉扩大：A（约 $1.2）、B（约 $2.1），或先等 SAMT v1 结果。无论哪种：去掉 aggregator 点、按（轮次, 位置）分层、加对照候选点、记录同伴支持度、评测报告两个平凡基线。
-2. 主数据（其他框架、正式配置）的生成方案。
+1. 分叉身份四步（离线，免费）：做不做、现在做还是和扩大一起做。
+2. 分叉扩大：A（约 $1.2）、B（约 $2.1）。MHT 倾向 A。
+3. #3 第四节：请我方做阶段 1 医学自然运行（MHT 估约 $5–15，单价和剩余题库要我方复核）。
+4. 主数据（其他框架、正式配置）的生成方案。
 
 ---
 
-> 新会话按顺序读：**本文件**（顶部的"当前状态"） → `docs/discussion_log_v10.md`（当前会话记录）→ `docs/discussion_log_v9.md`（上一会话，锚点和门槛的逐轮细节）→ `docs/discussion_log_v8.md`→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
+> 新会话按顺序读：**本文件**（顶部的"当前状态"） → `docs/discussion_log_v11.md`（当前会话记录）→ `docs/discussion_log_v10.md`→ `docs/discussion_log_v9.md`（上一会话，锚点和门槛的逐轮细节）→ `docs/discussion_log_v8.md`→ 需要时再读 `docs/HANDOFF_prev_session.md`（AEGIS 原代码会话的技术交接）和 `docs/requests/`（MedHyperTrace 的需求规格）。
 > 资源清单见 `docs/HANDOFF_RESOURCES.md`。
 
 ---

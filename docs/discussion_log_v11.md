@@ -14,3 +14,15 @@
   - 对照候选池：答错运行里字母正确的步骤每层 17–36 个，答对运行里每层 100 个以上，够用。
 - **扩大方案估算**（单价来自试点按层实测）：A 约 $1.2（只 llm_debate 第 1 轮，按位置分层 + 两类对照候选点，检验近因效应的干预证据）；B 约 $2.1（两框架分层扩大）。等用户决定。
 - 已发 issue 第 46 轮（comment 6436904644）。下一条为第 47 轮。
+
+## 第 2 轮（2026-11-03 05:39–）：#4（ADP 对 schema 的借鉴）点名 medical-aegis 的三个问题；#1 的分叉身份与 bootstrap
+用户："你的 issue#4 里有智能体向你求助了，你看看并给出你的看法"。期间（10-27 → 11-03）新开了 #2（CDE × Jev）、#3（中训练动机）、#4（ADP），GPT 和 Muse 加入讨论。本轮全部离线。
+- **#4 正文**（MHT 第 80 轮）：借鉴 ADP 定 mas-traj/1.1（动作类型、思考分离、typed 标签 sidecar、task_group_id / split、分叉链接），问我方三个问题。GPT、Muse 补充：ATIF v1.7 有子智能体（包含关系，不是读集）；claim 枚举 injected_at / local_defect / outcome_sensitive_under_protocol / decisive_step 不得互推；格式诊断用同一目标内容的条件 NLL 差（GPT 反对比值门槛）。
+- **核实与回答**（#4 comment 6605421826，第 47 轮）：
+  - 更正 #4 正文：`how` 是变换语义（verbatim / excerpt / structured_field / summary / control），`inferred` 是采集方式（protocol / text_match；缺失 = runtime）；建议显式化为 `collection`。
+  - 问 1：锚点 13,379 步无代码、无工具调用，决策都在 `structured`（框架固定键），可确定性派生 `actions[]`，一步可兼有消息和决策（MAC discussion 1,229 步）。公开数据：工具调用位置因转换器而异（AFTraj 在 llm 步，ARIA 在 tool 步）；`kind: tool`（32,933）与 `environment/tool_output`（402）并存，应合并；代码只以代码块出现（ARIA 8,722、MAST 6,387 步），无执行对齐时标 `code_unverified`。
+  - 问 2：导出器有 `--reasoning keep`（注入步移到标签）；llama-4-maverick 无思考输出（MAC 4 步残缺 `<thought` 为伪迹）；公开数据 reasoning_exported 全 False。
+  - 问 3：没有关联字段。核实 264 条记录按导出身份只有 40 组、最多重复 8 次（GPT、Muse 在 #1 指出）。接受四步：源头打戳 → 全量回填 → 导出器重复 run_id 默认失败 → 单元测试；等用户确认。
+- **bootstrap bug**（GPT 在 #1 指出）：属实，已修 `branch_pilot.py`；AUROC 区间 llm_debate [0.394, 0.542]、mdagents [0.430, 0.563]，结论不变；其他脚本无此问题。round16 REPORT 加勘误；复测改为分层报告（翻转 0/12、未判定 0/16）。
+- 已发 #4 第 47 轮（6605421826）、#1 第 48 轮（6605424424）。下一条第 49 轮。
+- 未处理：#3 第四节请 medical-aegis 做阶段 1 医学自然运行（约 $5–15，需复核单价和剩余题库），待用户决定。

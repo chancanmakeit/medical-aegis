@@ -263,9 +263,12 @@ def auroc_pairs(a_texts, b_texts, groups):
     rng = np.random.default_rng(0)
     qs = sorted(set(groups))
     boots = []
+    by_q = {q: np.flatnonzero(g == q) for q in qs}
     for _ in range(1000):
-        pick = set(rng.choice(qs, len(qs)))
-        idx = [i for i in range(len(X)) if g[i] in pick]
+        # cluster bootstrap with replacement: a question drawn k times contributes its rows k times
+        # (fixed 2026-11-03; it used to be set(rng.choice(...)), which dropped the multiplicity).
+        # CI over fixed out-of-fold scores: it does not include refitting variance.
+        idx = np.concatenate([by_q[q] for q in rng.choice(qs, len(qs), replace=True)])
         if len(set(y[idx])) == 2:
             boots.append(roc_auc_score(y[idx], scores[idx]))
     return auc, np.percentile(boots, 2.5), np.percentile(boots, 97.5)
