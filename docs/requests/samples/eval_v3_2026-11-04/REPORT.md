@@ -46,6 +46,31 @@ Notes
 - **Expansion (v11 r11, user-approved ≈ ¥5):** triage_agent run_index 1–3 (648 natural runs, 167 wrong-ending parents); MAM heartbeat_a / heartbeat_b: run-0 parents unused by the first batch plus run_index 1 (`scripts/build_expansion_parents.py`). Different run_index of the same question are correlated: group by question when evaluating.
 - Positive ≠ "this step caused the error": the final answer is sensitive to resampling this step under the protocol. "wrong → right" counts positives where the branch majority is correct.
 
+## Trivial baselines (within trajectory; `scripts/branch_v3_baselines.py`)
+Parents with ≥ 1 positive; positives vs the other labelled points of the same run; final-call-only positives excluded; CI = bootstrap over parents. AUROC > 0.5: positives score higher (longer / later); < 0.5: shorter / earlier.
+
+| group | rule | parents with ≥1 positive | positives | step length AUROC [95% CI] | relative position AUROC [95% CI] |
+|---|---|---|---|---|---|
+| agentverse | own | 86 | 99 | 0.740 [0.685, 0.795] | 0.358 [0.305, 0.409] |
+| agentverse | pooled | 74 | 81 | 0.739 [0.680, 0.803] | 0.322 [0.271, 0.369] |
+| llm_debate | own | 35 | 41 | 0.815 [0.744, 0.881] | 0.284 [0.203, 0.367] |
+| llm_debate | pooled | 25 | 28 | 0.840 [0.777, 0.898] | 0.259 [0.171, 0.351] |
+| mac_groupchat | own | 8 | 8 | 0.973 [0.914, 1.000] | 0.108 [0.091, 0.125] |
+| mac_groupchat | pooled | 6 | 6 | 0.960 [0.880, 1.000] | 0.120 [0.111, 0.130] |
+| mam | own | 37 | 45 | 0.743 [0.677, 0.804] | 0.416 [0.327, 0.505] |
+| mam | pooled | 37 | 44 | 0.752 [0.688, 0.810] | 0.408 [0.325, 0.492] |
+| mdagents | own | 62 | 82 | 0.534 [0.465, 0.599] | 0.517 [0.448, 0.586] |
+| mdagents | pooled | 49 | 64 | 0.516 [0.449, 0.593] | 0.509 [0.437, 0.585] |
+| mdagents_mm | own | 16 | 20 | 0.593 [0.465, 0.717] | 0.417 [0.278, 0.559] |
+| mdagents_mm | pooled | 12 | 14 | 0.532 [0.385, 0.688] | 0.416 [0.286, 0.563] |
+| medagents_mc | own | 10 | 16 | 0.684 [0.484, 0.867] | 0.280 [0.204, 0.342] |
+| medagents_mc | pooled | 6 | 9 | 0.562 [0.333, 0.806] | 0.254 [0.167, 0.329] |
+| triage_agent | own | 31 | 32 | 0.577 [0.441, 0.710] | 0.297 [0.217, 0.383] |
+| triage_agent | pooled | 28 | 29 | 0.587 [0.434, 0.739] | 0.303 [0.219, 0.403] |
+
+- Replicates MHT's audit on the text MCQ jobs (AgentVerse 0.740 vs their 0.761, llm_debate 0.815 / 0.814, mdagents 0.534 / 0.538, MAC 0.973 / 0.972).
+- **MAM** is length-confounded like AgentVerse (0.74–0.75). **triage_agent** is not clearly length-confounded (0.58, CI includes 0.5) but positives are early (position 0.30: "pick the earliest step" ≈ 0.70). mdagents (text and multimodal) stays the cleanest.
+
 ## Cost
 - First batch: xiaojingai usage 3881.41 → 6899.93 (≈ ¥30.2, incl. natural runs of triage_agent and MAM).
 - Expansion: ≈ ¥5.0 by token count (v3 ¥4.5 + natural runs ¥0.5); the usage counter rose ≈ ¥11.2 in the same 3.7 h, but it also rises ≈ ¥1.1 / h with none of our processes running (another client on the same key), so the counter overstates our spend.
@@ -55,5 +80,5 @@ Notes
 - `data_runs/eval_v3_2026-11-04/<job>/`: `labels_v3.jsonl.gz` (typed annotation records), `summary.md` (per step type), `*_candidates.jsonl.gz`, `*_stage2_plan.txt`, `branch_records_compact.jsonl.gz` (every branch record: `branch` block, final answer, correctness, text of the **regenerated** steps; replayed steps = the parent's).
 - `data_runs/eval_v3_2026-11-04/parents/`: frozen parent runs (`*_x` = expansion parents; they repeat the unused run-0 records of the base file).
 - `data_runs/eval_v3_2026-11-04/parents_mastraj/`: the same parents exported as mas-traj/1 normal runs (sources with `collection`, `provenance.sources_complete`); every label's `target.run_id` is found there.
-- Scripts: `scripts/runners/branch_v3.sh`, `scripts/branch_pilot.py`, `scripts/branch_v3_analysis.py`, `scripts/branch_v3_compact.py`, `scripts/branch_v3_report.py`, `scripts/branch_restamp.py`, `scripts/fix_dataset_tag.py`, `scripts/build_expansion_parents.py`, watchdog `scripts/runners/eval_v3_watchdog.sh`.
+- Scripts: `scripts/runners/branch_v3.sh`, `scripts/branch_pilot.py`, `scripts/branch_v3_analysis.py`, `scripts/branch_v3_compact.py`, `scripts/branch_v3_report.py`, `scripts/branch_restamp.py`, `scripts/fix_dataset_tag.py`, `scripts/build_expansion_parents.py`, `scripts/branch_v3_baselines.py`, watchdog `scripts/runners/eval_v3_watchdog.sh`.
 - Full uncompacted outputs (~9 GB, with call logs) stay in the session container `/home/claude/eval_v3/` and are not archived.
