@@ -135,3 +135,5 @@
 - **用户选择：跑 4 个框架，不跑 DyLAN（约 ¥6.6）。** 已开跑（`/home/claude/posts/run_corpus.sh`，输出在 `/home/claude/corpus_runs/`，可续跑）；开始时用量计数器为 8247.08。
 - **11:05 中止：** xiaojingai 账户余额用完（403 "用户额度不足, 剩余额度: ¥-0.011574"）。4 个框架已写出的约 600 条全是 `llm_api_failure`，已移到 `/home/claude/corpus_runs/failed_quota/`，否则续跑时会被当成已完成而跳过。用量计数器停在 8247.08（11-01 以来累计约 ¥82.5）。等用户充值或另给 key 后重跑（`run_corpus.sh` 可直接续跑）。
 - 11:19 用户：API 文档已更新，duckcoding 端点（`https://api.duckcoding.ai/v1`）也提供 gemini-2.5-flash-lite。key 已写入 `.mht_api.env`（`DUCKCODING_API_KEY` / `DUCKCODING_BASE_URL`）。试调 1 次返回 403 insufficient_user_quota（剩余 $-0.000622；usage 接口 total_usage 100.06）。xiaojingai 仍是 ¥-0.011574。两个端点都没有余额，语料运行继续暂停。
+- 11:28 用户："已充值duckcoding端点。另外，无需测试实际支出。继续吧"。`gemini_run.sh` 增加 `ENDPOINT=duckcoding` 和 `MAXW`（并发数）；重跑 4 个框架（中途把 worker 提到 32 / MedAgents 64）。12:01 全部完成：4 × 1,449 条，全部 success，准确率 0.42–0.45，与 eval 池无交集。归档 `data_runs/corpus_v1_2026-11-04/`（raw + mas-traj + README）。渲染 token 合计约 18.4M（MedAgents 10.25M），API 输入 80.8M / 输出 15.7M（按 xiaojingai 价目约 ¥5.2）。容器磁盘满过一次（42G 上限），清了 pip 缓存和 eval_v3 的 server/main 日志。
+- 已发 #3 第 60 轮（6640829402）。下一条第 61 轮。

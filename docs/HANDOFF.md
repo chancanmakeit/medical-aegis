@@ -1,14 +1,16 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-04 09:20（会话 v11 讨论第 12 轮，issue 我方第 58 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-04 12:15（会话 v11 讨论第 13 轮，issue 我方第 60 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 12 轮，2026-11-04）
+## 当前状态（v11 讨论第 13 轮，2026-11-04）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）；第 58 轮（6636937520）补充全部 job 的平凡基线。下一条第 59 轮，等 MHT 回复。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）；第 58 轮（6636937520）补充全部 job 的平凡基线。#3：MHT 第 86 轮（6637475561）请求 corpus 池自然运行（interaction-CPT 预注册）；我方第 59 轮报价，第 60 轮（6640829402）交付。下一条第 61 轮。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
 
-**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
+**API：** xiaojingai 余额已用完（11-04）；duckcoding 端点（`DUCKCODING_API_KEY` / `DUCKCODING_BASE_URL`，用户已充值）提供同一模型。端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
+
+**corpus 池自然运行 v1（第 13 轮，交付 MHT）：** `data_runs/corpus_v1_2026-11-04/`：llm_debate / mdagents / MedAgents / MAC × 1,449 题，K = 1，gemini-2.5-flash-lite（**duckcoding 端点**，`ENDPOINT=duckcoding`），raw + mas-traj，渲染约 18.4M token。DyLAN 不跑（用户决定）；AgentVerse / triage / MAM 是未见框架评测层，不进训练。
 
 **协议 v3 评测集（报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`，归档 `data_runs/eval_v3_2026-11-04/`）**
 - 合计 379 个阳性 / 14,688 个点（合并参照下 303；E0 约 49；只反映末次调用的 36 个）。分框架（阳性 / 合并参照下）：AgentVerse 99/81，mdagents 97/77，llm_debate 61/42，MAM 45/44，triage_agent 32/29，mdagents 多模态 21/15，MedAgents 16/9，MAC 8/6，DyLAN 只有 stage 1（0；286 点待 stage 2，**MHT 建议不补**，作无标签留出框架）。
@@ -21,6 +23,7 @@
 **运行要点**
 - 容器在会话空闲几分钟后会被回收，后台任务被杀；长任务要在会话活跃时跑（**每次 sleep ≤ 20 s 轮询，用户要求**）。驱动都可续跑；看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
 - 不要在驱动运行时编辑它读取的脚本；改 bash 脚本要"写新文件再 mv"。
+- 容器磁盘上限约 42G：大文件及时清理（pip 缓存、eval_v3 日志）。
 - MAM 的 stage-2 批次小而慢：用 8 条 lane（每个 arm × rep 一条）更快（参考 `/home/claude/posts/bx_stage2.sh`）。
 
 **沟通**
@@ -30,7 +33,7 @@
 **待用户决定**
 1. 是否追加 mdagents / llm_debate（MHT 建议优先 mdagents）。
 2. DyLAN stage 2（约 ¥2.5；MHT 建议不补）。
-3. #3：多框架自然运行的正式规模；主数据生成方案（等 MHT 的预注册定稿）。
+3. 是否补 corpus K = 2（每臂 40M token 需要约 2 个 epoch；约 ¥5）——等 MHT 意见。
 
 **仍有效的结论（v10）**
 - 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
