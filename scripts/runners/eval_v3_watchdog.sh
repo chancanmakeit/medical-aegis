@@ -31,6 +31,7 @@ for job in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat triag
     continue
   fi
   pending=1
+  if [ -f $E/$job/PAUSED ]; then echo "$job: PAUSED ($(cat $E/$job/PAUSED | cut -c1-100))"; continue; fi
   if ps -eo args | grep -q "[b]ranch_v3.sh $fw $E/$job "; then
     echo "$job: running ($( [ -f "$log" ] && tail -1 "$log" | cut -c1-40))"
   elif [ "${1:-}" = "--restart" ] && [ -n "${PORT[$job]:-}" ]; then
