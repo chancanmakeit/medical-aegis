@@ -248,7 +248,9 @@ def cmd_select_all(a):
     text = {qid: rec_q.get("query") for (qid, _), rec_q in recorded_all(a.fw).items()}
     seen = Counter()
     for c in sorted(rows, key=lambda c: (c["run_index"], c["t"], c["qid"])):
-        k = (c["run_index"], c["t"], text.get(c["qid"]))
+        # with --sample_keys the replay key carries the sample id (one wrapper/MAS per sample in main.py), so equal
+        # texts may share a batch (MAM: every recording has the same prompt; text batching gave 1 question/batch)
+        k = (c["run_index"], c["t"], c["qid"] if SAMPLE_KEYS else text.get(c["qid"]))
         c["_sub"] = seen[k]
         seen[k] += 1
     keys = sorted({(c["run_index"], c["t"], c["_sub"]) for c in rows})
