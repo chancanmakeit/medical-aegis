@@ -84,3 +84,10 @@
 - **多模态：** 子 agent 建 `datasets/data/mm_v1/`（`scripts/build_mm_datasets.py`；图片在 `/home/claude/mm_data`，不入 git）：MedXpertQA-MM 1,998、PathVQA 3,354、SLAKE 412、Kvasir-VQA-x1 1,124（CC-BY-NC）；各 eval 200。mdagents 是唯一原生图像框架，各 10 题试跑通过，回放 70/70。
 - 报价（v3，实测价格）：llm_debate / mdagents / AgentVerse / DyLAN 各 100 阳性 + MedAgents / MAC 各 40 父运行 + mdagents 多模态 4×50 父运行，约 $3.5（¥25）。
 - 已发 #1 第 54 轮（comment 6615225277）。下一条第 55 轮。
+
+## 第 8 轮（2026-11-03 16:34–）：用户批准协议 v3 和规模（约 $3.5），开始正式运行
+用户："可以"。
+- **实现：** `branch_pilot.py --protocol v3`（分叉臂也可重复；`--skip_done` 可续跑；`--recorded` / `--dataset` 覆盖；`--max_workers`）；`branch_identity` 增加 `PROTOCOL_ID_V3` 与重复说明（rep 1 = stage1，rep ≥2 = stage2_disagreement）；`scripts/branch_v3_analysis.py`（plan：stage-2 名单；label：Fisher 单侧、typed 标签记录）；`scripts/runners/branch_v3.sh`（单框架两阶段）；`scripts/runners/eval_v3_all.sh`（全部框架依次、可续跑）。
+- **自然父运行**：eval 800 题 × llm_debate / mdagents / AgentVerse（各 800）、DyLAN（772，私有 RNG）、MedAgents 110、MAC 140；mdagents 多模态：MedXpertQA-MM 200、PathVQA 200、SLAKE 200、Kvasir 75（被中断，主脚本里补跑）。父运行冻结在 `/home/claude/gemini_frozen/`（分叉期间不再变动）。
+- **事故：** 同时开 6 个框架 × 4 条 lane 导致容器内存（7 GB / 2 核）OOM，杀掉了部分进程，随后会话环境重启（文件都在）。改为一个框架一次、4 条 lane、每条 6 个 worker，批次完成即跳过，可续跑。
+- 规模：父运行 llm_debate 300、mdagents 425、AgentVerse 250、DyLAN 170、MedAgents 40、MAC 40、多模态各 ≤50（答错父运行不足时全用）。

@@ -237,13 +237,16 @@ def write_cfg(fw, port, wd, tag):
     return api, cfg
 
 
+MAX_WORKERS = 16
+
+
 def run_main(fw, api, cfg, ds, out, log, run_index=0):
     if os.path.exists(out):      # main.py resumes from an existing output file
         os.remove(out)
     env = {k: v for k, v in os.environ.items() if k not in ("AIHUBMIX_API_KEY", "OPENAI_API_KEY", KEY_ENV)}
     cmd = [sys.executable, "main.py", "--method_name", fw, "--experiment_config", cfg, "--model_api_config", api,
            "--model_name", MODEL, "--dataset_file", ds, "--test_dataset_name", "medxpertqa_text",
-           "--output_path", out, "--model_temperature", "0.7", "--model_max_tokens", "4096", "--max_workers", "16",
+           "--output_path", out, "--model_temperature", "0.7", "--model_max_tokens", "4096", "--max_workers", str(MAX_WORKERS),
            "--num_runs", "1", "--run_index_start", str(run_index), "--no_inject"]
     with open(log, "w") as lf:
         return subprocess.run(cmd, cwd=REPO, env=env, stdout=lf, stderr=subprocess.STDOUT).returncode
@@ -343,6 +346,16 @@ def cmd_run(a):
         sys.exit(f"{tag}: a batch needs one run_index and distinct questions (got run_index {ris})")
     ri = ris.pop()
     wd = os.path.join(a.dir, "runs"); os.makedirs(wd, exist_ok=True)
+    done_out = os.path.join(wd, f"{tag}_out.jsonl")
+    if a.skip_done and os.path.exists(done_out):
+        # resumable batches: skip when every expected question is in the output and already stamped
+        try:
+            got = {r["id"] for r in map(json.loads, open(done_out)) if r.get("branch")}
+        except ValueError:
+            got = set()
+        if {c["qid"] for c in cp} <= got:
+            print(f"{tag}: already complete ({len(got)} records), skipped")
+            return
     spec = os.path.join(wd, f"{tag}_spec.jsonl")
     with open(spec, "w") as f:
         for c in cp:
@@ -373,7 +386,11 @@ def cmd_run(a):
     from replay_openai_server import key as replay_key
     out = os.path.join(wd, f"{tag}_out.jsonl")
     reasons = None
-    if a.rep > 0:
+    if a.protocol == "v3":
+        branch_identity.PROTOCOL_ID = branch_identity.PROTOCOL_ID_V3
+        if a.rep > 0:
+            reasons = {c["qid"]: ("stage1" if a.rep == 1 else "stage2_disagreement") for c in cp}
+    elif a.rep > 0:
         fin = {}
         for arm in ("branch", "control"):
             p0 = os.path.join(wd, f"{a.fw}_p{a.pass_}_{arm}_rep0_out.jsonl")
@@ -517,10 +534,18 @@ def main():
     ap.add_argument("--port", type=int, default=18200)
     ap.add_argument("--experiment_id", default=None, help="branch identity experiment id (default: basename of --dir)")
     ap.add_argument("--backbone", choices=sorted(BACKBONES), default="anchor")
+    ap.add_argument("--protocol", choices=["v2", "v3"], default="v2")
+    ap.add_argument("--recorded", default=None, help="recorded normal runs (overrides the backbone profile; {fw} allowed)")
+    ap.add_argument("--dataset", default=None, help="dataset JSON of the recorded runs (overrides the backbone profile)")
+    ap.add_argument("--max_workers", type=int, default=16)
+    ap.add_argument("--skip_done", action="store_true", help="skip a batch whose output is complete and stamped")
     a = ap.parse_args()
-    global RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV, P_IN, P_OUT, DATASET
+    global RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV, P_IN, P_OUT, DATASET, MAX_WORKERS
+    MAX_WORKERS = a.max_workers
     bb = BACKBONES[a.backbone]
-    DATASET = bb["dataset"]
+    DATASET = a.dataset or bb["dataset"]
+    if a.recorded:
+        bb = dict(bb, recorded=a.recorded)
     RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV = bb["recorded"], bb["model"], bb["yaml_dir"], bb["upstream"], bb["key_env"]
     P_IN, P_OUT = bb["price"]
     {"select": cmd_select, "select_strat": cmd_select_strat, "select_all": cmd_select_all, "deps": cmd_deps, "deps_mock": cmd_deps_mock, "run": cmd_run, "analyze": cmd_analyze}[a.cmd](a)

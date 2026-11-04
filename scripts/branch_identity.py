@@ -43,6 +43,13 @@ PILOT_DIR = os.path.join(REPO, "data_runs/branch_pilot_2026-10-26")
 PILOT_CANDS = os.path.join(REPO, "docs/requests/samples/round16_2026-10-26")
 PILOT_EXPERIMENT = "branch-pilot-2026-10-26"
 PROTOCOL_ID = "branch-resample-t-at-0.7_descendants-at-0_replay-rest_v1"
+# protocol v3 (user approval 2026-11-03; issue #1 r54): repeated sampling of both arms. Stage 1: 2 branch +
+# 2 control; if the 4 final answers are not all equal, stage 2 extends both arms to 6. Judgement (analysis,
+# not stored here): Fisher one-sided on "final == control modal answer". D(t) is a stochastic sample
+# (the provider is not deterministic at temperature 0).
+PROTOCOL_ID_V3 = "branch-resample-t-at-0.7_descendants-at-0_replay-rest_v3-repeated"
+REP_RULE_V3 = ("protocol v3: repetitions 0-1 of both arms for every point (stage 1); repetitions 2-5 of both "
+               "arms for every point whose 4 stage-1 finals are not all equal (stage 2)")
 CANDIDATE_RULE = ("wrong-letter answer steps of runs that end wrong; first / middle / last per run "
                   "(pass 0 / 1 / 2); MAA-overlap questions excluded")
 REP_RULE = ("control repetition 1: every point that flipped at repetition 0, plus a random share of the "
@@ -141,7 +148,7 @@ def make_block(rec, cand, arm, rep, regen, evidence, experiment_id, rep_reason=N
             exp = set(b["descendant_step_ids"]) | ({cand["t_step_id"]} if arm == "branch" else set())
             b["structure"]["hidden_dependency_step_ids"] = [s for s in regen_sorted if s not in exp]
     if rep > 0:
-        b["selection"]["repetition_rule"] = REP_RULE
+        b["selection"]["repetition_rule"] = REP_RULE_V3 if PROTOCOL_ID == PROTOCOL_ID_V3 else REP_RULE
         b["selection"]["repetition_reason"] = rep_reason
     return b
 
@@ -178,8 +185,8 @@ def block_problems(b, rec=None):
 
     if set(b.get("evidence") or {}) != regen:
         p.append("evidence does not cover exactly the regenerated steps")
-    if b.get("repetition", 0) > 0 and b.get("arm") == "control" and not (b.get("selection") or {}).get("repetition_reason"):
-        p.append("control repetition >= 1 without a recorded selection reason")
+    if b.get("repetition", 0) > 0 and not (b.get("selection") or {}).get("repetition_reason"):
+        p.append("repetition >= 1 without a recorded selection reason")
     if rec is not None:
         h = llm_steps(rec)
         ids = [s["step_id"] for s in h]
@@ -353,7 +360,7 @@ def validate(blocks, parents=None):
             n_full += 1
         if len({b["candidate_index"]["t"] for b in g}) != 1:
             probs.append(f"{pid}: arms disagree on candidate index")
-        if any(b["arm"] == "branch" and b["repetition"] > 0 for b in g):
+        if any(b["arm"] == "branch" and b["repetition"] > 0 for b in g) and g[0].get("protocol_id") != PROTOCOL_ID_V3:
             probs.append(f"{pid}: branch repetitions are not part of protocol v1")
     if parents is not None:
         miss = sorted({b["parent_run_id"] for b in blocks} - set(parents))
