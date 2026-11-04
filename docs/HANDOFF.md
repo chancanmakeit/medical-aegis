@@ -1,12 +1,12 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-04 08:40（会话 v11 讨论第 11 轮，issue 我方第 57 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-04 09:20（会话 v11 讨论第 12 轮，issue 我方第 58 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 11 轮，2026-11-04）
+## 当前状态（v11 讨论第 12 轮，2026-11-04）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）。下一条第 58 轮。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）；第 58 轮（6636937520）补充全部 job 的平凡基线。下一条第 59 轮，等 MHT 回复。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
 
 **API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
 
@@ -14,7 +14,7 @@
 - 合计 379 个阳性 / 14,688 个点（合并参照下 303；E0 约 49；只反映末次调用的 36 个）。分框架（阳性 / 合并参照下）：AgentVerse 99/81，mdagents 97/77，llm_debate 61/42，MAM 45/44，triage_agent 32/29，mdagents 多模态 21/15，MedAgents 16/9，MAC 8/6，DyLAN 只有 stage 1（0；286 点待 stage 2，**MHT 建议不补**，作无标签留出框架）。
 - **第 11 轮扩充**（用户批准约 ¥5，按 token 实际约 ¥5.0）：job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照（`--reference pooled`）。父运行由 `scripts/build_expansion_parents.py` 生成（新的 run_index 加上第一批没用到的 run-0）。
 - **审计后的新字段：** `statistics` 增加 pooled_reference / p_value_pooled / perm_p / p_null_positive / reference_rule；`context` 增加 dt_empty / is_last_llm_step / downstream_regenerated。旧批次仍是 control 参照判定。
-- **MHT 的步长基线结论：** 除 mdagents 外，阳性偏长、偏早（同轨迹内步长 AUROC 0.76–0.81）；mdagents 子集最干净。
+- **平凡基线**（`scripts/branch_v3_baselines.py`，复现 MHT 并扩展）：同轨迹内步长 AUROC 为 AgentVerse 0.74、llm_debate 0.82、MAC 0.97、MAM 0.74、mdagents 0.53、triage 0.58（但阳性偏早：相对位置 0.30）、多模态 0.59；mdagents 子集最干净。
 - **归档：** 多模态 / MAM 的 dataset 标签已修正（`scripts/fix_dataset_tag.py`）；`parents_mastraj/` 是父运行的 mas-traj 导出（source `collection`、`provenance.sources_complete`）。dylan、agentverse、triage_agent、mdagents 有已观察到的读集缺口。
 - 本地完整输出（约 10 GB）在 `/home/claude/eval_v3/`，新容器里不一定还在。
 
