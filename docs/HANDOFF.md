@@ -32,6 +32,13 @@
 2. llm_debate 追加父运行（阳性 61 < 100）。
 3. #3：多框架自然运行（语料池）的正式规模；主数据（其他框架、正式配置）的生成方案。
 
+**仍有效的结论（v10）**
+- 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
+- fmt_v1_2 不推广（llm_debate 保持 fmt_v1）；mdagents 正式配置保留 match_opener（`format_matched` 路径 `pi_length_match.format.format_matched`）。
+- `phase_canonical` v1 已采用；MHT 转换器 import 我们的 `scripts/phase_canonical.py`，**改接口先通知 MHT**。
+- 合成路线：在真实轨迹上分叉为主，注入为辅，不让 LLM 整条写轨迹；不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。
+- 估算：注入/验证类运行要按重试率修正；分叉没有这个放大。
+
 **锚点数据**（只用 llama-4-maverick，aihubmix；响应 model 字段 `google/gemma-4-31B-it-turbo`，用户说明不再核实）
 - 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents；题目 `datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
 - 已有：normal 100 题 × K=3；run 0 = RC；旧说明 `_pi4`/`_sham`/`_shamstyle`（不进训练）；fmt_v1 `_pi5`/`_sham5`；fmt_v1_1 `_pi6`/`_sham6`；fmt_v1_2 `_v12`；mdagents match_opener `_op`（50 题 sham）。
