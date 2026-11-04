@@ -1,18 +1,18 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-04 01:40（会话 v11 讨论第 9 轮，issue 我方第 54 轮已发、第 55 轮待发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-04 03:55（会话 v11 讨论第 10 轮，issue 我方第 55 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 9 轮，2026-11-04）
+## 当前状态（v11 讨论第 10 轮，2026-11-04）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 54 轮 6615225277，**下一条第 55 轮 = v3 评测集结果，等 DyLAN 决定后发**）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 55 轮 6629822563 = v3 评测集结果，请 MHT 等回答 4 个问题：阳性数量 / 分布是否够用、要不要 DyLAN、紧凑格式还是完整 mas-traj、stage-1 全一致点是否作弱负例；下一条第 56 轮）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
 
 **API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）。新会话据此重建 `/home/claude/.mht_api.env`（600），含 `XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量 `/v1/dashboard/billing/usage`，`total_usage` 单位 ¥0.01；gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36 换成人民币（`branch_pilot.py` 打印的 `$` 是列表价上界）。
 
 **协议 v3 评测集：除 DyLAN stage 2 外全部完成。** 报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`；归档 `data_runs/eval_v3_2026-11-04/`（每个 job：labels、summary、candidates、stage-2 名单、只含重生成步骤文本的分叉记录；`parents/` 是冻结父运行）。
 - 阳性（Fisher 单侧 p<0.05）/ 点数 / 噪声底：AgentVerse 99 / 2,087 / 0.152；mdagents 97 / 2,975 / 0.064；llm_debate 61 / 2,100 / 0.078（20 个在 aggregation 步）；MedAgents 16 / 741；MAC 8 / 387；triage_agent 10 / 424；MAM heartbeat_a 3、heartbeat_b 9、sounddr 0（答案几乎不变）；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。合计 324 阳性（43 个 D(t) 为空）。
-- **DyLAN**：为控制花费改为 40 个父运行（全部步）+ 170 个父运行的步 0；噪声底 0.254；566 点中 286 需要 stage 2（约 ¥2.5），**已暂停（`/home/claude/eval_v3/dylan/PAUSED`），等用户批准**。批准后：删 PAUSED，`bash scripts/runners/eval_v3_watchdog.sh --restart`（驱动可续跑），保持会话活跃到跑完，然后 label、`branch_v3_compact.py` 更新归档、`branch_v3_report.py` 重出表、发 #1 第 55 轮。
+- **DyLAN**：为控制花费改为 40 个父运行（全部步）+ 170 个父运行的步 0；噪声底 0.254；566 点中 286 需要 stage 2（约 ¥2.5），**已暂停（`/home/claude/eval_v3/dylan/PAUSED`），等用户批准**。批准后：删 PAUSED，`bash scripts/runners/eval_v3_watchdog.sh --restart`（驱动可续跑），保持会话活跃到跑完，然后 label、`branch_v3_compact.py` 更新归档、`branch_v3_report.py` 重出表、在 #1 补发 DyLAN 结果。
 - 花费：v3 开始 usage 3881.41 → 6899.93（约 ¥30.2，含 triage / MAM 自然运行）；批准约 ¥25 + triage / MAM 各约 ¥1–3。
 - 待用户决定：DyLAN stage 2；llm_debate 阳性 61 < 目标 100，是否追加。
 

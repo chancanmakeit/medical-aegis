@@ -109,3 +109,6 @@
 - **修复：** (1) MAC stage-2 的 control rep3/5 在我编辑 `branch_pilot.py` 时崩溃（缺 `sample_keys` 参数的中间状态），分析器把这些点判为 needs_stage2（没有错判），补跑后 MAC 8 个阳性。(2) MAM 按文本分批导致 376 个单题批次 → `--sample_keys` 时同文本可同批（17–20 批）。(3) `stamp_file` 只看上游调用判断是否用样本 key，只有判分调用上游的批次（D(t) 为空）因此找不到 control 臂的步 t（`t_step_id_in_run` 为空，身份问题 66/114/106 条）→ 改为看全部调用；`scripts/branch_restamp.py` 离线重盖章，问题清零，不花钱。
 - **DyLAN 限额：** 按实测每次运行约 ¥0.0016，170 父运行的 v3 约 ¥10–14，超出批准 → 改为 40 个父运行（pass 0 = 步 0 的 170 个点已在跑，保留）；stage 1 噪声底 0.254（其他框架 0.04–0.09），566 点中 286 需要 stage 2。**v3 花费到约 ¥29.5（已到批准总额），DyLAN stage 2（约 ¥2.5）暂停，待用户决定。**
 - 结果（v3 阳性 / 点数 / 噪声底）：llm_debate 61 / 2,100 / 0.078；mdagents 97 / 2,975 / 0.064；MedAgents 16 / 741 / 0.070；MAC 8 / 387 / 0.044；triage_agent 10 / 424 / 0.064；MAM heartbeat_a 3 / 376 / 0.064，heartbeat_b 9 / 377 / 0.088，sounddr 0 / 402 / 0.000；mdagents 多模态 MedXpertQA-MM 13 / 350，PathVQA 3 / 350，SLAKE 1 / 147，Kvasir 4 / 154；DyLAN stage 1 only（0 / 566，286 待 stage 2）；AgentVerse stage 2 进行中。
+
+## 第 10 轮（2026-11-04 03:48–）：把进展发到 issue
+用户："目前的进展提入issue里了么，可以在issue里让MHT项目或其他智能体看看。" 我之前打算等 DyLAN 决定后再发 → 先读 #1–#4（第 54 轮之后对方没有新回复），发 #1 第 55 轮（comment 6629822563）：v3 结果表、阳性集中的步类型、实现变化（回放 key、`final_answer`、紧凑归档格式、两处修复）、花费与待定事项，并请方法侧回答 4 个问题（阳性数量和分布是否够用；DyLAN 是否需要；紧凑格式还是完整 mas-traj；stage-1 全一致点是否作弱负例）。DyLAN stage 2 和 llm_debate 追加仍待用户决定。下一条第 56 轮。
