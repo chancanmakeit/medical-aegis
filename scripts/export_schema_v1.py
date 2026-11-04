@@ -86,6 +86,8 @@ SOURCES_GAPS = {
     "triage_agent": "18/1151 v3 branch runs (structure unchanged) regenerated undeclared steps",
     "mdagents": "rare: 6/8157 v3 branch runs (structure unchanged) regenerated undeclared steps",
 }
+# gaps rare enough to keep `sources_complete: true` (the note stays in sources_known_gaps)
+SOURCES_GAPS_RARE = {"mdagents"}
 
 # Whether a RECORD came from the structured contract (clean inputs, sources,
 # step ids) is read from the record itself: since 2026-10-20 every framework
@@ -313,7 +315,7 @@ def convert(rec, reg, alias, reasoning_mode, branch=None):
             "input_messages_clean": bool(log.get("input_messages_are_clean")) or not injections,
             "sources_recorded": all(s["sources"] is not None for s in steps if s["kind"] == "llm"),
             # read sets known to miss dependencies (do not use `sources` as read-set supervision when False)
-            "sources_complete": SOURCES_GAPS.get(fw) is None,
+            "sources_complete": SOURCES_GAPS.get(fw) is None or fw in SOURCES_GAPS_RARE,
             "sources_known_gaps": SOURCES_GAPS.get(fw),
             "history_alignment_ok": log.get("history_alignment_ok"),
             "reasoning_exported": reasoning_mode == "keep",
