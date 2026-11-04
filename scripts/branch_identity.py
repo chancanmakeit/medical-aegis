@@ -222,11 +222,13 @@ def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons
     with the parent (frameworks with parallel calls number steps in completion order). The resampled /
     kept step t of this run is the one whose input key equals the parent's step t (branch: the t_resample
     call). Calls matching no step must be answer-judge verdicts."""
-    pool = [json.loads(l) for l in open(calls_path, encoding="utf-8")]
-    pool = [c for c in pool if c.get("upstream")]
+    allcalls = [json.loads(l) for l in open(calls_path, encoding="utf-8")]
+    pool = [c for c in allcalls if c.get("upstream")]
     by_q = {c["qid"]: c for c in cands}
     recs = [json.loads(l) for l in open(out_path, encoding="utf-8") if l.strip()]
-    sk = any("sample" in c for c in pool)          # the server ran with --sample_keys
+    # the server ran with --sample_keys: look at every logged call (a batch whose only upstream calls are
+    # answer-judge requests, which carry no sample header, must still use sample-aware keys)
+    sk = any(c.get("sample") for c in allcalls)
     where = defaultdict(list)                    # request key -> [(record id, step id, text)]
     for r in recs:
         for st in llm_steps(r):
