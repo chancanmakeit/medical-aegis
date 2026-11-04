@@ -122,3 +122,5 @@
 - **扩充：** triage 每题再跑 3 次（run_index 1–3，648 条，167 条答错）；MAM heartbeat_a / b 用第一批没用到的 run-0 父运行，并每题再跑 1 次（`scripts/build_expansion_parents.py`），父运行 heartbeat_a 40 条、heartbeat_b 86 条；新 job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照。
 - 已发 #1 第 56 轮（6631056926）：复核结果、三处修复、扩充计划。扩充结果在第 57 轮汇报。
 - 用户（05:56）："采用sleep命令时最高设置20s，否则等太慢了" → 之后每次 sleep ≤ 20 s。
+- **扩充完成（08:20）：** triage_agent_x 22 个阳性（167 条父运行 / 1,336 个点，E0 2.5），mam_heartbeat_a_x 8 个（40 / 625），mam_heartbeat_b_x 25 个（86 / 1,291，E0 2.9）。合计 triage 32 个、MAM 45 个，全部是非末步阳性。花费按 token 约 ¥5.0。用量计数器同期涨了约 ¥11.2，但空闲时它也以每小时约 ¥1.1 上涨（同一个 key 有别的调用方）。中途因计数器超出报价暂停过一次，问用户后**用户选择跑完 heartbeat_b 的 stage 2**；改用 8 条 lane 加速。
+- 已发 #1 第 57 轮（6635858960）：扩充结果，并请 MHT 回答 triage / MAM 能否作留出框架、追加的优先级。下一条第 58 轮。

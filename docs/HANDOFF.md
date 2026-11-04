@@ -1,36 +1,36 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-04 03:55（会话 v11 讨论第 10 轮，issue 我方第 55 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-04 08:40（会话 v11 讨论第 11 轮，issue 我方第 57 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 10 轮，2026-11-04）
+## 当前状态（v11 讨论第 11 轮，2026-11-04）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 55 轮 6629822563 = v3 评测集结果，请 MHT 等回答 4 个问题：阳性数量 / 分布是否够用、要不要 DyLAN、紧凑格式还是完整 mas-traj、stage-1 全一致点是否作弱负例；下一条第 56 轮）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）。下一条第 58 轮。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
 
-**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）。新会话据此重建 `/home/claude/.mht_api.env`（600），含 `XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量 `/v1/dashboard/billing/usage`，`total_usage` 单位 ¥0.01；gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36 换成人民币（`branch_pilot.py` 打印的 `$` 是列表价上界）。
+**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
 
-**协议 v3 评测集：除 DyLAN stage 2 外全部完成。** 报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`；归档 `data_runs/eval_v3_2026-11-04/`（每个 job：labels、summary、candidates、stage-2 名单、只含重生成步骤文本的分叉记录；`parents/` 是冻结父运行）。
-- 阳性（Fisher 单侧 p<0.05）/ 点数 / 噪声底：AgentVerse 99 / 2,087 / 0.152；mdagents 97 / 2,975 / 0.064；llm_debate 61 / 2,100 / 0.078（20 个在 aggregation 步）；MedAgents 16 / 741；MAC 8 / 387；triage_agent 10 / 424；MAM heartbeat_a 3、heartbeat_b 9、sounddr 0（答案几乎不变）；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。合计 324 阳性（43 个 D(t) 为空）。
-- **DyLAN**：为控制花费改为 40 个父运行（全部步）+ 170 个父运行的步 0；噪声底 0.254；566 点中 286 需要 stage 2（约 ¥2.5），**已暂停（`/home/claude/eval_v3/dylan/PAUSED`），等用户批准**。批准后：删 PAUSED，`bash scripts/runners/eval_v3_watchdog.sh --restart`（驱动可续跑），保持会话活跃到跑完，然后 label、`branch_v3_compact.py` 更新归档、`branch_v3_report.py` 重出表、在 #1 补发 DyLAN 结果。
-- 花费：v3 开始 usage 3881.41 → 6899.93（约 ¥30.2，含 triage / MAM 自然运行）；批准约 ¥25 + triage / MAM 各约 ¥1–3。
-- 待用户决定：DyLAN stage 2；llm_debate 阳性 61 < 目标 100，是否追加。
+**协议 v3 评测集（报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`，归档 `data_runs/eval_v3_2026-11-04/`）**
+- 合计 379 个阳性 / 14,688 个点（合并参照下 303；E0 约 49；只反映末次调用的 36 个）。分框架（阳性 / 合并参照下）：AgentVerse 99/81，mdagents 97/77，llm_debate 61/42，MAM 45/44，triage_agent 32/29，mdagents 多模态 21/15，MedAgents 16/9，MAC 8/6，DyLAN 只有 stage 1（0；286 点待 stage 2，**MHT 建议不补**，作无标签留出框架）。
+- **第 11 轮扩充**（用户批准约 ¥5，按 token 实际约 ¥5.0）：job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照（`--reference pooled`）。父运行由 `scripts/build_expansion_parents.py` 生成（新的 run_index 加上第一批没用到的 run-0）。
+- **审计后的新字段：** `statistics` 增加 pooled_reference / p_value_pooled / perm_p / p_null_positive / reference_rule；`context` 增加 dt_empty / is_last_llm_step / downstream_regenerated。旧批次仍是 control 参照判定。
+- **MHT 的步长基线结论：** 除 mdagents 外，阳性偏长、偏早（同轨迹内步长 AUROC 0.76–0.81）；mdagents 子集最干净。
+- **归档：** 多模态 / MAM 的 dataset 标签已修正（`scripts/fix_dataset_tag.py`）；`parents_mastraj/` 是父运行的 mas-traj 导出（source `collection`、`provenance.sources_complete`）。dylan、agentverse、triage_agent、mdagents 有已观察到的读集缺口。
+- 本地完整输出（约 10 GB）在 `/home/claude/eval_v3/`，新容器里不一定还在。
 
-**运行要点（本会话学到的）**
-- 容器在会话空闲几分钟后会被回收，后台任务被杀。长任务必须在会话活跃时跑（每次 sleep ≤ 20 s 轮询）；定时 check-in 只能拉起来跑一小段。驱动全部可续跑（`--skip_done`；`branch_v3.sh` 每阶段跑两遍补崩溃批次）。看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
-- **不要在驱动运行时编辑它们读取的脚本**（MAC stage-2 的 control 批次就是因此崩溃）；改 bash 脚本用"写新文件再 mv"。
-- 回放 key：文本 + 图像 / 音频 sha1 +（MAM）样本 id（`--sample_keys`，同文本题可同批）。`stamp_file` 按全部调用判断是否用样本 key；旧批次可用 `scripts/branch_restamp.py` 离线重盖章。
-- `final_answer`：ESI 等级（triage）/ 类别名或别名（MAM）/ 字母；无答案记 "NONE"。
+**运行要点**
+- 容器在会话空闲几分钟后会被回收，后台任务被杀；长任务要在会话活跃时跑（**每次 sleep ≤ 20 s 轮询，用户要求**）。驱动都可续跑；看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
+- 不要在驱动运行时编辑它读取的脚本；改 bash 脚本要"写新文件再 mv"。
+- MAM 的 stage-2 批次小而慢：用 8 条 lane（每个 arm × rep 一条）更快（参考 `/home/claude/posts/bx_stage2.sh`）。
 
 **沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。先读对方最新评论再发帖。
-- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；sleep ≤ 20 s。
+- 先读对方最新评论再发帖；MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套。
 - 修改本节时整节重写。
 
 **待用户决定**
-1. DyLAN stage 2（约 ¥2.5）。
-2. llm_debate 追加父运行（阳性 61 < 100）。
-3. #3：多框架自然运行（语料池）的正式规模；主数据（其他框架、正式配置）的生成方案。
+1. 是否追加 mdagents / llm_debate（MHT 建议优先 mdagents）。
+2. DyLAN stage 2（约 ¥2.5；MHT 建议不补）。
+3. #3：多框架自然运行的正式规模；主数据生成方案（等 MHT 的预注册定稿）。
 
 **仍有效的结论（v10）**
 - 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
