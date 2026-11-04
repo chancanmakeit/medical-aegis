@@ -1,0 +1,14 @@
+0 kvasir_vqa_x1_5286,kvasir_vqa_x1_5520
+2 kvasir_vqa_x1_15904
+3 kvasir_vqa_x1_5077,kvasir_vqa_x1_8944
+6 kvasir_vqa_x1_5520
+9 kvasir_vqa_x1_8944
+12 kvasir_vqa_x1_5286,kvasir_vqa_x1_5520
+15 kvasir_vqa_x1_8944
+18 kvasir_vqa_x1_5286
+21 kvasir_vqa_x1_8944
+24 kvasir_vqa_x1_5520
+27 kvasir_vqa_x1_8944
+30 kvasir_vqa_x1_5520
+33 kvasir_vqa_x1_8944
+39 kvasir_vqa_x1_8944

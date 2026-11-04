@@ -1,0 +1,3 @@
+6 medxpertqa_text_1673,medxpertqa_text_1886,medxpertqa_text_1989,medxpertqa_text_2032
+7 medxpertqa_text_1673,medxpertqa_text_1989,medxpertqa_text_2032
+8 medxpertqa_text_1673

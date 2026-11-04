@@ -1,0 +1,5 @@
+0 pathvqa_1239,pathvqa_311,pathvqa_3677,pathvqa_4432,pathvqa_5812,pathvqa_606,pathvqa_6456,pathvqa_6461,pathvqa_6583
+2 pathvqa_2595,pathvqa_5812
+4 pathvqa_3119
+6 pathvqa_3119
+8 pathvqa_2595,pathvqa_5414,pathvqa_5612

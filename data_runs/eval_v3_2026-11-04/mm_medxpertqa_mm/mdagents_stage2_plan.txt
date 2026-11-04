@@ -1,0 +1,7 @@
+0 medxpertqa_mm_MM-1005,medxpertqa_mm_MM-1138,medxpertqa_mm_MM-1211,medxpertqa_mm_MM-135,medxpertqa_mm_MM-1381,medxpertqa_mm_MM-1471,medxpertqa_mm_MM-1501,medxpertqa_mm_MM-1516,medxpertqa_mm_MM-1682,medxpertqa_mm_MM-1880,medxpertqa_mm_MM-1886,medxpertqa_mm_MM-21,medxpertqa_mm_MM-258,medxpertqa_mm_MM-273,medxpertqa_mm_MM-305
+1 medxpertqa_mm_MM-1211,medxpertqa_mm_MM-135,medxpertqa_mm_MM-1501,medxpertqa_mm_MM-1886,medxpertqa_mm_MM-21,medxpertqa_mm_MM-258,medxpertqa_mm_MM-273,medxpertqa_mm_MM-305
+2 medxpertqa_mm_MM-1211,medxpertqa_mm_MM-1674,medxpertqa_mm_MM-273,medxpertqa_mm_MM-305
+3 medxpertqa_mm_MM-1138,medxpertqa_mm_MM-1211,medxpertqa_mm_MM-135,medxpertqa_mm_MM-1471,medxpertqa_mm_MM-1501,medxpertqa_mm_MM-1674
+4 medxpertqa_mm_MM-1138,medxpertqa_mm_MM-1211,medxpertqa_mm_MM-1471,medxpertqa_mm_MM-273,medxpertqa_mm_MM-305
+5 medxpertqa_mm_MM-1471,medxpertqa_mm_MM-1496,medxpertqa_mm_MM-1501,medxpertqa_mm_MM-1689,medxpertqa_mm_MM-1880,medxpertqa_mm_MM-21,medxpertqa_mm_MM-273
+6 medxpertqa_mm_MM-1138,medxpertqa_mm_MM-1211
