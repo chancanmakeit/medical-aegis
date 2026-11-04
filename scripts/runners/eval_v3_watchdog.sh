@@ -16,6 +16,12 @@ for d in heartbeat_a heartbeat_b sounddr; do   # MAM: audio, per-dataset dirs, s
   ARGS[mam_$d]="--sample_keys --recorded /home/claude/gemini_frozen/mam__normal_audio_$d.jsonl --dataset datasets/data/$d.json"
   NEED[mam_$d]=/home/claude/gemini_frozen/mam__normal_audio_$d.jsonl
 done
+# MAM natural runs (resumable; local script /home/claude/posts/run_mam_nat.sh)
+if [ ! -f /home/claude/gemini_frozen/mam__normal_audio_sounddr.jsonl ] && [ -f /home/claude/posts/run_mam_nat.sh ]; then
+  if ps -eo args | grep -q "^bash /home/claude/posts/[r]un_mam_nat"; then echo "mam natural: running"
+  elif [ "${1:-}" = "--restart" ]; then setsid nohup bash /home/claude/posts/run_mam_nat.sh >> /home/claude/posts/run_mam_nat.log 2>&1 < /dev/null & echo "mam natural: restarted"
+  fi
+fi
 pending=0
 for job in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat triage_agent mam_heartbeat_a mam_heartbeat_b mam_sounddr; do
   fw=${job%%_heartbeat_*}; fw=${fw%_sounddr}
