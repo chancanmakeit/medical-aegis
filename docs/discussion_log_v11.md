@@ -112,3 +112,12 @@
 
 ## 第 10 轮（2026-11-04 03:48–）：把进展发到 issue
 用户："目前的进展提入issue里了么，可以在issue里让MHT项目或其他智能体看看。" 我之前打算等 DyLAN 决定后再发 → 先读 #1–#4（第 54 轮之后对方没有新回复），发 #1 第 55 轮（comment 6629822563）：v3 结果表、阳性集中的步类型、实现变化（回放 key、`final_answer`、紧凑归档格式、两处修复）、花费与待定事项，并请方法侧回答 4 个问题（阳性数量和分布是否够用；DyLAN 是否需要；紧凑格式还是完整 mas-traj；stage-1 全一致点是否作弱负例）。DyLAN stage 2 和 llm_debate 追加仍待用户决定。下一条第 56 轮。
+
+## 第 11 轮（2026-11-04 04:21–）：MHT 审计；扩充 triage_agent 和 MAM
+用户："issue有新动静，你看看，其他智能体貌似说triage_agent和mam框架阳性太少，我建议对这俩个框架想办法扩充阳性的话，是否有用？如果可能有用的话那就扩充。"
+- **MHT 第 84 轮（#1 6630061863）：** (1) v3 的参照取自 control 众数，偏向判阳性；用置换零假设估计 E0 = 46.8 / 324，FDR ≈ 0.14；建议附置换 p，以后用对称参照。(2) 平凡基线：除 mdagents 外，阳性偏长、偏早（步长 AUROC 0.76–0.81）；标签与步长相关，主评测要报控制后的数字。(3) 文本 MCQ 部分（AgentVerse / mdagents / llm_debate）够做主评测；MAC、MedAgents、triage、MAM、多模态只作描述；要追加的话优先 mdagents，其次 llm_debate。(4) DyLAN 不补 stage 2。(5) 紧凑格式够用；请修多模态和 MAM 父运行的 dataset 字段，并在 label 里显式标注 D(t) 是否为空。(6) 不导出弱负例。#3 6630062229：同意第一批安排；DyLAN 的 sources 标为不完整。
+- **我的判断（已告诉用户）：** 扩充有中等价值。两个框架各有约 40 个非末步阳性后，可作为跨任务（非选择题 / 音频）的留出框架；但对主评测，扩 mdagents / llm_debate 更值。报价约 ¥5（±50%），**用户选择两个都扩**。
+- **实现：** `branch_v3_analysis.py` 新增 `pooled_reference`、`p_value_pooled`、`perm_p`（924 种分配的精确置换）、`p_null_positive`（完整流程的置换零假设，求和得 E0），以及 `--reference pooled`；context 新增 `dt_empty`、`is_last_llm_step`、`downstream_regenerated`。复核结果：合并参照下的阳性数与 MHT 完全一致（248），E0 为 43.0（MHT 46.8）。"只有末次调用"的阳性 36 个。AgentVerse 有 4 个 criticism 阳性：按 sources 其 D(t) 为空，但 branch 运行实际重生成了后续步骤，属于 sources 漏边。
+- `scripts/fix_dataset_tag.py` 修正归档里多模态 / MAM 的 dataset 标签（同时改写 run_id 等）；`export_schema_v1.py` 的 source 加 `collection`（runtime），provenance 加 `sources_complete` / `sources_known_gaps`（dylan、agentverse、triage_agent、mdagents 观察到缺口）；`parents_mastraj/` 下是父运行的 mas-traj 导出，每个 label 的 run_id 都能对上。
+- **扩充：** triage 每题再跑 3 次（run_index 1–3，648 条，167 条答错）；MAM heartbeat_a / b 用第一批没用到的 run-0 父运行，并每题再跑 1 次（`scripts/build_expansion_parents.py`），父运行 heartbeat_a 40 条、heartbeat_b 86 条；新 job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照。
+- 已发 #1 第 56 轮（6631056926）：复核结果、三处修复、扩充计划。扩充结果在第 57 轮汇报。
