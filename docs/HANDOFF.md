@@ -17,14 +17,14 @@
 - 待用户决定：DyLAN stage 2；llm_debate 阳性 61 < 目标 100，是否追加。
 
 **运行要点（本会话学到的）**
-- 容器在会话空闲几分钟后会被回收，后台任务被杀。长任务必须在会话活跃时跑（每次 sleep ≤ 60 s 轮询）；定时 check-in 只能拉起来跑一小段。驱动全部可续跑（`--skip_done`；`branch_v3.sh` 每阶段跑两遍补崩溃批次）。看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
+- 容器在会话空闲几分钟后会被回收，后台任务被杀。长任务必须在会话活跃时跑（每次 sleep ≤ 20 s 轮询）；定时 check-in 只能拉起来跑一小段。驱动全部可续跑（`--skip_done`；`branch_v3.sh` 每阶段跑两遍补崩溃批次）。看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
 - **不要在驱动运行时编辑它们读取的脚本**（MAC stage-2 的 control 批次就是因此崩溃）；改 bash 脚本用"写新文件再 mv"。
 - 回放 key：文本 + 图像 / 音频 sha1 +（MAM）样本 id（`--sample_keys`，同文本题可同批）。`stamp_file` 按全部调用判断是否用样本 key；旧批次可用 `scripts/branch_restamp.py` 离线重盖章。
 - `final_answer`：ESI 等级（triage）/ 类别名或别名（MAM）/ 字母；无答案记 "NONE"。
 
 **沟通**
 - 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。先读对方最新评论再发帖。
-- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；sleep ≤ 60 s。
+- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；sleep ≤ 20 s。
 - 修改本节时整节重写。
 
 **待用户决定**

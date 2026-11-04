@@ -121,3 +121,4 @@
 - `scripts/fix_dataset_tag.py` 修正归档里多模态 / MAM 的 dataset 标签（同时改写 run_id 等）；`export_schema_v1.py` 的 source 加 `collection`（runtime），provenance 加 `sources_complete` / `sources_known_gaps`（dylan、agentverse、triage_agent、mdagents 观察到缺口）；`parents_mastraj/` 下是父运行的 mas-traj 导出，每个 label 的 run_id 都能对上。
 - **扩充：** triage 每题再跑 3 次（run_index 1–3，648 条，167 条答错）；MAM heartbeat_a / b 用第一批没用到的 run-0 父运行，并每题再跑 1 次（`scripts/build_expansion_parents.py`），父运行 heartbeat_a 40 条、heartbeat_b 86 条；新 job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照。
 - 已发 #1 第 56 轮（6631056926）：复核结果、三处修复、扩充计划。扩充结果在第 57 轮汇报。
+- 用户（05:56）："采用sleep命令时最高设置20s，否则等太慢了" → 之后每次 sleep ≤ 20 s。
