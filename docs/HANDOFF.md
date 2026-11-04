@@ -12,7 +12,7 @@
 
 **正在跑：协议 v3 评测集（用户批准约 $3.5 ≈ ¥25；第 9 轮又批准补 triage_agent 和 MAM，各约 ¥1–3）。**
 - 已完成（`/home/claude/eval_v3/<fw>/labels_v3.jsonl`、`summary.md`）：llm_debate 300 父运行 / 2,100 点，61 阳性（20 个 aggregator）；mdagents 425 / 2,975，97 阳性（15 aggregator）；MedAgents 40 / 741，16 阳性；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。
-- 进行中：AgentVerse、MAC（stage 2）；DyLAN 等 AgentVerse 跑完再开；triage_agent（216 条自然运行已冻结，v3 stage 1 已开，按列表价每批约 $0.037，预计总计约 ¥1–1.5）；MAM（heartbeat_a 109 / heartbeat_b 90 / sounddr 60 自然运行在跑，`/home/claude/posts/run_mam_nat.sh`，跑完冻结到 `/home/claude/gemini_frozen/mam__normal_audio_<ds>.jsonl`；看门狗随后自动开 v3，每数据集最多 `MAM_NPAR`=40 父运行，目录 `/home/claude/eval_v3/mam_<ds>`）。
+- 进行中：AgentVerse、MAC（stage 2）；DyLAN 等 AgentVerse 跑完再开；triage_agent（216 条自然运行已冻结，v3 stage 1 已开，按列表价每批约 $0.037，预计总计约 ¥1–1.5）；MAM（heartbeat_a 109 / heartbeat_b 90 / sounddr 60 自然运行在跑，`/home/claude/posts/run_mam_nat.sh`，跑完冻结到 `/home/claude/gemini_frozen/mam__normal_audio_<ds>.jsonl`；看门狗随后自动开 v3，每数据集最多 `MAM_NPAR`=25 父运行（上界估算约 ¥1.2 / 数据集，实际约一半），目录 `/home/claude/eval_v3/mam_<ds>`）。
 - **看门狗** `scripts/runners/eval_v3_watchdog.sh [--restart]`：打印各 job 状态并重启未在跑的（驱动可续跑，`--skip_done`）；全部完成时打印 `ALL_DONE`。定时 check-in（`send_later`，id 在 `/home/claude/posts/checkin_triggers.txt`）会调用它；**ALL_DONE 后删掉剩余 check-in**。
 - 花费：v3 开始时 usage 3881.41，22:16 为 5792.02（约 ¥19.1，含自然运行）。
 - 完成后：每个框架 `python3 scripts/branch_v3_analysis.py label ...` → 汇总报告 → 输出归档入库 → 发 #1 第 55 轮 → 更新本节、讨论记录、Project 入口文档。llm_debate 阳性 61 低于目标 100，是否追加由用户决定。

@@ -103,5 +103,5 @@
 - **triage_agent：** gemini YAML（benchmark triage_esi）；10 题试跑 7/10 正确；216 条自然运行（72 题 × K=3）完成并冻结；v3 已开（53 条答错父运行，424 个点）。
 - **最终答案抽取 `final_answer`：** ESI 等级 / 类别名或别名 / 字母。
 - **回放 key 支持音频和样本 id：** MAM 不同录音的文字 prompt 完全一样，只靠音频 sha1 区分不够稳（同一音频多次出现），改为可选的样本 id 请求头（`mas_base` 在 `AEGIS_SAMPLE_HEADER=1` 时发 `X-Aegis-Sample`；structured wrapper 设 `_aegis_sample_id`；两个回放服务器和 `branch_identity` 的请求 key 都支持；`branch_pilot.py --sample_keys`）。验证：MAM 回放 38/40（2 个 miss 是 LLM 判分请求），最终回答 3/3 一致；triage 80/80。
-- 看门狗加 triage_agent 和 MAM 三个数据集（job 名 `mam_<ds>`，目录 `/home/claude/eval_v3/mam_<ds>`，`--sample_keys`，每数据集最多 40 父运行）。
+- 看门狗加 triage_agent 和 MAM 三个数据集（job 名 `mam_<ds>`，目录 `/home/claude/eval_v3/mam_<ds>`，`--sample_keys`，每数据集最多 25 父运行，按 MAM 每次运行约 ¥0.0006 估算，3 个数据集上界约 ¥3.7、实际约 ¥2）。
 - 提交 `aac964b`。花费：v3 开始以来约 ¥19.1（22:16），含 triage / MAM 自然运行。

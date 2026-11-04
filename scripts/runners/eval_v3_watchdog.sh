@@ -9,7 +9,7 @@ R="--recorded /home/claude/gemini_frozen/{fw}__normal_eval.jsonl"
 declare -A PORT=([agentverse]=19020 [dylan]=19030 [mac_groupchat]=19050 [triage_agent]=19110
                 [mam_heartbeat_a]=19120 [mam_heartbeat_b]=19130 [mam_sounddr]=19140)
 declare -A NPAR=([agentverse]=250 [dylan]=170 [mac_groupchat]=40 [triage_agent]=100
-                [mam_heartbeat_a]=${MAM_NPAR:-40} [mam_heartbeat_b]=${MAM_NPAR:-40} [mam_sounddr]=${MAM_NPAR:-40})
+                [mam_heartbeat_a]=${MAM_NPAR:-25} [mam_heartbeat_b]=${MAM_NPAR:-25} [mam_sounddr]=${MAM_NPAR:-25})
 declare -A ARGS=([triage_agent]="--recorded /home/claude/gemini_frozen/triage_agent__normal_triage.jsonl --dataset datasets/data/triage_esi.json")
 declare -A NEED=([triage_agent]=/home/claude/gemini_frozen/triage_agent__normal_triage.jsonl)
 for d in heartbeat_a heartbeat_b sounddr; do   # MAM: audio, per-dataset dirs, sample-aware replay keys
