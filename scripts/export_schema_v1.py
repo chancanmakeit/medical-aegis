@@ -78,6 +78,15 @@ SCHEMA = "mas-traj/1"
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_REGISTRY = os.path.join(HERE, "..", "configs", "framework_registry.yaml")
 
+# Frameworks whose recorded `sources` are known to miss dependencies (evidence: branch replays, v11 r7/r11:
+# a branch run regenerated a later step whose prompt changed although `sources` does not link it to step t).
+SOURCES_GAPS = {
+    "dylan": "sources miss inter-round dependencies: 221/350 calibration runs; 21/994 v3 branch runs (structure unchanged) regenerated undeclared steps",
+    "agentverse": "criticism steps feed later steps not listed in sources: 29/4729 v3 branch runs (structure unchanged) regenerated undeclared steps",
+    "triage_agent": "18/1151 v3 branch runs (structure unchanged) regenerated undeclared steps",
+    "mdagents": "rare: 6/8157 v3 branch runs (structure unchanged) regenerated undeclared steps",
+}
+
 # Whether a RECORD came from the structured contract (clean inputs, sources,
 # step ids) is read from the record itself: since 2026-10-20 every framework
 # runs on StructuredFMWrapper, but older result files of the same frameworks
@@ -205,8 +214,11 @@ def convert(rec, reg, alias, reasoning_mode, branch=None):
         how = h.get("source_how") or {}
         sources = None
         if "sources" in h:
-            sources = [{"step_id": s, "how": how.get(s, "verbatim")} for s in h.get("sources") or []]
-            sources += [{"step_id": f"task:obs:{o}", "how": "verbatim"}
+            # collection (#4): how the edge was obtained. Structured wrappers record sources at run time.
+            coll = h.get("source_collection") or {}
+            sources = [{"step_id": s, "how": how.get(s, "verbatim"), "collection": coll.get(s, "runtime")}
+                       for s in h.get("sources") or []]
+            sources += [{"step_id": f"task:obs:{o}", "how": "verbatim", "collection": "runtime"}
                         for o in h.get("observations") or [] if o in obs_ids]
         step = {
             "step_id": sid, "order": order, "kind": "tool" if is_tool else "llm",
@@ -300,6 +312,9 @@ def convert(rec, reg, alias, reasoning_mode, branch=None):
             "source_record_id": rec.get("id"), "wrapper_contract": "structured" if structured_fw else "legacy",
             "input_messages_clean": bool(log.get("input_messages_are_clean")) or not injections,
             "sources_recorded": all(s["sources"] is not None for s in steps if s["kind"] == "llm"),
+            # read sets known to miss dependencies (do not use `sources` as read-set supervision when False)
+            "sources_complete": SOURCES_GAPS.get(fw) is None,
+            "sources_known_gaps": SOURCES_GAPS.get(fw),
             "history_alignment_ok": log.get("history_alignment_ok"),
             "reasoning_exported": reasoning_mode == "keep",
             "output_tokenizer": TOKENIZER,

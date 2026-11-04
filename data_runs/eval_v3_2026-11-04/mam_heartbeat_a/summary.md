@@ -3,6 +3,7 @@ identity {"records": 1968, "unique_run_ids": 1968, "pairs": 376, "complete_rep0_
 ## mam: 25 parents, 376 points; {'undetermined': 373, 'positive': 3}; positives per parent 0.12; parents with >= 1 positive 3
 - noise floor (stage 1, all points): control rep0 != rep1 24/376 = 0.064; branch rep0 != rep1 40/376
 - positives: answer_changed 3, correctness_changed 2, of which branch majority correct (wrong -> right) 2
+- reference rule 'control': E0 (expected positives if t had no effect) 0.9, FDR ~ 0.29; positives with the pooled reference 3; positives with perm_p < 0.05 3; positives at empty declared D(t) 1, of which no step after t regenerated (final-call only) 0
   - diagnosis: positive 0/25, stage-2 2
   - discussion r1: positive 2/92, stage-2 15
   - quality_check r1: positive 0/67, stage-2 3

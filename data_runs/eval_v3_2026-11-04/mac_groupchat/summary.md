@@ -3,6 +3,7 @@ identity {"records": 1884, "unique_run_ids": 1884, "pairs": 387, "complete_rep0_
 ## mac_groupchat: 40 parents, 387 points; {'undetermined': 379, 'positive': 8}; positives per parent 0.20; parents with >= 1 positive 8
 - noise floor (stage 1, all points): control rep0 != rep1 17/387 = 0.044; branch rep0 != rep1 21/387
 - positives: answer_changed 8, correctness_changed 4, of which branch majority correct (wrong -> right) 4
+- reference rule 'control': E0 (expected positives if t had no effect) 0.9, FDR ~ 0.11; positives with the pooled reference 6; positives with perm_p < 0.05 6; positives at empty declared D(t) 0, of which no step after t regenerated (final-call only) 0
   - discussion r1: positive 8/40, stage-2 12
   - discussion r2: positive 0/40, stage-2 1
   - discussion r3: positive 0/33, stage-2 1

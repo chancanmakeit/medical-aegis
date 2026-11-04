@@ -22,9 +22,19 @@ if [ ! -f /home/claude/gemini_frozen/mam__normal_audio_sounddr.jsonl ] && [ -f /
   elif [ "${1:-}" = "--restart" ]; then setsid nohup bash /home/claude/posts/run_mam_nat.sh >> /home/claude/posts/run_mam_nat.log 2>&1 < /dev/null & echo "mam natural: restarted"
   fi
 fi
+# v11 r11 expansion (user-approved ~¥5): triage_agent run_index 1-3; MAM heartbeat a/b unused r0 parents + run_index 1
+declare -A FWOF=([triage_agent_x]=triage_agent [mam_heartbeat_a_x]=mam [mam_heartbeat_b_x]=mam)
+PORT[triage_agent_x]=19150; PORT[mam_heartbeat_a_x]=19160; PORT[mam_heartbeat_b_x]=19170
+NPAR[triage_agent_x]=400; NPAR[mam_heartbeat_a_x]=40; NPAR[mam_heartbeat_b_x]=200
+ARGS[triage_agent_x]="--recorded /home/claude/gemini_frozen/x/triage_agent__normal_triage_x.jsonl --dataset datasets/data/triage_esi.json"
+NEED[triage_agent_x]=/home/claude/gemini_frozen/x/triage_agent__normal_triage_x.jsonl
+for d in heartbeat_a heartbeat_b; do
+  ARGS[mam_${d}_x]="--sample_keys --recorded /home/claude/gemini_frozen/x/mam__normal_audio_${d}_x.jsonl --dataset datasets/data/$d.json"
+  NEED[mam_${d}_x]=/home/claude/gemini_frozen/x/mam__normal_audio_${d}_x.jsonl
+done
 pending=0
-for job in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat triage_agent mam_heartbeat_a mam_heartbeat_b mam_sounddr; do
-  fw=${job%%_heartbeat_*}; fw=${fw%_sounddr}
+for job in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat triage_agent mam_heartbeat_a mam_heartbeat_b mam_sounddr triage_agent_x mam_heartbeat_a_x mam_heartbeat_b_x; do
+  fw=${job%%_heartbeat_*}; fw=${fw%_sounddr}; fw=${FWOF[$job]:-$fw}
   log=$E/$job/driver_$fw.log
   if [ -f "$log" ] && tail -1 "$log" | grep -q " done$"; then
     echo "$job: done"
