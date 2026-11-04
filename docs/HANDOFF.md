@@ -1,40 +1,38 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-03（会话 v11 讨论第 7 轮，issue 我方第 54 轮）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-03 22:30（会话 v11 讨论第 9 轮，issue 我方第 54 轮已发、第 55 轮待发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 7 轮，2026-11-03）
+## 当前状态（v11 讨论第 9 轮，2026-11-03）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
 
-**讨论渠道已扩成 4 个 issue**（都在 medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：
-- #1 语料需求主线（我方第 54 轮 6615225277）；#2 CDE × Jev 方法讨论；#3 中训练动机 / 多框架运行（我方第 52 轮 6612194217）；#4 借鉴 ADP 定 mas-traj/1.1（我方第 47 轮 6605421826）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 54 轮 6615225277，下一条第 55 轮）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
 
-**API 端点文档已搬家：** Project 同步的 private-documents `任务基础上下文/api端点.txt`（`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`，只读这一个文件）。新会话从这里重建 `/home/claude/.mht_api.env`，另加 `XIAOJINGAI_GEMINI_API_KEY`（gemini 系列低价 key）和 `XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量查询（免费）：`curl -H "Authorization: Bearer $XIAOJINGAI_GEMINI_API_KEY" "https://open.xiaojingai.com/v1/dashboard/billing/usage?start_date=..&end_date=.."`，`total_usage` 单位 ¥0.01；价目表 ¥0.036 / ¥0.144 **每百万 token**（已实测核对）。
+**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件：`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`）。新会话据此重建 `/home/claude/.mht_api.env`（600），含 `XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量（免费查询）：`/v1/dashboard/billing/usage?start_date=..&end_date=..`，`total_usage` 单位 ¥0.01；gemini-2.5-flash-lite ¥0.036 / ¥0.144 每百万 token（= Google 列表价 × 0.36 换成人民币；`branch_pilot.py` 打印的 `$` 是列表价上界）。
 
-**本轮（v11 第 7 轮）：用户决定把其他框架加入评测集、多模态框架可用 PathVQA / SLAKE / Kvasir-VQA-x1、eval 池按推荐（800 题）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md` 第 2 部分。
-- 另外 4 个框架校准完：**协议 v2 只在下游稳定的框架够用**（噪声底 d：llm_debate / mdagents 约 0.016，AgentVerse 0.136，DyLAN 0.150，MedAgents 0.095，MAC 0.056；MAC 的 confirmed 全在噪声内）。提议**协议 v3**（2+2 起步，有分歧扩到 6+6，Fisher 单侧 p<0.05），报价约 $3.5（实测价），**待用户批准**。
-- DyLAN 改私有 RNG（可回放）；分叉身份按请求 key 匹配，`t_step_id_in_run` + `branch.structure`（DyLAN 的 `sources` 漏依赖：221/350）；回放 key 忽略图像部分。
-- 多模态数据 `datasets/data/mm_v1/`（图片在 `/home/claude/mm_data`，不入 git；`scripts/build_mm_datasets.py` 按 HF 固定 commit 重建，需 HF 令牌）。mdagents 是唯一原生图像框架；MM 试跑通过。
-- 运行：自然 `scripts/runners/gemini_run.sh <fw> <pool> <limit> [K]`（`DATASET=` 可指定 mm_v1 文件）；分叉 `branch_pilot.py --backbone gemini select_all / deps / run`；校准分析 `scripts/branch_eval_calibration.py`；离线回放 `scripts/runners/replay_gemini.sh`。本地工作目录 `/home/claude/gemini_runs`、`/home/claude/branch_gemini_cal{,2}`（全部输出已入库 `data_runs/gemini_trial_2026-11-03/`）。
-- 协议 v3 还没实现：需要 `branch_pilot.py run` 支持同一点多次 branch（`--rep k` 对 branch 臂）、自适应扩展和 Fisher 判定的分析脚本。
+**正在跑：协议 v3 评测集（用户批准约 $3.5 ≈ ¥25；第 9 轮又批准补 triage_agent 和 MAM，各约 ¥1–3）。**
+- 已完成（`/home/claude/eval_v3/<fw>/labels_v3.jsonl`、`summary.md`）：llm_debate 300 父运行 / 2,100 点，61 阳性（20 个 aggregator）；mdagents 425 / 2,975，97 阳性（15 aggregator）；MedAgents 40 / 741，16 阳性；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。
+- 进行中：AgentVerse、MAC（stage 2）；DyLAN 等 AgentVerse 跑完再开；triage_agent（216 条自然运行已冻结，v3 stage 1 已开，按列表价每批约 $0.037，预计总计约 ¥1–1.5）；MAM（heartbeat_a 109 / heartbeat_b 90 / sounddr 60 自然运行在跑，`/home/claude/posts/run_mam_nat.sh`，跑完冻结到 `/home/claude/gemini_frozen/mam__normal_audio_<ds>.jsonl`；看门狗随后自动开 v3，每数据集最多 `MAM_NPAR`=40 父运行，目录 `/home/claude/eval_v3/mam_<ds>`）。
+- **看门狗** `scripts/runners/eval_v3_watchdog.sh [--restart]`：打印各 job 状态并重启未在跑的（驱动可续跑，`--skip_done`）；全部完成时打印 `ALL_DONE`。定时 check-in（`send_later`，id 在 `/home/claude/posts/checkin_triggers.txt`）会调用它；**ALL_DONE 后删掉剩余 check-in**。
+- 花费：v3 开始时 usage 3881.41，22:16 为 5792.02（约 ¥19.1，含自然运行）。
+- 完成后：每个框架 `python3 scripts/branch_v3_analysis.py label ...` → 汇总报告 → 输出归档入库 → 发 #1 第 55 轮 → 更新本节、讨论记录、Project 入口文档。llm_debate 阳性 61 低于目标 100，是否追加由用户决定。
 
-**v11 第 6 轮：gemini-2.5-flash-lite（xiaojingai，用户指定的新 backbone）试跑完成，按 Google 列表价约 $0.48（上界；价目表 ¥0.036 / ¥0.144，单位待用户确认）。** 报告 `docs/requests/samples/gemini_trial_2026-11-03/REPORT.md`。
-- 题池 `datasets/data/pools_v1/`（eval 400 / corpus 1,849；锚点和 MAA 已排除；eval 题永不进训练语料）。
-- 6 个 MCQ 框架都在真实端点跑通（`scripts/runners/gemini_run.sh <fw> <eval|corpus> <limit> [K]`，YAML `experiments/fm_injection/gemini/`，输出 `/home/claude/gemini_runs`）。**DyLAN 已修**（`num_rounds` 3；10-21 以来 DyLAN 全是空轨迹）。新状态 `framework_error`。
-- 分叉：`branch_pilot.py --backbone gemini`、`select_all`；校准在 `/home/claude/branch_gemini_cal`（入库 `data_runs/gemini_trial_2026-11-03/`）。confirmed / 父运行：llm_debate 0.39，mdagents 0.29。报价每 100 confirmed：llm_debate 约 $3.3，mdagents 约 $2.3（列表价）。
-- gemini 温度 0 也不确定；同一请求有 n / n+253 两个 prompt token 计费通道。
+**本会话新增的关键机制**
+- 协议 v3：2 branch + 2 control（stage 1），4 个最终答案不一致则扩到 6+6（stage 2），Fisher 单侧 p<0.05 判 positive（`outcome_sensitive_under_protocol`），否则 undetermined，从不判 negative。aggregator（D(t) 为空）的阳性只反映末步采样，单独报告。
+- 分叉身份嵌入每条记录（`branch` 块；`scripts/branch_identity.py`；导出器 `run_mode: "branch"`，无身份拒绝）。
+- 回放 key：文本 + 附带图像 / 音频 sha1 +（可选）样本 id。`--sample_keys` / 请求头 `X-Aegis-Sample` / 环境变量 `AEGIS_SAMPLE_HEADER=1`，MAM 需要（不同录音的 prompt 完全相同）。MAM 回放 38/40（2 个 miss 是 LLM 判分请求，不是步骤），triage 80/80。
+- `final_answer`：ESI 等级（triage）、类别名 / 别名（MAM 音频分类）、否则字母；无答案记 "NONE"。
+- 容器 7 GB / 2 核，会话空闲时会被回收（杀后台任务）→ 一次一两个重框架，每条 lane 6 worker。
 
-**v11 第 4 轮：方案 A 跑完，$1.528（批准约 $1.45，上限约 $1.6）。** 报告 `docs/requests/samples/planA_2026-11-03/REPORT.md`。
-- 预注册的近因预测（位置 2 翻转最高）**不成立**：0.37 / 0.37 / 0.23；确认的翻转 4 / 11 / 5。决定翻转的是 t 的字母是否改变。
-- **温度 0 不确定**（服务商返回 `google/gemma-4-31B-it-turbo`；带 seed 也不确定）：control 两次的重生成文本全部不同；翻转点里 13/53 的第二次对照不一致；噪声底约 7%。"D(t) 温度 0"不能当确定性对照。
-- 同伴支持度对主点的效应在去噪后消失（确认 10 对 10）；**唯一说对的 agent 是关键人物**（12/15 翻成错，≥1 同伴说对时 0/30）。
-- 建议协议 v2：翻转点补 1 次 control，两次一致且不同于 branch 才算 confirmed。待用户和 MHT 确认。
-- 本地工作目录 `/home/claude/branch_planA`（含带文本的调用日志，不入库；仓库里有去掉文本的版本和全部输出）。
+**沟通**
+- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。先读对方最新评论再发帖。
+- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；等待用 sleep ≤ 60 s（用户要求）。
+- 修改本节时整节重写。
 
-**v11 第 3 轮：分叉身份完成。** `scripts/branch_identity.py`；pilot sidecar `data_runs/branch_pilot_2026-10-26/branch_sidecar.jsonl`；新运行在输出里嵌入 `branch`；导出器 `run_mode: "branch"`、`labels.branch`、无身份拒绝、重复 run_id 默认停止；`tests/test_branch_identity.py`；说明在 `docs/mas_traj_schema_notes.md` 第 3 节。**用分叉数据一律走 sidecar / 嵌入身份。** `branch_pilot.py` 支持 K=3（批次 = 一个 run_index）和 `select_strat`。
-- v11 第 2 轮：回答 #4 的三个问题（锚点无代码/工具动作，决策在 `structured`；llama 无思考输出；分叉原本无关联字段）；`branch_pilot.py` bootstrap 已修（AUROC llm_debate 0.467 [0.394, 0.542]，mdagents 0.496 [0.430, 0.563]）；round16 REPORT 有勘误。
-
-**v11 第 1 轮（仍有效）**：llm_debate 第 2 轮有近因效应（2 对 1 时 56% 改成最后一条他人意见）；试点翻转主要取决于同伴支持度；平凡基线 AUROC 轮次 × 位置 0.76、同伴支持度 0.78（`docs/requests/samples/position_check_2026-10-27/REPORT.md`）。MHT 第 64 轮续 3（#1 6442362292）：SAMT v1 图 token 读得出来，但 MAA 缺陷层 SFT 无提升；他们认为结构应在责任层（分叉数据）更有用；扩大方案倾向 A。
+**待用户决定**
+1. llm_debate 阳性不足 100 时是否追加父运行。
+2. #3：多框架自然运行（语料池）的正式规模。
+3. 主数据（其他框架、正式配置）的生成方案。
 
 **仍有效的结论（v10）**
 - 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。

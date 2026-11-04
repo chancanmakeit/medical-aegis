@@ -91,3 +91,17 @@
 - **自然父运行**：eval 800 题 × llm_debate / mdagents / AgentVerse（各 800）、DyLAN（772，私有 RNG）、MedAgents 110、MAC 140；mdagents 多模态：MedXpertQA-MM 200、PathVQA 200、SLAKE 200、Kvasir 75（被中断，主脚本里补跑）。父运行冻结在 `/home/claude/gemini_frozen/`（分叉期间不再变动）。
 - **事故：** 同时开 6 个框架 × 4 条 lane 导致容器内存（7 GB / 2 核）OOM，杀掉了部分进程，随后会话环境重启（文件都在）。改为一个框架一次、4 条 lane、每条 6 个 worker，批次完成即跳过，可续跑。
 - 规模：父运行 llm_debate 300、mdagents 425、AgentVerse 250、DyLAN 170、MedAgents 40、MAC 40、多模态各 ≤50（答错父运行不足时全用）。
+- 进展（截至 20:45）：llm_debate 300 父运行 / 2,100 点，61 阳性（20 个 aggregator），噪声底 7.8%；mdagents 425 / 2,975，97 阳性（15 aggregator），噪声 6.4%；MedAgents 40 / 741，16 阳性，噪声 7.0%；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。
+- **修复：** 无字母的最终答案作为一个结果 "NONE"（以前当成未完成）；Kvasir 有文本相同、图像不同的题 → 回放 key 加图像 sha1，批次内题目文本互不相同；PathVQA / SLAKE / Kvasir 重跑后身份问题 0。
+- 用户提醒："执行命令时若用到 sleep 命令或者 timeout 命令之类的需要等待的命令，不要设置 sleep 500 这种让人等太久"（我之前用了 580–595 s）→ 之后等待一律 ≤ 60 s。
+- 用户："你可以创建自动定时任务来查看并自动运行任务" → `scripts/runners/eval_v3_watchdog.sh [--restart]` + 每 25–30 分钟一次的 `send_later` check-in（id 记在 `/home/claude/posts/checkin_triggers.txt`），容器被回收后自动续跑。
+
+## 第 9 轮（2026-11-03 21:00–）：为什么是这 6 个框架；补 triage_agent 和 MAM
+用户："我有个疑问，为何要使用的是这6个框架而不是别的医学多智能体框架，你之前不是已经集成了很多种医学多智能体框架吗"。回答要点：评测集按"有客观答案、能在 gemini 上跑通并能离线回放"选；6 个 MCQ 框架共用 MedXpertQA 题池；其余框架要么任务不是选择题（clinical_agent 等，需要另定结果比较），要么需要专门数据 / 模态（triage_agent：ESI 分诊；MAM：音频），要么之前已决定不用（cmas）。推荐优先补 triage_agent 和 MAM（报价各约 ¥1–3，先试跑 + 校准）。
+用户："我建议补triage_agent和mam框架"。
+- **MAM 音频：** 子 agent 重新生成 `datasets/audio/<ds>/`（gitignored），JSON 与之前逐字节一致。gemini YAML `experiments/fm_injection/gemini/mam_normal.yaml`（文本、音频都用 gemini）；3 题试跑通过（音频确实附上；工具步 WebSearch）。
+- **triage_agent：** gemini YAML（benchmark triage_esi）；10 题试跑 7/10 正确；216 条自然运行（72 题 × K=3）完成并冻结；v3 已开（53 条答错父运行，424 个点）。
+- **最终答案抽取 `final_answer`：** ESI 等级 / 类别名或别名 / 字母。
+- **回放 key 支持音频和样本 id：** MAM 不同录音的文字 prompt 完全一样，只靠音频 sha1 区分不够稳（同一音频多次出现），改为可选的样本 id 请求头（`mas_base` 在 `AEGIS_SAMPLE_HEADER=1` 时发 `X-Aegis-Sample`；structured wrapper 设 `_aegis_sample_id`；两个回放服务器和 `branch_identity` 的请求 key 都支持；`branch_pilot.py --sample_keys`）。验证：MAM 回放 38/40（2 个 miss 是 LLM 判分请求），最终回答 3/3 一致；triage 80/80。
+- 看门狗加 triage_agent 和 MAM 三个数据集（job 名 `mam_<ds>`，目录 `/home/claude/eval_v3/mam_<ds>`，`--sample_keys`，每数据集最多 40 父运行）。
+- 提交 `aac964b`。花费：v3 开始以来约 ¥19.1（22:16），含 triage / MAM 自然运行。
