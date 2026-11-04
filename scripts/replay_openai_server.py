@@ -18,6 +18,7 @@ exactly the downstream calls a real branch would have to pay for.
 Identical keys inside the selected runs are served first-in-first-out.
 """
 import argparse
+import base64
 import hashlib
 import json
 import os
@@ -45,8 +46,52 @@ def norm_msgs(msgs):
     return [(m.get("role"), _text_of(m.get("content"))) for m in msgs]
 
 
-def key(msgs):
-    return hashlib.sha1(json.dumps(norm_msgs(msgs), ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+_FILE_SHA = {}
+
+
+def _file_sha1(path):
+    if path not in _FILE_SHA:
+        with open(path, "rb") as f:
+            _FILE_SHA[path] = hashlib.sha1(f.read()).hexdigest()
+    return _FILE_SHA[path]
+
+
+def request_images(msgs):
+    """sha1 of every attached image of a live request (data URLs: of the decoded bytes, else of the URL)."""
+    out = []
+    for m in msgs:
+        c = m.get("content")
+        if isinstance(c, list):
+            for p in c:
+                if isinstance(p, dict) and p.get("type") == "image_url":
+                    url = (p.get("image_url") or {}).get("url", "")
+                    if url.startswith("data:") and "," in url:
+                        out.append(hashlib.sha1(base64.b64decode(url.split(",", 1)[1])).hexdigest())
+                    else:
+                        out.append(hashlib.sha1(url.encode()).hexdigest())
+    return out
+
+
+def step_images(rec, step):
+    """sha1 of the images a recorded step saw (its `observations` -> task_observations paths)."""
+    obs = {o["id"]: o.get("path") for o in (rec.get("injection_log") or {}).get("task_observations") or []}
+    return [_file_sha1(obs[o]) for o in step.get("observations") or [] if obs.get(o)]
+
+
+def key(msgs, images=None):
+    """Request key. Text parts only (recorded inputs keep the text; images are task observations), plus the
+    image hashes when there are any: questions with the same text and different images (Kvasir-VQA-x1:
+    "Is there any abnormality observed in this image?") must not share replies (fixed 2026-11-03)."""
+    payload = norm_msgs(msgs)
+    if images is None:
+        images = request_images(msgs)
+    if images:
+        payload = [payload, sorted(images)]
+    return hashlib.sha1(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+
+
+def step_key(rec, step):
+    return key(step["input_messages"], step_images(rec, step))
 
 
 class Cache:
@@ -68,7 +113,7 @@ class Cache:
                     if overrides and (r["id"], s.get("step_id")) in overrides:   # branch point: serve a different reply
                         reply = overrides[(r["id"], s.get("step_id"))]
                         meta["override"] = True
-                    self.q[key(msgs)].append((reply, meta))
+                    self.q[step_key(r, s)].append((reply, meta))
                     self.steps.append((meta, norm_msgs(msgs)))
                     self.n_steps += 1
 

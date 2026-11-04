@@ -28,7 +28,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mock_openai_server import reply_for  # noqa: E402
-from replay_openai_server import Cache, key  # noqa: E402
+from replay_openai_server import Cache, key, step_key  # noqa: E402
 
 LOCK = threading.Lock()
 ARRIVALS = {}
@@ -48,7 +48,7 @@ def load_spec(path, results, run_index):
             for s in r["injection_log"]["conversation_history"]:
                 if not isinstance(s.get("input_messages"), list):
                     continue
-                k = key(s["input_messages"])
+                k = step_key(r, s)
                 occ = seen.get(k, 0)
                 seen[k] = occ + 1
                 if s.get("step_id") == sp["t_step_id"]:
@@ -56,7 +56,7 @@ def load_spec(path, results, run_index):
                     # arrival order, which replays preserve (replay_hit_analysis: 1,200/1,200 identical runs)
                     t_keys[k] = (r["id"], sp["arm"], occ)
                 elif s.get("step_id") in force:
-                    force_keys[key(s["input_messages"])] = r["id"]
+                    force_keys[step_key(r, s)] = r["id"]
     return spec, t_keys, force_keys
 
 

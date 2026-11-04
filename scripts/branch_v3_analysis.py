@@ -41,10 +41,13 @@ def load(d):
         fw = os.path.basename(f).split("_p")[0]
         for l in open(f):
             r = json.loads(l)
-            b = r["branch"]
+            b = r.get("branch")
+            if b is None:          # a batch interrupted before stamping: it is rerun, ignore here
+                continue
             blocks.append(b)
             p = pts[(fw, b["pair_id"])]
-            p["branch" if b["arm"] == "branch" else "control"][b["repetition"]] = letter(r.get("response"))
+            # a final without an option letter is its own outcome, not missing data
+            p["branch" if b["arm"] == "branch" else "control"][b["repetition"]] = letter(r.get("response")) or "NONE"
             p["run_ids"].append(bi.branch_run_id(b))
             if b["arm"] == "control" and b["repetition"] == 0:
                 p["cand"] = cands[(fw, r["id"], int(r["run_index"]), b["candidate_step_id"])]

@@ -208,10 +208,19 @@ def cmd_select_all(a):
                          "agent": s.get("agent_name"), "phase": s.get("phase"), "round": s.get("round"),
                          "t_letter": L, "gold": g, "recorded_final": letter(r.get("response")), "run_end": "end_wrong",
                          "letter_status": "none" if L is None else ("right" if L == g else "wrong"), "rule": ALL_STEPS_RULE})
-    keys = sorted({(c["run_index"], c["t"]) for c in rows})
+    # one batch = one (run_index, t) and distinct question TEXTS: the replay server keys requests by their
+    # text (+ attached images), so two questions with the same text in one batch (Kvasir-VQA-x1: "Is there
+    # any abnormality observed in this image?") would swap their text-only replies (e.g. the recruiter's)
+    text = {qid: rec_q.get("query") for (qid, _), rec_q in recorded_all(a.fw).items()}
+    seen = Counter()
+    for c in sorted(rows, key=lambda c: (c["run_index"], c["t"], c["qid"])):
+        k = (c["run_index"], c["t"], text.get(c["qid"]))
+        c["_sub"] = seen[k]
+        seen[k] += 1
+    keys = sorted({(c["run_index"], c["t"], c["_sub"]) for c in rows})
     bid = {k: i for i, k in enumerate(keys)}
     for c in rows:
-        c["pass"] = bid[(c["run_index"], c["t"])]
+        c["pass"] = bid[(c["run_index"], c["t"], c.pop("_sub"))]
     with open(os.path.join(a.out, f"{a.fw}_candidates.jsonl"), "w") as f:
         for c in sorted(rows, key=lambda c: (c["pass"], c["qid"])):
             f.write(json.dumps(c) + "\n")
@@ -383,7 +392,7 @@ def cmd_run(a):
         srv.terminate()
     # run identity at the source (issue #1, 2026-11-03): embed a `branch` block in every output record
     import branch_identity
-    from replay_openai_server import key as replay_key
+    from replay_openai_server import step_key as replay_key
     out = os.path.join(wd, f"{tag}_out.jsonl")
     reasons = None
     if a.protocol == "v3":
@@ -407,7 +416,7 @@ def cmd_run(a):
             c["parent_step_ids"] = [s["step_id"] for s in ph]
             n_pre = c["t"] + (0 if a.arm == "branch" else 1)
             c["parent_prefix_sha1"] = [branch_identity.sha1(s.get("content")) for s in ph[:n_pre]]
-            c["parent_keys"] = [(s["step_id"], replay_key(s["input_messages"])) for s in ph]
+            c["parent_keys"] = [(s["step_id"], replay_key(rec_of(allrec, c), s)) for s in ph]
         bad = branch_identity.stamp_file(out, cp, a.arm, a.rep, calls, a.experiment_id or os.path.basename(
             os.path.abspath(a.dir)), reasons, a.fw)
         print(f"{tag}: branch identity stamped; problems {len(bad)}" + (f" e.g. {bad[:3]}" if bad else ""))

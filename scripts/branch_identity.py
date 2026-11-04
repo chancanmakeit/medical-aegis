@@ -205,10 +205,10 @@ def block_problems(b, rec=None):
 JUDGE_VERDICTS = {"CORRECT", "INCORRECT"}
 
 
-def _req_key(msgs):
+def _req_key(rec, step):
     sys.path.insert(0, HERE)
-    from replay_openai_server import key
-    return key(msgs)
+    from replay_openai_server import step_key
+    return step_key(rec, step)
 
 
 def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons=None, fw=None):
@@ -229,7 +229,7 @@ def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons
     where = defaultdict(list)                    # request key -> [(record id, step id, text)]
     for r in recs:
         for st in llm_steps(r):
-            where[_req_key(st["input_messages"])].append((r["id"], st["step_id"], (st.get("content") or "").strip()))
+            where[_req_key(r, st)].append((r["id"], st["step_id"], (st.get("content") or "").strip()))
     taken, mine, used = set(), defaultdict(list), set()
     for i, c in enumerate(pool):
         opts = [x for x in where.get(c.get("key"), []) if (x[0], x[1]) not in taken]
@@ -251,11 +251,11 @@ def stamp_file(out_path, cands, arm, rep, calls_path, experiment_id, rep_reasons
         if arm == "branch":
             t_run = next((x["_step"] for x in mine[r["id"]] if x.get("tag") == "t_resample"), None)
         else:
-            t_run = next((st["step_id"] for st in h if t_key and _req_key(st["input_messages"]) == t_key), None)
+            t_run = next((st["step_id"] for st in h if t_key and _req_key(r, st) == t_key), None)
         b["t_step_id_in_run"] = t_run
         if pk and b.get("structure") is not None:
             # parent steps whose input reappears unchanged in this run but under another step id
-            run_ids = {_req_key(st["input_messages"]): st["step_id"] for st in h}
+            run_ids = {_req_key(r, st): st["step_id"] for st in h}
             moved = [(p_sid, run_ids[k]) for p_sid, k in pk.items() if k in run_ids and run_ids[k] != p_sid]
             b["structure"]["renumbered"] = moved
             if moved:
