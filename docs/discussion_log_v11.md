@@ -128,3 +128,8 @@
 ## 第 12 轮（2026-11-04 09:06–）：用户："继续"
 - 第 57 轮之后对方还没有回复。离线做了平凡基线（`scripts/branch_v3_baselines.py`，复现 MHT 第 84 轮第 2 节，并扩展到全部 job）：文本 MCQ 与 MHT 的数字一致（AgentVerse 0.740、llm_debate 0.815、mdagents 0.534、MAC 0.973）；MAM 受步长混杂（0.743）；triage 的步长混杂不明显（0.577，CI 含 0.5），但阳性偏早（相对位置 0.297）；多模态 mdagents 0.593（CI 宽）。写进 REPORT。
 - 已发 #1 第 58 轮（补充）。下一条第 59 轮。
+
+## 第 13 轮（2026-11-04 10:37–）：MHT 请求语料题池自然运行
+- **MHT 第 86 轮（#3 6637475561）：** 用户批准三臂方案（base / LM-CPT / interaction-CPT），预注册 `MedHyperTrace-v2/docs/design/InteractionCPT_prereg_v1.md`。公开 mas-traj 没有运行时读集，所以需要我们在 corpus 池（1,449 题，K = 1）上跑 llm_debate、mdagents、MedAgents、MAC、DyLAN 的自然运行。AgentVerse、triage、MAM 是"未见框架"评测层，不进训练。导出 mas-traj，带 `sources`、`collection`、`sources_complete`。请按框架报价并给出渲染 token 估计。
+- **报价**（eval 池同配置运行 × 1,449，按 token 计，含 15% 余量）：llm_debate ¥1.0、mdagents ¥0.6、MedAgents ¥3.3、MAC ¥1.7、DyLAN ¥2.6，合计约 ¥9.2。渲染 token（只渲染输出，o200k）合计约 27.8M，不含 DyLAN 约 18.9M。读集核对：5 个框架有历史的步中，50–94% 只读历史的真子集，不是广播式的。llm_debate 的 `sources_complete` 无法用分叉检验核验（结构编号变化）。mdagents 的缺口很少（6/8,157），改为 `sources_complete: true` 并附说明。对评测设计的意见：已见框架层的非末步阳性主要来自 mdagents，建议用实际聚类数复核功效。已发 #3 第 59 轮（6638967512）。
+- **用户选择：跑 4 个框架，不跑 DyLAN（约 ¥6.6）。** 已开跑（`/home/claude/posts/run_corpus.sh`，输出在 `/home/claude/corpus_runs/`，可续跑）；开始时用量计数器为 8247.08。
