@@ -34,7 +34,7 @@ LOCK = threading.Lock()
 ARRIVALS = {}
 
 
-def load_spec(path, results, run_index):
+def load_spec(path, results, run_index, sample_keys=False):
     spec = {json.loads(l)["qid"]: json.loads(l) for l in open(path) if l.strip()}
     t_keys, force_keys = {}, {}
     for f in results:
@@ -48,7 +48,7 @@ def load_spec(path, results, run_index):
             for s in r["injection_log"]["conversation_history"]:
                 if not isinstance(s.get("input_messages"), list):
                     continue
-                k = step_key(r, s)
+                k = step_key(r, s, sample_keys)
                 occ = seen.get(k, 0)
                 seen[k] = occ + 1
                 if s.get("step_id") == sp["t_step_id"]:
@@ -56,7 +56,7 @@ def load_spec(path, results, run_index):
                     # arrival order, which replays preserve (replay_hit_analysis: 1,200/1,200 identical runs)
                     t_keys[k] = (r["id"], sp["arm"], occ)
                 elif s.get("step_id") in force:
-                    force_keys[step_key(r, s)] = r["id"]
+                    force_keys[step_key(r, s, sample_keys)] = r["id"]
     return spec, t_keys, force_keys
 
 
@@ -91,8 +91,11 @@ def make_handler(a, cache, t_keys, force_keys):
         def do_POST(self):
             body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
             msgs = body.get("messages", [])
-            k = key(msgs)
+            sample = self.headers.get("X-Aegis-Sample")
+            k = key(msgs, sample=sample if cache.sample_keys else None)
             rec = {"key": k, "t": time.time(), "req_temperature": body.get("temperature")}
+            if sample is not None:
+                rec["sample"] = sample
             out = None
             is_t = False
             if k in t_keys:
@@ -101,7 +104,7 @@ def make_handler(a, cache, t_keys, force_keys):
                     ARRIVALS[k] = n_seen + 1
                 is_t = n_seen == t_keys[k][2]
                 if not is_t:
-                    got = cache.take(msgs)
+                    got = cache.take(msgs, sample)
                     if got is not None:
                         out = got[0]
                         rec.update(tag="recorded_same_input", qid=t_keys[k][0], occurrence=n_seen)
@@ -110,10 +113,10 @@ def make_handler(a, cache, t_keys, force_keys):
             if out is not None or rec.get("tag") == "miss":
                 pass
             elif is_t and t_keys[k][1] == "branch":
-                cache.take(msgs)       # drop step t's recorded reply so later identical requests stay aligned
+                cache.take(msgs, sample)       # drop step t's recorded reply so later identical requests stay aligned
                 rec.update(tag="t_resample", qid=t_keys[k][0], temperature=a.t_temperature)
             elif is_t:
-                got = cache.take(msgs)
+                got = cache.take(msgs, sample)
                 rec.update(tag="t_kept", qid=t_keys[k][0])
                 if got is None:      # should not happen: the recorded reply of step t was consumed already
                     rec.update(tag="t_kept_missing", temperature=a.down_temperature)
@@ -122,7 +125,7 @@ def make_handler(a, cache, t_keys, force_keys):
             elif k in force_keys:
                 rec.update(tag="forced_dependent", qid=force_keys[k], temperature=a.down_temperature)
             else:
-                got = cache.take(msgs)
+                got = cache.take(msgs, sample)
                 if got is not None:
                     out = got[0]
                     rec.update(tag="recorded", qid=got[1]["qid"], step_id=got[1]["step_id"])
@@ -169,9 +172,11 @@ def main():
     ap.add_argument("--api_key_env", default="AIHUBMIX_API_KEY")
     ap.add_argument("--t_temperature", type=float, default=0.7)
     ap.add_argument("--down_temperature", type=float, default=0.0)
+    ap.add_argument("--sample_keys", action="store_true",
+                    help="key requests by the X-Aegis-Sample header too (MAM / Kvasir: identical text across samples)")
     a = ap.parse_args()
-    spec, t_keys, force_keys = load_spec(a.spec, a.results, a.run_index)
-    cache = Cache(a.results, a.run_index, set(spec))
+    spec, t_keys, force_keys = load_spec(a.spec, a.results, a.run_index, a.sample_keys)
+    cache = Cache(a.results, a.run_index, set(spec), None, a.sample_keys)
     print(f"branch server: {len(spec)} questions, {len(t_keys)} branch points, {len(force_keys)} forced dependent steps, "
           f"upstream={a.upstream if a.upstream == 'mock' else 'real'}", flush=True)
     ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(a, cache, t_keys, force_keys)).serve_forever()

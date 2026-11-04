@@ -69,16 +69,28 @@ def request_images(msgs):
                         out.append(hashlib.sha1(base64.b64decode(url.split(",", 1)[1])).hexdigest())
                     else:
                         out.append(hashlib.sha1(url.encode()).hexdigest())
+                elif isinstance(p, dict) and p.get("type") == "input_audio":
+                    # MAM: the same prompt text for every recording, so the audio must be part of the key
+                    data = (p.get("input_audio") or {}).get("data", "")
+                    if data.startswith("data:") and "," in data:
+                        data = data.split(",", 1)[1]
+                    try:
+                        out.append(hashlib.sha1(base64.b64decode(data)).hexdigest())
+                    except ValueError:
+                        out.append(hashlib.sha1(data.encode()).hexdigest())
     return out
 
 
 def step_images(rec, step):
     """sha1 of the images a recorded step saw (its `observations` -> task_observations paths)."""
     obs = {o["id"]: o.get("path") for o in (rec.get("injection_log") or {}).get("task_observations") or []}
-    return [_file_sha1(obs[o]) for o in step.get("observations") or [] if obs.get(o)]
+    # images and audio (MAM) are both task observations; relative paths are relative to the repo root
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return [_file_sha1(obs[o] if os.path.isabs(obs[o]) else os.path.join(root, obs[o]))
+            for o in step.get("observations") or [] if obs.get(o)]
 
 
-def key(msgs, images=None):
+def key(msgs, images=None, sample=None):
     """Request key. Text parts only (recorded inputs keep the text; images are task observations), plus the
     image hashes when there are any: questions with the same text and different images (Kvasir-VQA-x1:
     "Is there any abnormality observed in this image?") must not share replies (fixed 2026-11-03)."""
@@ -87,15 +99,18 @@ def key(msgs, images=None):
         images = request_images(msgs)
     if images:
         payload = [payload, sorted(images)]
+    if sample is not None:          # --sample_keys: the request's X-Aegis-Sample header / the record id
+        payload = [payload, "sample", str(sample)]
     return hashlib.sha1(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
-def step_key(rec, step):
-    return key(step["input_messages"], step_images(rec, step))
+def step_key(rec, step, sample_keys=False):
+    return key(step["input_messages"], step_images(rec, step), rec.get("id") if sample_keys else None)
 
 
 class Cache:
-    def __init__(self, files, run_index, ids=None, overrides=None):
+    def __init__(self, files, run_index, ids=None, overrides=None, sample_keys=False):
+        self.sample_keys = sample_keys
         self.q = defaultdict(deque)           # key -> deque of (reply, meta)
         self.steps = []                       # (qid, step_id, agent, phase, msgs) for miss diagnosis
         self.n_steps = 0
@@ -113,12 +128,12 @@ class Cache:
                     if overrides and (r["id"], s.get("step_id")) in overrides:   # branch point: serve a different reply
                         reply = overrides[(r["id"], s.get("step_id"))]
                         meta["override"] = True
-                    self.q[step_key(r, s)].append((reply, meta))
+                    self.q[step_key(r, s, sample_keys)].append((reply, meta))
                     self.steps.append((meta, norm_msgs(msgs)))
                     self.n_steps += 1
 
-    def take(self, msgs):
-        k = key(msgs)
+    def take(self, msgs, sample=None):
+        k = key(msgs, sample=sample if self.sample_keys else None)
         with LOCK:
             d = self.q.get(k)
             if d:
@@ -167,13 +182,17 @@ def make_handler(cache, log_path):
         def do_POST(self):
             body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
             msgs = body.get("messages", [])
-            got = cache.take(msgs)
+            sample = self.headers.get("X-Aegis-Sample")
+            k = key(msgs, sample=sample if cache.sample_keys else None)
+            got = cache.take(msgs, sample)
             if got is not None:
                 text, meta = got
-                rec = {"hit": True, "key": key(msgs), **meta}
+                rec = {"hit": True, "key": k, **meta}
             else:
                 text = reply_for(msgs) or "OK."
-                rec = {"hit": False, "key": key(msgs), "diag": cache.diagnose(msgs)}
+                rec = {"hit": False, "key": k, "diag": cache.diagnose(msgs)}
+            if sample is not None:
+                rec["sample"] = sample
             rec["t"] = time.time()
             with LOCK, open(log_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -197,6 +216,8 @@ def main():
     ap.add_argument("--run_index", type=int, default=0)
     ap.add_argument("--ids", default=None, help="comma-separated question ids to load (default all)")
     ap.add_argument("--log", required=True)
+    ap.add_argument("--sample_keys", action="store_true",
+                    help="key requests by the X-Aegis-Sample header too (main.py run with AEGIS_SAMPLE_HEADER=1)")
     ap.add_argument("--overrides", default=None,
                     help="JSONL of {qid, step_id, text}: serve `text` instead of the recorded reply at that step "
                          "(simulated branch; later requests that embed it then miss)")
@@ -204,7 +225,7 @@ def main():
     ov = None
     if a.overrides:
         ov = {(o["qid"], o["step_id"]): o["text"] for o in map(json.loads, open(a.overrides)) }
-    cache = Cache(a.results, a.run_index, set(a.ids.split(",")) if a.ids else None, ov)
+    cache = Cache(a.results, a.run_index, set(a.ids.split(",")) if a.ids else None, ov, a.sample_keys)
     print(f"replay cache: {cache.n_steps} recorded steps, {len(cache.q)} distinct keys", flush=True)
     ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(cache, a.log)).serve_forever()
 

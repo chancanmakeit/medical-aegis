@@ -6,10 +6,12 @@
 cd "$(dirname "$0")/../.."
 E=/home/claude/eval_v3
 R="--recorded /home/claude/gemini_frozen/{fw}__normal_eval.jsonl"
-declare -A PORT=([agentverse]=19020 [dylan]=19030 [mac_groupchat]=19050)
-declare -A NPAR=([agentverse]=250 [dylan]=170 [mac_groupchat]=40)
+declare -A PORT=([agentverse]=19020 [dylan]=19030 [mac_groupchat]=19050 [triage_agent]=19110)
+declare -A NPAR=([agentverse]=250 [dylan]=170 [mac_groupchat]=40 [triage_agent]=100)
+declare -A ARGS=([triage_agent]="--recorded /home/claude/gemini_frozen/triage_agent__normal_triage.jsonl --dataset datasets/data/triage_esi.json")
+declare -A NEED=([triage_agent]=/home/claude/gemini_frozen/triage_agent__normal_triage.jsonl)
 pending=0
-for fw in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat; do
+for fw in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat triage_agent; do
   log=$E/$fw/driver_$fw.log
   if [ -f "$log" ] && tail -1 "$log" | grep -q " done$"; then
     echo "$fw: done"
@@ -23,7 +25,10 @@ for fw in llm_debate mdagents medagents_mc agentverse dylan mac_groupchat; do
     if [ "$fw" = dylan ] && ! { [ -f $E/agentverse/driver_agentverse.log ] && tail -1 $E/agentverse/driver_agentverse.log | grep -q " done$"; }; then
       echo "$fw: waiting for agentverse"; continue
     fi
-    setsid nohup bash scripts/runners/branch_v3.sh $fw $E/$fw ${PORT[$fw]} ${NPAR[$fw]} $R > /dev/null 2>&1 < /dev/null &
+    if [ -n "${NEED[$fw]:-}" ] && [ ! -f "${NEED[$fw]}" ]; then
+      echo "$fw: parents not frozen yet (natural runs first)"; continue
+    fi
+    setsid nohup bash scripts/runners/branch_v3.sh $fw $E/$fw ${PORT[$fw]} ${NPAR[$fw]} ${ARGS[$fw]:-$R} > /dev/null 2>&1 < /dev/null &
     echo "$fw: restarted"
   else
     echo "$fw: not running"

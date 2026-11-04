@@ -1,0 +1,23 @@
+# GEMINI batch (v11 r9, user 2026-11-03): triage_agent on datasets/data/triage_esi.json (216, all eval), gemini-2.5-flash-lite.
+# Same as experiments/fm_injection/triage/triage_agent_triage_normal.yaml except temperature 0.7 (anchor convention).
+run_mode: "clean"
+triage_config_name: "config_triage"
+
+system_under_test:
+  name: "triage_agent"
+  wrapper_class_path: "aegis_core.agent_systems.fm_triage_agent_wrapper.FMTriageAgentWrapper"
+  method_config_path: "methods/triage_agent/configs/config_triage.yaml"
+
+llm_config:
+  provider: "openai"
+  model_name: "YOUR_MODEL"
+  model_url: "YOUR_BASE_URL"
+  api_key: "YOUR_API_KEY"
+  temperature: 0.7
+
+use_llm_judge: true
+judge_mode: "regex_first"
+
+experiment_settings:
+  max_workers: 4
+benchmark_name: triage_esi

@@ -202,6 +202,7 @@ class StructuredFMWrapper(SystemWrapper):
         call_counter = {"n": 0}
 
         sample = self.build_sample(task)
+        self.mas._aegis_sample_id = sample.get("id") or (getattr(task, "metadata", None) or {}).get("id")
         # the factory reads MCQ option letters from the task text (RC wrong answer)
         self.fm_factory.task_text = getattr(task, "query", None) or str(sample.get("query", ""))
         gt = getattr(task, "ground_truth", None)

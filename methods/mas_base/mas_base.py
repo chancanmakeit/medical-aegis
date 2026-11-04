@@ -276,6 +276,11 @@ class MAS():
         # {"thinking": {"type": "disabled"}} or Qwen's {"enable_thinking": false}.
         if model_dict.get("extra_body"):
             request_dict["extra_body"] = model_dict["extra_body"]
+        # replay servers (scripts/replay_openai_server.py, branch_replay_server.py --sample_keys) need to know
+        # which sample a request belongs to when different samples send identical text (MAM: the same prompt
+        # for every recording; Kvasir-VQA-x1). Opt-in; ignored by real endpoints.
+        if os.environ.get("AEGIS_SAMPLE_HEADER") and getattr(self, "_aegis_sample_id", None):
+            request_dict["extra_headers"] = {"X-Aegis-Sample": str(self._aegis_sample_id)}
 
         # 根据是否有 base_url 来决定初始化方式
         if model_url and model_url.strip():

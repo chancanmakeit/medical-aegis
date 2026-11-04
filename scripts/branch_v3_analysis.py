@@ -23,7 +23,7 @@ from scipy.stats import fisher_exact
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from branch_pilot import letter  # noqa: E402
+from branch_pilot import letter, final_answer  # noqa: E402
 import branch_identity as bi  # noqa: E402
 
 ALPHA = 0.05
@@ -47,7 +47,7 @@ def load(d):
             blocks.append(b)
             p = pts[(fw, b["pair_id"])]
             # a final without an option letter is its own outcome, not missing data
-            p["branch" if b["arm"] == "branch" else "control"][b["repetition"]] = letter(r.get("response")) or "NONE"
+            p["branch" if b["arm"] == "branch" else "control"][b["repetition"]] = final_answer(r) or "NONE"
             p["run_ids"].append(bi.branch_run_id(b))
             if b["arm"] == "control" and b["repetition"] == 0:
                 p["cand"] = cands[(fw, r["id"], int(r["run_index"]), b["candidate_step_id"])]

@@ -55,6 +55,40 @@ def letter(text):
     return m[-1] if m else None
 
 
+ESI = re.compile(r"ESI\s*level\s*[:=]?\s*\**\s*([1-5])\b", re.I)
+
+
+def _classes(r):
+    g = r.get("ground_truth")
+    if isinstance(g, str):
+        try:
+            import ast
+            g = ast.literal_eval(g)
+        except (ValueError, SyntaxError):
+            g = {}
+    return (g or {}).get("classes") or [], (g or {}).get("aliases") or {}
+
+
+def final_answer(r, text=None):
+    """Final answer of a run (or of one step's text) as a comparable string: the option letter for MCQ,
+    the ESI level for triage, the class name for MAM-style classification ("NONE" handled by callers)."""
+    text = r.get("response") if text is None else text
+    classes, aliases = _classes(r)
+    if classes and all(c in "12345" for c in classes):
+        m = ESI.findall(text or "")
+        return m[-1] if m else None
+    if classes and not all(len(c) == 1 for c in classes):
+        low = (text or "").lower()
+        best, pos = None, -1
+        for c in classes:
+            for name in [c] + list(aliases.get(c) or []):
+                i = low.rfind(name.lower())
+                if i > pos:
+                    best, pos = c, i
+        return best
+    return letter(text)
+
+
 def gold(r):
     g = r.get("ground_truth")
     if isinstance(g, str):
@@ -203,10 +237,10 @@ def cmd_select_all(a):
             break
         g, h = gold(r), llm_steps(r)
         for i, s in enumerate(h):
-            L = letter(s.get("content"))
+            L = final_answer(r, s.get("content"))
             rows.append({"fw": a.fw, "qid": qid, "run_index": ri, "t": i, "n_steps": len(h), "t_step_id": s["step_id"],
                          "agent": s.get("agent_name"), "phase": s.get("phase"), "round": s.get("round"),
-                         "t_letter": L, "gold": g, "recorded_final": letter(r.get("response")), "run_end": "end_wrong",
+                         "t_letter": L, "gold": g, "recorded_final": final_answer(r), "run_end": "end_wrong",
                          "letter_status": "none" if L is None else ("right" if L == g else "wrong"), "rule": ALL_STEPS_RULE})
     # one batch = one (run_index, t) and distinct question TEXTS: the replay server keys requests by their
     # text (+ attached images), so two questions with the same text in one batch (Kvasir-VQA-x1: "Is there
@@ -247,12 +281,15 @@ def write_cfg(fw, port, wd, tag):
 
 
 MAX_WORKERS = 16
+SAMPLE_KEYS = False
 
 
 def run_main(fw, api, cfg, ds, out, log, run_index=0):
     if os.path.exists(out):      # main.py resumes from an existing output file
         os.remove(out)
     env = {k: v for k, v in os.environ.items() if k not in ("AIHUBMIX_API_KEY", "OPENAI_API_KEY", KEY_ENV)}
+    if SAMPLE_KEYS:
+        env["AEGIS_SAMPLE_HEADER"] = "1"
     cmd = [sys.executable, "main.py", "--method_name", fw, "--experiment_config", cfg, "--model_api_config", api,
            "--model_name", MODEL, "--dataset_file", ds, "--test_dataset_name", "medxpertqa_text",
            "--output_path", out, "--model_temperature", "0.7", "--model_max_tokens", "4096", "--max_workers", str(MAX_WORKERS),
@@ -382,7 +419,7 @@ def cmd_run(a):
                 env[k.replace("export ", "")] = v.strip().strip('"').strip("'")
         upstream = UPSTREAM
     srv = start_server(["scripts/branch_replay_server.py", "--port", str(a.port), "--results", RECORDED.format(fw=a.fw),
-                        "--api_key_env", KEY_ENV,
+                        "--api_key_env", KEY_ENV] + (["--sample_keys"] if a.sample_keys else []) + [
                         "--run_index", str(ri), "--spec", spec, "--log", calls, "--upstream", upstream], calls, os.path.join(wd, f"{tag}_server.log"), env)
     try:
         ds = os.path.join(wd, f"{tag}_ds.json"); subset_dataset({c["qid"] for c in cp}, ds)
@@ -416,7 +453,7 @@ def cmd_run(a):
             c["parent_step_ids"] = [s["step_id"] for s in ph]
             n_pre = c["t"] + (0 if a.arm == "branch" else 1)
             c["parent_prefix_sha1"] = [branch_identity.sha1(s.get("content")) for s in ph[:n_pre]]
-            c["parent_keys"] = [(s["step_id"], replay_key(rec_of(allrec, c), s)) for s in ph]
+            c["parent_keys"] = [(s["step_id"], replay_key(rec_of(allrec, c), s, a.sample_keys)) for s in ph]
         bad = branch_identity.stamp_file(out, cp, a.arm, a.rep, calls, a.experiment_id or os.path.basename(
             os.path.abspath(a.dir)), reasons, a.fw)
         print(f"{tag}: branch identity stamped; problems {len(bad)}" + (f" e.g. {bad[:3]}" if bad else ""))
@@ -548,9 +585,12 @@ def main():
     ap.add_argument("--dataset", default=None, help="dataset JSON of the recorded runs (overrides the backbone profile)")
     ap.add_argument("--max_workers", type=int, default=16)
     ap.add_argument("--skip_done", action="store_true", help="skip a batch whose output is complete and stamped")
+    ap.add_argument("--sample_keys", action="store_true",
+                    help="replay keys include the sample id (frameworks / datasets whose samples send identical text)")
     a = ap.parse_args()
-    global RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV, P_IN, P_OUT, DATASET, MAX_WORKERS
+    global RECORDED, MODEL, YAML_DIR, UPSTREAM, KEY_ENV, P_IN, P_OUT, DATASET, MAX_WORKERS, SAMPLE_KEYS
     MAX_WORKERS = a.max_workers
+    SAMPLE_KEYS = a.sample_keys
     bb = BACKBONES[a.backbone]
     DATASET = a.dataset or bb["dataset"]
     if a.recorded:
