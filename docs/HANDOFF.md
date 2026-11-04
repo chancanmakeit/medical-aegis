@@ -1,45 +1,36 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-03 22:30（会话 v11 讨论第 9 轮，issue 我方第 54 轮已发、第 55 轮待发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-04 01:40（会话 v11 讨论第 9 轮，issue 我方第 54 轮已发、第 55 轮待发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 9 轮，2026-11-03）
+## 当前状态（v11 讨论第 9 轮，2026-11-04）
 
-逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`（第 1–18 轮）。
+逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 54 轮 6615225277，下一条第 55 轮）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
+**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse：#1 语料需求主线（我方第 54 轮 6615225277，**下一条第 55 轮 = v3 评测集结果，等 DyLAN 决定后发**）；#2 CDE × Jev；#3 中训练动机 / 多框架运行（第 52 轮）；#4 mas-traj/1.1（第 47 轮）。
 
-**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件：`gh api -H "Accept: application/vnd.github.raw" "repos/chancanmakeit/private-documents/contents/任务基础上下文/api端点.txt"`）。新会话据此重建 `/home/claude/.mht_api.env`（600），含 `XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量（免费查询）：`/v1/dashboard/billing/usage?start_date=..&end_date=..`，`total_usage` 单位 ¥0.01；gemini-2.5-flash-lite ¥0.036 / ¥0.144 每百万 token（= Google 列表价 × 0.36 换成人民币；`branch_pilot.py` 打印的 `$` 是列表价上界）。
+**API：** 端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）。新会话据此重建 `/home/claude/.mht_api.env`（600），含 `XIAOJINGAI_GEMINI_API_KEY`、`XIAOJINGAI_BASE_URL=https://open.xiaojingai.com/v1`。用量 `/v1/dashboard/billing/usage`，`total_usage` 单位 ¥0.01；gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36 换成人民币（`branch_pilot.py` 打印的 `$` 是列表价上界）。
 
-**正在跑：协议 v3 评测集（用户批准约 $3.5 ≈ ¥25；第 9 轮又批准补 triage_agent 和 MAM，各约 ¥1–3）。**
-- 已完成（`/home/claude/eval_v3/<fw>/labels_v3.jsonl`、`summary.md`）：llm_debate 300 父运行 / 2,100 点，61 阳性（20 个 aggregator）；mdagents 425 / 2,975，97 阳性（15 aggregator）；MedAgents 40 / 741，16 阳性；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。
-- 进行中：AgentVerse、MAC（stage 2）；DyLAN 等 AgentVerse 跑完再开；triage_agent（216 条自然运行已冻结，v3 stage 1 已开，按列表价每批约 $0.037，预计总计约 ¥1–1.5）；MAM（heartbeat_a 109 / heartbeat_b 90 / sounddr 60 自然运行在跑，`/home/claude/posts/run_mam_nat.sh`，跑完冻结到 `/home/claude/gemini_frozen/mam__normal_audio_<ds>.jsonl`；看门狗随后自动开 v3，每数据集最多 `MAM_NPAR`=25 父运行（上界估算约 ¥1.2 / 数据集，实际约一半），目录 `/home/claude/eval_v3/mam_<ds>`）。
-- **看门狗** `scripts/runners/eval_v3_watchdog.sh [--restart]`：打印各 job 状态并重启未在跑的（驱动可续跑，`--skip_done`）；全部完成时打印 `ALL_DONE`。定时 check-in（`send_later`，id 在 `/home/claude/posts/checkin_triggers.txt`）会调用它；**ALL_DONE 后删掉剩余 check-in**。
-- 花费：v3 开始时 usage 3881.41，22:16 为 5792.02（约 ¥19.1，含自然运行）。
-- 完成后：每个框架 `python3 scripts/branch_v3_analysis.py label ...` → 汇总报告 → 输出归档入库 → 发 #1 第 55 轮 → 更新本节、讨论记录、Project 入口文档。llm_debate 阳性 61 低于目标 100，是否追加由用户决定。
+**协议 v3 评测集：除 DyLAN stage 2 外全部完成。** 报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`；归档 `data_runs/eval_v3_2026-11-04/`（每个 job：labels、summary、candidates、stage-2 名单、只含重生成步骤文本的分叉记录；`parents/` 是冻结父运行）。
+- 阳性（Fisher 单侧 p<0.05）/ 点数 / 噪声底：AgentVerse 99 / 2,087 / 0.152；mdagents 97 / 2,975 / 0.064；llm_debate 61 / 2,100 / 0.078（20 个在 aggregation 步）；MedAgents 16 / 741；MAC 8 / 387；triage_agent 10 / 424；MAM heartbeat_a 3、heartbeat_b 9、sounddr 0（答案几乎不变）；mdagents 多模态 MedXpertQA-MM 13、PathVQA 3、SLAKE 1、Kvasir 4。合计 324 阳性（43 个 D(t) 为空）。
+- **DyLAN**：为控制花费改为 40 个父运行（全部步）+ 170 个父运行的步 0；噪声底 0.254；566 点中 286 需要 stage 2（约 ¥2.5），**已暂停（`/home/claude/eval_v3/dylan/PAUSED`），等用户批准**。批准后：删 PAUSED，`bash scripts/runners/eval_v3_watchdog.sh --restart`（驱动可续跑），保持会话活跃到跑完，然后 label、`branch_v3_compact.py` 更新归档、`branch_v3_report.py` 重出表、发 #1 第 55 轮。
+- 花费：v3 开始 usage 3881.41 → 6899.93（约 ¥30.2，含 triage / MAM 自然运行）；批准约 ¥25 + triage / MAM 各约 ¥1–3。
+- 待用户决定：DyLAN stage 2；llm_debate 阳性 61 < 目标 100，是否追加。
 
-**本会话新增的关键机制**
-- 协议 v3：2 branch + 2 control（stage 1），4 个最终答案不一致则扩到 6+6（stage 2），Fisher 单侧 p<0.05 判 positive（`outcome_sensitive_under_protocol`），否则 undetermined，从不判 negative。aggregator（D(t) 为空）的阳性只反映末步采样，单独报告。
-- 分叉身份嵌入每条记录（`branch` 块；`scripts/branch_identity.py`；导出器 `run_mode: "branch"`，无身份拒绝）。
-- 回放 key：文本 + 附带图像 / 音频 sha1 +（可选）样本 id。`--sample_keys` / 请求头 `X-Aegis-Sample` / 环境变量 `AEGIS_SAMPLE_HEADER=1`，MAM 需要（不同录音的 prompt 完全相同）。MAM 回放 38/40（2 个 miss 是 LLM 判分请求，不是步骤），triage 80/80。
-- `final_answer`：ESI 等级（triage）、类别名 / 别名（MAM 音频分类）、否则字母；无答案记 "NONE"。
-- 容器 7 GB / 2 核，会话空闲时会被回收（杀后台任务）→ 一次一两个重框架，每条 lane 6 worker。
+**运行要点（本会话学到的）**
+- 容器在会话空闲几分钟后会被回收，后台任务被杀。长任务必须在会话活跃时跑（每次 sleep ≤ 60 s 轮询）；定时 check-in 只能拉起来跑一小段。驱动全部可续跑（`--skip_done`；`branch_v3.sh` 每阶段跑两遍补崩溃批次）。看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
+- **不要在驱动运行时编辑它们读取的脚本**（MAC stage-2 的 control 批次就是因此崩溃）；改 bash 脚本用"写新文件再 mv"。
+- 回放 key：文本 + 图像 / 音频 sha1 +（MAM）样本 id（`--sample_keys`，同文本题可同批）。`stamp_file` 按全部调用判断是否用样本 key；旧批次可用 `scripts/branch_restamp.py` 离线重盖章。
+- `final_answer`：ESI 等级（triage）/ 类别名或别名（MAM）/ 字母；无答案记 "NONE"。
 
 **沟通**
 - 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。先读对方最新评论再发帖。
-- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；等待用 sleep ≤ 60 s（用户要求）。
+- MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套；sleep ≤ 60 s。
 - 修改本节时整节重写。
 
 **待用户决定**
-1. llm_debate 阳性不足 100 时是否追加父运行。
-2. #3：多框架自然运行（语料池）的正式规模。
-3. 主数据（其他框架、正式配置）的生成方案。
-
-**仍有效的结论（v10）**
-- 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
-- fmt_v1_2 不推广（llm_debate 保持 fmt_v1）；mdagents 正式配置保留 match_opener（`format_matched` 路径 `pi_length_match.format.format_matched`）。
-- `phase_canonical` v1 已采用；MHT 转换器 import 我们的 `scripts/phase_canonical.py`，**改接口先通知 MHT**。
-- 合成路线：在真实轨迹上分叉为主，注入为辅，不让 LLM 整条写轨迹；不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。
-- 估算：注入/验证类运行要按重试率修正；分叉没有这个放大。
+1. DyLAN stage 2（约 ¥2.5）。
+2. llm_debate 追加父运行（阳性 61 < 100）。
+3. #3：多框架自然运行（语料池）的正式规模；主数据（其他框架、正式配置）的生成方案。
 
 **锚点数据**（只用 llama-4-maverick，aihubmix；响应 model 字段 `google/gemma-4-31B-it-turbo`，用户说明不再核实）
 - 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents；题目 `datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
