@@ -1,0 +1,41 @@
+{
+ "framework": "llm_debate",
+ "match_filename": [
+  "llm_debate"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "discussion": "discussion",
+     "aggregation": "decision"
+    },
+    "default": "discussion"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": false,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_peer_exposure": "from round 2 each debater reads the other debaters' previous answers",
+  "has_aggregator": "a separate Aggregator gives the final answer"
+ }
+}

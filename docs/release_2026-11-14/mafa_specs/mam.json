@@ -1,0 +1,49 @@
+{
+ "framework": "mam",
+ "match_filename": [
+  "mam__"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "type_classification": "planning",
+     "role_generation": "recruitment",
+     "web_search": "independent_analysis",
+     "discussion": "discussion",
+     "quality_check": "review",
+     "summary": "synthesis",
+     "vote": "review",
+     "diagnosis": "decision",
+     "review": "review"
+    },
+    "default": "independent_analysis"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": true,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_recruitment": "a RoleGenerator creates the specialists",
+  "has_peer_exposure": "specialists discuss with a moderator",
+  "has_aggregator": "a Diagnostician gives the final class"
+ }
+}

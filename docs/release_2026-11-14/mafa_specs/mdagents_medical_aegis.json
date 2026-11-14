@@ -1,0 +1,48 @@
+{
+ "framework": "mdagents",
+ "match_filename": [
+  "mdagents__normal"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "prefix": {
+     "expert_answer/": [
+      "independent_analysis",
+      true
+     ]
+    },
+    "map": {
+     "recruitment": "recruitment",
+     "aggregation": "decision",
+     "expert_answer": "independent_analysis"
+    },
+    "default": "independent_analysis"
+   },
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": true,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_peer_exposure": "the Aggregator sees every expert answer; the experts do not see each other",
+  "has_recruitment": "a Recruiter picks the panel",
+  "has_aggregator": "a distinct Aggregator decides"
+ }
+}

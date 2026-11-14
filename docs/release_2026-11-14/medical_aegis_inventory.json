@@ -1,0 +1,7113 @@
+{
+ "generated": "2026-11-14",
+ "repo": "/home/claude/medical-aegis (HEAD ac1151e; origin/main is 1 commit ahead, docs/ISSUE5_PROPOSAL.md only)",
+ "notes": [
+  "counts computed from files with scripts in /home/claude/inventory/scripts/",
+  "all files under data_runs/ (457) and docs/requests/samples/ (392) are git-tracked",
+  "is_correct counts: correct=is_correct True, wrong=False"
+ ],
+ "datasets": {
+  "A_eval_v3": {
+   "path": "data_runs/eval_v3_2026-11-04",
+   "in_git": true,
+   "backbone": "gemini-2.5-flash-lite (xiaojingai), T=0.7",
+   "type": "counterfactual branch (protocol v3) on real natural parent runs",
+   "label": "program annotator branch_v3_analysis; claim outcome_sensitive_under_protocol; judgments positive/undetermined/needs_stage2 (never negative); Fisher exact test on 2+2 / 6+6 replays",
+   "jobs": {
+    "agentverse": {
+     "framework": [
+      "agentverse"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 2087
+     },
+     "labels": 2087,
+     "judgments": {
+      "undetermined": 1988,
+      "positive": 99
+     },
+     "parents_labelled": 250,
+     "parents_with_positive": 86,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 2087
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 2087
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 2087
+     },
+     "reference_rule": {
+      "null": 1413,
+      "control": 674
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 13740,
+     "branch_arms": {
+      "branch": 6870,
+      "control": 6870
+     },
+     "branch_final_correctness": {
+      "wrong": 12416,
+      "correct": 1324
+     },
+     "labels_size": 131617,
+     "branch_size": 36126318
+    },
+    "dylan": {
+     "framework": [
+      "dylan"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 566
+     },
+     "labels": 566,
+     "judgments": {
+      "needs_stage2": 286,
+      "undetermined": 280
+     },
+     "parents_labelled": 170,
+     "parents_with_positive": 0,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 566
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 566
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 566
+     },
+     "reference_rule": {
+      "null": 566
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 2264,
+     "branch_arms": {
+      "branch": 1132,
+      "control": 1132
+     },
+     "branch_final_correctness": {
+      "wrong": 2086,
+      "correct": 178
+     },
+     "labels_size": 22791,
+     "branch_size": 9175935
+    },
+    "llm_debate": {
+     "framework": [
+      "llm_debate"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 2100
+     },
+     "labels": 2100,
+     "judgments": {
+      "undetermined": 2039,
+      "positive": 61
+     },
+     "parents_labelled": 300,
+     "parents_with_positive": 53,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 2100
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 2100
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 2100
+     },
+     "reference_rule": {
+      "control": 443,
+      "null": 1657
+     },
+     "positives_final_call_only": 20,
+     "branch_records": 11944,
+     "branch_arms": {
+      "branch": 5972,
+      "control": 5972
+     },
+     "branch_final_correctness": {
+      "wrong": 11380,
+      "correct": 564
+     },
+     "labels_size": 106695,
+     "branch_size": 12981809
+    },
+    "mac_groupchat": {
+     "framework": [
+      "mac_groupchat"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 387
+     },
+     "labels": 387,
+     "judgments": {
+      "undetermined": 379,
+      "positive": 8
+     },
+     "parents_labelled": 40,
+     "parents_with_positive": 8,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 387
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 387
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 387
+     },
+     "reference_rule": {
+      "control": 42,
+      "null": 345
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 1884,
+     "branch_arms": {
+      "branch": 942,
+      "control": 942
+     },
+     "branch_final_correctness": {
+      "wrong": 1815,
+      "correct": 69
+     },
+     "labels_size": 19331,
+     "branch_size": 2250079
+    },
+    "mam_heartbeat_a": {
+     "framework": [
+      "mam"
+     ],
+     "dataset_from_run_id": {
+      "heartbeat_a": 376
+     },
+     "labels": 376,
+     "judgments": {
+      "undetermined": 373,
+      "positive": 3
+     },
+     "parents_labelled": 25,
+     "parents_with_positive": 3,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 376
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 376
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 376
+     },
+     "reference_rule": {
+      "control": 58,
+      "null": 318
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 1968,
+     "branch_arms": {
+      "branch": 984,
+      "control": 984
+     },
+     "branch_final_correctness": {
+      "correct": 183,
+      "wrong": 1785
+     },
+     "labels_size": 22863,
+     "branch_size": 1519999
+    },
+    "mam_heartbeat_a_x": {
+     "framework": [
+      "mam"
+     ],
+     "dataset_from_run_id": {
+      "heartbeat_a": 625
+     },
+     "labels": 625,
+     "judgments": {
+      "undetermined": 617,
+      "positive": 8
+     },
+     "parents_labelled": 40,
+     "parents_with_positive": 7,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 625
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 625
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 625
+     },
+     "reference_rule": {
+      "pooled": 70,
+      "null": 555
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 3060,
+     "branch_arms": {
+      "branch": 1530,
+      "control": 1530
+     },
+     "branch_final_correctness": {
+      "wrong": 2787,
+      "correct": 273
+     },
+     "labels_size": 35585,
+     "branch_size": 2126602
+    },
+    "mam_heartbeat_b": {
+     "framework": [
+      "mam"
+     ],
+     "dataset_from_run_id": {
+      "heartbeat_b": 377
+     },
+     "labels": 377,
+     "judgments": {
+      "undetermined": 368,
+      "positive": 9
+     },
+     "parents_labelled": 25,
+     "parents_with_positive": 6,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 377
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 377
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 377
+     },
+     "reference_rule": {
+      "control": 69,
+      "null": 308
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 2060,
+     "branch_arms": {
+      "branch": 1030,
+      "control": 1030
+     },
+     "branch_final_correctness": {
+      "correct": 306,
+      "wrong": 1754
+     },
+     "labels_size": 24160,
+     "branch_size": 1521051
+    },
+    "mam_heartbeat_b_x": {
+     "framework": [
+      "mam"
+     ],
+     "dataset_from_run_id": {
+      "heartbeat_b": 1291
+     },
+     "labels": 1291,
+     "judgments": {
+      "undetermined": 1266,
+      "positive": 25
+     },
+     "parents_labelled": 86,
+     "parents_with_positive": 21,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 1291
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 1291
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 1291
+     },
+     "reference_rule": {
+      "pooled": 246,
+      "null": 1045
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 7132,
+     "branch_arms": {
+      "branch": 3566,
+      "control": 3566
+     },
+     "branch_final_correctness": {
+      "wrong": 6185,
+      "correct": 947
+     },
+     "labels_size": 79913,
+     "branch_size": 5129692
+    },
+    "mam_sounddr": {
+     "framework": [
+      "mam"
+     ],
+     "dataset_from_run_id": {
+      "sounddr": 402
+     },
+     "labels": 402,
+     "judgments": {
+      "undetermined": 402
+     },
+     "parents_labelled": 25,
+     "parents_with_positive": 0,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 402
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 402
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 402
+     },
+     "reference_rule": {
+      "null": 401,
+      "control": 1
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 1616,
+     "branch_arms": {
+      "branch": 808,
+      "control": 808
+     },
+     "branch_final_correctness": {
+      "wrong": 1616
+     },
+     "labels_size": 18499,
+     "branch_size": 753687
+    },
+    "mdagents": {
+     "framework": [
+      "mdagents"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 2975
+     },
+     "labels": 2975,
+     "judgments": {
+      "undetermined": 2878,
+      "positive": 97
+     },
+     "parents_labelled": 425,
+     "parents_with_positive": 72,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 2975
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 2975
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 2975
+     },
+     "reference_rule": {
+      "null": 2423,
+      "control": 552
+     },
+     "positives_final_call_only": 15,
+     "branch_records": 16316,
+     "branch_arms": {
+      "branch": 8158,
+      "control": 8158
+     },
+     "branch_final_correctness": {
+      "wrong": 15220,
+      "correct": 1096
+     },
+     "labels_size": 147164,
+     "branch_size": 13722302
+    },
+    "medagents_mc": {
+     "framework": [
+      "medagents_mc"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-text": 741
+     },
+     "labels": 741,
+     "judgments": {
+      "undetermined": 725,
+      "positive": 16
+     },
+     "parents_labelled": 40,
+     "parents_with_positive": 10,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 741
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 741
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 741
+     },
+     "reference_rule": {
+      "null": 627,
+      "control": 114
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 3876,
+     "branch_arms": {
+      "branch": 1938,
+      "control": 1938
+     },
+     "branch_final_correctness": {
+      "wrong": 3563,
+      "correct": 313
+     },
+     "labels_size": 39927,
+     "branch_size": 10508900
+    },
+    "mm_kvasir_vqa_x1": {
+     "framework": [
+      "mdagents"
+     ],
+     "dataset_from_run_id": {
+      "kvasir-vqa-x1": 154
+     },
+     "labels": 154,
+     "judgments": {
+      "undetermined": 150,
+      "positive": 4
+     },
+     "parents_labelled": 22,
+     "parents_with_positive": 2,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 154
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 154
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 154
+     },
+     "reference_rule": {
+      "null": 137,
+      "control": 17
+     },
+     "positives_final_call_only": 1,
+     "branch_records": 752,
+     "branch_arms": {
+      "branch": 376,
+      "control": 376
+     },
+     "branch_final_correctness": {
+      "wrong": 659,
+      "correct": 93
+     },
+     "labels_size": 7326,
+     "branch_size": 258868
+    },
+    "mm_medxpertqa_mm": {
+     "framework": [
+      "mdagents"
+     ],
+     "dataset_from_run_id": {
+      "medxpertqa-mm": 350
+     },
+     "labels": 350,
+     "judgments": {
+      "undetermined": 337,
+      "positive": 13
+     },
+     "parents_labelled": 50,
+     "parents_with_positive": 10,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 350
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 350
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 350
+     },
+     "reference_rule": {
+      "null": 303,
+      "control": 47
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 1776,
+     "branch_arms": {
+      "branch": 888,
+      "control": 888
+     },
+     "branch_final_correctness": {
+      "wrong": 1703,
+      "correct": 73
+     },
+     "labels_size": 17245,
+     "branch_size": 1225839
+    },
+    "mm_pathvqa": {
+     "framework": [
+      "mdagents"
+     ],
+     "dataset_from_run_id": {
+      "pathvqa": 350
+     },
+     "labels": 350,
+     "judgments": {
+      "undetermined": 347,
+      "positive": 3
+     },
+     "parents_labelled": 50,
+     "parents_with_positive": 3,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 350
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 350
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 350
+     },
+     "reference_rule": {
+      "null": 334,
+      "control": 16
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 1528,
+     "branch_arms": {
+      "branch": 764,
+      "control": 764
+     },
+     "branch_final_correctness": {
+      "wrong": 1480,
+      "correct": 48
+     },
+     "labels_size": 13814,
+     "branch_size": 709340
+    },
+    "mm_slake": {
+     "framework": [
+      "mdagents"
+     ],
+     "dataset_from_run_id": {
+      "slake": 147
+     },
+     "labels": 147,
+     "judgments": {
+      "undetermined": 146,
+      "positive": 1
+     },
+     "parents_labelled": 21,
+     "parents_with_positive": 1,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 147
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 147
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 147
+     },
+     "reference_rule": {
+      "control": 15,
+      "null": 132
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 708,
+     "branch_arms": {
+      "branch": 354,
+      "control": 354
+     },
+     "branch_final_correctness": {
+      "wrong": 634,
+      "correct": 74
+     },
+     "labels_size": 7251,
+     "branch_size": 276782
+    },
+    "triage_agent": {
+     "framework": [
+      "triage_agent"
+     ],
+     "dataset_from_run_id": {
+      "triage_esi": 424
+     },
+     "labels": 424,
+     "judgments": {
+      "undetermined": 414,
+      "positive": 10
+     },
+     "parents_labelled": 53,
+     "parents_with_positive": 10,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 424
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 424
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 424
+     },
+     "reference_rule": {
+      "null": 347,
+      "control": 77
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 2312,
+     "branch_arms": {
+      "branch": 1156,
+      "control": 1156
+     },
+     "branch_final_correctness": {
+      "wrong": 2013,
+      "correct": 299
+     },
+     "labels_size": 21281,
+     "branch_size": 3086599
+    },
+    "triage_agent_x": {
+     "framework": [
+      "triage_agent"
+     ],
+     "dataset_from_run_id": {
+      "triage_esi": 1336
+     },
+     "labels": 1336,
+     "judgments": {
+      "undetermined": 1314,
+      "positive": 22
+     },
+     "parents_labelled": 167,
+     "parents_with_positive": 21,
+     "annotator": {
+      "{\"kind\": \"program\", \"version\": \"branch_v3_analysis\"}": 1336
+     },
+     "claim": {
+      "outcome_sensitive_under_protocol": 1336
+     },
+     "evidence_method": {
+      "[\"counterfactual_replay\"]": 1336
+     },
+     "reference_rule": {
+      "null": 1124,
+      "pooled": 212
+     },
+     "positives_final_call_only": 0,
+     "branch_records": 7040,
+     "branch_arms": {
+      "branch": 3520,
+      "control": 3520
+     },
+     "branch_final_correctness": {
+      "wrong": 6272,
+      "correct": 768
+     },
+     "labels_size": 60801,
+     "branch_size": 9498506
+    }
+   },
+   "parents_pool_dedup_by_run": {
+    "agentverse|medxpertqa-text": {
+     "unique_natural_runs": 800,
+     "correct": 330,
+     "wrong": 470,
+     "unique_questions": 800
+    },
+    "dylan|medxpertqa-text": {
+     "unique_natural_runs": 699,
+     "correct": 306,
+     "wrong": 393,
+     "unique_questions": 699
+    },
+    "llm_debate|medxpertqa-text": {
+     "unique_natural_runs": 800,
+     "correct": 386,
+     "wrong": 414,
+     "unique_questions": 800
+    },
+    "mac_groupchat|medxpertqa-text": {
+     "unique_natural_runs": 140,
+     "correct": 67,
+     "wrong": 73,
+     "unique_questions": 140
+    },
+    "mam|heartbeat_a": {
+     "unique_natural_runs": 218,
+     "correct": 106,
+     "wrong": 112,
+     "unique_questions": 109
+    },
+    "mam|heartbeat_b": {
+     "unique_natural_runs": 180,
+     "correct": 69,
+     "wrong": 111,
+     "unique_questions": 90
+    },
+    "mam|sounddr": {
+     "unique_natural_runs": 60,
+     "correct": 30,
+     "wrong": 30,
+     "unique_questions": 60
+    },
+    "mdagents|kvasir-vqa-x1": {
+     "unique_natural_runs": 200,
+     "correct": 178,
+     "wrong": 22,
+     "unique_questions": 200
+    },
+    "mdagents|medxpertqa-mm": {
+     "unique_natural_runs": 200,
+     "correct": 115,
+     "wrong": 85,
+     "unique_questions": 200
+    },
+    "mdagents|medxpertqa-text": {
+     "unique_natural_runs": 800,
+     "correct": 344,
+     "wrong": 456,
+     "unique_questions": 800
+    },
+    "mdagents|pathvqa": {
+     "unique_natural_runs": 200,
+     "correct": 146,
+     "wrong": 54,
+     "unique_questions": 200
+    },
+    "mdagents|slake": {
+     "unique_natural_runs": 200,
+     "correct": 179,
+     "wrong": 21,
+     "unique_questions": 200
+    },
+    "medagents_mc|medxpertqa-text": {
+     "unique_natural_runs": 110,
+     "correct": 50,
+     "wrong": 60,
+     "unique_questions": 110
+    },
+    "triage_agent|triage_esi": {
+     "unique_natural_runs": 864,
+     "correct": 644,
+     "wrong": 220,
+     "unique_questions": 216
+    }
+   },
+   "parent_files": [
+    {
+     "format": "main.py-raw",
+     "framework": "agentverse",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 330,
+     "wrong": 470,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents/agentverse__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 699,
+     "unique_run_ids": 699,
+     "unique_questions": 699,
+     "correct": 306,
+     "wrong": 393,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 699
+     },
+     "run_index": {
+      "0": 699
+     },
+     "file": "parents/dylan__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 386,
+     "wrong": 414,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents/llm_debate__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 140,
+     "unique_run_ids": 140,
+     "unique_questions": 140,
+     "correct": 67,
+     "wrong": 73,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 140
+     },
+     "run_index": {
+      "0": 140
+     },
+     "file": "parents/mac_groupchat__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_a",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 109,
+     "unique_run_ids": 109,
+     "unique_questions": 109,
+     "correct": 51,
+     "wrong": 58,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 109
+     },
+     "run_index": {
+      "0": 109
+     },
+     "file": "parents/mam__normal_audio_heartbeat_a.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_a",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 193,
+     "unique_run_ids": 193,
+     "unique_questions": 109,
+     "correct": 106,
+     "wrong": 87,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 193
+     },
+     "run_index": {
+      "0": 84,
+      "1": 109
+     },
+     "file": "parents/mam__normal_audio_heartbeat_a_x.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 90,
+     "unique_run_ids": 90,
+     "unique_questions": 90,
+     "correct": 29,
+     "wrong": 61,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 90
+     },
+     "run_index": {
+      "0": 90
+     },
+     "file": "parents/mam__normal_audio_heartbeat_b.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 155,
+     "unique_run_ids": 155,
+     "unique_questions": 90,
+     "correct": 69,
+     "wrong": 86,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 155
+     },
+     "run_index": {
+      "0": 65,
+      "1": 90
+     },
+     "file": "parents/mam__normal_audio_heartbeat_b_x.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "sounddr",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 60,
+     "correct": 30,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 60
+     },
+     "file": "parents/mam__normal_audio_sounddr.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 344,
+     "wrong": 456,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents/mdagents__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "kvasir-vqa-x1",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 178,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents/mdagents__normal_mm_kvasir_vqa_x1.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 115,
+     "wrong": 85,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents/mdagents__normal_mm_medxpertqa_mm.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "pathvqa",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 146,
+     "wrong": 54,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents/mdagents__normal_mm_pathvqa.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "slake",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 179,
+     "wrong": 21,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents/mdagents__normal_mm_slake.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 110,
+     "unique_run_ids": 110,
+     "unique_questions": 110,
+     "correct": 50,
+     "wrong": 60,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 110
+     },
+     "run_index": {
+      "0": 110
+     },
+     "file": "parents/medagents_mc__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 216,
+     "unique_run_ids": 216,
+     "unique_questions": 216,
+     "correct": 163,
+     "wrong": 53,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 216
+     },
+     "run_index": {
+      "0": 216
+     },
+     "file": "parents/triage_agent__normal_triage.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 648,
+     "unique_run_ids": 648,
+     "unique_questions": 216,
+     "correct": 481,
+     "wrong": 167,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 648
+     },
+     "run_index": {
+      "1": 216,
+      "2": 216,
+      "3": 216
+     },
+     "file": "parents/triage_agent__normal_triage_x.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "agentverse",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 330,
+     "wrong": 470,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents_mastraj/agentverse__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "dylan",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 699,
+     "unique_run_ids": 699,
+     "unique_questions": 699,
+     "correct": 306,
+     "wrong": 393,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 699
+     },
+     "run_index": {
+      "0": 699
+     },
+     "file": "parents_mastraj/dylan__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 386,
+     "wrong": 414,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents_mastraj/llm_debate__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 140,
+     "unique_run_ids": 140,
+     "unique_questions": 140,
+     "correct": 67,
+     "wrong": 73,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 140
+     },
+     "run_index": {
+      "0": 140
+     },
+     "file": "parents_mastraj/mac_groupchat__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_a",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 109,
+     "unique_run_ids": 109,
+     "unique_questions": 109,
+     "correct": 51,
+     "wrong": 58,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 109
+     },
+     "run_index": {
+      "0": 109
+     },
+     "file": "parents_mastraj/mam__normal_audio_heartbeat_a.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_a",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 193,
+     "unique_run_ids": 193,
+     "unique_questions": 109,
+     "correct": 106,
+     "wrong": 87,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 193
+     },
+     "run_index": {
+      "0": 84,
+      "1": 109
+     },
+     "file": "parents_mastraj/mam__normal_audio_heartbeat_a_x.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 90,
+     "unique_run_ids": 90,
+     "unique_questions": 90,
+     "correct": 29,
+     "wrong": 61,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 90
+     },
+     "run_index": {
+      "0": 90
+     },
+     "file": "parents_mastraj/mam__normal_audio_heartbeat_b.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 155,
+     "unique_run_ids": 155,
+     "unique_questions": 90,
+     "correct": 69,
+     "wrong": 86,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 155
+     },
+     "run_index": {
+      "0": 65,
+      "1": 90
+     },
+     "file": "parents_mastraj/mam__normal_audio_heartbeat_b_x.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "sounddr",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 60,
+     "correct": 30,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 60
+     },
+     "file": "parents_mastraj/mam__normal_audio_sounddr.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 800,
+     "unique_run_ids": 800,
+     "unique_questions": 800,
+     "correct": 344,
+     "wrong": 456,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 800
+     },
+     "run_index": {
+      "0": 800
+     },
+     "file": "parents_mastraj/mdagents__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "kvasir-vqa-x1",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 178,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents_mastraj/mdagents__normal_mm_kvasir_vqa_x1.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 115,
+     "wrong": 85,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents_mastraj/mdagents__normal_mm_medxpertqa_mm.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "pathvqa",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 146,
+     "wrong": 54,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents_mastraj/mdagents__normal_mm_pathvqa.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "slake",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 179,
+     "wrong": 21,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     },
+     "file": "parents_mastraj/mdagents__normal_mm_slake.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 110,
+     "unique_run_ids": 110,
+     "unique_questions": 110,
+     "correct": 50,
+     "wrong": 60,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 110
+     },
+     "run_index": {
+      "0": 110
+     },
+     "file": "parents_mastraj/medagents_mc__normal_eval.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 216,
+     "unique_run_ids": 216,
+     "unique_questions": 216,
+     "correct": 163,
+     "wrong": 53,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 216
+     },
+     "run_index": {
+      "0": 216
+     },
+     "file": "parents_mastraj/triage_agent__normal_triage.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 648,
+     "unique_run_ids": 648,
+     "unique_questions": 216,
+     "correct": 481,
+     "wrong": 167,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 648
+     },
+     "run_index": {
+      "1": 216,
+      "2": 216,
+      "3": 216
+     },
+     "file": "parents_mastraj/triage_agent__normal_triage_x.mastraj.jsonl.gz"
+    }
+   ]
+  },
+  "B_corpus_v1+C_gemini_trial_natural": {
+   "in_git": true,
+   "files": [
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 653,
+     "wrong": 796,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/raw/llm_debate__normal_corpus.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 610,
+     "wrong": 839,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/raw/mac_groupchat__normal_corpus.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 620,
+     "wrong": 829,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/raw/mdagents__normal_corpus.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 609,
+     "wrong": 840,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/raw/medagents_mc__normal_corpus.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 653,
+     "wrong": 796,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/mastraj/llm_debate__normal_corpus.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 610,
+     "wrong": 839,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/mastraj/mac_groupchat__normal_corpus.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 620,
+     "wrong": 829,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/mastraj/mdagents__normal_corpus.mastraj.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 1449,
+     "unique_run_ids": 1449,
+     "unique_questions": 1449,
+     "correct": 609,
+     "wrong": 840,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1449
+     },
+     "run_index": {
+      "0": 1449
+     },
+     "file": "corpus_v1_2026-11-04/mastraj/medagents_mc__normal_corpus.mastraj.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "agentverse",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 55,
+     "unique_run_ids": 55,
+     "unique_questions": 55,
+     "correct": 26,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "0": 55
+     },
+     "file": "gemini_trial_2026-11-03/natural/agentverse__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 55,
+     "unique_run_ids": 55,
+     "unique_questions": 55,
+     "correct": 27,
+     "wrong": 28,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "0": 55
+     },
+     "file": "gemini_trial_2026-11-03/natural/dylan__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 55,
+     "unique_run_ids": 55,
+     "unique_questions": 55,
+     "correct": 22,
+     "wrong": 33,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "0": 55
+     },
+     "file": "gemini_trial_2026-11-03/natural/dylan__normal_eval_globalrng_unreplayable.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 31,
+     "unique_run_ids": 31,
+     "unique_questions": 31,
+     "correct": 13,
+     "wrong": 18,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 31
+     },
+     "run_index": {
+      "0": 31
+     },
+     "file": "gemini_trial_2026-11-03/natural/llm_debate__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 60,
+     "correct": 32,
+     "wrong": 28,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 60
+     },
+     "file": "gemini_trial_2026-11-03/natural/mac_groupchat__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 30,
+     "unique_run_ids": 30,
+     "unique_questions": 30,
+     "correct": 13,
+     "wrong": 17,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 30
+     },
+     "run_index": {
+      "0": 30
+     },
+     "file": "gemini_trial_2026-11-03/natural/mdagents__normal_eval.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 9,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "gemini_trial_2026-11-03/natural/mdagents__normal_mm_kvasir_vqa_x1.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 4,
+     "wrong": 6,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "gemini_trial_2026-11-03/natural/mdagents__normal_mm_medxpertqa_mm.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "gemini_trial_2026-11-03/natural/mdagents__normal_mm_pathvqa.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "gemini_trial_2026-11-03/natural/mdagents__normal_mm_slake.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 55,
+     "unique_run_ids": 55,
+     "unique_questions": 55,
+     "correct": 23,
+     "wrong": 32,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "0": 55
+     },
+     "file": "gemini_trial_2026-11-03/natural/medagents_mc__normal_eval.jsonl.gz"
+    }
+   ]
+  },
+  "C_branch_pilots": {
+   "in_git": true,
+   "dirs": {
+    "branch_pilot_2026-10-26": {
+     "files": 16,
+     "size_bytes": 1775426,
+     "groups": {
+      "llm_debate|llama-4-maverick|branch": {
+       "records": 58,
+       "wrong": 54,
+       "status_success": 58,
+       "correct": 4
+      },
+      "llm_debate|llama-4-maverick|control": {
+       "records": 71,
+       "wrong": 70,
+       "status_success": 71,
+       "correct": 1
+      },
+      "mdagents|llama-4-maverick|branch": {
+       "records": 60,
+       "correct": 6,
+       "status_success": 60,
+       "wrong": 54
+      },
+      "mdagents|llama-4-maverick|control": {
+       "records": 75,
+       "wrong": 75,
+       "status_success": 75
+      }
+     },
+     "parents": {
+      "llm_debate": 20,
+      "mdagents": 20
+     },
+     "points_or_pairs": {
+      "llm_debate": 58,
+      "mdagents": 60
+     }
+    },
+    "branch_planA_2026-11-03": {
+     "files": 25,
+     "size_bytes": 3308384,
+     "groups": {
+      "llm_debate|llama-4-maverick|branch": {
+       "records": 180,
+       "wrong": 116,
+       "status_success": 180,
+       "correct": 64
+      },
+      "llm_debate|llama-4-maverick|control": {
+       "records": 246,
+       "correct": 98,
+       "status_success": 246,
+       "wrong": 148
+      }
+     },
+     "parents": {
+      "llm_debate": 131
+     },
+     "points_or_pairs": {
+      "llm_debate": 180
+     }
+    },
+    "gemini_trial_2026-11-03/branch_cal": {
+     "files": 41,
+     "size_bytes": 2811218,
+     "groups": {
+      "llm_debate|gemini-2.5-flash-lite|branch": {
+       "records": 126,
+       "wrong": 120,
+       "status_success": 126,
+       "correct": 6
+      },
+      "llm_debate|gemini-2.5-flash-lite|control": {
+       "records": 147,
+       "wrong": 143,
+       "status_success": 147,
+       "correct": 4
+      },
+      "mdagents|gemini-2.5-flash-lite|branch": {
+       "records": 119,
+       "wrong": 118,
+       "status_success": 119,
+       "correct": 1
+      },
+      "mdagents|gemini-2.5-flash-lite|control": {
+       "records": 137,
+       "wrong": 136,
+       "status_success": 137,
+       "correct": 1
+      }
+     },
+     "parents": {
+      "llm_debate": 18,
+      "mdagents": 17
+     },
+     "points_or_pairs": {
+      "llm_debate": 126,
+      "mdagents": 119
+     }
+    },
+    "gemini_trial_2026-11-03/branch_cal2": {
+     "files": 195,
+     "size_bytes": 63320961,
+     "groups": {
+      "agentverse|gemini-2.5-flash-lite|branch": {
+       "records": 162,
+       "wrong": 149,
+       "status_success": 162,
+       "correct": 13
+      },
+      "agentverse|gemini-2.5-flash-lite|control": {
+       "records": 206,
+       "wrong": 202,
+       "status_success": 206,
+       "correct": 4
+      },
+      "dylan|gemini-2.5-flash-lite|branch": {
+       "records": 219,
+       "wrong": 207,
+       "status_success": 219,
+       "correct": 12
+      },
+      "dylan|gemini-2.5-flash-lite|control": {
+       "records": 287,
+       "wrong": 271,
+       "status_success": 287,
+       "correct": 16
+      },
+      "mac_groupchat|gemini-2.5-flash-lite|branch": {
+       "records": 195,
+       "wrong": 194,
+       "status_success": 195,
+       "correct": 1
+      },
+      "mac_groupchat|gemini-2.5-flash-lite|control": {
+       "records": 219,
+       "wrong": 218,
+       "status_success": 219,
+       "correct": 1
+      },
+      "medagents_mc|gemini-2.5-flash-lite|branch": {
+       "records": 381,
+       "wrong": 350,
+       "status_success": 381,
+       "correct": 31
+      },
+      "medagents_mc|gemini-2.5-flash-lite|control": {
+       "records": 452,
+       "wrong": 419,
+       "status_success": 452,
+       "correct": 33
+      }
+     },
+     "parents": {
+      "agentverse": 20,
+      "dylan": 20,
+      "mac_groupchat": 20,
+      "medagents_mc": 20
+     },
+     "points_or_pairs": {
+      "agentverse": 162,
+      "dylan": 219,
+      "mac_groupchat": 195,
+      "medagents_mc": 381
+     }
+    }
+   }
+  },
+  "D_anchor_llama": {
+   "path": "data_runs/anchor_llama_2026-10-21",
+   "in_git": true,
+   "backbone": "llama-4-maverick (aihubmix; response model field google/gemma-4-31B-it-turbo)",
+   "files": [
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 58,
+     "wrong": 42,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "1": 100
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 40,
+     "wrong": 60,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 31,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_pi4.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 11,
+     "wrong": 9,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "1": 20
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_pi5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 3,
+     "wrong": 7,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "1": 10
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_pi6.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 21,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_sham.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 8,
+     "wrong": 12,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "2": 20
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_sham5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 4,
+     "wrong": 6,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "2": 10
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_sham6.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 27,
+     "wrong": 23,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_shamstyle.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 6,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "1": 10
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_v12.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 6,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "2": 10
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__inject_v12.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_llama_2026-10-21/llm_debate__normal.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 51,
+     "wrong": 49,
+     "correct_none": 0,
+     "fired": 95,
+     "not_fired": 5,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "1": 100
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 39,
+     "wrong": 61,
+     "correct_none": 0,
+     "fired": 96,
+     "not_fired": 4,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 24,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 49,
+     "not_fired": 1,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject_pi4.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 9,
+     "wrong": 11,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "1": 20
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject_pi5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 21,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 46,
+     "not_fired": 4,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject_sham.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 10,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 19,
+     "not_fired": 1,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "2": 20
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject_sham5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 28,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 46,
+     "not_fired": 4,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__inject_shamstyle.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 168,
+     "wrong": 132,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_llama_2026-10-21/mac_groupchat__normal.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 38,
+     "wrong": 62,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 23,
+     "wrong": 27,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_op.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 20,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_pi4.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 12,
+     "wrong": 8,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "1": 20
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_pi5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 24,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_sham.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 22,
+     "wrong": 28,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_sham5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 20,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__inject_shamstyle.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "1": 100,
+      "2": 100,
+      "0": 100
+     },
+     "file": "anchor_llama_2026-10-21/mdagents__normal.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 47,
+     "wrong": 53,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "1": 100
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 31,
+     "wrong": 69,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 24,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject_pi4.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 10,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "1": 20
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject_pi5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 21,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject_sham.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 10,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "2": 20
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject_sham5.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 17,
+     "wrong": 33,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__inject_shamstyle.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 139,
+     "wrong": 161,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_llama_2026-10-21/medagents_mc__normal.jsonl.gz"
+    }
+   ]
+  },
+  "E_samples": {
+   "path": "docs/requests/samples",
+   "in_git": true,
+   "files": [
+    {
+     "format": "main.py-raw",
+     "framework": "agentverse",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "agentverse_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "agentverse",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "agentverse_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": "trial_success",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "clinical_agent_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": "trial_success",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "clinical_agent_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "cmas",
+     "dataset": "wikigold",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "cmas_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "cmas",
+     "dataset": "wikigold",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "cmas_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_cmd",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "consensus_cmd_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_cmd",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_cmd_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_debate",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "consensus_debate_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_debate",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_debate_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_mad",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 0,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_mad_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_mad",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 0,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_mad_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 0,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 0,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_reconcile",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_reconcile_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "consensus_reconcile",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "consensus_reconcile_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "dylan_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "dylan_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "llm_debate_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 0,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "llm_debate_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "mam_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "mam_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "mdagents_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 4,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "mdagents_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "medagents_mc_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "1": 2,
+      "0": 2
+     },
+     "file": "medagents_mc_mock_inject.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "agentverse",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "agentverse",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "clinical_agent",
+     "dataset": "trial_success",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "clinical_agent",
+     "dataset": "trial_success",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "cmas",
+     "dataset": "wikigold",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "cmas",
+     "dataset": "wikigold",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_cmd",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_cmd",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_debate",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_debate",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_mad",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_mad",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_reconcile",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "inject:prompt_injection",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "consensus_reconcile",
+     "dataset": "sleepedf",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "dylan",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "dylan",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mam",
+     "dataset": "heartbeat_b",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-mm",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "1": 1,
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 2,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mock",
+     "kind": "normal",
+     "n": 2,
+     "unique_run_ids": 2,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 2
+     },
+     "run_index": {
+      "0": 1,
+      "1": 1
+     },
+     "file": "schema_v1_mock_export.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mock",
+     "kind": "normal",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "triage_agent_mock_clean.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mock",
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 4,
+     "unique_run_ids": 4,
+     "unique_questions": 2,
+     "correct": 2,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 4,
+     "not_fired": 0,
+     "status": {
+      "success": 4
+     },
+     "run_index": {
+      "0": 2,
+      "1": 2
+     },
+     "file": "triage_agent_mock_inject.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:response_corruption",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "None": 1
+     },
+     "file": "triage_agent_mock_inject_multi.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 10,
+     "correct": 15,
+     "wrong": 5,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 61,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "2": 20,
+      "1": 20,
+      "3": 20,
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 9,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 67,
+     "wrong": 13,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "3": 20,
+      "2": 20,
+      "1": 20,
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 10,
+     "correct": 18,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 20,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 6,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 66,
+     "wrong": 14,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "1": 20,
+      "3": 20,
+      "0": 20,
+      "2": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 63,
+     "wrong": 17,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "1": 20,
+      "0": 20,
+      "3": 20,
+      "2": 20
+     },
+     "file": "pilot_2026-10-20/pilot_export.jsonl.gz"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 61,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "2": 20,
+      "1": 20,
+      "3": 20,
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__llama-4-maverick__normal.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__llama-4-maverick__pi.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__llama-4-maverick__pisim.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__llama-4-maverick__rc.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 67,
+     "wrong": 13,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "3": 20,
+      "2": 20,
+      "1": 20,
+      "0": 20
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__mercury-2.5-preview__normal.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 0,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__mercury-2.5-preview__pi.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__mercury-2.5-preview__pisim.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 9,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::medagents_mc__mercury-2.5-preview__rc.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 66,
+     "wrong": 14,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "1": 20,
+      "3": 20,
+      "0": 20,
+      "2": 20
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__llama-4-maverick__normal.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 9,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__llama-4-maverick__pi.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 9,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__llama-4-maverick__pisim.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 6,
+     "wrong": 4,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__llama-4-maverick__rc.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 80,
+     "unique_run_ids": 80,
+     "unique_questions": 20,
+     "correct": 63,
+     "wrong": 17,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 80
+     },
+     "run_index": {
+      "1": 20,
+      "0": 20,
+      "3": 20,
+      "2": 20
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__mercury-2.5-preview__normal.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 0,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__mercury-2.5-preview__pi.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:prompt_injection",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__mercury-2.5-preview__pisim.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "inject:response_corruption",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 10,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     },
+     "file": "pilot_2026-10-20/pilot_raw_results.tar.gz::triage_agent__mercury-2.5-preview__rc.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/mc_llama-4-maverick.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/mc_mercury-2.5-preview.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/schema_v1_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medconceptsqa",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/schema_v1_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/schema_v1_export.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/schema_v1_export.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/tri_llama-4-maverick.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "mercury-2.5-preview",
+     "kind": "normal",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 1,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "0": 1
+     },
+     "file": "real_probe_2026-10-20/tri_mercury-2.5-preview.jsonl"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 58,
+     "wrong": 42,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "1": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 40,
+     "wrong": 60,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:none",
+     "n": 9,
+     "unique_run_ids": 9,
+     "unique_questions": 9,
+     "correct": 7,
+     "wrong": 2,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 9,
+     "status": {
+      "success": 9
+     },
+     "run_index": {
+      "0": 4,
+      "1": 5
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 95,
+     "unique_run_ids": 95,
+     "unique_questions": 95,
+     "correct": 46,
+     "wrong": 49,
+     "correct_none": 0,
+     "fired": 95,
+     "not_fired": 0,
+     "status": {
+      "success": 95
+     },
+     "run_index": {
+      "1": 95
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 96,
+     "unique_run_ids": 96,
+     "unique_questions": 96,
+     "correct": 37,
+     "wrong": 59,
+     "correct_none": 0,
+     "fired": 96,
+     "not_fired": 0,
+     "status": {
+      "success": 96
+     },
+     "run_index": {
+      "0": 96
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 168,
+     "wrong": 132,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 38,
+     "wrong": 62,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "1": 100,
+      "2": 100,
+      "0": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 113,
+     "unique_run_ids": 113,
+     "unique_questions": 100,
+     "correct": 50,
+     "wrong": 63,
+     "correct_none": 0,
+     "fired": 113,
+     "not_fired": 0,
+     "status": {
+      "success": 113
+     },
+     "run_index": {
+      "0": 13,
+      "1": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 87,
+     "unique_run_ids": 87,
+     "unique_questions": 87,
+     "correct": 28,
+     "wrong": 59,
+     "correct_none": 0,
+     "fired": 87,
+     "not_fired": 0,
+     "status": {
+      "success": 87
+     },
+     "run_index": {
+      "0": 87
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 139,
+     "wrong": 161,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_2026-10-21/anchor_export_4fw.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 22,
+     "wrong": 18,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "1": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 17,
+     "wrong": 23,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "2": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 20,
+     "correct": 26,
+     "wrong": 34,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 20,
+     "wrong": 20,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "1": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 38,
+     "unique_run_ids": 38,
+     "unique_questions": 20,
+     "correct": 16,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 38,
+     "not_fired": 0,
+     "status": {
+      "success": 38
+     },
+     "run_index": {
+      "2": 38
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 20,
+     "correct": 38,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 21,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "1": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 20,
+     "wrong": 20,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "2": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 20,
+     "correct": 35,
+     "wrong": 25,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "1": 20,
+      "2": 20,
+      "0": 20
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 20,
+     "wrong": 20,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "1": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 40,
+     "unique_run_ids": 40,
+     "unique_questions": 20,
+     "correct": 19,
+     "wrong": 21,
+     "correct_none": 0,
+     "fired": 40,
+     "not_fired": 0,
+     "status": {
+      "success": 40
+     },
+     "run_index": {
+      "2": 40
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 60,
+     "unique_run_ids": 60,
+     "unique_questions": 20,
+     "correct": 31,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 60
+     },
+     "run_index": {
+      "0": 20,
+      "1": 20,
+      "2": 20
+     },
+     "file": "anchor_fmt_val_2026-10-21/fmt_val_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 30,
+     "unique_run_ids": 30,
+     "unique_questions": 10,
+     "correct": 8,
+     "wrong": 22,
+     "correct_none": 0,
+     "fired": 30,
+     "not_fired": 0,
+     "status": {
+      "success": 30
+     },
+     "run_index": {
+      "1": 30
+     },
+     "file": "anchor_fmt_val_2026-10-21/llm_debate10_fmt_v1_1_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 30,
+     "unique_run_ids": 30,
+     "unique_questions": 10,
+     "correct": 11,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 30,
+     "not_fired": 0,
+     "status": {
+      "success": 30
+     },
+     "run_index": {
+      "2": 30
+     },
+     "file": "anchor_fmt_val_2026-10-21/llm_debate10_fmt_v1_1_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 30,
+     "unique_run_ids": 30,
+     "unique_questions": 10,
+     "correct": 13,
+     "wrong": 17,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 30
+     },
+     "run_index": {
+      "0": 10,
+      "1": 10,
+      "2": 10
+     },
+     "file": "anchor_fmt_val_2026-10-21/llm_debate10_fmt_v1_1_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 31,
+     "wrong": 19,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 40,
+     "wrong": 60,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 21,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 27,
+     "wrong": 23,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:none",
+     "n": 18,
+     "unique_run_ids": 18,
+     "unique_questions": 15,
+     "correct": 11,
+     "wrong": 7,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 18,
+     "status": {
+      "success": 18
+     },
+     "run_index": {
+      "0": 4,
+      "1": 6,
+      "2": 4,
+      "3": 4
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 49,
+     "unique_run_ids": 49,
+     "unique_questions": 49,
+     "correct": 23,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 49,
+     "not_fired": 0,
+     "status": {
+      "success": 49
+     },
+     "run_index": {
+      "1": 49
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 96,
+     "unique_run_ids": 96,
+     "unique_questions": 96,
+     "correct": 37,
+     "wrong": 59,
+     "correct_none": 0,
+     "fired": 96,
+     "not_fired": 0,
+     "status": {
+      "success": 96
+     },
+     "run_index": {
+      "0": 96
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 46,
+     "unique_run_ids": 46,
+     "unique_questions": 46,
+     "correct": 21,
+     "wrong": 25,
+     "correct_none": 0,
+     "fired": 46,
+     "not_fired": 0,
+     "status": {
+      "success": 46
+     },
+     "run_index": {
+      "2": 46
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 46,
+     "unique_run_ids": 46,
+     "unique_questions": 46,
+     "correct": 25,
+     "wrong": 21,
+     "correct_none": 0,
+     "fired": 46,
+     "not_fired": 0,
+     "status": {
+      "success": 46
+     },
+     "run_index": {
+      "3": 46
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 168,
+     "wrong": 132,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 20,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 100,
+     "unique_run_ids": 100,
+     "unique_questions": 100,
+     "correct": 38,
+     "wrong": 62,
+     "correct_none": 0,
+     "fired": 100,
+     "not_fired": 0,
+     "status": {
+      "success": 100
+     },
+     "run_index": {
+      "0": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 24,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 20,
+     "wrong": 30,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 159,
+     "wrong": 141,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "1": 100,
+      "2": 100,
+      "0": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 24,
+     "wrong": 26,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "1": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:response_corruption",
+     "n": 87,
+     "unique_run_ids": 87,
+     "unique_questions": 87,
+     "correct": 28,
+     "wrong": 59,
+     "correct_none": 0,
+     "fired": 87,
+     "not_fired": 0,
+     "status": {
+      "success": 87
+     },
+     "run_index": {
+      "0": 87
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 21,
+     "wrong": 29,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "2": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham_style",
+     "n": 50,
+     "unique_run_ids": 50,
+     "unique_questions": 50,
+     "correct": 17,
+     "wrong": 33,
+     "correct_none": 0,
+     "fired": 50,
+     "not_fired": 0,
+     "status": {
+      "success": 50
+     },
+     "run_index": {
+      "3": 50
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "mas-traj",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "normal",
+     "n": 300,
+     "unique_run_ids": 300,
+     "unique_questions": 100,
+     "correct": 139,
+     "wrong": 161,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 300
+     },
+     "run_index": {
+      "0": 100,
+      "1": 100,
+      "2": 100
+     },
+     "file": "anchor_gate_2026-10-21/gate7_export.jsonl.gz"
+    },
+    {
+     "format": "other",
+     "n_other_records": 0,
+     "other_keys": {
+      "id": 3994,
+      "k": 3994,
+      "model": 3994,
+      "answer": 3994,
+      "shuffled": 3994,
+      "raw_answer": 3994,
+      "question_type": 3994,
+      "gold": 3994,
+      "finish_reason": 3994,
+      "prompt_tokens": 3994,
+      "completion_tokens": 3994,
+      "correct": 3994
+     },
+     "bad_lines": 0,
+     "file": "screen_2026-10-21/screen_runs.jsonl.gz"
+    },
+    {
+     "format": "other",
+     "n_other_records": 0,
+     "other_keys": {
+      "qid": 400,
+      "step_id": 400,
+      "t": 400,
+      "n": 400,
+      "agent": 400,
+      "phase": 400,
+      "framework": 400
+     },
+     "bad_lines": 0,
+     "file": "replay_hit_2026-10-26/branch_points.jsonl"
+    }
+   ],
+   "workspace_trial": [
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:prompt_injection",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "1": 1
+     },
+     "file": "anchor_runs_trial.tar.gz::anchor_runs_trial/llm_debate__inject_v12trial.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "2": 1
+     },
+     "file": "anchor_runs_trial.tar.gz::anchor_runs_trial/llm_debate__inject_v12trial.jsonl"
+    },
+    {
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "llama-4-maverick",
+     "kind": "inject:sham",
+     "n": 1,
+     "unique_run_ids": 1,
+     "unique_questions": 1,
+     "correct": 0,
+     "wrong": 1,
+     "correct_none": 0,
+     "fired": 1,
+     "not_fired": 0,
+     "status": {
+      "success": 1
+     },
+     "run_index": {
+      "2": 1
+     },
+     "file": "anchor_runs_trial.tar.gz::anchor_runs_trial/mdagents__inject_optrial.jsonl"
+    }
+   ]
+  },
+  "F_aegis_data": {
+   "path": "/home/claude/aegis_data",
+   "in_git": false,
+   "hf": "UUUooUUU/medical-aegis-workspace aegis_data.tar (450.5 MB)",
+   "source": "GitHub GuihaiChen1998/nature-sub-record (user's own earlier AEGIS-medical runs), medical",
+   "backbone": "not recorded in files (unverified)",
+   "files": [
+    {
+     "file": "clean/medxpertqa-mm-100-mdagents_clean-paired_normal.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": null,
+     "model": null,
+     "kind": "normal",
+     "n": 49,
+     "unique_run_ids": 49,
+     "unique_questions": 49,
+     "correct": 49,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 49
+     },
+     "run_index": {
+      "None": 49
+     }
+    },
+    {
+     "file": "clean/mmlu_pro_health-100-dylan_clean-paired_normal.jsonl",
+     "format": "main.py-raw",
+     "framework": null,
+     "dataset": null,
+     "model": null,
+     "kind": "normal",
+     "n": 66,
+     "unique_run_ids": 66,
+     "unique_questions": 66,
+     "correct": 66,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 66
+     },
+     "run_index": {
+      "None": 66
+     }
+    },
+    {
+     "file": "clean/trial_success-200-500-clinical_agent5_clean-paired_normal.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "normal",
+     "n": 192,
+     "unique_run_ids": 192,
+     "unique_questions": 192,
+     "correct": 192,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 192
+     },
+     "run_index": {
+      "None": 192
+     }
+    },
+    {
+     "file": "clean/trial_success-200-clinical_agent_clean-paired_normal.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "normal",
+     "n": 133,
+     "unique_run_ids": 133,
+     "unique_questions": 133,
+     "correct": 133,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 133
+     },
+     "run_index": {
+      "None": 133
+     }
+    },
+    {
+     "file": "simulated/medxpertqa-mm-100-mdagents_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection",
+     "n": 149,
+     "unique_run_ids": 26,
+     "unique_questions": 26,
+     "correct": 0,
+     "wrong": 149,
+     "correct_none": 0,
+     "fired": 149,
+     "not_fired": 0,
+     "status": {
+      "success": 149
+     },
+     "run_index": {
+      "None": 149
+     }
+    },
+    {
+     "file": "simulated/medxpertqa-mm-100-mdagents_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 752,
+     "unique_run_ids": 49,
+     "unique_questions": 49,
+     "correct": 0,
+     "wrong": 752,
+     "correct_none": 0,
+     "fired": 752,
+     "not_fired": 0,
+     "status": {
+      "success": 752
+     },
+     "run_index": {
+      "None": 752
+     }
+    },
+    {
+     "file": "simulated/medxpertqa-mm-100-mdagents_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:response_corruption",
+     "n": 102,
+     "unique_run_ids": 22,
+     "unique_questions": 22,
+     "correct": 0,
+     "wrong": 102,
+     "correct_none": 0,
+     "fired": 102,
+     "not_fired": 0,
+     "status": {
+      "success": 102
+     },
+     "run_index": {
+      "None": 102
+     }
+    },
+    {
+     "file": "simulated/mmlu_pro_health-100-dylan_error.jsonl",
+     "format": "main.py-raw",
+     "framework": null,
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection",
+     "n": 127,
+     "unique_run_ids": 54,
+     "unique_questions": 54,
+     "correct": 0,
+     "wrong": 127,
+     "correct_none": 0,
+     "fired": 127,
+     "not_fired": 0,
+     "status": {
+      "success": 127
+     },
+     "run_index": {
+      "None": 127
+     }
+    },
+    {
+     "file": "simulated/mmlu_pro_health-100-dylan_error.jsonl",
+     "format": "main.py-raw",
+     "framework": null,
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 531,
+     "unique_run_ids": 66,
+     "unique_questions": 66,
+     "correct": 0,
+     "wrong": 531,
+     "correct_none": 0,
+     "fired": 531,
+     "not_fired": 0,
+     "status": {
+      "success": 531
+     },
+     "run_index": {
+      "None": 531
+     }
+    },
+    {
+     "file": "simulated/mmlu_pro_health-100-dylan_error.jsonl",
+     "format": "main.py-raw",
+     "framework": null,
+     "dataset": null,
+     "model": null,
+     "kind": "inject:response_corruption",
+     "n": 404,
+     "unique_run_ids": 66,
+     "unique_questions": 66,
+     "correct": 0,
+     "wrong": 404,
+     "correct_none": 0,
+     "fired": 404,
+     "not_fired": 0,
+     "status": {
+      "success": 404
+     },
+     "run_index": {
+      "None": 404
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-500-clinical_agent5_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection",
+     "n": 52,
+     "unique_run_ids": 45,
+     "unique_questions": 45,
+     "correct": 0,
+     "wrong": 52,
+     "correct_none": 0,
+     "fired": 52,
+     "not_fired": 0,
+     "status": {
+      "success": 52
+     },
+     "run_index": {
+      "None": 52
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-500-clinical_agent5_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 466,
+     "unique_run_ids": 188,
+     "unique_questions": 188,
+     "correct": 0,
+     "wrong": 466,
+     "correct_none": 0,
+     "fired": 466,
+     "not_fired": 0,
+     "status": {
+      "success": 466
+     },
+     "run_index": {
+      "None": 466
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-500-clinical_agent5_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:response_corruption",
+     "n": 534,
+     "unique_run_ids": 192,
+     "unique_questions": 192,
+     "correct": 0,
+     "wrong": 534,
+     "correct_none": 0,
+     "fired": 534,
+     "not_fired": 0,
+     "status": {
+      "success": 534
+     },
+     "run_index": {
+      "None": 534
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-clinical_agent_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection",
+     "n": 173,
+     "unique_run_ids": 85,
+     "unique_questions": 85,
+     "correct": 0,
+     "wrong": 173,
+     "correct_none": 0,
+     "fired": 173,
+     "not_fired": 0,
+     "status": {
+      "success": 173
+     },
+     "run_index": {
+      "None": 173
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-clinical_agent_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:prompt_injection+response_corruption",
+     "n": 174,
+     "unique_run_ids": 125,
+     "unique_questions": 125,
+     "correct": 0,
+     "wrong": 174,
+     "correct_none": 0,
+     "fired": 174,
+     "not_fired": 0,
+     "status": {
+      "success": 174
+     },
+     "run_index": {
+      "None": 174
+     }
+    },
+    {
+     "file": "simulated/trial_success-200-clinical_agent_error.jsonl",
+     "format": "main.py-raw",
+     "framework": "clinical_agent",
+     "dataset": null,
+     "model": null,
+     "kind": "inject:response_corruption",
+     "n": 55,
+     "unique_run_ids": 52,
+     "unique_questions": 52,
+     "correct": 0,
+     "wrong": 55,
+     "correct_none": 0,
+     "fired": 55,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "None": 55
+     }
+    }
+   ]
+  },
+  "G_public_mas": {
+   "path": "/home/claude/public_mas",
+   "in_git": false,
+   "converted_r61": {
+    "aftraj.jsonl.gz": {
+     "n": 1548,
+     "frameworks": {
+      "agents_handoff": 821,
+      "smolagents": 528,
+      "single_tool_agent": 62,
+      "aftraj_expert_team": 137
+     },
+     "is_correct": {
+      "True": 1162,
+      "False": 386
+     },
+     "with_external_labels": 1548,
+     "external_keys": {
+      "taxonomy": 1548,
+      "mistake_step": 386,
+      "mistake_step_id": 386,
+      "mistake_agent": 386,
+      "unsafe_source": 386
+     },
+     "n_models": 1,
+     "top_models": {
+      "unknown-model": 1548
+     },
+     "datasets": {
+      "MATH": 460,
+      "HotpotQA": 368,
+      "MBPP": 213,
+      "GAIA": 160,
+      "HumanEval": 148,
+      "agentic/stats_multi_step": 12,
+      "agentic/geo_compare": 12,
+      "agentic/sports_record": 12,
+      "agentic/movie_award_count": 12,
+      "agentic/research_hallucinated_paper": 12
+     },
+     "size": 1516828
+    },
+    "agentrx_tau.jsonl.gz": {
+     "n": 29,
+     "frameworks": {
+      "tau_bench_agent": 29
+     },
+     "is_correct": {
+      "False": 29
+     },
+     "with_external_labels": 29,
+     "external_keys": {
+      "taxonomy": 29,
+      "failures": 29
+     },
+     "n_models": 1,
+     "top_models": {
+      "unknown-model": 29
+     },
+     "datasets": {
+      "tau_retail": 29
+     },
+     "size": 232299
+    },
+    "aria.jsonl.gz": {
+     "n": 22237,
+     "frameworks": {
+      "ag2_student_verifier": 2558,
+      "magentic_one": 2369,
+      "metagpt": 3809,
+      "openmanus": 13501
+     },
+     "is_correct": {
+      "False": 18653,
+      "True": 3584
+     },
+     "with_external_labels": 22237,
+     "external_keys": {
+      "taxonomy": 22237,
+      "attribution": 22237
+     },
+     "n_models": 8,
+     "top_models": {
+      "llama31-70b": 12986,
+      "qwen3-8b-nonthinking": 4411,
+      "qwen3-32b-nonthinking": 2117,
+      "gpt-5-5-medium": 711,
+      "claude-opus-4-8": 688,
+      "gpt-5-5-high": 674
+     },
+     "datasets": {
+      "gsm-plus": 10177,
+      "mmlu": 9617,
+      "olympiadbench": 1461,
+      "swe-bench-lite": 402,
+      "gaia": 337,
+      "humaneval": 243
+     },
+     "size": 41204300
+    },
+    "mascope.jsonl.gz": {
+     "n": 260,
+     "frameworks": {
+      "langgraph_layered": 23,
+      "langgraph_centralized": 23,
+      "langgraph_decentralized": 9,
+      "langgraph_shared_pool": 25,
+      "mascope_autogen": 55,
+      "mascope_crewai": 31,
+      "mascope_debate": 94
+     },
+     "is_correct": {
+      "None": 260
+     },
+     "with_external_labels": 260,
+     "external_keys": {
+      "taxonomy": 260,
+      "anomaly_type": 260
+     },
+     "n_models": 9,
+     "top_models": {
+      "minimax": 37,
+      "gpt-mini": 35,
+      "glm": 33,
+      "gemini": 30,
+      "gemini-3": 28,
+      "claude": 27
+     },
+     "datasets": {
+      "mascope_planning": 160,
+      "mascope_rag": 66,
+      "mascope_tooluse": 34
+     },
+     "size": 1339893
+    },
+    "mast_data.jsonl.gz": {
+     "n": 1630,
+     "frameworks": {
+      "chatdev": 332,
+      "metagpt": 430,
+      "openmanus": 30,
+      "magentic_one": 195,
+      "ag2_mathchat": 429,
+      "appworld_mas": 30,
+      "hyperagent": 28,
+      "ag2_groupchat": 156
+     },
+     "is_correct": {
+      "None": 1600,
+      "False": 26,
+      "True": 4
+     },
+     "with_external_labels": 1630,
+     "external_keys": {
+      "taxonomy": 1630
+     },
+     "n_models": 5,
+     "top_models": {
+      "GPT-4o": 751,
+      "Claude": 323,
+      "Qwen": 200,
+      "CodeLlama": 200,
+      "GPT-4o-mini": 156
+     },
+     "datasets": {
+      "ProgramDev-v2": 400,
+      "ProgramDev": 390,
+      "GSM": 223,
+      "Olympiad": 206,
+      "GAIA": 195,
+      "MMLU": 156,
+      "Test-C": 30,
+      "SWE-Bench-Lite": 30
+     },
+     "size": 7283990
+    },
+    "traceelephant.jsonl.gz": {
+     "n": 220,
+     "frameworks": {
+      "captainagent": 85,
+      "magentic_one": 91,
+      "swe_agent": 44
+     },
+     "is_correct": {
+      "False": 220
+     },
+     "with_external_labels": 220,
+     "external_keys": {
+      "taxonomy": 220,
+      "mistake_agent": 220,
+      "mistake_step": 220,
+      "mistake_step_id": 220
+     },
+     "n_models": 2,
+     "top_models": {
+      "gpt-4o": 135,
+      "gpt-4o-2024-08-06": 85
+     },
+     "datasets": {
+      "GAIA": 147,
+      "SWE-bench": 44,
+      "AssistantBench": 29
+     },
+     "size": 36338270
+    },
+    "who_and_when.jsonl.gz": {
+     "n": 184,
+     "frameworks": {
+      "magentic_one": 58,
+      "captainagent": 126
+     },
+     "is_correct": {
+      "False": 184
+     },
+     "with_external_labels": 184,
+     "external_keys": {
+      "taxonomy": 184,
+      "mistake_agent": 184,
+      "mistake_step": 184,
+      "mistake_step_id": 184,
+      "agentrx": 44
+     },
+     "n_models": 2,
+     "top_models": {
+      "unknown-model": 126,
+      "gpt-4o": 58
+     },
+     "datasets": {
+      "GAIA": 128,
+      "AssistantBench": 56
+     },
+     "size": 1455940
+    }
+   }
+  },
+  "local_misc": {
+   "files": [
+    {
+     "file": "replay_gem/agentverse_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "agentverse",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 9,
+     "wrong": 11,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "0": 20
+     }
+    },
+    {
+     "file": "replay_gem/dylan_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "dylan",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 55,
+     "unique_run_ids": 55,
+     "unique_questions": 55,
+     "correct": 27,
+     "wrong": 28,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 55
+     },
+     "run_index": {
+      "0": 55
+     }
+    },
+    {
+     "file": "replay_gem/llm_debate_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 31,
+     "unique_run_ids": 31,
+     "unique_questions": 31,
+     "correct": 13,
+     "wrong": 18,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 31
+     },
+     "run_index": {
+      "0": 31
+     }
+    },
+    {
+     "file": "replay_gem/mac_groupchat_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 10,
+     "wrong": 10,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "0": 20
+     }
+    },
+    {
+     "file": "replay_gem/mam_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "mam",
+     "dataset": "medxpertqa_text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 3,
+     "unique_run_ids": 3,
+     "unique_questions": 3,
+     "correct": 3,
+     "wrong": 0,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 3
+     },
+     "run_index": {
+      "0": 3
+     }
+    },
+    {
+     "file": "replay_gem/mdagents_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 200,
+     "unique_run_ids": 200,
+     "unique_questions": 200,
+     "correct": 134,
+     "wrong": 66,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 200
+     },
+     "run_index": {
+      "0": 200
+     }
+    },
+    {
+     "file": "replay_gem/medagents_mc_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 20,
+     "unique_run_ids": 20,
+     "unique_questions": 20,
+     "correct": 8,
+     "wrong": 12,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 20
+     },
+     "run_index": {
+      "0": 20
+     }
+    },
+    {
+     "file": "replay_gem/triage_agent_replayed.jsonl",
+     "format": "main.py-raw",
+     "framework": "triage_agent",
+     "dataset": "triage_esi",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 10,
+     "unique_run_ids": 10,
+     "unique_questions": 10,
+     "correct": 7,
+     "wrong": 3,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "success": 10
+     },
+     "run_index": {
+      "0": 10
+     }
+    },
+    {
+     "file": "corpus_runs/failed_quota/llm_debate__normal_corpus.jsonl",
+     "format": "main.py-raw",
+     "framework": "llm_debate",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 160,
+     "unique_run_ids": 160,
+     "unique_questions": 160,
+     "correct": 0,
+     "wrong": 160,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 160
+     },
+     "run_index": {
+      "0": 160
+     }
+    },
+    {
+     "file": "corpus_runs/failed_quota/mac_groupchat__normal_corpus.jsonl",
+     "format": "main.py-raw",
+     "framework": "mac_groupchat",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 160,
+     "unique_run_ids": 160,
+     "unique_questions": 160,
+     "correct": 0,
+     "wrong": 160,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 160
+     },
+     "run_index": {
+      "0": 160
+     }
+    },
+    {
+     "file": "corpus_runs/failed_quota/mdagents__normal_corpus.jsonl",
+     "format": "main.py-raw",
+     "framework": "mdagents",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 160,
+     "unique_run_ids": 160,
+     "unique_questions": 160,
+     "correct": 0,
+     "wrong": 160,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 160
+     },
+     "run_index": {
+      "0": 160
+     }
+    },
+    {
+     "file": "corpus_runs/failed_quota/medagents_mc__normal_corpus.jsonl",
+     "format": "main.py-raw",
+     "framework": "medagents_mc",
+     "dataset": "medxpertqa-text",
+     "model": "gemini-2.5-flash-lite",
+     "kind": "normal",
+     "n": 160,
+     "unique_run_ids": 160,
+     "unique_questions": 160,
+     "correct": 0,
+     "wrong": 160,
+     "correct_none": 0,
+     "fired": 0,
+     "not_fired": 0,
+     "status": {
+      "llm_api_failure": 160
+     },
+     "run_index": {
+      "0": 160
+     }
+    }
+   ]
+  }
+ }
+}

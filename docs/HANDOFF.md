@@ -1,14 +1,18 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-04 12:15（会话 v11 讨论第 13 轮，issue 我方第 60 轮已发）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-14（会话 v11 讨论第 14 轮，issue 我方第 60 轮已发；MHT 第 101 轮待报价）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
 
-## 当前状态（v11 讨论第 13 轮，2026-11-04）
+## 当前状态（v11 讨论第 14 轮，2026-11-14）
 
 逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
 
 **讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）；第 58 轮（6636937520）补充全部 job 的平凡基线。#3：MHT 第 86 轮（6637475561）请求 corpus 池自然运行（interaction-CPT 预注册）；我方第 59 轮报价，第 60 轮（6640829402）交付。下一条第 61 轮。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
 
 **API：** xiaojingai 余额已用完（11-04）；duckcoding 端点（`DUCKCODING_API_KEY` / `DUCKCODING_BASE_URL`，用户已充值）提供同一模型。端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
+
+**数据集整理与发布（第 14 轮）：** 私有 HF `UUUooUUU/medical-mas-trajectories`（数据卡、`docs/DATASET_REPORT.md`、medical-aegis 全部数据、`annotation_ready/` 5,013 条真实运行，供医生标注）；写令牌在 `/home/claude/.hf_write_token`（600，不入库，建议用户用完撤销）；上传脚本 `scripts/release_hf_upload.py`；本地副本 `docs/release_2026-11-14/`。MAFA 仓库 `fe0b1c6`（0.7.61）：8 个新 spec + `scripts/fetch_medical_aegis.sh`。**人工标签现状：MAFA 0 条完成；MAA 400 例是唯一的人类故障标签；medical-aegis 无人工标签。** 下一步：MAFA Stage-1 预标注报价（付费）。
+
+**issue 11-04 之后（我方未回复）：** MHT 第 95 轮（三臂实验 H1 NULL）、第 97–99 轮、#1 6718517591（后训练线 NULL，撤回扩充报价）、**#1 6720288063（第 101 轮：请为一批新的医学分叉评测父运行报价，供 H-L1 复现）——待我方报价、用户批准**；用户上传 `docs/ISSUE5_PROPOSAL.md`。
 
 **corpus 池自然运行 v1（第 13 轮，交付 MHT）：** `data_runs/corpus_v1_2026-11-04/`：llm_debate / mdagents / MedAgents / MAC × 1,449 题，K = 1，gemini-2.5-flash-lite（**duckcoding 端点**，`ENDPOINT=duckcoding`），raw + mas-traj，渲染约 18.4M token。DyLAN 不跑（用户决定）；AgentVerse / triage / MAM 是未见框架评测层，不进训练。
 

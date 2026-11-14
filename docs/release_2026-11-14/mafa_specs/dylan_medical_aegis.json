@@ -1,0 +1,41 @@
+{
+ "framework": "dylan",
+ "match_filename": [
+  "dylan__normal"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   },
+   "phase": {
+    "field": "phase",
+    "map": {
+     "answer": "discussion",
+     "ranking": "review"
+    },
+    "default": "discussion"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": false,
+  "has_peer_exposure": true,
+  "has_aggregator": false
+ },
+ "declared_why": {
+  "has_recruitment": "roles are fixed a priori",
+  "has_aggregator": "no distinct synthesiser"
+ }
+}

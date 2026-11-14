@@ -1,0 +1,42 @@
+{
+ "framework": "mac_groupchat",
+ "match_filename": [
+  "mac_groupchat"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "select_speaker": "planning",
+     "discussion": "discussion",
+     "supervision": "decision"
+    },
+    "default": "discussion"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": false,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_peer_exposure": "group chat: every doctor reads the shared transcript",
+  "has_aggregator": "a Supervisor ends the chat and states the answer"
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "framework": "agentverse",
+ "match_filename": [
+  "agentverse"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "role_assignment": "recruitment",
+     "solve": "independent_analysis",
+     "criticism": "review",
+     "revise": "discussion",
+     "evaluation": "decision"
+    },
+    "default": "independent_analysis"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": true,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_recruitment": "a RoleAssigner chooses the expert roles",
+  "has_peer_exposure": "critics read the solver's answer",
+  "has_aggregator": "an Evaluator accepts the answer or starts another round"
+ }
+}

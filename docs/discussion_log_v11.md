@@ -137,3 +137,18 @@
 - 11:19 用户：API 文档已更新，duckcoding 端点（`https://api.duckcoding.ai/v1`）也提供 gemini-2.5-flash-lite。key 已写入 `.mht_api.env`（`DUCKCODING_API_KEY` / `DUCKCODING_BASE_URL`）。试调 1 次返回 403 insufficient_user_quota（剩余 $-0.000622；usage 接口 total_usage 100.06）。xiaojingai 仍是 ¥-0.011574。两个端点都没有余额，语料运行继续暂停。
 - 11:28 用户："已充值duckcoding端点。另外，无需测试实际支出。继续吧"。`gemini_run.sh` 增加 `ENDPOINT=duckcoding` 和 `MAXW`（并发数）；重跑 4 个框架（中途把 worker 提到 32 / MedAgents 64）。12:01 全部完成：4 × 1,449 条，全部 success，准确率 0.42–0.45，与 eval 池无交集。归档 `data_runs/corpus_v1_2026-11-04/`（raw + mas-traj + README）。渲染 token 合计约 18.4M（MedAgents 10.25M），API 输入 80.8M / 输出 15.7M（按 xiaojingai 价目约 ¥5.2）。容器磁盘满过一次（42G 上限），清了 pip 缓存和 eval_v3 的 server/main 日志。
 - 已发 #3 第 60 轮（6640829402）。下一条第 61 轮。
+
+## 第 14 轮（2026-11-14）：整理全部数据集，传 HF 和 MAFA
+用户："你把目前的所有数据集都整理好（若有些数据是在MHT项目那边的话你也可以找他要），报告具体的数据集情况(例如什么多智能体系统有多少数据，哪些是模拟的，哪些是真实运行的，有多少是多智能体系统回复错误的/正确的，有哪些是注入了模拟错误的，有哪些是经过了大模型标注者标注的，有哪些是经过人类标注者标注的，等具体情况)。然后把数据集和详细介绍打包好传到我的huggingface仓库（你来新建一个仓库）。后续便于我让人类医生专家来对现有数据集进行标注（通过你知道的另一个负责标注任务的项目https://github.com/chancanmakeit/MAFA-human-ai-annotation）。若你觉得同时把数据传到MAFA项目仓库也行的话那也传一份。"
+- **11-04 之后 issue 上的新动静**（我方未回复）：MHT 第 88 轮（语料已收到）、第 95 轮（交互式续训三臂 H1 为 NULL）、第 97–99 轮、#1 6709060723（请求语料题池 v3 分叉标签报价）、6718517591（后训练线主假设 NULL，撤回报价请求）、**6720288063（第 101 轮：请为一批"新"医学分叉评测父运行报价，用于 H-L1 独立复现；待我方报价、用户批准）**。用户另上传了 `docs/ISSUE5_PROPOSAL.md`。
+- **盘点**（3 个子 agent 并行：medical-aegis、Medhypertrace 仓库、MAFA 仓库；结果见 `docs/release_2026-11-14/`）：
+  - medical-aegis：eval_v3 父运行 5,471 条真实运行（2,950 对 / 2,521 错），14,688 个程序标签点（379 阳性）；corpus 5,796（2,492 / 3,304）；anchor 1,200 正常 + 1,000 注入 + 580 sham（llama）；试点和试跑；mock 不算数据。**没有任何人工标签**。
+  - 用户团队的 AEGIS-medical（nature-sub-record）：clean 440 / faulty 1,112 / simulated 3,519；MHT v1 的 AEGIS-custom-8-13 有 5,231 条注入运行（多 LLM-Debate 1,712 条）。
+  - MAFA：审查包 360 条 × 2 体系，LLM 标签（mimo / glm，及类人 LLM 标签）；**人类专家标签 0 条完成**（今天查在线工具数据库：只有 1 条进行中的 MM-51）。
+  - MAA（MedAgentAudit）：14,370 条真实运行，400 例人工标签（3 人投票），是目前唯一的人类故障标签。
+  - 公开非医学 MAS 数据 7 个，26,108 条（MAST-Data、ARIA 是 LLM 标的）。
+- **HF：** 用户给了写权限令牌（存在 `/home/claude/.hf_write_token`，600，不入库；建议用完撤销）。新建**私有**数据集 `UUUooUUU/medical-mas-trajectories`，共 1,331 个文件：README（数据卡）、`docs/DATASET_REPORT.md`、medical-aegis 全部数据（eval_v3、corpus、anchor、试点与试跑、MAM 音频）、`annotation_ready/`。外部数据（AEGIS-medical、MAA、公开数据、MHT 语料）只给位置和数字，不重复托管。抽查了两个文件的 md5，与本地一致。
+- **`annotation_ready/`**（`scripts/build_annotation_ready.py`）：eval_v3 父运行中除 MAM 外的 5,013 条真实运行（答错 2,268 / 答对 2,745），AEGIS 原始格式，按 `data/{faulty,clean}` 放置；图像 580 张；`manifest.jsonl` 记录反事实阳性步（1,588 条父运行，334 个阳性步），只给组织者。
+- **MAFA 仓库**（push 了 `fe0b1c6`，0.7.61，RUN §73）：新增 8 个 MappingSpec（llm_debate、agentverse、medagents_mc、mac_groupchat、triage_agent、mam、mdagents_medical_aegis、dylan_medical_aegis）、`scripts/fetch_medical_aegis.sh`、`docs/medical-aegis数据导入说明.md`。数据不进 MAFA 仓库（它的规矩是不含原始数据）。端到端实测：fetch 脚本从 HF 下载后，MAFA `preflight.py` 读到 5,013 条，outcome 划分正确，0 个重复智能体 id；`selfcheck_offline.py` 212 项通过，2 项失败，原因是缺 `data/`。
+- **修正：** `data_runs/gemini_trial_2026-11-03/natural` 的 4 个多模态文件的 dataset 标签（原来都是 medxpertqa-text）。
+- **下一步需要用户决定：** (1) MAFA 的 Stage-1 LLM 预标注要花钱，先报价；(2) 回复 MHT 第 101 轮的报价请求。

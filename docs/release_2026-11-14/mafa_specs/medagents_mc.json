@@ -1,0 +1,48 @@
+{
+ "framework": "medagents_mc",
+ "match_filename": [
+  "medagents_mc"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "expert_gathering": "recruitment",
+     "question_analysis": "independent_analysis",
+     "option_analysis": "independent_analysis",
+     "synthesis": "synthesis",
+     "consensus_vote": "review",
+     "revision_advice": "review",
+     "revision": "synthesis",
+     "decision": "decision"
+    },
+    "default": "independent_analysis"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": true,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_recruitment": "classifiers pick the expert fields",
+  "has_peer_exposure": "experts vote on the synthesised report",
+  "has_aggregator": "a Synthesizer and a Decider"
+ }
+}

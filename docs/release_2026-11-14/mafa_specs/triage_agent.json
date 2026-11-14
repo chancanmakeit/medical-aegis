@@ -1,0 +1,44 @@
+{
+ "framework": "triage_agent",
+ "match_filename": [
+  "triage_agent"
+ ],
+ "aegis_base": true,
+ "injections": true,
+ "turns": [
+  {
+   "path": "injection_log.conversation_history[*]",
+   "agent": "agent_name",
+   "role_index": "role_index",
+   "content": [
+    "content",
+    "response"
+   ],
+   "aegis_context": true,
+   "phase": {
+    "field": "phase",
+    "map": {
+     "retrieval": "planning",
+     "classify": "independent_analysis",
+     "summarize": "synthesis",
+     "discuss": "discussion",
+     "consensus": "decision"
+    },
+    "default": "independent_analysis"
+   },
+   "role": "agent_name",
+   "round": {
+    "field": "round"
+   }
+  }
+ ],
+ "declared": {
+  "has_recruitment": false,
+  "has_peer_exposure": true,
+  "has_aggregator": true
+ },
+ "declared_why": {
+  "has_peer_exposure": "in the discussion round doctors read the summary of all first opinions",
+  "has_aggregator": "a Coordinator gives the final ESI level"
+ }
+}
