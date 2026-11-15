@@ -1,67 +1,65 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-14（会话 v11 讨论第 14 轮，issue 我方第 60 轮已发；MHT 第 101 轮待报价）。**先读下面的"当前状态"**，第 0 节以后是累积的背景，部分内容已过时，以"当前状态"和 discussion_log_v11 / v10 的最新几轮为准。
+> 最后更新：2026-11-15（v11 讨论第 15 轮）。**先读下面的"当前状态"**。第 0 节以后是累积的背景，部分内容已经过时；与"当前状态"或 discussion_log_v11 / v10 最近几轮冲突时，以后者为准。
 
-## 当前状态（v11 讨论第 14 轮，2026-11-14）
+## 当前状态（v11 讨论第 15 轮，2026-11-15）
 
-逐轮细节：`docs/discussion_log_v11.md`（本会话），之前见 `docs/discussion_log_v10.md`。
+逐轮细节见 `docs/discussion_log_v11.md`（本会话）；更早的见 `docs/discussion_log_v10.md`。
 
-**讨论渠道 4 个 issue**（medical-aegis 仓库），参与方：MHT 方法侧会话、GPT、Muse。#1 语料需求主线：MHT 第 84 轮（6630061863）审计了 v3（参照偏差、步长基线）；我方第 56 轮（6631056926）复核并修复，第 57 轮（6635858960）发扩充结果并问两件事（triage / MAM 能否作留出框架；追加优先级）；第 58 轮（6636937520）补充全部 job 的平凡基线。#3：MHT 第 86 轮（6637475561）请求 corpus 池自然运行（interaction-CPT 预注册）；我方第 59 轮报价，第 60 轮（6640829402）交付。下一条第 61 轮。#3 MHT 第 84 轮同意第一批多框架安排。读 #1 评论用 `?per_page=100&page=N`（不要 `--paginate`，代理不支持数字 ID 的下一页链接）。
+**第 15 轮：MAFA Stage-1 预标注（已完成，已交给 MAFA）**
+- 批次 `ma_v1`：从 `annotation_ready/` 抽 320 条，8 组，每组 20 条答错 + 20 条答对。选样脚本 `scripts/select_mafa_batch.py`。
+- 四个 arm：
+  - gpt-6.1-terra：MAST 和 MedAgentAudit 都是 320/320；
+  - gemini-4-hydrogen：MAST 298/320、MedAgentAudit 231/320，其余记录是 failed（缺口）。
+- 结果在 HF `UUUooUUU/medical-mas-trajectories` 的 `mafa_stage1_ma_v1/`（README、SUMMARY、arms、只给组织者看的 selection）。
+- 汇总脚本 `scripts/ma_stage1_summary.py`；启动脚本 `scripts/runners/run_ma_stage1*.sh`（MAFA 本地目录 `/home/claude/mafa-human-ai-annotation/work_ma/`，新容器里不一定还在）。
+- **分工**（用户同意）：审查包、主副模型选择、部署给医生都由 MAFA 负责。已开 MAFA issue #2 通知，等它回复。
+- **花费**（各端点的用量计数）：a6api 750.7（a6api 额度已用完）；S3AI 932（硬上限 $20.5，已用完，余额为负）；xiaojingai 0.46。
+- gemini-4-hydrogen 的特点：每条约 10 分钟；高并发下常返回 502；`verdicts` 字段经常缺失；失败的调用照样计费。**以后估算成本要按模型分开算，并计入失败重试。**
 
-**API：** xiaojingai 余额已用完（11-04）；duckcoding 端点（`DUCKCODING_API_KEY` / `DUCKCODING_BASE_URL`，用户已充值）提供同一模型。端点文档在 Project 同步的 private-documents `任务基础上下文/api端点.txt`（只读这一个文件）→ `/home/claude/.mht_api.env`（600）。用量 `/v1/dashboard/billing/usage`（单位 ¥0.01）；**同一个 key 有别的调用方（我们空闲时每小时约 ¥1.1），用量计数器会高估我们的花费，按 token 估算更准**。gemini-2.5-flash-lite 实价 = Google 列表价 × 0.36（人民币）。
+**API**
+- a6api（`A6API_*`）：有 gemini-4-hydrogen 和 gpt-6.1-terra，都不返回 logprobs。gemini 用 json_object，gpt 用 json_schema。
+- S3AI（`S3AI_*`，ai.furry.vg）：有 gemini-4-hydrogen/argon/carbon、gemini-3-flash 等模型。
+- xiaojingai（`XIAOJINGAI_*`）：gemini 只有 2.5-flash-lite、2.5-flash、3-flash-preview（另有 gpt-6.1-terra），**没有 gemini-4-hydrogen**。
+- duckcoding：gemini-2.5-flash-lite，用于多框架运行。
+- 端点文档在 Project 同步的 `任务基础上下文/api端点.txt`，密钥只放在 `/home/claude/.mht_api.env`（权限 600）。
+- 用量查询：`<base>/v1/dashboard/billing/usage?start_date=&end_date=`。
 
-**数据集整理与发布（第 14 轮）：** 私有 HF `UUUooUUU/medical-mas-trajectories`（数据卡、`docs/DATASET_REPORT.md`、medical-aegis 全部数据、`annotation_ready/` 5,013 条真实运行，供医生标注）；写令牌在 `/home/claude/.hf_write_token`（600，不入库，建议用户用完撤销）；上传脚本 `scripts/release_hf_upload.py`；本地副本 `docs/release_2026-11-14/`。MAFA 仓库 `fe0b1c6`（0.7.61）：8 个新 spec + `scripts/fetch_medical_aegis.sh`。**人工标签现状：MAFA 0 条完成；MAA 400 例是唯一的人类故障标签；medical-aegis 无人工标签。** 下一步：MAFA Stage-1 预标注报价（付费）。
+**数据集发布（第 14 轮）**
+- 私有 HF 数据集 `UUUooUUU/medical-mas-trajectories`：数据卡、`docs/DATASET_REPORT.md`、medical-aegis 全部数据、`annotation_ready/`（5,013 条真实运行）、`mafa_stage1_ma_v1/`。
+- HF 写令牌在 `/home/claude/.hf_write_token`，不入库，建议用户用完撤销。
+- MAFA 仓库停在 `fe0b1c6`（0.7.61）：8 个 medical-aegis spec 和 `scripts/fetch_medical_aegis.sh`。
+- **人工标签现状**：MAFA 完成 0 条；MAA 的 400 例是唯一的人类故障标签；medical-aegis 没有人工标签。
 
-**issue 11-04 之后（我方未回复）：** MHT 第 95 轮（三臂实验 H1 NULL）、第 97–99 轮、#1 6718517591（后训练线 NULL，撤回扩充报价）、**#1 6720288063（第 101 轮：请为一批新的医学分叉评测父运行报价，供 H-L1 复现）——待我方报价、用户批准**；用户上传 `docs/ISSUE5_PROPOSAL.md`。
+**协议 v3 评测集**（报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`，归档 `data_runs/eval_v3_2026-11-04/`）
+- 共 379 个阳性 / 14,688 个点（合并参照下 303 个）。
+- 分框架（阳性 / 合并参照下）：AgentVerse 99/81、mdagents 97/77、llm_debate 61/42、MAM 45/44、triage 32/29、mdagents 多模态 21/15、MedAgents 16/9、MAC 8/6。
+- DyLAN 只跑了 stage 1；MHT 建议不补，作为无标签的留出框架。
+- 平凡基线和审计后新增的字段见第 11–12 轮。
+- corpus 池的自然运行 v1 已交付 MHT（`data_runs/corpus_v1_2026-11-04/`）。
 
-**corpus 池自然运行 v1（第 13 轮，交付 MHT）：** `data_runs/corpus_v1_2026-11-04/`：llm_debate / mdagents / MedAgents / MAC × 1,449 题，K = 1，gemini-2.5-flash-lite（**duckcoding 端点**，`ENDPOINT=duckcoding`），raw + mas-traj，渲染约 18.4M token。DyLAN 不跑（用户决定）；AgentVerse / triage / MAM 是未见框架评测层，不进训练。
-
-**协议 v3 评测集（报告 `docs/requests/samples/eval_v3_2026-11-04/REPORT.md`，归档 `data_runs/eval_v3_2026-11-04/`）**
-- 合计 379 个阳性 / 14,688 个点（合并参照下 303；E0 约 49；只反映末次调用的 36 个）。分框架（阳性 / 合并参照下）：AgentVerse 99/81，mdagents 97/77，llm_debate 61/42，MAM 45/44，triage_agent 32/29，mdagents 多模态 21/15，MedAgents 16/9，MAC 8/6，DyLAN 只有 stage 1（0；286 点待 stage 2，**MHT 建议不补**，作无标签留出框架）。
-- **第 11 轮扩充**（用户批准约 ¥5，按 token 实际约 ¥5.0）：job `triage_agent_x`、`mam_heartbeat_a_x`、`mam_heartbeat_b_x`，用合并参照（`--reference pooled`）。父运行由 `scripts/build_expansion_parents.py` 生成（新的 run_index 加上第一批没用到的 run-0）。
-- **审计后的新字段：** `statistics` 增加 pooled_reference / p_value_pooled / perm_p / p_null_positive / reference_rule；`context` 增加 dt_empty / is_last_llm_step / downstream_regenerated。旧批次仍是 control 参照判定。
-- **平凡基线**（`scripts/branch_v3_baselines.py`，复现 MHT 并扩展）：同轨迹内步长 AUROC 为 AgentVerse 0.74、llm_debate 0.82、MAC 0.97、MAM 0.74、mdagents 0.53、triage 0.58（但阳性偏早：相对位置 0.30）、多模态 0.59；mdagents 子集最干净。
-- **归档：** 多模态 / MAM 的 dataset 标签已修正（`scripts/fix_dataset_tag.py`）；`parents_mastraj/` 是父运行的 mas-traj 导出（source `collection`、`provenance.sources_complete`）。dylan、agentverse、triage_agent、mdagents 有已观察到的读集缺口。
-- 本地完整输出（约 10 GB）在 `/home/claude/eval_v3/`，新容器里不一定还在。
+**讨论渠道**
+- medical-aegis 仓库的 issue #1–#4（MHT 方法侧会话、GPT、Muse）。我方下一条是第 61 轮。
+- 读评论用 `gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。
+- **gh 的 GraphQL 不可用**，建 issue 要用 `gh api repos/.../issues --input`。
+- MAFA 的 issue：#1（注入伪迹）、#2（ma_v1 Stage-1 交接）。
 
 **运行要点**
-- 容器在会话空闲几分钟后会被回收，后台任务被杀；长任务要在会话活跃时跑（**每次 sleep ≤ 20 s 轮询，用户要求**）。驱动都可续跑；看门狗 `scripts/runners/eval_v3_watchdog.sh [--restart]` 支持 `PAUSED` 标记。
-- 不要在驱动运行时编辑它读取的脚本；改 bash 脚本要"写新文件再 mv"。
-- 容器磁盘上限约 42G：大文件及时清理（pip 缓存、eval_v3 日志）。
-- MAM 的 stage-2 批次小而慢：用 8 条 lane（每个 arm × rep 一条）更快（参考 `/home/claude/posts/bx_stage2.sh`）。
-
-**沟通**
-- 先读对方最新评论再发帖；MHT 仓库按单文件读；不往 MAFA 仓库提交代码。不要用 `pkill -f` / `pgrep -f`；python heredoc 不嵌套。
-- 修改本节时整节重写。
+- 会话空闲几分钟后，容器会停掉后台进程，所以长任务要在会话活跃时跑，每次 sleep 不超过 20 秒。定时唤醒不适合单条要跑约 10 分钟的任务。
+- 驱动都可以续跑；`run_stage1.py` 续跑时会重试 failed 的记录。
+- 启动脚本按行数判断是否完成，failed 行也算在内，所以需要另跑一遍重试（NT=999）。
+- 不要在驱动运行时编辑它读取的脚本。磁盘上限约 42G。
+- 不要用 `pkill -f` / `pgrep -f`；python heredoc 里不要再嵌套 heredoc。
 
 **待用户决定**
-1. 是否追加 mdagents / llm_debate（MHT 建议优先 mdagents）。
-2. DyLAN stage 2（约 ¥2.5；MHT 建议不补）。
-3. 是否补 corpus K = 2（每臂 40M token 需要约 2 个 epoch；约 ¥5）——等 MHT 意见。
+1. gemini 的缺口（MAST 22 条、MedAgentAudit 89 条）是否补，需要充值；或者等 MAFA 决定主副模型后再说。
+2. MHT 第 101 轮（#1 6720288063）要求为新的医学分叉评测父运行报价，尚未回复。
+3. 是否追加 mdagents / llm_debate 的父运行；DyLAN stage 2（MHT 建议不补）；corpus K=2。
 
 **仍有效的结论（v10）**
-- 分叉试点（第 17 轮，$0.295）：去掉 aggregator 后翻转 llm_debate 5/39、mdagents 7/40；对照复跑无不一致；无漏边。工作目录 `/home/claude/branch_pilot`（不入库，HF 快照里有）。
-- fmt_v1_2 不推广（llm_debate 保持 fmt_v1）；mdagents 正式配置保留 match_opener（`format_matched` 路径 `pi_length_match.format.format_matched`）。
-- `phase_canonical` v1 已采用；MHT 转换器 import 我们的 `scripts/phase_canonical.py`，**改接口先通知 MHT**。
-- 合成路线：在真实轨迹上分叉为主，注入为辅，不让 LLM 整条写轨迹；不用 LLM 改写 agent 发言；人工真值（MAA、MAFA）永不用我们的流程重新标注。
-- 估算：注入/验证类运行要按重试率修正；分叉没有这个放大。
-
-**锚点数据**（只用 llama-4-maverick，aihubmix；响应 model 字段 `google/gemma-4-31B-it-turbo`，用户说明不再核实）
-- 4 个家族：medagents_mc、mac_groupchat（MAC）、llm_debate、mdagents；题目 `datasets/data/anchor_medxpertqa100.json`（MedXpertQA-Text 100 题），轮次上限 2。
-- 已有：normal 100 题 × K=3；run 0 = RC；旧说明 `_pi4`/`_sham`/`_shamstyle`（不进训练）；fmt_v1 `_pi5`/`_sham5`；fmt_v1_1 `_pi6`/`_sham6`；fmt_v1_2 `_v12`；mdagents match_opener `_op`（50 题 sham）。
-- 原始结果 `data_runs/anchor_llama_2026-10-21/*.jsonl.gz`（导出加 `--maa_exclusion docs/requests/maa_exclusion_v1.json`）；本地解压副本 `/home/claude/anchor_runs/`。
-- 运行器 `scripts/runners/anchor_run.sh <fw> <normal|inject> [limit]`。单次运行：llm_debate 约 $0.0046，MAC 约 $0.0096，mdagents 约 $0.0024，medagents 约 $0.0117。
-
-**沟通**
-- 读评论：`gh api repos/chancanmakeit/medical-aegis/issues/<N>/comments?per_page=100&page=N`。我方最新第 54 轮（#1 6615225277），下一条第 55 轮。
-- MHT 仓库按单文件 `gh api repos/chancanmakeit/Medhypertrace/contents/<path>` 读。MAFA：暂无待办，不往 MAFA 仓库提交代码。
-- 先读对方最新评论，读完再单独发帖。不要用 `pkill -f` / `pgrep -f`；bash 里的 python heredoc 不要嵌套另一个 heredoc；改文件优先用 Edit。
-- 修改本节时整节重写，不要原地字符串替换。
-
-**待用户决定**
-1. 协议 v3 与规模（约 $3.5 实测价）：llm_debate / mdagents / AgentVerse / DyLAN 各 100 阳性，MedAgents / MAC 各 40 父运行，mdagents 多模态 4 个数据集各 50 父运行。
-2. #3：多框架自然运行（语料池）的正式规模。
-3. 主数据（其他框架、正式配置）的生成方案。
+- 合成路线：以在真实轨迹上分叉为主，注入为辅；不让 LLM 整条写轨迹；人工真值（MAA、MAFA）永远不用我们的流程重新标注。
+- `phase_canonical` v1 已被 MHT 转换器 import，**改接口前先通知 MHT**。
+- 锚点数据（llama-4-maverick）在 `data_runs/anchor_llama_2026-10-21/`，运行器是 `scripts/runners/anchor_run.sh`。
 
 ---
 

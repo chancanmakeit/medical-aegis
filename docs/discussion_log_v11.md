@@ -152,3 +152,26 @@
 - **MAFA 仓库**（push 了 `fe0b1c6`，0.7.61，RUN §73）：新增 8 个 MappingSpec（llm_debate、agentverse、medagents_mc、mac_groupchat、triage_agent、mam、mdagents_medical_aegis、dylan_medical_aegis）、`scripts/fetch_medical_aegis.sh`、`docs/medical-aegis数据导入说明.md`。数据不进 MAFA 仓库（它的规矩是不含原始数据）。端到端实测：fetch 脚本从 HF 下载后，MAFA `preflight.py` 读到 5,013 条，outcome 划分正确，0 个重复智能体 id；`selfcheck_offline.py` 212 项通过，2 项失败，原因是缺 `data/`。
 - **修正：** `data_runs/gemini_trial_2026-11-03/natural` 的 4 个多模态文件的 dataset 标签（原来都是 medxpertqa-text）。
 - **下一步需要用户决定：** (1) MAFA 的 Stage-1 LLM 预标注要花钱，先报价；(2) 回复 MHT 第 101 轮的报价请求。
+
+## 第 15 轮（2026-11-15）：MAFA 医生审查包的 Stage-1 大模型预标注
+用户："关于医生在 MAFA 里开始标注之前，审查包要先跑一轮大模型预标注这件事，现在可以无需估价，你可以直接调用上下文api端点文档里的a6api端点，使用`gemini-4-hydrogen`和`gpt-6.1-terra`模型作为大模型标注者。"
+- **批次 `ma_v1`**（`scripts/select_mafa_batch.py`，seed 20261115）：从 `annotation_ready/` 抽 8 组，每组 20 条答错 + 20 条答对，共 320 条。组别：agentverse、dylan、llm_debate、mac_groupchat、mdagents、mdagents_mm、medagents_mc、triage_agent。答错的优先选有 v3 阳性步的。
+- **四个 arm**（MAFA 0.7.61 的 `run_stage1.py`，chat 后端，two-pass，两个模型都没有 logprobs，所以用 verbalised 打分）：
+  - gpt-6.1-terra 用 json_schema，MAST 和 MedAgentAudit 都是 320/320；
+  - gemini-4-hydrogen 用 json_object（它不遵守 json_schema），MAST 298/320、MedAgentAudit 231/320。
+- **过程：**
+  - gemini 很慢，每条约 10 分钟，所以拆成多个进程并行（`_c`、`_f`、`_r0-2` 目录，`scripts/ma_stage1_summary.py` 负责合并）。
+  - a6api 额度两次用完（用户两次充值）。
+  - 用户建议改用 xiaojingai 补跑，但它没有 gemini-4-hydrogen；如果换别的模型补，同一个 arm 里就会混两个模型，不可行。
+  - 后来改走 S3AI（ai.furry.vg，模型名相同），补了约 76 条，S3AI 的额度也用完了。
+- **花费**（各端点自己的用量计数）：a6api 750.7（gpt 约 95，其余是 gemini）；S3AI 932；xiaojingai 试跑 gemini-3-flash 0.46。
+  - gemini 的 502 和 schema 失败在报错前已经生成了大量 token，照样计费，所以每成功一条实际约 1.4 个 a6api 单位。
+  - 这远超我当初的估计：最初按平均 0.26/条算，后来改成 0.55/条。**教训：估算要按模型分开算，并把失败重试的花费计入。**
+- **观察**（`SUMMARY.md`）：
+  - 两个模型标出故障的比例，在答对和答错的轨迹上几乎一样（gpt MAST 75% 对 73%）。
+  - gemini 更宽松，它标出的轨迹基本是 gpt 的子集；两个模型都把 mdagents 几乎全标了。
+  - 有 finding 落在 v3 阳性步上：gpt 27/114，gemini 17/95。
+- **分工（用户同意）**：我们只跑 Stage 1；审查包、主副模型选择、部署给医生由 MAFA 负责。
+  - 结果上传到 HF `mafa_stage1_ma_v1/`（`d787cba`）。
+  - 在 MAFA 开了 issue #2 通知；没有往 MAFA 仓库提交任何东西。
+- 用户建议用定时计划代替轮询。没有采用：工作区在会话空闲后会停掉后台进程，而 gemini 每条要跑约 10 分钟。
