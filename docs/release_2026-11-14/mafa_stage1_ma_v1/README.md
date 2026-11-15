@@ -35,19 +35,25 @@ two-pass, prompt=current. One schema mode per arm (MAFA §30). Each file is the 
 processes that ran the arm (see `scripts/ma_stage1_summary.py`): one record per trace (320 lines),
 an `ok` record preferred over a `failed` one.
 
-**Coverage (status ok):** gpt-6.1-terra MAST 320/320, MedAgentAudit 320/320; gemini-4-hydrogen
-MAST 298/320, MedAgentAudit 231/320. The remaining gemini records are `status: failed` (upstream
-502s, schema violations "'verdicts' is a required property", and finally exhausted quota on both
-endpoints); treat them as gaps, not as "no fault".
+**Coverage (status ok): all four arms 320/320** (completed 2026-11-16).
 
-**Endpoints:** gpt-6.1-terra via a6api; gemini-4-hydrogen via a6api, and the last ~76 gemini traces
-via the S3AI endpoint (ai.furry.vg), which serves the same model name. gemini-4-hydrogen was slow
-(~10 min per trace under load) and its 502 / schema failures were billed, so it cost several times
-as much per completed trace as gpt.
+**Endpoints:** gpt-6.1-terra via a6api. gemini-4-hydrogen via a6api for most traces, then via the
+S3AI endpoint (ai.furry.vg, same model name) after the a6api quota ran out, and the last 6 traces via
+a6api again during an S3AI outage ("No available channel for model gemini-4-hydrogen"). Same
+model name, prompt, schema mode and scoring throughout. gemini-4-hydrogen was slow (10-40 min per
+trace under load) and its failed calls (502 / 524 / schema violations) were billed, so it cost
+several times as much per completed trace as gpt.
 
-**Notable (for MAFA's choice of primary/secondary):** both models flag correct-answer runs almost
-as often as wrong ones (gpt MAST 75% vs 73%); gemini is more lenient (MAST 51% vs 39%) but flags
-every mdagents run, correct or not (framework-constant, cf. MAFA §30/§31). See `SUMMARY.md`.
+**Notable (for MAFA's choice of primary/secondary):**
+- gpt-6.1-terra flags correct-answer runs almost as often as wrong ones (MAST 120/160 vs 117/160;
+  MedAgentAudit 132/160 vs 118/160).
+- gemini-4-hydrogen is more lenient but separates outcomes better (MAST 89/160 vs 64/160;
+  MedAgentAudit 104/160 vs 55/160). Under MAST it flags every mdagents run (text and MM),
+  correct or not (framework-constant, cf. MAFA §30/§31).
+- Agreement: gemini's flagged traces are mostly a subset of gpt's (MAST: both 136, gemini only 17,
+  gpt only 101, neither 66).
+- Organiser-only: a finding on a v3 counterfactual-positive step in 23-27 of 114 wrong runs with a
+  positive, for every arm.
 
 `SUMMARY.md` gives coverage, flag rates by group and outcome, agreement between the two models,
 and (organisers only) how often the LLM points at the v3 counterfactual-positive step.

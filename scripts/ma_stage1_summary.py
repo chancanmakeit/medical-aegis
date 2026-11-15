@@ -30,7 +30,7 @@ ARMS = [(t, m) for t in ('mast', 'maa') for m in ('gemini-4-hydrogen', 'gpt-6.1-
 
 def load(tax, model):
     out = {}
-    for suf in ('', '_c', '_f', '_r0', '_r1', '_r2'):
+    for suf in ('', '_c', '_f', '_r0', '_r1', '_r2', '_s0', '_s1', '_s2', '_t0', '_t1', '_u'):
         p = os.path.join(W, f'{tax}_{model}{suf}', 'stage1.jsonl')
         if os.path.exists(p):
             for l in open(p):

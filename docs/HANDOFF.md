@@ -1,20 +1,19 @@
 # medical-aegis 会话交接文档
 
-> 最后更新：2026-11-15（v11 讨论第 15 轮）。**先读下面的"当前状态"**。第 0 节以后是累积的背景，部分内容已经过时；与"当前状态"或 discussion_log_v11 / v10 最近几轮冲突时，以后者为准。
+> 最后更新：2026-11-16（v11 讨论第 16 轮）。**先读下面的"当前状态"**。第 0 节以后是累积的背景，部分内容已经过时；与"当前状态"或 discussion_log_v11 / v10 最近几轮冲突时，以后者为准。
 
-## 当前状态（v11 讨论第 15 轮，2026-11-15）
+## 当前状态（v11 讨论第 16 轮，2026-11-16）
 
 逐轮细节见 `docs/discussion_log_v11.md`（本会话）；更早的见 `docs/discussion_log_v10.md`。
 
-**第 15 轮：MAFA Stage-1 预标注（已完成，已交给 MAFA）**
+**第 15–16 轮：MAFA Stage-1 预标注（已完成，四个 arm 都是 320/320，已交给 MAFA）**
 - 批次 `ma_v1`：从 `annotation_ready/` 抽 320 条，8 组，每组 20 条答错 + 20 条答对。选样脚本 `scripts/select_mafa_batch.py`。
-- 四个 arm：
-  - gpt-6.1-terra：MAST 和 MedAgentAudit 都是 320/320；
-  - gemini-4-hydrogen：MAST 298/320、MedAgentAudit 231/320，其余记录是 failed（缺口）。
+- 四个 arm（gpt-6.1-terra 和 gemini-4-hydrogen，各跑 MAST 和 MedAgentAudit）都是 320/320，第 16 轮补齐。
+- 全量结果：gemini 更宽松，但区分结局比 gpt 强（MAST 上答错 89/160、答对 64/160）；gpt 对两类几乎一样（120 对 117）。
 - 结果在 HF `UUUooUUU/medical-mas-trajectories` 的 `mafa_stage1_ma_v1/`（README、SUMMARY、arms、只给组织者看的 selection）。
 - 汇总脚本 `scripts/ma_stage1_summary.py`；启动脚本 `scripts/runners/run_ma_stage1*.sh`（MAFA 本地目录 `/home/claude/mafa-human-ai-annotation/work_ma/`，新容器里不一定还在）。
-- **分工**（用户同意）：审查包、主副模型选择、部署给医生都由 MAFA 负责。已开 MAFA issue #2 通知，等它回复。
-- **花费**（各端点的用量计数）：a6api 750.7（a6api 额度已用完）；S3AI 932（硬上限 $20.5，已用完，余额为负）；xiaojingai 0.46。
+- **分工**（用户同意）：审查包、主副模型选择、部署给医生都由 MAFA 负责。已在 MAFA issue #2 通知并追加了完成说明，等它回复。
+- **花费**（各端点的用量计数）：a6api 750.7 加最后 6 条；S3AI 约 4464（计数从 1323 涨到 5787，用户充值了 3 次）；xiaojingai 0.46。11-16 时 a6api 的用量接口返回"API Key 无效"，原因待查。
 - gemini-4-hydrogen 的特点：每条约 10 分钟；高并发下常返回 502；`verdicts` 字段经常缺失；失败的调用照样计费。**以后估算成本要按模型分开算，并计入失败重试。**
 
 **API**
@@ -52,7 +51,7 @@
 - 不要用 `pkill -f` / `pgrep -f`；python heredoc 里不要再嵌套 heredoc。
 
 **待用户决定**
-1. gemini 的缺口（MAST 22 条、MedAgentAudit 89 条）是否补，需要充值；或者等 MAFA 决定主副模型后再说。
+1. （已完成）gemini 的缺口已补齐。
 2. MHT 第 101 轮（#1 6720288063）要求为新的医学分叉评测父运行报价，尚未回复。
 3. 是否追加 mdagents / llm_debate 的父运行；DyLAN stage 2（MHT 建议不补）；corpus K=2。
 
